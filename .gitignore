@@ -12,6 +12,7 @@
 /Upgrading.rst
 /flow
 /flow.bat
+/node_modules
 
 # ignore the downloaded selenium server, config and the selenium
 # temporary directory (which starts with a quote, do not ask why...)
