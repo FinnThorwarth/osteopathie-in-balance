@@ -1,8 +1,12 @@
 Data/Temporary/*
 Data/Logs/*
-Data/Persistent/*
 Web/_Resources/*
-node_modules/
-.git/
-*.log
+.git
+.gitignore
 .DS_Store
+node_modules
+*.log
+.env
+.env.local
+.idea
+.vscode

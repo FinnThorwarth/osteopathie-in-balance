@@ -1,52 +1,39 @@
-version: '3.8'
-
+# NEOS DEVELOPMENT ENVIRONMENT
+#
+# For instructions how to use docker-compose, see
+# https://docs.neos.io/cms/installation-development-setup/docker-and-docker-compose-setup#docker-compose-cheat-sheet
 services:
-  web:
+  # Neos CMS
+  neos:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "8081:80"
-    volumes:
-      - ./:/app
-      - ./Data/Persistent:/data
     environment:
-      FLOW_CONTEXT: Development/Docker
-      FLOW_REWRITEURLS: 1
-    depends_on:
-      - db
-    networks:
-      - neos-network
+      FLOW_CONTEXT: 'Development/Docker'
+    volumes:
+      - ./composer.json:/app/composer.json
+      - ./composer.lock:/app/composer.lock
+      - ./Configuration/:/app/Configuration/
+      - ./DistributionPackages/:/app/DistributionPackages/
+      # if you work on other packages, you need to add them here.
+
+      # WARNING: you need to add all packages from Distribution packages here ONE BY ONE, see the notice below for explanation.
+      - ./Packages/Sites/:/app/Packages/Sites/
+    ports:
+      - 8081:8081
+  # DB
 
   db:
-    image: mysql:8.0
+    image: mariadb:10.11
     environment:
-      MYSQL_ROOT_PASSWORD: neos
-      MYSQL_DATABASE: caspary_neos
-      MYSQL_USER: neos
-      MYSQL_PASSWORD: neos
-    ports:
-      - "3307:3306"
+      MARIADB_DATABASE: 'neos'
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+      MARIADB_USER: neos
     volumes:
-      - db_data:/var/lib/mysql
-    networks:
-      - neos-network
-    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-
-  node:
-    image: node:20-alpine
-    working_dir: /app
-    volumes:
-      - ./DistributionPackages/Caspary.Site:/app
-    command: sh -c "npm install && npm run dev"
+      - db:/var/lib/mariadb
     ports:
-      - "5173:5173"
-    networks:
-      - neos-network
+      - 13307:3306
 
 volumes:
-  db_data:
-
-networks:
-  neos-network:
-    driver: bridge
+  db:
