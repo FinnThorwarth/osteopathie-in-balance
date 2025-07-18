@@ -1,0 +1,33 @@
+prototype(Caspary.Site:Document.NavigationPage) < prototype(Neos.Neos:Page) {
+  head {
+    titleTag.content = ${q(node).property('title')}
+    
+    meta = Neos.Fusion:Component {
+      renderer = afx`
+        <meta name="description" content={q(node).property('metaDescription')} />
+        <meta name="keywords" content={q(node).property('metaKeywords')} />
+      `
+    }
+  }
+  
+  body {
+    templatePath = 'resource://Caspary.Site/Private/Templates/Page/NavigationPage.html'
+    
+    content = Neos.Neos:PrimaryContent {
+      nodePath = 'main'
+    }
+    
+    # Add JavaScript for mobile menu functionality
+    javascripts.mobileMenu = Neos.Fusion:Component {
+      renderer = afx`
+        <script type="module">
+          import MobileMenu from '/assets/components/MobileMenu.vue'
+          
+          // Mount Vue component
+          const { createApp } = Vue
+          createApp(MobileMenu).mount('#mobile-menu')
+        </script>
+      `
+    }
+  }
+}

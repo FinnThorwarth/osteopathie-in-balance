@@ -1,0 +1,78 @@
+prototype(Caspary.Site:Component.MobileMenu) < prototype(Neos.Fusion:Component) {
+    menuTitle = ${q(node).property('menuTitle')}
+    maxLevels = ${q(node).property('maxLevels')}
+    entryLevel = ${q(node).property('entryLevel')}
+    
+    # Get menu items from site structure
+    menuItems = Neos.Neos:MenuItems {
+        entryLevel = ${props.entryLevel || 1}
+        maximumLevels = ${props.maxLevels || 2}
+    }
+    
+    renderer = afx`
+        <div class="mobile-menu fixed inset-0 bg-black/95 text-white z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col h-full">
+                <!-- Header -->
+                <div class="flex items-center justify-between p-4 bg-white text-black">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">C</span>
+                        </div>
+                    </div>
+                    <button 
+                        type="button" 
+                        class="mobile-menu-close flex items-center space-x-2"
+                        aria-label="Close mobile menu"
+                    >
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                        <span class="font-bold text-lg">CLOSE</span>
+                    </button>
+                </div>
+                
+                <!-- Menu Items -->
+                <nav class="flex-1 overflow-y-auto">
+                    <ul class="divide-y divide-gray-600">
+                        <Neos.Fusion:Loop items={props.menuItems} itemName="item">
+                            <li class="menu-item" data-has-submenu={item.hasSubItems ? 'true' : 'false'}>
+                                <div class="flex items-center justify-between">
+                                    <a 
+                                        href={item.uri} 
+                                        class="flex-1 py-4 px-4 text-xl font-bold uppercase tracking-wide hover:bg-gray-800 transition-colors"
+                                    >
+                                        {item.label}
+                                    </a>
+                                    <button 
+                                        type="button" 
+                                        class="submenu-toggle p-4 text-2xl font-bold"
+                                        aria-label="Toggle submenu"
+                                        @if.hasSubItems={item.hasSubItems}
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                                
+                                <ul class="submenu bg-gray-900 hidden" @if.hasSubItems={item.subItems}>
+                                    <Neos.Fusion:Loop items={item.subItems} itemName="subItem">
+                                        <li>
+                                            <a 
+                                                href={subItem.uri} 
+                                                class="block py-3 px-8 text-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors"
+                                            >
+                                                {subItem.label}
+                                            </a>
+                                        </li>
+                                    </Neos.Fusion:Loop>
+                                </ul>
+                            </li>
+                        </Neos.Fusion:Loop>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    `
+}
+
+prototype(Caspary.Site:Content.MobileMenu) < prototype(Caspary.Site:Component.MobileMenu)

@@ -2,17 +2,34 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
   # Property API
   menu = ''
   content = ''
+  documentNode = ${documentNode}
 
   # Template
   renderer = afx`
-    <!-- change to your needs -->
-    <header>
-      Header
-      <nav>{props.menu}</nav>
-    </header>
-    <main id="main">
-      {props.content}
-    </main>
-    <footer>Footer</footer>
+    <html lang="de">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>{q(props.documentNode).property('title')}</title>
+    </head>
+    <body class="font-sans bg-white text-gray-900">
+      <Caspary.Site:Component.Header />
+      <Caspary.Site:Component.MobileMenu />
+      
+      <main id="main" class="pt-16">
+        {props.content}
+      </main>
+      
+      <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+          <div class="text-center">
+            <p>&copy; 2024 Caspary Bestattungen. Alle Rechte vorbehalten.</p>
+          </div>
+        </div>
+      </footer>
+      
+      <script type="module" src="/assets/main.js"></script>
+    </body>
+    </html>
   `
 }

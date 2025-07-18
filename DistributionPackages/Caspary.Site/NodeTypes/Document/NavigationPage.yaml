@@ -1,0 +1,43 @@
+'Caspary.Site:Document.NavigationPage':
+  superTypes:
+    'Neos.Neos:Document': true
+  ui:
+    label: 'Navigation Page'
+    icon: 'fas fa-sitemap'
+    inspector:
+      groups:
+        navigation:
+          label: 'Navigation Settings'
+          position: 5
+  properties:
+    showInMobileMenu:
+      type: boolean
+      defaultValue: true
+      ui:
+        label: 'Show in Mobile Menu'
+        inspector:
+          group: 'navigation'
+    hasSubmenu:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Has Submenu'
+        inspector:
+          group: 'navigation'
+    mobileMenuIcon:
+      type: string
+      ui:
+        label: 'Mobile Menu Icon'
+        inspector:
+          group: 'navigation'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            allowEmpty: true
+            placeholder: 'Select icon...'
+            values:
+              '+':
+                label: 'Plus'
+              '-':
+                label: 'Minus'
+              '':
+                label: 'None'

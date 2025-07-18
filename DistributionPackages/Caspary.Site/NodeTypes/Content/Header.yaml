@@ -1,0 +1,32 @@
+'Caspary.Site:Content.Header':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Header'
+    icon: 'fas fa-header'
+    inspector:
+      groups:
+        header:
+          label: 'Header Settings'
+          position: 5
+  properties:
+    logoImage:
+      type: Neos\Media\Domain\Model\ImageInterface
+      ui:
+        label: 'Logo Image'
+        inspector:
+          group: 'header'
+    logoAlt:
+      type: string
+      defaultValue: 'Caspary Logo'
+      ui:
+        label: 'Logo Alt Text'
+        inspector:
+          group: 'header'
+    showMobileMenuButton:
+      type: boolean
+      defaultValue: true
+      ui:
+        label: 'Show Mobile Menu Button'
+        inspector:
+          group: 'header'
