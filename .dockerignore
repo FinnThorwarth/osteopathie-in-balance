@@ -1,0 +1,8 @@
+Data/Temporary/*
+Data/Logs/*
+Data/Persistent/*
+Web/_Resources/*
+node_modules/
+.git/
+*.log
+.DS_Store
