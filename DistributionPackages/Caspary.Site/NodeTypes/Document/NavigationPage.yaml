@@ -35,9 +35,12 @@
             allowEmpty: true
             placeholder: 'Select icon...'
             values:
-              '+':
+              plus:
                 label: 'Plus'
-              '-':
+                icon: '+'
+              minus:
                 label: 'Minus'
-              '':
+                icon: '-'
+              none:
                 label: 'None'
+                icon: ''

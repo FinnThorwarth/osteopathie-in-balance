@@ -1,7 +1,5 @@
 # Define custom node type groups and constraints
 'Neos.Neos:Document':
-  ui:
-    group: 'general'
   constraints:
     nodeTypes:
       'Caspary.Site:Document.HomePage': true
@@ -10,8 +8,6 @@
       'Neos.NodeTypes:Page': false
 
 'Neos.Neos:Content':
-  ui:
-    group: 'general'
 
 # Custom content groups
 'Neos.Neos:ContentCollection':

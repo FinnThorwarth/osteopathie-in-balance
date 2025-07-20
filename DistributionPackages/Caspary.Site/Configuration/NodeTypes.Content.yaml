@@ -47,11 +47,16 @@
           editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
           editorOptions:
             values:
-              '0': 'None'
-              '0.3': 'Light'
-              '0.5': 'Medium'
-              '0.7': 'Dark'
-              '0.9': 'Very Dark'
+              '0':
+                label: 'None'
+              '0.3':
+                label: 'Light'
+              '0.5':
+                label: 'Medium'
+              '0.7':
+                label: 'Dark'
+              '0.9':
+                label: 'Very Dark'
 
 'Caspary.Site:Content.TextSection':
   superTypes:
@@ -111,8 +116,10 @@
           editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
           editorOptions:
             values:
-              'left': 'Left'
-              'center': 'Center'
+              'left':
+                label: 'Left'
+              'center':
+                label: 'Center'
     backgroundColor:
       type: string
       defaultValue: 'white'
@@ -124,8 +131,10 @@
           editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
           editorOptions:
             values:
-              'white': 'White'
-              'gray': 'Gray'
+              'white':
+                label: 'White'
+              'gray':
+                label: 'Gray'
 
 'Caspary.Site:Content.TwoColumnSection':
   superTypes:
@@ -202,8 +211,10 @@
           editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
           editorOptions:
             values:
-              'white': 'White'
-              'gray': 'Gray'
+              'white':
+                label: 'White'
+              'gray':
+                label: 'Gray'
 
 'Caspary.Site:Content.ServiceCard':
   superTypes:
@@ -288,8 +299,10 @@
           editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
           editorOptions:
             values:
-              'white': 'White'
-              'gray': 'Gray'
+              'white':
+                label: 'White'
+              'gray':
+                label: 'Gray'
   childNodes:
     services:
       type: 'Neos.Neos:ContentCollection'
