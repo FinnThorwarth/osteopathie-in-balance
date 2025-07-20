@@ -1,9 +1,16 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import fullReload from 'vite-plugin-full-reload'
 import { resolve } from 'path'
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    // Reload page when Fusion files change
+    fullReload(['Resources/Private/Fusion/**/*.fusion'], {
+      root: __dirname
+    })
+  ],
 
   root: resolve(__dirname, 'Resources/Private'),
 
@@ -33,7 +40,11 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5173,
     strictPort: true,
-    origin: 'http://localhost:5173'
+    origin: 'http://localhost:5173',
+    watch: {
+      // Watch Fusion files for changes
+      ignored: ['!**/Resources/Private/Fusion/**']
+    }
   },
 
   resolve: {

@@ -7,3 +7,9 @@ $ vite
   ➜  Local:   http://localhost:5173/
   ➜  Network: http://192.168.178.192:5173/
   ➜  Network: http://192.168.64.1:5173/
+3:04:19 PM [vite] vite.config.js changed, restarting server...
+3:04:19 PM [vite] server restarted.
+3:04:34 PM [vite] vite.config.js changed, restarting server...
+3:04:34 PM [vite] server restarted.
+3:05:22 PM [vite] full reload Resources/Private/Fusion/Component/Template/Default/Default.fusion
+3:06:30 PM [vite] full reload Resources/Private/Fusion/Component/Template/Default/Default.fusion
