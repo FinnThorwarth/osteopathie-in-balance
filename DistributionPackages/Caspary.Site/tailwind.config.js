@@ -9,56 +9,98 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Caspary brand colors from design
+        // Caspary brand colors extracted from design
         primary: {
-          50: '#f4f1f2',
-          100: '#e8e1e3',
-          200: '#d1c3c7',
-          300: '#b89ea6',
-          400: '#a17985',
-          500: '#7b5664', // Main brand color
-          600: '#6d4d59',
-          700: '#5c414c',
-          800: '#4a363e',
-          900: '#3b2b31',
+          50: '#faf9f9',
+          100: '#f5f3f3',
+          200: '#ebe7e7',
+          300: '#dfd8d8',
+          400: '#cfc5c5',
+          500: '#b8abab', // Main text gray
+          600: '#9e8f8f',
+          700: '#847676',
+          800: '#6b5f5f',
+          900: '#574e4e',
         },
         secondary: {
-          50: '#f0f6f7',
-          100: '#e1ecef',
-          200: '#c3d9df',
-          300: '#9bc0ca',
-          400: '#73a7b5',
-          500: '#528495', // Sub-headline color
-          600: '#4a767f',
-          700: '#3e626a',
-          800: '#325055',
-          900: '#294044',
+          50: '#e8f5f4',
+          100: '#d1ebe9',
+          200: '#a3d7d3',
+          300: '#75c3bd',
+          400: '#47afa7',
+          500: '#3a9991', // Teal from header
+          600: '#2e7a74',
+          700: '#235b57',
+          800: '#173c3a',
+          900: '#0c1d1d',
         },
         accent: {
-          // Teal colors from hamburger menu
-          50: '#f0fefe',
-          100: '#e0fcfc',
-          200: '#c1f9f9',
-          300: '#a9cfcf', // Light teal from SVG
-          400: '#7dbdbd',
-          500: '#6fa1ae', // Main teal from SVG
-          600: '#5a8a96',
-          700: '#4a737e',
-          800: '#3a5c66',
-          900: '#2e4a52',
+          // Additional accent colors
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          200: '#b9e5fe',
+          300: '#7cd1fd',
+          400: '#36bafc',
+          500: '#0da2e7', // Blue accents
+          600: '#0182c5',
+          700: '#02669f',
+          800: '#065083',
+          900: '#0b436d',
+        },
+        caspary: {
+          // Specific brand colors
+          teal: '#3a9991',
+          'teal-light': '#4ca49d',
+          'teal-dark': '#2e7a74',
+          gray: '#b8abab',
+          'gray-light': '#f5f3f3',
+          'gray-dark': '#574e4e',
+          black: '#1a1a1a',
+          white: '#ffffff',
         }
       },
       fontFamily: {
-        // Apparat font from Adobe Fonts
         'sans': ['apparat', 'ui-sans-serif', 'system-ui'],
         'serif': ['ui-serif', 'Georgia'],
         'mono': ['ui-monospace', 'SFMono-Regular'],
+      },
+      fontSize: {
+        'xs': '.75rem',
+        'sm': '.875rem',
+        'base': '1rem',
+        'lg': '1.125rem',
+        'xl': '1.25rem',
+        '2xl': '1.5rem',
+        '3xl': '1.875rem',
+        '4xl': '2.25rem',
+        '5xl': '3rem',
+        '6xl': '3.75rem',
+        '7xl': '4.5rem',
       },
       spacing: {
         '18': '4.5rem',
         '88': '22rem',
         '128': '32rem',
-      }
+      },
+      borderRadius: {
+        'sm': '0.125rem',
+        'DEFAULT': '0.25rem',
+        'md': '0.375rem',
+        'lg': '0.5rem',
+        'xl': '0.75rem',
+        '2xl': '1rem',
+        '3xl': '1.5rem',
+      },
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: '1rem',
+          sm: '2rem',
+          lg: '4rem',
+          xl: '5rem',
+          '2xl': '6rem',
+        },
+      },
     },
   },
   plugins: [],

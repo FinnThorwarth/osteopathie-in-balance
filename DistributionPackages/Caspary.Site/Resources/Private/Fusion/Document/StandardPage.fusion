@@ -1,0 +1,29 @@
+prototype(Caspary.Site:Document.StandardPage) < prototype(Caspary.Site:Document.NavigationPage) {
+    body = Neos.Fusion:Component {
+        pageTitle = ${q(documentNode).property('title')}
+        pageSubtitle = ${q(documentNode).property('subtitle')}
+        
+        renderer = afx`
+            {/* Page Header */}
+            <section class="bg-caspary-gray-light py-12">
+                <div class="container mx-auto px-4">
+                    <h1 class="text-4xl md:text-5xl font-bold text-primary-800 mb-4">
+                        {props.pageTitle}
+                    </h1>
+                    <p class="text-xl text-secondary-500" @if.hasSubtitle={props.pageSubtitle}>
+                        {props.pageSubtitle}
+                    </p>
+                </div>
+            </section>
+            
+            {/* Main Content Area */}
+            <div class="py-16">
+                <div class="container mx-auto px-4">
+                    <div class="max-w-4xl mx-auto">
+                        {props.content}
+                    </div>
+                </div>
+            </div>
+        `
+    }
+}

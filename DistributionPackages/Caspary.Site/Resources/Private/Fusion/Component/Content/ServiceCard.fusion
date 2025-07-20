@@ -1,0 +1,40 @@
+prototype(Caspary.Site:Component.Content.ServiceCard) < prototype(Neos.Fusion:Component) {
+    title = ${q(node).property('title')}
+    description = ${q(node).property('description')}
+    icon = ${q(node).property('icon')}
+    link = ${q(node).property('link')}
+    
+    renderer = afx`
+        <div class="service-card bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6">
+            {/* Icon */}
+            <div class="mb-4" @if.hasIcon={props.icon}>
+                <div class="w-16 h-16 bg-secondary-100 rounded-full flex items-center justify-center">
+                    <svg class="w-8 h-8 text-secondary-500" fill="currentColor" viewBox="0 0 20 20">
+                        {/* Default icon - can be replaced with specific icons */}
+                        <path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 7a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1zm1 4a1 1 0 100 2h2a1 1 0 100-2H9z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+            </div>
+            
+            {/* Title */}
+            <h3 class="text-xl font-bold text-primary-800 mb-2" @if.hasTitle={props.title}>
+                {props.title}
+            </h3>
+            
+            {/* Description */}
+            <p class="text-gray-600 mb-4" @if.hasDescription={props.description}>
+                {props.description}
+            </p>
+            
+            {/* Link */}
+            <a href={props.link} class="text-secondary-500 font-medium hover:text-secondary-600 transition-colors inline-flex items-center" @if.hasLink={props.link}>
+                Mehr erfahren
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    `
+}
+
+prototype(Caspary.Site:Content.ServiceCard) < prototype(Caspary.Site:Component.Content.ServiceCard)

@@ -1,0 +1,29 @@
+# Define custom node type groups and constraints
+'Neos.Neos:Document':
+  ui:
+    group: 'general'
+  constraints:
+    nodeTypes:
+      'Caspary.Site:Document.HomePage': true
+      'Caspary.Site:Document.StandardPage': true
+      'Caspary.Site:Document.TrauerfallPage': true
+      'Neos.NodeTypes:Page': false
+
+'Neos.Neos:Content':
+  ui:
+    group: 'general'
+
+# Custom content groups
+'Neos.Neos:ContentCollection':
+  ui:
+    inspector:
+      groups:
+        caspary:
+          label: 'Caspary Elements'
+          position: 5
+
+# Site root constraints
+'Neos.Neos:Sites':
+  constraints:
+    nodeTypes:
+      'Caspary.Site:Document.HomePage': true

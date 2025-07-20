@@ -1,0 +1,93 @@
+'Caspary.Site:Document.NavigationPage':
+  superTypes:
+    'Neos.Neos:Document': true
+  abstract: true
+  ui:
+    label: 'Navigation Page'
+    group: 'general'
+    inspector:
+      groups:
+        document:
+          label: 'Document'
+          position: 10
+        meta:
+          label: 'Meta'
+          position: 20
+  properties:
+    title:
+      type: string
+      ui:
+        label: 'Title'
+        reloadIfChanged: true
+        inspector:
+          group: 'document'
+    subtitle:
+      type: string
+      ui:
+        label: 'Subtitle'
+        reloadIfChanged: true
+        inspector:
+          group: 'document'
+    metaDescription:
+      type: string
+      ui:
+        label: 'Meta Description'
+        inspector:
+          group: 'meta'
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+          editorOptions:
+            rows: 3
+
+'Caspary.Site:Document.HomePage':
+  superTypes:
+    'Caspary.Site:Document.NavigationPage': true
+  ui:
+    label: 'Homepage'
+    icon: 'icon-home'
+    group: 'general'
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
+      constraints:
+        nodeTypes:
+          'Caspary.Site:Content.HeroSection': true
+          'Caspary.Site:Content.TextSection': true
+          'Caspary.Site:Content.TwoColumnSection': true
+          'Caspary.Site:Content.ServiceGrid': true
+          'Neos.NodeTypes:Text': true
+          'Neos.NodeTypes:Image': true
+
+'Caspary.Site:Document.StandardPage':
+  superTypes:
+    'Caspary.Site:Document.NavigationPage': true
+  ui:
+    label: 'Standard Page'
+    icon: 'icon-file'
+    group: 'general'
+    inspector:
+      groups:
+        page:
+          label: 'Page Settings'
+          position: 30
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
+      constraints:
+        nodeTypes:
+          'Caspary.Site:Content.TextSection': true
+          'Caspary.Site:Content.TwoColumnSection': true
+          'Caspary.Site:Content.ServiceGrid': true
+          'Neos.NodeTypes:Text': true
+          'Neos.NodeTypes:Image': true
+          'Neos.NodeTypes:Headline': true
+
+'Caspary.Site:Document.TrauerfallPage':
+  superTypes:
+    'Caspary.Site:Document.NavigationPage': true
+  ui:
+    label: 'Trauerfall Page'
+    icon: 'icon-heart'
+    group: 'special'
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'

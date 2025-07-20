@@ -1,0 +1,35 @@
+prototype(Caspary.Site:Component.Content.ServiceGrid) < prototype(Neos.Fusion:Component) {
+    headline = ${q(node).property('headline')}
+    subheadline = ${q(node).property('subheadline')}
+    services = ${q(node).children('[instanceof Caspary.Site:Content.ServiceCard]')}
+    backgroundColor = ${q(node).property('backgroundColor') || 'gray'}
+    
+    renderer = afx`
+        <section class={'py-16 ' + (props.backgroundColor == 'gray' ? 'bg-caspary-gray-light' : 'bg-white')}>
+            <div class="container mx-auto px-4">
+                {/* Section Header */}
+                <div class="text-center mb-12" @if.hasHeader={props.headline || props.subheadline}>
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary-800 mb-4" @if.hasHeadline={props.headline}>
+                        {props.headline}
+                    </h2>
+                    <p class="text-lg text-secondary-500 font-medium max-w-2xl mx-auto" @if.hasSubheadline={props.subheadline}>
+                        {props.subheadline}
+                    </p>
+                </div>
+                
+                {/* Service Cards Grid */}
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <Neos.Fusion:Collection
+                        collection={props.services}
+                        itemName="serviceNode"
+                        itemRenderer={Caspary.Site:Content.ServiceCard {
+                            @context.node = ${serviceNode}
+                        }}
+                    />
+                </div>
+            </div>
+        </section>
+    `
+}
+
+prototype(Caspary.Site:Content.ServiceGrid) < prototype(Caspary.Site:Component.Content.ServiceGrid)

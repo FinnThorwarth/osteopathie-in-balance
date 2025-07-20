@@ -1,18 +1,31 @@
 import { createApp } from 'vue'
 import '../Styles/app.css'
+import { initMobileMenu } from './mobile-menu.js'
 
-// Import components
+// Import Vue components
 import MobileMenu from './components/MobileMenu.vue'
 
-// Initialize Vue components
+// Initialize functionality
 document.addEventListener('DOMContentLoaded', () => {
-  // Mount mobile menu component
-  const mobileMenuElement = document.getElementById('mobile-menu')
+  // Initialize mobile menu
+  initMobileMenu();
+  
+  // Mount Vue components if needed
+  const mobileMenuElement = document.getElementById('mobile-menu-vue')
   if (mobileMenuElement) {
     createApp(MobileMenu).mount(mobileMenuElement)
   }
   
-  // Add other component mounts here as needed
+  // Add smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
 })
 
 // General JavaScript functionality

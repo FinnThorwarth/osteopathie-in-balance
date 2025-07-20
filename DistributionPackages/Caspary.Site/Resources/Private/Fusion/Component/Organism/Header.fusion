@@ -1,34 +1,78 @@
-prototype(Caspary.Site:Component.Header) < prototype(Neos.Fusion:Component) {
-    logoImage = ${q(node).property('logoImage')}
-    logoAlt = ${q(node).property('logoAlt')}
-    showMobileMenuButton = ${q(node).property('showMobileMenuButton')}
+prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Component) {
+    site = ${site}
     
     renderer = afx`
-        <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm">
-            <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-                <div class="flex items-center">
-                    <img src={Neos.Neos:ImageUri(asset: props.logoImage, width: 80, height: 80)} alt={props.logoAlt} class="w-12 h-12 rounded-full" @if.hasLogo={props.logoImage} />
-                    <div class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center" @if.noLogo={!props.logoImage}>
-                        <span class="text-white font-bold text-lg">C</span>
+        <header class="bg-caspary-gray-light border-b border-gray-200">
+            {/* Top Contact Bar */}
+            <div class="bg-secondary-500 text-white">
+                <div class="container mx-auto px-4 py-2">
+                    <div class="flex flex-wrap items-center justify-center md:justify-between text-xs">
+                        <div class="flex items-center space-x-4 mb-1 md:mb-0">
+                            <span>Büro Mo-Fr 9-16,00 / Notfall Mo-So 10-22,00</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <a href="/kontakt" class="hover:underline flex items-center">
+                                <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                </svg>
+                                Kontakt
+                            </a>
+                            <a href="mailto:info@caspary-bestattungen.de" class="hover:underline flex items-center">
+                                <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                </svg>
+                                E-Mail
+                            </a>
+                            <a href="/anruf" class="hover:underline flex items-center">
+                                <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                                </svg>
+                                Anruf
+                            </a>
+                        </div>
                     </div>
                 </div>
-                
-                <button 
-                    type="button" 
-                    class="mobile-menu-toggle flex items-center space-x-2 lg:hidden"
-                    aria-label="Toggle mobile menu"
-                    @if.showButton={props.showMobileMenuButton}
-                >
-                    <svg class="w-6 h-6" viewBox="0 0 246.6 56.7">
-                        <rect class="fill-teal-500" x="11" y="2.8" width="79.4" height="11.3"/>
-                        <rect class="fill-teal-200" x="11" y="22.7" width="79.4" height="11.3"/>
-                        <rect class="fill-gray-400" x="11" y="42.5" width="79.4" height="11.3"/>
-                    </svg>
-                    <span class="font-bold text-lg">MENÜ</span>
-                </button>
+            </div>
+
+            {/* Main Header */}
+            <div class="container mx-auto px-4">
+                <div class="flex items-center justify-between py-4">
+                    {/* Logo */}
+                    <a href="/" class="flex items-center">
+                        <img src={Neos.Fusion:ResourceUri(path: 'resource://Caspary.Site/Public/Images/logo.svg')} 
+                             alt="Caspary Bestattungen" 
+                             class="h-12 w-auto" />
+                    </a>
+                    
+                    {/* Desktop Navigation */}
+                    <nav class="hidden lg:flex items-center space-x-8">
+                        <a href="/anfang" class="text-gray-700 hover:text-secondary-500 transition">ANFANG</a>
+                        <a href="/trauerfall" class="text-gray-700 hover:text-secondary-500 transition">TRAUERFALL</a>
+                        <a href="/leistungen" class="text-gray-700 hover:text-secondary-500 transition">LEISTUNGEN</a>
+                        <a href="/philosophie" class="text-gray-700 hover:text-secondary-500 transition">PHILOSOPHIE</a>
+                        <a href="/team" class="text-gray-700 hover:text-secondary-500 transition">TEAM</a>
+                        <a href="/veranstaltungen" class="text-gray-700 hover:text-secondary-500 transition">VERANSTALTUNGEN</a>
+                        <a href="/kontakt" class="text-gray-700 hover:text-secondary-500 transition">KONTAKT</a>
+                    </nav>
+                    
+                    {/* Mobile Menu Button */}
+                    <button 
+                        type="button" 
+                        class="mobile-menu-toggle flex items-center space-x-2 lg:hidden"
+                        aria-label="Toggle mobile menu"
+                        data-menu-toggle
+                    >
+                        <svg class="w-24 h-6" viewBox="0 0 100 24">
+                            <rect class="fill-secondary-500" x="0" y="2" width="30" height="4"/>
+                            <rect class="fill-secondary-300" x="0" y="10" width="30" height="4"/>
+                            <rect class="fill-primary-400" x="0" y="18" width="30" height="4"/>
+                        </svg>
+                        <span class="font-bold text-gray-700">MENÜ</span>
+                    </button>
+                </div>
             </div>
         </header>
     `
 }
-
-prototype(Caspary.Site:Content.Header) < prototype(Caspary.Site:Component.Header)

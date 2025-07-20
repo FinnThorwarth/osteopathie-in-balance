@@ -3,6 +3,7 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
   menu = ''
   content = ''
   documentNode = ${documentNode}
+  site = ${site}
 
   # Template
   renderer = afx`
@@ -10,23 +11,21 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>{q(props.documentNode).property('title')}</title>
+      <title>{q(props.documentNode).property('title')} - Caspary Bestattungen</title>
+      <meta name="description" content="{q(props.documentNode).property('metaDescription')}" />
+      
+      <Neos.Fusion:Tag tagName="link" attributes.rel="stylesheet" attributes.href={Neos.Fusion:ResourceUri(path: 'resource://Caspary.Site/Public/Styles/main.css')} />
+      <Neos.Fusion:Tag tagName="script" attributes.src={Neos.Fusion:ResourceUri(path: 'resource://Caspary.Site/Public/Scripts/main.js')} attributes.type="module" />
     </head>
-    <body class="font-sans bg-white text-gray-900">
-      <Caspary.Site:Component.Header />
-      <Caspary.Site:Component.MobileMenu />
+    <body class="font-sans bg-white text-caspary-black">
+      <Caspary.Site:Component.Organism.Header />
+      <Caspary.Site:Component.Organism.MobileMenu />
 
-      <main id="main" class="pt-16">
+      <main id="main" class="min-h-screen">
         {props.content}
       </main>
 
-      <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-4">
-          <div class="text-center">
-            <p>&copy; 2024 Caspary Bestattungen. Alle Rechte vorbehalten.</p>
-          </div>
-        </div>
-      </footer>
+      <Caspary.Site:Component.Organism.Footer />
 
     </body>
     </html>

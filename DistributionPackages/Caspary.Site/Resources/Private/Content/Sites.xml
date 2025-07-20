@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <site name="Caspary Bestattungen" state="1" siteResourcesPackageKey="Caspary.Site" siteNodeName="caspary">
+    <nodes formatVersion="2.0">
+      <node identifier="c0d1f9a0-1234-5678-90ab-cdef12345678" nodeName="caspary">
+        <variant sortingIndex="100" workspace="live" nodeType="Caspary.Site:Document.HomePage" version="1" removed="" hidden="" hiddenInIndex="">
+          <dimensions/>
+          <accessRoles __type="array"/>
+          <creationDateTime __type="object" __classname="DateTime">2024-01-01T00:00:00+00:00</creationDateTime>
+          <lastModificationDateTime __type="object" __classname="DateTime">2024-01-01T00:00:00+00:00</lastModificationDateTime>
+          <lastPublicationDateTime __type="object" __classname="DateTime">2024-01-01T00:00:00+00:00</lastPublicationDateTime>
+          <properties>
+            <title __type="string">Startseite</title>
+            <uriPathSegment __type="string">home</uriPathSegment>
+            <metaDescription __type="string">Caspary Bestattungen Bremen - Wir begleiten Sie in schweren Zeiten mit Respekt, Achtsamkeit und Empathie.</metaDescription>
+          </properties>
+        </variant>
+        <node identifier="main-collection-home" nodeName="main">
+          <variant sortingIndex="100" workspace="live" nodeType="Neos.Neos:ContentCollection" version="1" removed="" hidden="" hiddenInIndex="">
+            <dimensions/>
+            <accessRoles __type="array"/>
+            <properties/>
+          </variant>
+        </node>
+      </node>
+    </nodes>
+  </site>
+</root>
