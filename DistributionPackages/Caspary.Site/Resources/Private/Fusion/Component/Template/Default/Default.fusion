@@ -15,11 +15,11 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
     <body class="font-sans bg-white text-gray-900">
       <Caspary.Site:Component.Header />
       <Caspary.Site:Component.MobileMenu />
-      
+
       <main id="main" class="pt-16">
         {props.content}
       </main>
-      
+
       <footer class="bg-gray-800 text-white py-8">
         <div class="container mx-auto px-4">
           <div class="text-center">
@@ -27,8 +27,7 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
           </div>
         </div>
       </footer>
-      
-      <script type="module" src="/assets/main.js"></script>
+
     </body>
     </html>
   `

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Frontend build for Caspary Bestattungen Neos CMS site",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

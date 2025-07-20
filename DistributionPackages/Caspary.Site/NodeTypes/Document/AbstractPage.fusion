@@ -14,12 +14,12 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
 
     # Add stylesheets to your page
      stylesheets.site = afx`
-        <link rel="stylesheet" href={StaticResource.uri('Caspary.Site', 'Public/site.css')} />
+        <link rel="stylesheet" href={StaticResource.uri('Caspary.Site', 'Public/Styles/app.css')} />
     `
 
     # Add header javascripts to your page
     javascripts.site = afx`
-        <link type="text/javascript" defer href={StaticResource.uri('Caspary.Site', 'Public/site.js')} />
+        <link type="text/javascript" defer href={StaticResource.uri('Caspary.Site', 'Public/JavaScript/main.js')} />
     `
   }
 

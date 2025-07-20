@@ -1,0 +1,9 @@
+yarn run v1.22.19
+warning ../../../../../../package.json: No license field
+$ vite
+
+  VITE v5.4.19  ready in 155 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://192.168.178.192:5173/
+  ➜  Network: http://192.168.64.1:5173/
