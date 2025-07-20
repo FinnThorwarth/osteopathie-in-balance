@@ -1,16 +1,17 @@
 prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Component) {
   site = ${site}
 
+  year = ${DateTime.now().format('Y')}
+
   renderer = afx`
     <footer class="bg-primary-800 text-white">
       <div class="container mx-auto px-4 py-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          
-          {/* Company Info Column */}
+
           <div class="space-y-4">
             <div class="flex items-center space-x-2 mb-6">
-              <img src={Neos.Fusion:ResourceUri(path: 'resource://Caspary.Site/Public/Images/logo-white.svg')} 
-                   alt="Caspary Bestattungen" 
+              <img src={StaticResource.uri('Caspary.Site', 'Public/Images/logo-white.svg')}
+                   alt="Caspary Bestattungen"
                    class="h-12 w-auto" />
             </div>
             <div class="space-y-2 text-sm">
@@ -25,7 +26,6 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
             </div>
           </div>
 
-          {/* Quick Links Column */}
           <div class="space-y-4">
             <h3 class="text-sm font-medium uppercase tracking-wider">Schnellzugriff</h3>
             <nav class="space-y-2">
@@ -39,7 +39,6 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
             </nav>
           </div>
 
-          {/* Cooperation Partners Column */}
           <div class="space-y-4">
             <h3 class="text-sm font-medium uppercase tracking-wider">Kooperationspartner/innen</h3>
             <div class="space-y-2 text-sm text-gray-300">
@@ -50,10 +49,9 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
           </div>
         </div>
 
-        {/* Copyright */}
         <div class="mt-12 pt-8 border-t border-primary-700">
           <p class="text-xs text-center text-gray-400">
-            &copy; {Date.now().getFullYear()} Caspary Bestattungen. Alle Rechte vorbehalten.
+            &copy; {props.year} Caspary Bestattungen. Alle Rechte vorbehalten.
           </p>
         </div>
       </div>

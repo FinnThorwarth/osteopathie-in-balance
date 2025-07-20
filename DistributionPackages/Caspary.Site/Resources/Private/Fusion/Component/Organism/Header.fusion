@@ -1,9 +1,8 @@
 prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Component) {
     site = ${site}
-    
+
     renderer = afx`
         <header class="bg-caspary-gray-light border-b border-gray-200">
-            {/* Top Contact Bar */}
             <div class="bg-secondary-500 text-white">
                 <div class="container mx-auto px-4 py-2">
                     <div class="flex flex-wrap items-center justify-center md:justify-between text-xs">
@@ -36,17 +35,14 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
                 </div>
             </div>
 
-            {/* Main Header */}
             <div class="container mx-auto px-4">
                 <div class="flex items-center justify-between py-4">
-                    {/* Logo */}
                     <a href="/" class="flex items-center">
-                        <img src={Neos.Fusion:ResourceUri(path: 'resource://Caspary.Site/Public/Images/logo.svg')} 
-                             alt="Caspary Bestattungen" 
+                        <img src={StaticResource.uri('Caspary.Site', 'Public/Images/logo.svg')}
+                             alt="Caspary Bestattungen"
                              class="h-12 w-auto" />
                     </a>
-                    
-                    {/* Desktop Navigation */}
+
                     <nav class="hidden lg:flex items-center space-x-8">
                         <a href="/anfang" class="text-gray-700 hover:text-secondary-500 transition">ANFANG</a>
                         <a href="/trauerfall" class="text-gray-700 hover:text-secondary-500 transition">TRAUERFALL</a>
@@ -56,10 +52,9 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
                         <a href="/veranstaltungen" class="text-gray-700 hover:text-secondary-500 transition">VERANSTALTUNGEN</a>
                         <a href="/kontakt" class="text-gray-700 hover:text-secondary-500 transition">KONTAKT</a>
                     </nav>
-                    
-                    {/* Mobile Menu Button */}
-                    <button 
-                        type="button" 
+
+                    <button
+                        type="button"
                         class="mobile-menu-toggle flex items-center space-x-2 lg:hidden"
                         aria-label="Toggle mobile menu"
                         data-menu-toggle

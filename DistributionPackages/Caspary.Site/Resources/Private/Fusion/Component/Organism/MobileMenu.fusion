@@ -1,18 +1,17 @@
 prototype(Caspary.Site:Component.Organism.MobileMenu) < prototype(Neos.Fusion:Component) {
     site = ${site}
-    
+
     renderer = afx`
         <div class="mobile-menu fixed inset-0 bg-gray-900 text-white z-50 transform translate-x-full transition-transform duration-300 ease-in-out" data-mobile-menu>
             <div class="flex flex-col h-full">
-                {/* Header */}
                 <div class="flex items-center justify-between p-4 bg-white text-black">
                     <a href="/" class="flex items-center">
-                        <img src={Neos.Fusion:ResourceUri(path: 'resource://Caspary.Site/Public/Images/logo.svg')} 
-                             alt="Caspary Bestattungen" 
+                        <img src={StaticResource.uri('Caspary.Site', 'Public/Images/logo.svg')}
+                             alt="Caspary Bestattungen"
                              class="h-10 w-auto" />
                     </a>
-                    <button 
-                        type="button" 
+                    <button
+                        type="button"
                         class="mobile-menu-close flex items-center space-x-2"
                         aria-label="Close mobile menu"
                         data-menu-close
@@ -24,18 +23,16 @@ prototype(Caspary.Site:Component.Organism.MobileMenu) < prototype(Neos.Fusion:Co
                         <span class="font-bold text-lg uppercase">Close</span>
                     </button>
                 </div>
-                
-                {/* Menu Items */}
+
                 <nav class="flex-1 overflow-y-auto">
                     <ul class="divide-y divide-gray-700">
-                        {/* ANFANG */}
+
                         <li class="menu-item">
                             <a href="/anfang" class="block py-4 px-6 text-xl font-bold uppercase tracking-wide hover:bg-gray-800 transition-colors">
                                 Anfang
                             </a>
                         </li>
-                        
-                        {/* TRAUERFALL with submenu */}
+
                         <li class="menu-item" data-has-submenu="true">
                             <div class="flex items-center justify-between">
                                 <a href="/trauerfall" class="flex-1 py-4 px-6 text-xl font-bold uppercase tracking-wide hover:bg-gray-800 transition-colors">
@@ -62,8 +59,8 @@ prototype(Caspary.Site:Component.Organism.MobileMenu) < prototype(Neos.Fusion:Co
                                 <li><a href="/leistungen/vorsorge" class="block py-3 px-8 text-lg hover:bg-gray-700 transition-colors">Vorsorge</a></li>
                             </ul>
                         </li>
-                        
-                        {/* LEISTUNGEN with submenu */}
+
+
                         <li class="menu-item" data-has-submenu="true">
                             <div class="flex items-center justify-between">
                                 <a href="/leistungen" class="flex-1 py-4 px-6 text-xl font-bold uppercase tracking-wide hover:bg-gray-800 transition-colors">
@@ -84,22 +81,22 @@ prototype(Caspary.Site:Component.Organism.MobileMenu) < prototype(Neos.Fusion:Co
                                 <li><a href="/leistungen/halbanonyme-beisetzung" class="block py-3 px-8 text-lg hover:bg-gray-700 transition-colors">Halbanonyme Beisetzung</a></li>
                             </ul>
                         </li>
-                        
-                        {/* PHILOSOPHIE */}
+
+
                         <li class="menu-item">
                             <a href="/philosophie" class="block py-4 px-6 text-xl font-bold uppercase tracking-wide hover:bg-gray-800 transition-colors">
                                 Philosophie
                             </a>
                         </li>
-                        
-                        {/* TEAM */}
+
+
                         <li class="menu-item">
                             <a href="/team" class="block py-4 px-6 text-xl font-bold uppercase tracking-wide hover:bg-gray-800 transition-colors">
                                 Team
                             </a>
                         </li>
-                        
-                        {/* VERANSTALTUNGEN with submenu */}
+
+
                         <li class="menu-item" data-has-submenu="true">
                             <div class="flex items-center justify-between">
                                 <a href="/veranstaltungen" class="flex-1 py-4 px-6 text-xl font-bold uppercase tracking-wide hover:bg-gray-800 transition-colors">
@@ -124,8 +121,8 @@ prototype(Caspary.Site:Component.Organism.MobileMenu) < prototype(Neos.Fusion:Co
                                 <li><a href="/veranstaltungen/vorsorge" class="block py-3 px-8 text-lg hover:bg-gray-700 transition-colors">Vorsorge</a></li>
                             </ul>
                         </li>
-                        
-                        {/* KONTAKT */}
+
+
                         <li class="menu-item">
                             <a href="/kontakt" class="block py-4 px-6 text-xl font-bold uppercase tracking-wide hover:bg-gray-800 transition-colors">
                                 Kontakt

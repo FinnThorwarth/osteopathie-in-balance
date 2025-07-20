@@ -13,9 +13,9 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>{q(props.documentNode).property('title')} - Caspary Bestattungen</title>
       <meta name="description" content="{q(props.documentNode).property('metaDescription')}" />
-      
-      <Neos.Fusion:Tag tagName="link" attributes.rel="stylesheet" attributes.href={Neos.Fusion:ResourceUri(path: 'resource://Caspary.Site/Public/Styles/main.css')} />
-      <Neos.Fusion:Tag tagName="script" attributes.src={Neos.Fusion:ResourceUri(path: 'resource://Caspary.Site/Public/Scripts/main.js')} attributes.type="module" />
+
+      <link rel="stylesheet" href={StaticResource.uri('Caspary.Site', 'Public/Styles/app.css')} />
+      <script src={StaticResource.uri('Caspary.Site', 'Public/JavaScript/main.js')} type="module"></script>
     </head>
     <body class="font-sans bg-white text-caspary-black">
       <Caspary.Site:Component.Organism.Header />
