@@ -5,6 +5,7 @@
     "src": "JavaScript/main.js",
     "isEntry": true,
     "css": [
+      "Styles/main.css",
       "Styles/app.css"
     ]
   },

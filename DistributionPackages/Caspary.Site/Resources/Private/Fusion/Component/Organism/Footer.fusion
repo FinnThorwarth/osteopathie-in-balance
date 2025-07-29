@@ -4,57 +4,43 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
   year = ${DateTime.now().format('Y')}
 
   renderer = afx`
-    <footer class="bg-primary-800 text-white">
-      <div class="container mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-          <div class="space-y-4">
-            <div class="flex items-center space-x-2 mb-6">
-              <img src={StaticResource.uri('Caspary.Site', 'Public/Images/logo-white.svg')}
-                   alt="Caspary Bestattungen"
-                   class="h-12 w-auto" />
+   <footer class="bg-caspary-footer text-white py-12 mt-20">
+    <div class="max-w-7xl mx-auto px-8">
+        <div class="grid md:grid-cols-2 md:gap-0">
+            <div class="md:pr-8">
+                <div class="space-y-1 text-2xl uppercase">
+                    <div>ANFANG</div>
+                    <div>TRAUERFALL</div>
+                    <div>LEISTUNGEN</div>
+                    <div>PHILOSOPHIE</div>
+                    <div>TEAM</div>
+                    <div>JOURNAL</div>
+                    <div>VERANSTALTUNGEN</div>
+                    <div>KONTAKT</div>
+                </div>
             </div>
-            <div class="space-y-2 text-sm">
-              <p class="font-medium text-white">CASPARY BESTATTUNGEN</p>
-              <p class="text-gray-300">T. 0421 – 38 30 55</p>
-              <p class="text-gray-300">M. info@caspary-bestattungen.de</p>
+            <div class="relative md:pl-8 md:border-l-2 md:border-white">
+                <h3 class="text-xl mb-4 uppercase">Caspary Bestattungen</h3>
+                <div class="space-y-1">
+                    <p><span class="font-bold">T</span> 0421 - 36 30 80</p>
+                    <p><span class="font-bold">M</span> info@caspary-bestattungen.de</p>
+                </div>
+                <p class="mt-4">
+                    Sie finden uns hier:<br/>
+                    Schwachhauser Heerstr. 47<br/>
+                    28211 Bremen
+                </p>
+                <div class="mt-6 space-y-1 text-xl uppercase">
+                    <div>KOOPERATIONSPARTNER*INNEN</div>
+                    <div>DOWNLOADS</div>
+                    <div>IMPRESSUM</div>
+                    <div>DATENSCHUTZ</div>
+                </div>
+                <img src="design/Icon-Footer.svg" alt="Caspary Logo"
+                    class="h-40 absolute top-0 right-0 -translate-y-[150px]" />
             </div>
-            <div class="text-sm text-gray-300 space-y-1">
-              <p>Sie finden uns hier:</p>
-              <p>Schwachhauser Heerstr. 47</p>
-              <p>28211 Bremen</p>
-            </div>
-          </div>
-
-          <div class="space-y-4">
-            <h3 class="text-sm font-medium uppercase tracking-wider">Schnellzugriff</h3>
-            <nav class="space-y-2">
-              <a href="/anfang" class="block text-sm text-gray-300 hover:text-white transition">ANFANG</a>
-              <a href="/trauerfall" class="block text-sm text-gray-300 hover:text-white transition">TRAUERFALL</a>
-              <a href="/leistungen" class="block text-sm text-gray-300 hover:text-white transition">LEISTUNGEN</a>
-              <a href="/philosophie" class="block text-sm text-gray-300 hover:text-white transition">PHILOSOPHIE</a>
-              <a href="/team" class="block text-sm text-gray-300 hover:text-white transition">TEAM</a>
-              <a href="/veranstaltungen" class="block text-sm text-gray-300 hover:text-white transition">VERANSTALTUNGEN</a>
-              <a href="/kontakt" class="block text-sm text-gray-300 hover:text-white transition">KONTAKT</a>
-            </nav>
-          </div>
-
-          <div class="space-y-4">
-            <h3 class="text-sm font-medium uppercase tracking-wider">Kooperationspartner/innen</h3>
-            <div class="space-y-2 text-sm text-gray-300">
-              <p>DOWNLOADS</p>
-              <p>IMPRESSUM</p>
-              <p>DATENSCHUTZ</p>
-            </div>
-          </div>
         </div>
-
-        <div class="mt-12 pt-8 border-t border-primary-700">
-          <p class="text-xs text-center text-gray-400">
-            &copy; {props.year} Caspary Bestattungen. Alle Rechte vorbehalten.
-          </p>
-        </div>
-      </div>
-    </footer>
+    </div>
+  </footer>
   `
 }

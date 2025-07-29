@@ -5,7 +5,7 @@
     'Neos.Neos:Site': true
   ui:
     icon: globe
-    label: 'Caspary.Site Homepage'
+    label: 'Homepage'
   childNodes:
     main:
       type: 'Neos.Neos:ContentCollection'

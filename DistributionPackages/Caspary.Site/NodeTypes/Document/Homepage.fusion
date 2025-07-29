@@ -1,1 +1,0 @@
-prototype(Caspary.Site:Document.Homepage) < prototype(Caspary.Site:Document.AbstractPage)
