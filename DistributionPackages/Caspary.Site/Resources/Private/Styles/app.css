@@ -5,6 +5,38 @@
   --color-purple: #7b5664;
 }
 
+[v-cloak] {
+  display: none;
+}
+
+/* Ensure menu icon SVG displays with correct colors */
+img[src*="menu-icon.svg"] {
+  filter: none;
+}
+
+.menu-wrapper {
+  transform: translateY(14rem);
+}
+
+/* Grayscale filter for contrast mode */
+.grayscale-mode {
+  filter: grayscale(1) contrast(1.25) !important;
+  transition: filter 0.3s ease;
+}
+
+nav ul,
+nav li {
+  list-style: none;
+}
+
+.mainnav {
+  nav {
+    li {
+      border-bottom: solid 1px var(--color-purple);
+    }
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

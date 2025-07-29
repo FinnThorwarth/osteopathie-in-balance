@@ -1,7 +1,17 @@
 prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Component) {
   site = ${site}
-
   year = ${DateTime.now().format('Y')}
+  // SVG Icon
+   includeIconFooter = Neos.Fusion:Tag {
+    tagName = 'img'
+    attributes {
+      src = Neos.Fusion:ResourceUri {
+        path = 'resource://Caspary.Site/Public/Images/Icon-Footer.svg'
+      }
+      alt="Logo"
+      class = 'h-40 absolute top-0 right-0 -translate-y-[150px]'
+    }
+  }
 
   renderer = afx`
    <footer class="bg-caspary-footer text-white py-12 mt-20">
@@ -22,13 +32,15 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
             <div class="relative md:pl-8 md:border-l-2 md:border-white">
                 <h3 class="text-xl mb-4 uppercase">Caspary Bestattungen</h3>
                 <div class="space-y-1">
-                    <p><span class="font-bold">T</span> 0421 - 36 30 80</p>
-                    <p><span class="font-bold">M</span> info@caspary-bestattungen.de</p>
+                    <p><span class="font-bold">T</span> <a href="tel:0421363080">0421 - 36 30 80</a></p>
+                    <p><span class="font-bold">M</span> <a href="mailto:info@caspary-bestattungen.de">info@caspary-bestattungen.de</a></p>
                 </div>
                 <p class="mt-4">
+                  <address class="not-italic">
                     Sie finden uns hier:<br/>
                     Schwachhauser Heerstr. 47<br/>
                     28211 Bremen
+                  </address>
                 </p>
                 <div class="mt-6 space-y-1 text-xl uppercase">
                     <div>KOOPERATIONSPARTNER*INNEN</div>
@@ -36,8 +48,7 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
                     <div>IMPRESSUM</div>
                     <div>DATENSCHUTZ</div>
                 </div>
-                <img src="design/Icon-Footer.svg" alt="Caspary Logo"
-                    class="h-40 absolute top-0 right-0 -translate-y-[150px]" />
+                {props.includeIconFooter}
             </div>
         </div>
     </div>

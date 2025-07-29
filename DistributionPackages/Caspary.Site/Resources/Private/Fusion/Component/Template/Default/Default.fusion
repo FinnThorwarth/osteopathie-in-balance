@@ -7,16 +7,6 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
 
   # Template
   renderer = afx`
-    <html lang="de">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>{q(props.documentNode).property('title')} - Caspary Bestattungen</title>
-      <meta name="description" content="{q(props.documentNode).property('metaDescription')}" />
-
-      <link rel="stylesheet" href={StaticResource.uri('Caspary.Site', 'Public/Styles/app.css')} />
-      <script src={StaticResource.uri('Caspary.Site', 'Public/JavaScript/main.js')} type="module"></script>
-    </head>
     <body class="font-sans bg-white text-caspary-black">
       <Caspary.Site:Component.Organism.Header />
       <Caspary.Site:Component.Organism.MobileMenu />

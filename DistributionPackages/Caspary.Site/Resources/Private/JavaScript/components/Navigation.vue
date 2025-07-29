@@ -2,7 +2,7 @@
   <div class="navigation-wrapper">
     <!-- Desktop Menu Button -->
     <button @click="toggleMenu" class="hidden md:flex items-center gap-2">
-      <!--  <img src="/design/menu-icon.svg" alt="Menü" class="h-8 w-8"> -->
+      <img :src="menuIconUrl" alt="Menü" class="h-8 w-8">
       <span
         class="text-2xl font-headline text-caspary-gray uppercase tracking-wide"
         >Menü</span
@@ -11,7 +11,7 @@
 
     <!-- Mobile Menu Button -->
     <button @click="toggleMenu" class="flex md:hidden items-center">
-      <!--   <img src="/design/menu-icon.svg" alt="Menü" class="h-8"> -->
+      <img :src="menuIconUrl" alt="Menü" class="h-8">
     </button>
 
     <!-- Desktop Menu Overlay -->
@@ -306,7 +306,7 @@
       <div
         class="flex items-center justify-between px-6 py-4 bg-white border-b"
       >
-        <!-- <img src="/design/logo.svg" alt="Caspary Bestattungen" class="h-14" /> -->
+        <img :src="logoUrl" alt="Caspary Bestattungen" class="h-14" />
         <button @click="closeMenu" class="flex items-center space-x-2">
           <svg
             class="w-6 h-6"
@@ -483,6 +483,14 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    menuIconUrl() {
+      return '/_Resources/Static/Packages/Caspary.Site/Images/menu-icon.svg';
+    },
+    logoUrl() {
+      return '/_Resources/Static/Packages/Caspary.Site/Images/logo.svg';
+    },
   },
   methods: {
     toggleMenu() {

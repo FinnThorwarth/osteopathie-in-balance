@@ -7,10 +7,19 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
       `
     }
 
-    titleTag = Neos.Fusion:Tag {
-      tagName = 'title'
-      content = ${q(node).property('title')}
-    }
+     titleTag = Neos.Fusion:Tag {
+            tagName = 'title'
+            content = Neos.Fusion:Case {
+                titleOverwrite {
+                    condition = ${q(node).property('titleOverride') ? true : false}
+                    renderer = ${q(node).property('titleOverride') + ' | Caspary Bestattungen in Bremen'}
+                }
+                default {
+                    condition = true
+                    renderer = ${q(node).property('title') + ' | Caspary Bestattungen in Bremen'}
+                }
+            }
+        }
 
     # Add stylesheets to your page
      stylesheets.site = afx`
@@ -32,7 +41,11 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
       }
 
       renderer = afx`
-        {props.main}
+        <div id="app" v-cloak>
+          <div :class="grayscaleActive ? 'grayscale-mode' : ''">
+            {props.main}
+          </div>
+        </div>
       `
     }
 
