@@ -18,9 +18,19 @@ function mountVueComponents() {
 	// Mount Navigation component
 	const navigationElement = document.getElementById('navigation-vue')
 	if (navigationElement && !navigationElement._vueInstance) {
-		console.log('Navigation element found, mounting Vue component...')
-		navigationElement._vueInstance = createApp(Navigation).mount(navigationElement)
-		console.log('Navigation Vue component mounted')
+		console.log('Navigation element found, checking for navigation data...')
+		
+		// Get navigation data from data attribute
+		let navigationItems = navigationElement.getAttribute('data-navigation')
+		console.log('Navigation data from attribute:', navigationItems)
+		
+		// Create app with props
+		const navApp = createApp(Navigation, {
+			navigationItems: navigationItems
+		})
+		
+		navigationElement._vueInstance = navApp.mount(navigationElement)
+		console.log('Navigation Vue component mounted with data:', navigationItems ? 'yes' : 'no')
 	}
 }
 

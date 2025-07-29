@@ -15,251 +15,71 @@
         <div
           class="max-w-7xl mx-auto grid grid-cols-4 gap-2 items-start justify-center text-caspary-purple px-8"
         >
-          <!-- Column 1: IM TRAUERFALL -->
-          <div class="bg-white border border-gray-300 shadow-xl p-6">
+          <!-- Dynamic columns based on menu items -->
+          <div
+            v-for="(item, index) in menuItems"
+            :key="item.title"
+            :class="[
+              'bg-white border border-gray-300 shadow-xl p-6',
+              index > 0 ? 'border-l-0' : ''
+            ]"
+          >
             <h3
               class="font-semibold font-headline uppercase mb-4 pb-4 border-b border-caspary-purple"
             >
-              <a href="/im-trauerfall" @click="handleNavClick">Im Trauerfall</a>
-            </h3>
-          </div>
-
-          <!-- Column 2: LEISTUNGEN -->
-          <div class="bg-white border border-l-0 border-gray-300 shadow-xl p-6">
-            <h3
-              class="font-semibold font-headline uppercase mb-4 pb-4 border-b border-caspary-purple"
-            >
-              <a href="/leistungen" @click="handleNavClick">Leistungen</a>
-            </h3>
-            <ul class="space-y-3">
-              <li>
-                <button
-                  @click="toggleSubmenu('bestattungsarten')"
-                  class="flex items-center justify-between w-full uppercase hover:text-caspary-blue"
-                >
-                  <span>Bestattungsarten</span>
-                  <span>{{ submenuOpen.bestattungsarten ? "−" : "+" }}</span>
-                </button>
-                <ul
-                  v-if="submenuOpen.bestattungsarten"
-                  class="ml-4 mt-2 space-y-2 text-base"
-                >
-                  <li>
-                    <a
-                      href="/bestattungsarten/feuerbestattung"
-                      @click="handleNavClick"
-                      class="hover:text-caspary-blue"
-                      >Feuerbestattung</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="/bestattungsarten/erdbestattung"
-                      @click="handleNavClick"
-                      class="hover:text-caspary-blue"
-                      >Erdbestattung</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="/bestattungsarten/seebestattung"
-                      @click="handleNavClick"
-                      class="hover:text-caspary-blue"
-                      >Seebestattung</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="/bestattungsarten/waldbestattung"
-                      @click="handleNavClick"
-                      class="hover:text-caspary-blue"
-                      >Wald-/Baumbestattung</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="/bestattungsarten/ascheausstreuung"
-                      @click="handleNavClick"
-                      class="hover:text-caspary-blue"
-                      >Ascheausstreuung</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="/bestattungsarten/urnenbeisetzung"
-                      @click="handleNavClick"
-                      class="hover:text-caspary-blue"
-                      >Urnenbeisetzung</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="/bestattungsarten/anonyme-beisetzung"
-                      @click="handleNavClick"
-                      class="hover:text-caspary-blue"
-                      >Anonyme Beisetzung</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="/bestattungsarten/halbanonyme-beisetzung"
-                      @click="handleNavClick"
-                      class="hover:text-caspary-blue"
-                      >Halbanonyme Beisetzung</a
-                    >
-                  </li>
-                </ul>
-              </li>
-              <li class="border-b border-caspary-purple pb-3">
-                <a
-                  href="/grundleistungen"
-                  @click="handleNavClick"
-                  class="uppercase hover:text-caspary-blue"
-                  >Grundleistungen</a
-                >
-              </li>
-              <li class="border-b border-caspary-purple pb-3">
-                <a
-                  href="/verstorbenenfuersorge"
-                  @click="handleNavClick"
-                  class="uppercase hover:text-caspary-blue"
-                  >Verstorbenenfürsorge</a
-                >
-              </li>
-              <li class="border-b border-caspary-purple pb-3">
-                <a
-                  href="/sarg"
-                  @click="handleNavClick"
-                  class="uppercase hover:text-caspary-blue"
-                  >Sarg</a
-                >
-              </li>
-              <li class="border-b border-caspary-purple pb-3">
-                <a
-                  href="/urne"
-                  @click="handleNavClick"
-                  class="uppercase hover:text-caspary-blue"
-                  >Urne</a
-                >
-              </li>
-              <li class="border-b border-caspary-purple pb-3">
-                <a
-                  href="/ueberfuehrungen"
-                  @click="handleNavClick"
-                  class="uppercase hover:text-caspary-blue"
-                  >Überführungen</a
-                >
-              </li>
-              <li class="border-b border-caspary-purple pb-3">
-                <a
-                  href="/ruheraum-aufbahrung"
-                  @click="handleNavClick"
-                  class="uppercase hover:text-caspary-blue"
-                  >Ruheraum & Aufbahrung</a
-                >
-              </li>
-              <li class="border-b border-caspary-purple pb-3">
-                <a
-                  href="/aussegnung"
-                  @click="handleNavClick"
-                  class="uppercase hover:text-caspary-blue"
-                  >Aussegnung</a
-                >
-              </li>
-              <li class="border-b border-caspary-purple pb-3">
-                <a
-                  href="/trauerdruck"
-                  @click="handleNavClick"
-                  class="uppercase hover:text-caspary-blue"
-                  >Trauerdruck</a
-                >
-              </li>
-              <li class="border-b border-caspary-purple pb-3">
-                <a
-                  href="/trauerfeier"
-                  @click="handleNavClick"
-                  class="uppercase hover:text-caspary-blue"
-                  >Trauerfeier</a
-                >
-              </li>
-              <li class="border-b border-caspary-purple pb-3">
-                <a
-                  href="/beisetzung"
-                  @click="handleNavClick"
-                  class="uppercase hover:text-caspary-blue"
-                  >Beisetzung</a
-                >
-              </li>
-              <li class="border-b border-caspary-purple pb-3">
-                <a
-                  href="/kosten"
-                  @click="handleNavClick"
-                  class="uppercase hover:text-caspary-blue"
-                  >Kosten</a
-                >
-              </li>
-              <li class="border-b border-caspary-purple pb-3">
-                <button
-                  @click="toggleSubmenu('vorsorge')"
-                  class="flex items-center justify-between w-full uppercase hover:text-caspary-blue"
-                >
-                  <span>Vorsorge</span>
-                  <span>{{ submenuOpen.vorsorge ? "−" : "+" }}</span>
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Column 3: VERANSTALTUNGEN -->
-          <div class="bg-white border border-l-0 border-gray-300 shadow-xl p-6">
-            <h3
-              class="font-semibold font-headline uppercase mb-4 pb-4 border-b border-caspary-purple"
-            >
-              <a href="/veranstaltungen" @click="handleNavClick"
-                >Veranstaltungen</a
+              <a 
+                v-if="item.url && item.url !== '#'"
+                :href="item.url" 
+                @click="handleNavClick"
               >
+                {{ item.title }}
+              </a>
+              <span v-else>{{ item.title }}</span>
             </h3>
-          </div>
-
-          <!-- Column 4: WIR -->
-          <div class="bg-white border border-l-0 border-gray-300 shadow-xl p-6">
-            <h3
-              class="font-semibold font-headline uppercase mb-4 pb-4 border-b border-caspary-purple"
-            >
-              Wir
-            </h3>
-            <ul class="space-y-3">
-              <li class="border-b border-caspary-purple pb-3">
+            
+            <!-- Sub navigation items -->
+            <ul v-if="item.children && item.children.length > 0" class="space-y-3">
+              <li 
+                v-for="child in item.children" 
+                :key="child.title"
+                :class="{
+                  'border-b border-caspary-purple pb-3': !child.children || child.children.length === 0
+                }"
+              >
+                <!-- Items with sub-children -->
+                <div v-if="child.children && child.children.length > 0">
+                  <button
+                    @click="toggleSubmenu(getSubmenuKey(child.title))"
+                    class="flex items-center justify-between w-full uppercase hover:text-caspary-blue"
+                  >
+                    <span>{{ child.title }}</span>
+                    <span>{{ submenuOpen[getSubmenuKey(child.title)] ? "−" : "+" }}</span>
+                  </button>
+                  <ul
+                    v-if="submenuOpen[getSubmenuKey(child.title)]"
+                    class="ml-4 mt-2 space-y-2 text-base"
+                  >
+                    <li v-for="subChild in child.children" :key="subChild.title">
+                      <a
+                        :href="subChild.url"
+                        @click="handleNavClick"
+                        class="hover:text-caspary-blue"
+                      >
+                        {{ subChild.title }}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                
+                <!-- Regular items -->
                 <a
-                  href="/team"
+                  v-else
+                  :href="child.url"
                   @click="handleNavClick"
                   class="uppercase hover:text-caspary-blue"
-                  >Team</a
                 >
-              </li>
-              <li class="border-b border-caspary-purple pb-3">
-                <a
-                  href="/was-uns-ausmacht"
-                  @click="handleNavClick"
-                  class="uppercase hover:text-caspary-blue"
-                  >Was uns ausmacht</a
-                >
-              </li>
-              <li class="border-b border-caspary-purple pb-3">
-                <a
-                  href="/journal"
-                  @click="handleNavClick"
-                  class="uppercase hover:text-caspary-blue"
-                  >Journal</a
-                >
-              </li>
-              <li class="border-b border-caspary-purple pb-3">
-                <a
-                  href="/kontakt"
-                  @click="handleNavClick"
-                  class="uppercase hover:text-caspary-blue"
-                  >Kontakt</a
-                >
+                  {{ child.title }}
+                </a>
               </li>
             </ul>
           </div>
@@ -335,109 +155,68 @@
 <script>
 export default {
   name: "Navigation",
+  props: {
+    navigationItems: {
+      type: String,
+      default: null
+    }
+  },
   data() {
     return {
       isMenuOpen: false,
-      submenuOpen: {
-        bestattungsarten: false,
-        vorsorge: false,
-      },
-      mobileMenuItems: [
-        {
-          title: "Im Trauerfall",
-          href: "/im-trauerfall",
-          isOpen: false,
-          items: [],
-        },
-        {
-          title: "Leistungen",
-          isOpen: false,
-          items: [
-            {
-              title: "Bestattungsarten",
-              isOpen: false,
-              children: [
-                {
-                  title: "Feuerbestattung",
-                  href: "/bestattungsarten/feuerbestattung",
-                },
-                {
-                  title: "Erdbestattung",
-                  href: "/bestattungsarten/erdbestattung",
-                },
-                {
-                  title: "Seebestattung",
-                  href: "/bestattungsarten/seebestattung",
-                },
-                {
-                  title: "Wald-/Baumbestattung",
-                  href: "/bestattungsarten/waldbestattung",
-                },
-                {
-                  title: "Ascheausstreuung",
-                  href: "/bestattungsarten/ascheausstreuung",
-                },
-                {
-                  title: "Urnenbeisetzung",
-                  href: "/bestattungsarten/urnenbeisetzung",
-                },
-                {
-                  title: "Anonyme Beisetzung",
-                  href: "/bestattungsarten/anonyme-beisetzung",
-                },
-                {
-                  title: "Halbanonyme Beisetzung",
-                  href: "/bestattungsarten/halbanonyme-beisetzung",
-                },
-              ],
-            },
-            { title: "Grundleistungen", href: "/grundleistungen" },
-            { title: "Verstorbenenfürsorge", href: "/verstorbenenfuersorge" },
-            { title: "Sarg", href: "/sarg" },
-            { title: "Urne", href: "/urne" },
-            { title: "Überführungen", href: "/ueberfuehrungen" },
-            { title: "Ruheraum & Aufbahrung", href: "/ruheraum-aufbahrung" },
-            { title: "Aussegnung", href: "/aussegnung" },
-            { title: "Trauerdruck", href: "/trauerdruck" },
-            { title: "Trauerfeier", href: "/trauerfeier" },
-            { title: "Beisetzung", href: "/beisetzung" },
-            { title: "Kosten", href: "/kosten" },
-          ],
-        },
-        {
-          title: "Vorsorge",
-          href: "/vorsorge",
-          isOpen: false,
-          items: [],
-        },
-        {
-          title: "Veranstaltungen",
-          href: "/veranstaltungen",
-          isOpen: false,
-          items: [],
-        },
-        {
-          title: "Wir",
-          isOpen: false,
-          items: [
-            { title: "Team", href: "/team" },
-            { title: "Was uns ausmacht", href: "/was-uns-ausmacht" },
-            { title: "Journal", href: "/journal" },
-            { title: "Kontakt", href: "/kontakt" },
-          ],
-        },
-      ],
+      submenuOpen: {},
+      menuItems: [],
+      mobileMenuItems: []
     };
   },
-  computed: {
-    menuIconUrl() {
-      return '/_Resources/Static/Packages/Caspary.Site/Images/menu-icon.svg';
-    },
-    logoUrl() {
-      return '/_Resources/Static/Packages/Caspary.Site/Images/logo.svg';
-    },
+  created() {
+    // Parse navigation data from Neos
+    console.log('Navigation component created with props:', this.navigationItems);
+    if (this.navigationItems) {
+      try {
+        const items = JSON.parse(this.navigationItems);
+        console.log('Parsed navigation items:', items);
+        this.menuItems = items.menuItems || [];
+        this.processMobileMenuItems();
+      } catch (e) {
+        console.error('Failed to parse navigation items:', e);
+        console.error('Navigation data:', this.navigationItems);
+      }
+    } else {
+      console.warn('No navigation data provided from Neos');
+    }
   },
   methods: {
+    processMobileMenuItems() {
+      // Convert menu items to mobile format with isOpen state
+      this.mobileMenuItems = this.menuItems.map(item => ({
+        title: item.title,
+        href: item.url,
+        isOpen: false,
+        items: item.children ? item.children.map(child => ({
+          title: child.title,
+          href: child.url,
+          isOpen: false,
+          children: child.children || []
+        })) : []
+      }));
+      
+      // Initialize submenu open states
+      this.menuItems.forEach(item => {
+        if (item.children && item.children.length > 0) {
+          item.children.forEach(child => {
+            if (child.children && child.children.length > 0) {
+              const key = this.getSubmenuKey(child.title);
+              this.submenuOpen[key] = false;
+            }
+          });
+        }
+      });
+    },
+    getSubmenuKey(title) {
+      // Convert title to key for submenu tracking
+      return title.toLowerCase().replace(/[^\w]+/g, '');
+    },
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
       this.updateBodyScroll();
@@ -446,8 +225,8 @@ export default {
       this.isMenuOpen = false;
       this.updateBodyScroll();
     },
-    toggleSubmenu(menu) {
-      this.submenuOpen[menu] = !this.submenuOpen[menu];
+    toggleSubmenu(key) {
+      this.submenuOpen[key] = !this.submenuOpen[key];
     },
     toggleMobileSubmenu(title) {
       const item = this.mobileMenuItems.find((i) => i.title === title);
@@ -475,6 +254,14 @@ export default {
       } else {
         document.body.style.overflow = "";
       }
+    }
+  },
+  computed: {
+    menuIconUrl() {
+      return '/_Resources/Static/Packages/Caspary.Site/Images/menu-icon.svg';
+    },
+    logoUrl() {
+      return '/_Resources/Static/Packages/Caspary.Site/Images/logo.svg';
     },
   },
   mounted() {

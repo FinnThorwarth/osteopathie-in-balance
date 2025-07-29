@@ -1,5 +1,6 @@
 prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Component) {
     site = ${site}
+    navigationData = Caspary.Site:Component.Molecule.NavigationData
 
     renderer = afx`
         <div class="sticky top-0 right-0 left-0 z-50 bg-white">
@@ -39,7 +40,7 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
                                  alt="Caspary Bestattungen"
                                  class="h-auto w-[300px]" />
                         </div>
-                        <div id="navigation-vue"></div>
+                        <div id="navigation-vue" data-navigation={props.navigationData}></div>
                     </div>
                 </nav>
             </div>
