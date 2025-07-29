@@ -8,19 +8,19 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
 
   # Template
   renderer = afx`
-    <body class="font-sans bg-white text-caspary-black">
-              <div id="app" v-cloak>
-          <div :class="grayscaleActive ? 'grayscale-mode' : ''">
-      <Caspary.Site:Component.Organism.Header />
-      <Caspary.Site:Component.Organism.MobileMenu />
+    <body class="font-headline bg-white text-caspary-black">
+      <div id="app" v-cloak>
+        <div :class="grayscaleActive ? 'grayscale-mode' : ''">
+        <Caspary.Site:Component.Organism.Header />
+        <Caspary.Site:Component.Organism.MobileMenu />
 
-      <main id="main" class="min-h-screen">
-        {props.content}
-      </main>
+        <main id="main" class="min-h-screen">
+          {props.content}
+        </main>
 
-      <Caspary.Site:Component.Organism.Footer />
-</div>
-</div>
+        <Caspary.Site:Component.Organism.Footer />
+      </div>
+    </div>
       {props.javascripts}
     </body>
     </html>

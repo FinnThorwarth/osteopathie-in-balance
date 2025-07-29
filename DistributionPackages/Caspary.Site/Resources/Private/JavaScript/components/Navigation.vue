@@ -1,7 +1,6 @@
 <template>
   <div class="navigation-wrapper">
-
-    <button @click="toggleMenu" class="flex items-center">
+    <button @click="toggleMenu" class="flex items-center p-2 hover:bg-gray-100 rounded">
       <img :src="menuIconUrl" alt="Menü" class="h-8">
     </button>
 
@@ -15,7 +14,6 @@
         <!-- Navigation boxes - 4 columns -->
         <div
           class="max-w-7xl mx-auto grid grid-cols-4 gap-2 items-start justify-center text-caspary-purple px-8"
-          style="margin-top: 14rem"
         >
           <!-- Column 1: IM TRAUERFALL -->
           <div class="bg-white border border-gray-300 shadow-xl p-6">
@@ -271,28 +269,6 @@
 
     <!-- Mobile Menu Overlay -->
     <div v-if="isMenuOpen" class="fixed inset-0 z-50 bg-white md:hidden">
-      <!-- Mobile Menu Header -->
-      <div
-        class="flex items-center justify-between px-6 py-4 bg-white border-b"
-      >
-        <img :src="logoUrl" alt="Caspary Bestattungen" class="h-14" />
-        <button @click="closeMenu" class="flex items-center space-x-2">
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"
-            ></path>
-          </svg>
-          <span>CLOSE</span>
-        </button>
-      </div>
 
       <!-- Mobile Menu Content -->
       <div class="h-full overflow-y-auto pb-20">

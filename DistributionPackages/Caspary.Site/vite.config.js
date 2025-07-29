@@ -11,6 +11,12 @@ export default defineConfig({
       root: __dirname
     })
   ],
+  
+  define: {
+    // Enable Vue Options API and runtime compiler
+    __VUE_OPTIONS_API__: true,
+    __VUE_PROD_DEVTOOLS__: false
+  },
 
   root: resolve(__dirname, 'Resources/Private'),
 
@@ -51,7 +57,9 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, 'Resources/Private/JavaScript'),
       '@styles': resolve(__dirname, 'Resources/Private/Styles'),
-      '@components': resolve(__dirname, 'Resources/Private/JavaScript/components')
+      '@components': resolve(__dirname, 'Resources/Private/JavaScript/components'),
+      // Use Vue build with compiler for runtime template compilation
+      'vue': 'vue/dist/vue.esm-bundler.js'
     }
   }
 })

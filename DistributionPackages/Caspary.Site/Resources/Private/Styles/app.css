@@ -11,7 +11,7 @@ img[src*="menu-icon.svg"] {
 }
 
 .menu-wrapper {
-  transform: translateY(4px);
+  transform: translateY(225px);
 }
 
 /* Grayscale filter for contrast mode */
