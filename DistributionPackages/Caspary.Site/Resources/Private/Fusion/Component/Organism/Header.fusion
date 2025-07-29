@@ -30,17 +30,19 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
                     </div>
                 </header>
             </div>
-            <div class="max-w-7xl mx-auto">
+            <div class="shadow-md">
+            <div class="max-w-7xl mx-auto ">
                 <nav class="bg-white relative z-40">
                     <div class="flex items-center justify-between px-6 py-4">
                         <div class="flex items-center">
-                            <img src={StaticResource.uri('Caspary.Site', 'Public/Images/logo.svg')} 
-                                 alt="Caspary Bestattungen" 
+                            <img src={StaticResource.uri('Caspary.Site', 'Public/Images/logo.svg')}
+                                 alt="Caspary Bestattungen"
                                  class="h-auto w-[300px]" />
                         </div>
                         <div id="navigation-vue"></div>
                     </div>
                 </nav>
+            </div>
             </div>
         </div>
     `

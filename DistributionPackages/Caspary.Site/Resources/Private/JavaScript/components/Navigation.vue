@@ -1,16 +1,7 @@
 <template>
   <div class="navigation-wrapper">
-    <!-- Desktop Menu Button -->
-    <button @click="toggleMenu" class="hidden md:flex items-center gap-2">
-      <img :src="menuIconUrl" alt="Menü" class="h-8 w-8">
-      <span
-        class="text-2xl font-headline text-caspary-gray uppercase tracking-wide"
-        >Menü</span
-      >
-    </button>
 
-    <!-- Mobile Menu Button -->
-    <button @click="toggleMenu" class="flex md:hidden items-center">
+    <button @click="toggleMenu" class="flex items-center">
       <img :src="menuIconUrl" alt="Menü" class="h-8">
     </button>
 
@@ -20,28 +11,6 @@
       class="menu-wrapper mainnav text-xl font-light fixed inset-0 z-50 hidden md:block"
     >
       <nav class="relative h-full">
-        <!-- Close button -->
-        <div class="absolute top-6 right-6">
-          <button
-            @click="closeMenu"
-            class="flex items-center gap-2 text-caspary-purple hover:text-caspary-blue"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              ></path>
-            </svg>
-            <span class="uppercase">Close</span>
-          </button>
-        </div>
 
         <!-- Navigation boxes - 4 columns -->
         <div

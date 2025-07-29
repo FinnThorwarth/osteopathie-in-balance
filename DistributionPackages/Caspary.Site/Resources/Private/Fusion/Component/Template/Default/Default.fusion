@@ -4,10 +4,13 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
   content = ''
   documentNode = ${documentNode}
   site = ${site}
+  javascripts = ''
 
   # Template
   renderer = afx`
     <body class="font-sans bg-white text-caspary-black">
+              <div id="app" v-cloak>
+          <div :class="grayscaleActive ? 'grayscale-mode' : ''">
       <Caspary.Site:Component.Organism.Header />
       <Caspary.Site:Component.Organism.MobileMenu />
 
@@ -16,7 +19,9 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
       </main>
 
       <Caspary.Site:Component.Organism.Footer />
-
+</div>
+</div>
+      {props.javascripts}
     </body>
     </html>
   `

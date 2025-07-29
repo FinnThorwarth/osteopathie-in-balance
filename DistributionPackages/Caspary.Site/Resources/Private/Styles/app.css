@@ -5,17 +5,13 @@
   --color-purple: #7b5664;
 }
 
-[v-cloak] {
-  display: none;
-}
-
 /* Ensure menu icon SVG displays with correct colors */
 img[src*="menu-icon.svg"] {
   filter: none;
 }
 
 .menu-wrapper {
-  transform: translateY(14rem);
+  transform: translateY(4px);
 }
 
 /* Grayscale filter for contrast mode */

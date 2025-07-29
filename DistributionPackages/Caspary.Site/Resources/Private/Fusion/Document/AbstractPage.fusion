@@ -27,9 +27,9 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
     `
 
     # Add header javascripts to your page
-    javascripts.site = afx`
-        <link type="text/javascript" defer href={StaticResource.uri('Caspary.Site', 'Public/JavaScript/main.js')} />
-    `
+    # javascripts.site = afx`
+    #     <script type="module" src={StaticResource.uri('Caspary.Site', 'Public/JavaScript/main.js')}></script>
+    # `
   }
 
   body = Caspary.Site:Component.Template.Default {
@@ -41,19 +41,19 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
       }
 
       renderer = afx`
-        <div id="app" v-cloak>
-          <div :class="grayscaleActive ? 'grayscale-mode' : ''">
             {props.main}
-          </div>
-        </div>
       `
     }
 
     # Script includes before the closing body tag should go here
-    javascripts = Neos.Fusion:Join
+    javascripts = ${bodyJavaScripts}
     # This processor appends the rendered javascripts Array to the rendered template
     @process.appendJavaScripts = ${value + this.javascripts}
   }
 
-  bodyJavaScripts = Neos.Fusion:Join
+  bodyJavaScripts = Neos.Fusion:Join {
+    site = afx`
+        <script type="module" src={StaticResource.uri('Caspary.Site', 'Public/JavaScript/main.js')}></script>
+    `
+  }
 }
