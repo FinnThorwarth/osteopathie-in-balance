@@ -10,7 +10,7 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
                             <span>Büro: Mo-Fr 8-16.00 / Notfall: Mo-So 10-22.00</span>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <a href="#" @click="toggleGrayscale()" class="hover:underline flex items-center gap-1">
+                            <a href="#" onclick="if(window.toggleGrayscale) window.toggleGrayscale(); return false;" class="hover:underline flex items-center gap-1">
                                 <img src={StaticResource.uri('Caspary.Site', 'Public/Images/kontrast.svg')} alt="Kontrast" class="w-6 h-6" />
                                 <span>Kontrast</span>
                             </a>

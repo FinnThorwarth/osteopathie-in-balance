@@ -58,9 +58,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		},
 		methods: {
 			toggleGrayscale() {
-				console.log('toggleGrayscale: ', this.grayscaleActive);
+				console.log('toggleGrayscale called, current state:', this.grayscaleActive);
 				this.grayscaleActive = !this.grayscaleActive;
+				console.log('toggleGrayscale new state:', this.grayscaleActive);
 			}
+		},
+		mounted() {
+			// Make toggleGrayscale available globally
+			window.toggleGrayscale = this.toggleGrayscale.bind(this);
 		},
 		compilerOptions: {
 			// Allow Vue to work with server-rendered content
@@ -71,16 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Mount main app if app element exists
 	const appElement = document.getElementById('app')
 	if (appElement) {
-		// Store the original content
-		const originalContent = appElement.innerHTML
-
-		// Create a wrapper component that includes the original content
-		app.component('app-wrapper', {
-			template: originalContent
-		})
-
-		// Mount with the wrapper
+		// Mount the app directly without wrapper to preserve Vue directives
 		app.mount('#app')
+		console.log('Main Vue app mounted on #app element')
 	}
 
 	// Initial mount attempt
