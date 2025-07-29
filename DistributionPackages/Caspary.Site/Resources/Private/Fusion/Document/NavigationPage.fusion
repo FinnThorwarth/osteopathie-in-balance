@@ -10,24 +10,9 @@ prototype(Caspary.Site:Document.NavigationPage) < prototype(Neos.Neos:Page) {
     }
   }
   
-  body {
-    templatePath = 'resource://Caspary.Site/Private/Templates/Page/NavigationPage.html'
-    
+  body = Caspary.Site:Component.Template.Default {
     content = Neos.Neos:PrimaryContent {
       nodePath = 'main'
-    }
-    
-    # Add JavaScript for mobile menu functionality
-    javascripts.mobileMenu = Neos.Fusion:Component {
-      renderer = afx`
-        <script type="module">
-          import MobileMenu from '/assets/components/MobileMenu.vue'
-          
-          // Mount Vue component
-          const { createApp } = Vue
-          createApp(MobileMenu).mount('#mobile-menu')
-        </script>
-      `
     }
   }
 }

@@ -91,3 +91,122 @@
   childNodes:
     main:
       type: 'Neos.Neos:ContentCollection'
+
+'Caspary.Site:Document.LeistungenPage':
+  superTypes:
+    'Caspary.Site:Document.NavigationPage': true
+  ui:
+    label: 'Leistungen Page'
+    icon: 'icon-list'
+    group: 'special'
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
+
+'Caspary.Site:Document.BestattungsartenPage':
+  superTypes:
+    'Caspary.Site:Document.NavigationPage': true
+  ui:
+    label: 'Bestattungsarten Page'
+    icon: 'icon-list-alt'
+    group: 'special'
+    inspector:
+      groups:
+        bestattung:
+          label: 'Bestattungsart Details'
+          position: 40
+  properties:
+    bestattungsType:
+      type: string
+      ui:
+        label: 'Bestattungsart Type'
+        inspector:
+          group: 'bestattung'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              feuerbestattung:
+                label: 'Feuerbestattung'
+              erdbestattung:
+                label: 'Erdbestattung'
+              seebestattung:
+                label: 'Seebestattung'
+              waldbestattung:
+                label: 'Wald-/Baumbestattung'
+              ascheausstreuung:
+                label: 'Ascheausstreuung'
+              urnenbeisetzung:
+                label: 'Urnenbeisetzung'
+              anonyme:
+                label: 'Anonyme Beisetzung'
+              halbanonyme:
+                label: 'Halbanonyme Beisetzung'
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
+
+'Caspary.Site:Document.VeranstaltungenPage':
+  superTypes:
+    'Caspary.Site:Document.NavigationPage': true
+  ui:
+    label: 'Veranstaltungen Page'
+    icon: 'icon-calendar'
+    group: 'special'
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
+
+'Caspary.Site:Document.TeamPage':
+  superTypes:
+    'Caspary.Site:Document.NavigationPage': true
+  ui:
+    label: 'Team Page'
+    icon: 'icon-users'
+    group: 'special'
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
+
+'Caspary.Site:Document.WasUnsAusmachtPage':
+  superTypes:
+    'Caspary.Site:Document.NavigationPage': true
+  ui:
+    label: 'Was uns ausmacht Page'
+    icon: 'icon-star'
+    group: 'special'
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
+
+'Caspary.Site:Document.JournalPage':
+  superTypes:
+    'Caspary.Site:Document.NavigationPage': true
+  ui:
+    label: 'Journal Page'
+    icon: 'icon-book'
+    group: 'special'
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
+
+'Caspary.Site:Document.KontaktPage':
+  superTypes:
+    'Caspary.Site:Document.NavigationPage': true
+  ui:
+    label: 'Kontakt Page'
+    icon: 'icon-envelope'
+    group: 'special'
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
+
+'Caspary.Site:Document.VorsorgePage':
+  superTypes:
+    'Caspary.Site:Document.NavigationPage': true
+  ui:
+    label: 'Vorsorge Page'
+    icon: 'icon-shield'
+    group: 'special'
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'

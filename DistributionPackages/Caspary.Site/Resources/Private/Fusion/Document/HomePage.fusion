@@ -1,50 +1,41 @@
 prototype(Caspary.Site:Document.HomePage) < prototype(Caspary.Site:Document.NavigationPage) {
-    body = Neos.Fusion:Component {
-        renderer = afx`
-            <Caspary.Site:Component.Content.HeroSection />
+    body = Caspary.Site:Component.Template.Default {
+        content = Neos.Fusion:Component {
+            main = Neos.Neos:PrimaryContent {
+                nodePath = 'main'
+            }
             
-            {/* Intro Section */}
-            <Caspary.Site:Component.Content.TextSection 
-                headline="Ein Leben ist vorbehaftig, einzigartig und wertvoll. Der Abschied davon sollte es ebenfalls sein."
-                subheadline="Menschen zu begleiten, die Abschied nehmen müssen, ist für uns eine Aufgabe, der wir mit Respekt, Achtsamkeit und Empathie begegnen."
-                text="Unsere Arbeit verstehen wir als Unterstützungsangebot in einer ganz besonderen Zeit und als Würdigung des Lebens über den Tod hinaus."
-                alignment="center"
-                backgroundColor="white"
-            />
-            
-            {/* Info Cards */}
-            <Caspary.Site:Component.Content.ServiceGrid 
-                headline="Unsere Leistungen"
-                subheadline="Wir begleiten Sie in schweren Zeiten mit Respekt und Empathie"
-                backgroundColor="gray"
-            />
-            
-            {/* Contact Info */}
-            <section class="py-16 bg-secondary-500 text-white">
-                <div class="container mx-auto px-4 text-center">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-8">Im Trauerfall für Sie erreichbar</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                        <div>
-                            <h3 class="font-bold text-xl mb-2">Telefon</h3>
-                            <p class="text-xl">0421 38 30 55</p>
+            renderer = afx`
+                <Caspary.Site:Component.HeroSection 
+                    title="CASPARY BESTATTUNGEN"
+                    subtitle="Würdevoll Abschied nehmen"
+                    overlayOpacity="0.5"
+                    @if.noContent={!props.main}
+                />
+                
+                {props.main}
+                
+                <section class="py-16 bg-secondary-500 text-white">
+                    <div class="container mx-auto px-4 text-center">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-8">Im Trauerfall für Sie erreichbar</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                            <div>
+                                <h3 class="font-bold text-xl mb-2">Telefon</h3>
+                                <p class="text-xl">0421 38 30 55</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-2">E-Mail</h3>
+                                <p class="text-xl">info@caspary-bestattungen.de</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-2">Notfall</h3>
+                                <p>Mo-So 10-22 Uhr</p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="font-bold text-xl mb-2">E-Mail</h3>
-                            <p class="text-xl">info@caspary-bestattungen.de</p>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-xl mb-2">Notfall</h3>
-                            <p>Mo-So 10-22 Uhr</p>
-                        </div>
+                        <p class="mt-8 text-lg">Lassen Sie Ihre Angehörigen*Innen kennen.</p>
                     </div>
-                    <p class="mt-8 text-lg">Lassen Sie Ihre Angehörigen*Innen kennen.</p>
-                </div>
-            </section>
-            
-            {/* Main Content Area */}
-            <div class="py-16">
-                {props.content}
-            </div>
-        `
+                </section>
+            `
+        }
     }
 }

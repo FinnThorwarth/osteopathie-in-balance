@@ -4,6 +4,7 @@ import { initMobileMenu } from './mobile-menu.js'
 
 // Import Vue components
 import MobileMenu from './components/MobileMenu.vue'
+import Navigation from './components/Navigation.vue'
 
 // Initialize functionality
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,6 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenuElement = document.getElementById('mobile-menu-vue')
   if (mobileMenuElement) {
     createApp(MobileMenu).mount(mobileMenuElement)
+  }
+  
+  // Mount Navigation component
+  const navigationElement = document.getElementById('navigation-vue')
+  if (navigationElement) {
+    createApp(Navigation).mount(navigationElement)
   }
   
   // Add smooth scrolling for anchor links

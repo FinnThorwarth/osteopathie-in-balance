@@ -9,14 +9,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Caspary brand colors extracted from design
+        'caspary-blue': '#587e87',
+        'caspary-blue-light': '#A9CFCF',
+        'caspary-gray': '#2B2B2A',
+        'caspary-gray-medium': '#B4B1B8',
+        'caspary-light-gray': '#7B7B7B',
+        'caspary-text': '#4A4A49',
+        'caspary-purple': '#7B5664',
+        'caspary-purple-dark': '#9D939D',
+        'caspary-footer': '#9D939D',
+        'caspary-blue-alt': '#6fa1ae',
+        // Legacy colors for backward compatibility
         primary: {
           50: '#faf9f9',
           100: '#f5f3f3',
           200: '#ebe7e7',
           300: '#dfd8d8',
           400: '#cfc5c5',
-          500: '#b8abab', // Main text gray
+          500: '#b8abab',
           600: '#9e8f8f',
           700: '#847676',
           800: '#6b5f5f',
@@ -28,27 +38,25 @@ export default {
           200: '#a3d7d3',
           300: '#75c3bd',
           400: '#47afa7',
-          500: '#3a9991', // Teal from header
+          500: '#3a9991',
           600: '#2e7a74',
           700: '#235b57',
           800: '#173c3a',
           900: '#0c1d1d',
         },
         accent: {
-          // Additional accent colors
           50: '#f0f9ff',
           100: '#e0f2fe',
           200: '#b9e5fe',
           300: '#7cd1fd',
           400: '#36bafc',
-          500: '#0da2e7', // Blue accents
+          500: '#0da2e7',
           600: '#0182c5',
           700: '#02669f',
           800: '#065083',
           900: '#0b436d',
         },
         caspary: {
-          // Specific brand colors
           teal: '#3a9991',
           'teal-light': '#4ca49d',
           'teal-dark': '#2e7a74',
@@ -60,6 +68,9 @@ export default {
         }
       },
       fontFamily: {
+        'headline': ['apparat', 'Arial', 'sans-serif'],
+        'body': ['Roboto Slab', 'Georgia', 'serif'],
+        'light': ['apparat-light'],
         'sans': ['apparat', 'ui-sans-serif', 'system-ui'],
         'serif': ['ui-serif', 'Georgia'],
         'mono': ['ui-monospace', 'SFMono-Regular'],

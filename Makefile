@@ -6,10 +6,10 @@ setup:
 	@echo "Setting up Caspary Neos CMS development environment..."
 	docker compose pull
 	docker compose up -d
-	docker compose exec web composer install
-	docker compose exec web ./flow setup
-	docker compose exec web ./flow doctrine:migrate
-	docker compose exec web ./flow user:create --roles Administrator admin admin@caspary.de
+	docker compose exec neos composer install
+	docker compose exec neos ./flow setup
+	docker compose exec neos ./flow doctrine:migrate
+	docker compose exec neos ./flow user:create --roles Administrator admin admin@caspary.de
 
 # Start containers
 up:
@@ -25,15 +25,15 @@ logs:
 
 # Access web container
 shell:
-	docker compose exec web bash
+	docker compose exec neos bash
 
 # Run Flow commands
 flow:
-	docker compose exec web ./flow $(cmd)
+	docker compose exec neos ./flow $(cmd)
 
 # Run Composer
 composer:
-	docker compose exec web composer $(cmd)
+	docker compose exec neos composer $(cmd)
 
 # Access database
 db-shell:
