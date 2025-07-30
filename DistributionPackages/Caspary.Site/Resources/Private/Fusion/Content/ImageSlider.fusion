@@ -1,0 +1,98 @@
+prototype(Caspary.Site:Content.ImageSlider) < prototype(Neos.Neos:ContentComponent) {
+    heading = Neos.Neos:Editable {
+        property = 'heading'
+    }
+    slidesPerView = ${q(node).property('slidesPerView')}
+    aspectRatio = ${q(node).property('aspectRatio')}
+    
+    items = Neos.Neos:ContentCollection {
+        nodePath = '.'
+    }
+    
+    renderer = afx`
+        <div class="image-slider-wrapper">
+            <div @if={props.heading} class="mb-6">{props.heading}</div>
+            <div data-vue-slider data-slides-per-view={props.slidesPerView}>
+                <image-slider :slides-per-view={props.slidesPerView}>
+                    {props.items}
+                </image-slider>
+            </div>
+        </div>
+    `
+    
+    @cache {
+        mode = 'cached'
+        entryIdentifier {
+            node = ${node}
+        }
+        entryTags {
+            node = ${Neos.Caching.nodeTag(node)}
+            descendants = ${Neos.Caching.descendantOfTag(node)}
+        }
+    }
+}
+
+prototype(Caspary.Site:Content.ImageSlider.Item) < prototype(Neos.Neos:ContentComponent) {
+    image = ${q(node).property('image')}
+    alternativeText = ${q(node).property('alternativeText')}
+    caption = Neos.Neos:Editable {
+        property = 'caption'
+    }
+    link = ${q(node).property('link')}
+    linkTarget = ${q(node).property('linkTarget')}
+    
+    aspectRatio = ${q(node).closest('[instanceof Caspary.Site:Content.ImageSlider]').property('aspectRatio')}
+    slidesPerView = ${q(node).closest('[instanceof Caspary.Site:Content.ImageSlider]').property('slidesPerView')}
+    
+    imageUri = Neos.Neos:ImageUri {
+        asset = ${props.image}
+        width = 800
+        height = ${props.aspectRatio == '16-9' ? 450 : (props.aspectRatio == '4-3' ? 600 : (props.aspectRatio == '1-1' ? 800 : 1067))}
+        allowCropping = true
+        allowUpScaling = false
+    }
+    
+    @context {
+        aspectRatioClasses = Neos.Fusion:Map {
+            '16-9' = 'aspect-w-16 aspect-h-9'
+            '4-3' = 'aspect-w-4 aspect-h-3'
+            '1-1' = 'aspect-w-1 aspect-h-1'
+            '3-4' = 'aspect-w-3 aspect-h-4'
+        }
+        slideWidth = Neos.Fusion:Map {
+            1 = 'w-full'
+            2 = 'w-1/2'
+            3 = 'w-1/3'
+            4 = 'w-1/4'
+        }
+    }
+    
+    renderer = afx`
+        <div class={'slider-item flex-shrink-0 px-2 ' + slideWidth[props.slidesPerView]}>
+            <a @if={props.link} href={props.link} target={props.linkTarget} class="block group">
+                <div class={'relative overflow-hidden rounded-lg ' + aspectRatioClasses[props.aspectRatio]}>
+                    <img @if={props.image}
+                         src={props.imageUri}
+                         alt={props.alternativeText}
+                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                </div>
+                <div @if={props.caption} class="mt-2 text-sm text-gray-600">
+                    {props.caption}
+                </div>
+            </a>
+            <div @if={!props.link}>
+                <div class={'relative overflow-hidden rounded-lg ' + aspectRatioClasses[props.aspectRatio]}>
+                    <img @if={props.image}
+                         src={props.imageUri}
+                         alt={props.alternativeText}
+                         class="absolute inset-0 w-full h-full object-cover"
+                    />
+                </div>
+                <div @if={props.caption} class="mt-2 text-sm text-gray-600">
+                    {props.caption}
+                </div>
+            </div>
+        </div>
+    `
+}

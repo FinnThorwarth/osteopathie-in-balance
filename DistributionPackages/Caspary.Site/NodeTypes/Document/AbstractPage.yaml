@@ -7,7 +7,14 @@
       type: "Neos.Neos:ContentCollection"
       constraints:
         nodeTypes:
+         "*": false
           "Caspary.Site:Content.Image.Hero": true
+          "Caspary.Site:Content.Text": true
+          "Caspary.Site:Content.Headline": true
+          "Caspary.Site:Content.TextImage": true
+          "Caspary.Site:Content.Accordion": true
+          "Caspary.Site:Content.ImageSlider": true
+          "Caspary.Site:Content.Button": true
 
   constraints:
     nodeTypes:

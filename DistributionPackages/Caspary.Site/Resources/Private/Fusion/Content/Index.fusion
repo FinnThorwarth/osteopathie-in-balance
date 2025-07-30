@@ -1,0 +1,9 @@
+# Content Components Index
+# This file includes all content component fusion files
+
+include: Text.fusion
+include: TextImage.fusion
+include: Accordion.fusion
+include: Button.fusion
+include: ImageSlider.fusion
+include: Headline.fusion

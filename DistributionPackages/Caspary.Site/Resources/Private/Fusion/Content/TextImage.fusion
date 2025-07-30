@@ -1,0 +1,68 @@
+prototype(Caspary.Site:Content.TextImage) < prototype(Neos.Neos:ContentComponent) {
+    image = ${q(node).property('image')}
+    alternativeText = ${q(node).property('alternativeText')}
+    columnLayout = ${q(node).property('columnLayout')}
+    
+    heading = Neos.Neos:Editable {
+        property = 'heading'
+    }
+    
+    text = Neos.Neos:Editable {
+        property = 'text'
+    }
+    
+    imageUri = Neos.Neos:ImageUri {
+        asset = ${props.image}
+        width = 800
+        height = 600
+        allowCropping = true
+        allowUpScaling = false
+    }
+    
+    @context {
+        layoutClasses = Neos.Fusion:Map {
+            'image-text-50-50' = 'md:grid-cols-2'
+            'image-text-33-66' = 'md:grid-cols-3'
+            'image-text-66-33' = 'md:grid-cols-3'
+            'text-image-50-50' = 'md:grid-cols-2'
+            'text-image-66-33' = 'md:grid-cols-3'
+            'text-image-33-66' = 'md:grid-cols-3'
+        }
+        imageColSpan = Neos.Fusion:Map {
+            'image-text-33-66' = 'md:col-span-1'
+            'image-text-66-33' = 'md:col-span-2'
+            'text-image-66-33' = 'md:col-span-1'
+            'text-image-33-66' = 'md:col-span-2'
+        }
+        textColSpan = Neos.Fusion:Map {
+            'image-text-33-66' = 'md:col-span-2'
+            'image-text-66-33' = 'md:col-span-1'
+            'text-image-66-33' = 'md:col-span-2'
+            'text-image-33-66' = 'md:col-span-1'
+        }
+        isTextFirst = ${String.startsWith(props.columnLayout, 'text-image')}
+    }
+    
+    renderer = afx`
+        <div class="content-text-image mb-12">
+            <div class={'grid gap-8 items-center ' + layoutClasses[props.columnLayout]}>
+                <div @if={!isTextFirst} class={'w-full ' + (imageColSpan[props.columnLayout] || '')}>
+                    <img @if={props.image} 
+                         src={props.imageUri} 
+                         alt={props.alternativeText} 
+                         class="w-full h-auto rounded-lg shadow-lg" />
+                </div>
+                <div class={'prose prose-lg max-w-none ' + (textColSpan[props.columnLayout] || '')}>
+                    <div @if={props.heading} class="mb-4">{props.heading}</div>
+                    <div @if={props.text}>{props.text}</div>
+                </div>
+                <div @if={isTextFirst} class={'w-full ' + (imageColSpan[props.columnLayout] || '')}>
+                    <img @if={props.image} 
+                         src={props.imageUri} 
+                         alt={props.alternativeText} 
+                         class="w-full h-auto rounded-lg shadow-lg" />
+                </div>
+            </div>
+        </div>
+    `
+}

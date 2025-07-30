@@ -1,0 +1,76 @@
+'Caspary.Site:Content.Accordion':
+  superTypes:
+    'Neos.Neos:Content': true
+    'Neos.Neos:ContentCollection': true
+  ui:
+    label: 'Accordion'
+    icon: 'icon-folder-open'
+    position: 30
+    group: 'structure'
+    inspector:
+      groups:
+        options:
+          label: 'Optionen'
+          position: 10
+  properties:
+    heading:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Accordion Überschrift (optional)'
+            formatting:
+              h2: true
+              h3: true
+              h4: true
+  constraints:
+    nodeTypes:
+      '*': false
+      'Caspary.Site:Content.Accordion.Item': true
+
+'Caspary.Site:Content.Accordion.Item':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Accordion Element'
+    icon: 'icon-folder'
+    position: 10
+    inspector:
+      groups:
+        general:
+          label: 'Allgemein'
+          position: 10
+  properties:
+    title:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Titel des Accordion-Elements'
+        reloadIfChanged: true
+    content:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Inhalt des Accordion-Elements'
+            autoparagraph: true
+            formatting:
+              strong: true
+              em: true
+              a: true
+              ul: true
+              ol: true
+              h3: true
+              h4: true
+    isOpen:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Standardmäßig geöffnet'
+        inspector:
+          group: 'general'
+          position: 10

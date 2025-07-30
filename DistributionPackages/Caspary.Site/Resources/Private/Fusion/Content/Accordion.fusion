@@ -1,0 +1,40 @@
+prototype(Caspary.Site:Content.Accordion) < prototype(Neos.Neos:ContentComponent) {
+    heading = Neos.Neos:Editable {
+        property = 'heading'
+    }
+    
+    items = Neos.Neos:ContentCollection {
+        nodePath = '.'
+    }
+    
+    renderer = afx`
+        <div class="accordion-wrapper">
+            <div @if={props.heading} class="mb-6">{props.heading}</div>
+            <div data-vue-accordion>
+                <accordion>
+                    {props.items}
+                </accordion>
+            </div>
+        </div>
+    `
+}
+
+prototype(Caspary.Site:Content.Accordion.Item) < prototype(Neos.Neos:ContentComponent) {
+    title = ${q(node).property('title')}
+    content = Neos.Neos:Editable {
+        property = 'content'
+    }
+    isOpen = ${q(node).property('isOpen')}
+    
+    @context.itemId = ${'accordion-' + node.identifier}
+    
+    renderer = afx`
+        <accordion-item 
+            title={props.title}
+            item-id={itemId}
+            :default-open={props.isOpen ? 'true' : 'false'}
+        >
+            {props.content}
+        </accordion-item>
+    `
+}

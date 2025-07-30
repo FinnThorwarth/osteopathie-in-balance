@@ -1,0 +1,33 @@
+prototype(Caspary.Site:Content.Headline) < prototype(Neos.Neos:ContentComponent) {
+    title = Neos.Neos:Editable {
+        property = 'title'
+    }
+    headingSize = ${q(node).property('headingSize')}
+    alignment = ${q(node).property('alignment')}
+    
+    @context {
+        alignmentClasses = Neos.Fusion:Map {
+            'left' = 'text-left'
+            'center' = 'text-center'
+            'right' = 'text-right'
+        }
+        headingSizeClasses = Neos.Fusion:Map {
+            'h2' = 'text-4xl md:text-5xl font-bold'
+            'h3' = 'text-3xl md:text-4xl font-semibold'
+            'h4' = 'text-2xl md:text-3xl font-semibold'
+            'h5' = 'text-xl md:text-2xl font-medium'
+            'h6' = 'text-lg md:text-xl font-medium'
+        }
+    }
+    
+    renderer = afx`
+        <div class={'content-headline mb-8 ' + alignmentClasses[props.alignment]}>
+            <Neos.Fusion:Tag 
+                tagName={props.headingSize}
+                attributes.class={headingSizeClasses[props.headingSize]}
+            >
+                {props.title}
+            </Neos.Fusion:Tag>
+        </div>
+    `
+}

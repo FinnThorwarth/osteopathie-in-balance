@@ -5,6 +5,9 @@ import { initMobileMenu } from './mobile-menu.js'
 // Import Vue components
 import MobileMenu from './components/MobileMenu.vue'
 import Navigation from './components/Navigation.vue'
+import Accordion from './components/Accordion.vue'
+import AccordionItem from './components/AccordionItem.vue'
+import ImageSlider from './components/ImageSlider.vue'
 
 // Function to mount Vue components
 function mountVueComponents() {
@@ -32,6 +35,27 @@ function mountVueComponents() {
 		navigationElement._vueInstance = navApp.mount(navigationElement)
 		console.log('Navigation Vue component mounted with data:', navigationItems ? 'yes' : 'no')
 	}
+	
+	// Mount Accordion components
+	document.querySelectorAll('[data-vue-accordion]').forEach(element => {
+		if (!element._vueInstance) {
+			const accordionApp = createApp(Accordion)
+			// Register AccordionItem as a global component for this app instance
+			accordionApp.component('AccordionItem', AccordionItem)
+			element._vueInstance = accordionApp.mount(element)
+		}
+	})
+	
+	// Mount ImageSlider components
+	document.querySelectorAll('[data-vue-slider]').forEach(element => {
+		if (!element._vueInstance) {
+			const slidesPerView = element.getAttribute('data-slides-per-view') || 3
+			const sliderApp = createApp(ImageSlider, {
+				slidesPerView: parseInt(slidesPerView)
+			})
+			element._vueInstance = sliderApp.mount(element)
+		}
+	})
 }
 
 // Function to setup mutation observer for dynamic content
