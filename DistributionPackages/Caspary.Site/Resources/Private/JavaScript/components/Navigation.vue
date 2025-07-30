@@ -1,7 +1,10 @@
 <template>
   <div class="navigation-wrapper">
-    <button @click="toggleMenu" class="flex items-center p-2 hover:bg-gray-100 rounded">
-      <img :src="menuIconUrl" alt="Menü" class="h-8">
+    <button
+      @click="toggleMenu"
+      class="flex items-center p-2 hover:bg-gray-100 rounded"
+    >
+      <img :src="menuIconUrl" alt="Menü" class="h-8" />
     </button>
 
     <!-- Desktop Menu Overlay -->
@@ -10,7 +13,6 @@
       class="menu-wrapper mainnav text-xl font-light fixed inset-0 z-50 hidden md:block"
     >
       <nav class="relative h-full">
-
         <!-- Navigation boxes - 4 columns -->
         <div
           class="max-w-7xl mx-auto grid grid-cols-4 gap-2 items-start justify-center text-caspary-purple px-8"
@@ -19,64 +21,68 @@
           <div
             v-for="(item, index) in menuItems"
             :key="item.title"
-            :class="[
-              'bg-white border border-gray-300 shadow-xl p-6',
-              index > 0 ? 'border-l-0' : ''
-            ]"
+            class="bg-white shadow-xl py-6 px-4"
           >
-            <h3
-              class="font-semibold font-headline uppercase mb-4 pb-4 border-b border-caspary-purple"
+            <a
+              v-if="item.url && item.url !== '#'"
+              :href="item.url"
+              @click="handleNavClick"
+              class="font-semibold font-headline uppercase mb-4 pb-4"
             >
-              <a 
-                v-if="item.url && item.url !== '#'"
-                :href="item.url" 
-                @click="handleNavClick"
-              >
-                {{ item.title }}
-              </a>
-              <span v-else>{{ item.title }}</span>
-            </h3>
-            
+              {{ item.title }}
+            </a>
+            <span v-else>{{ item.title }}</span>
+
             <!-- Sub navigation items -->
-            <ul v-if="item.children && item.children.length > 0" class="space-y-3">
-              <li 
-                v-for="child in item.children" 
+            <ul v-if="item.children && item.children.length > 0" class="">
+              <li
+                v-for="child in item.children"
                 :key="child.title"
-                :class="{
-                  'border-b border-caspary-purple pb-3': !child.children || child.children.length === 0
-                }"
+                class="border-t last-of-type:border-b border-caspary-purple"
               >
                 <!-- Items with sub-children -->
                 <div v-if="child.children && child.children.length > 0">
-                  <button
-                    @click="toggleSubmenu(getSubmenuKey(child.title))"
-                    class="flex items-center justify-between w-full uppercase hover:text-caspary-blue"
-                  >
-                    <span>{{ child.title }}</span>
-                    <span>{{ submenuOpen[getSubmenuKey(child.title)] ? "−" : "+" }}</span>
-                  </button>
+                  <div class="flex items-center justify-between w-full">
+                    <a
+                      v-if="child.url && child.url !== '#'"
+                      :href="child.url"
+                      class="uppercase"
+                    >
+                      <span>{{ child.title }}</span>
+                    </a>
+                    <button
+                      @click="toggleSubmenu(getSubmenuKey(child.title))"
+                      class="border-l border-caspary-purple px-2"
+                    >
+                      {{ submenuOpen[getSubmenuKey(child.title)] ? "−" : "+" }}
+                    </button>
+                  </div>
                   <ul
                     v-if="submenuOpen[getSubmenuKey(child.title)]"
-                    class="ml-4 mt-2 space-y-2 text-base"
+                    class="text-lg"
                   >
-                    <li v-for="subChild in child.children" :key="subChild.title">
+                    <li
+                      v-for="subChild in child.children"
+                      :key="subChild.title"
+                      class="border-t border-caspary-purple"
+                    >
                       <a
                         :href="subChild.url"
                         @click="handleNavClick"
-                        class="hover:text-caspary-blue"
+                        class="ml-4"
                       >
                         {{ subChild.title }}
                       </a>
                     </li>
                   </ul>
                 </div>
-                
+
                 <!-- Regular items -->
                 <a
                   v-else
                   :href="child.url"
                   @click="handleNavClick"
-                  class="uppercase hover:text-caspary-blue"
+                  class="uppercase"
                 >
                   {{ child.title }}
                 </a>
@@ -89,14 +95,13 @@
 
     <!-- Mobile Menu Overlay -->
     <div v-if="isMenuOpen" class="fixed inset-0 z-50 bg-white md:hidden">
-
       <!-- Mobile Menu Content -->
       <div class="h-full overflow-y-auto pb-20">
         <div class="px-6 py-2">
           <div
             v-for="item in mobileMenuItems"
             :key="item.title"
-            class="border-b border-gray-600"
+            class="border-t border-gray-600"
           >
             <button
               @click="toggleMobileSubmenu(item.title)"
@@ -158,53 +163,52 @@ export default {
   props: {
     navigationItems: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
       isMenuOpen: false,
       submenuOpen: {},
       menuItems: [],
-      mobileMenuItems: []
+      mobileMenuItems: [],
     };
   },
   created() {
-    // Parse navigation data from Neos
-    console.log('Navigation component created with props:', this.navigationItems);
     if (this.navigationItems) {
       try {
         const items = JSON.parse(this.navigationItems);
-        console.log('Parsed navigation items:', items);
         this.menuItems = items.menuItems || [];
         this.processMobileMenuItems();
       } catch (e) {
-        console.error('Failed to parse navigation items:', e);
-        console.error('Navigation data:', this.navigationItems);
+        console.error("Failed to parse navigation items:", e);
+        console.error("Navigation data:", this.navigationItems);
       }
     } else {
-      console.warn('No navigation data provided from Neos');
+      console.warn("No navigation data provided from Neos");
     }
   },
   methods: {
     processMobileMenuItems() {
       // Convert menu items to mobile format with isOpen state
-      this.mobileMenuItems = this.menuItems.map(item => ({
+      this.mobileMenuItems = this.menuItems.map((item) => ({
         title: item.title,
         href: item.url,
         isOpen: false,
-        items: item.children ? item.children.map(child => ({
-          title: child.title,
-          href: child.url,
-          isOpen: false,
-          children: child.children || []
-        })) : []
+        items: item.children
+          ? item.children.map((child) => ({
+              title: child.title,
+              href: child.url,
+              isOpen: false,
+              children: child.children || [],
+            }))
+          : [],
       }));
-      
+
       // Initialize submenu open states
-      this.menuItems.forEach(item => {
+      this.menuItems.forEach((item) => {
         if (item.children && item.children.length > 0) {
-          item.children.forEach(child => {
+          item.children.forEach((child) => {
             if (child.children && child.children.length > 0) {
               const key = this.getSubmenuKey(child.title);
               this.submenuOpen[key] = false;
@@ -215,7 +219,7 @@ export default {
     },
     getSubmenuKey(title) {
       // Convert title to key for submenu tracking
-      return title.toLowerCase().replace(/[^\w]+/g, '');
+      return title.toLowerCase().replace(/[^\w]+/g, "");
     },
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
@@ -254,14 +258,14 @@ export default {
       } else {
         document.body.style.overflow = "";
       }
-    }
+    },
   },
   computed: {
     menuIconUrl() {
-      return '/_Resources/Static/Packages/Caspary.Site/Images/menu-icon.svg';
+      return "/_Resources/Static/Packages/Caspary.Site/Images/menu-icon.svg";
     },
     logoUrl() {
-      return '/_Resources/Static/Packages/Caspary.Site/Images/logo.svg';
+      return "/_Resources/Static/Packages/Caspary.Site/Images/logo.svg";
     },
   },
   mounted() {

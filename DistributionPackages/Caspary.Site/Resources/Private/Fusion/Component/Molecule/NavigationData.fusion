@@ -6,6 +6,7 @@ prototype(Caspary.Site:Component.Molecule.NavigationData) < prototype(Neos.Fusio
                 title = ${q(item).property('title')}
                 url = Neos.Neos:NodeUri {
                     node = ${item}
+                    format = ''
                 }
                 isActive = ${item == documentNode || q(documentNode).parents().filter('[_identifier = "' + item.identifier + '"]').count() > 0}
                 children = Neos.Fusion:Map {
@@ -14,6 +15,7 @@ prototype(Caspary.Site:Component.Molecule.NavigationData) < prototype(Neos.Fusio
                         title = ${q(item).property('title')}
                         url = Neos.Neos:NodeUri {
                             node = ${item}
+                            format = ''
                         }
                         isActive = ${item == documentNode}
                         children = Neos.Fusion:Map {
@@ -22,6 +24,7 @@ prototype(Caspary.Site:Component.Molecule.NavigationData) < prototype(Neos.Fusio
                                 title = ${q(item).property('title')}
                                 url = Neos.Neos:NodeUri {
                                     node = ${item}
+                                    format = ''
                                 }
                                 isActive = ${item == documentNode}
                             }

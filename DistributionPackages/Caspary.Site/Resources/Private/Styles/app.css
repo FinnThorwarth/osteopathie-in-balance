@@ -25,14 +25,6 @@ nav li {
   list-style: none;
 }
 
-.mainnav {
-  nav {
-    li {
-      border-bottom: solid 1px var(--color-purple);
-    }
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

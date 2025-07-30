@@ -1,5 +1,8 @@
-# Neos:
-#   Neos:
+Neos:
+  Neos:
+    sites:
+      '*':
+        uriPathSuffix: ''
 #     userInterface:
 #       translation:
 #         autoInclude:
