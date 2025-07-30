@@ -1,0 +1,25 @@
+"Caspary.Site:Content.Image.Hero":
+  superTypes:
+    "Neos.Neos:Content": true
+  ui:
+    label: Titelbild
+    icon: icon-image
+    position: 1
+    group: content
+    inspector:
+      groups:
+        options:
+          label: 'Optionen'
+          position: 3
+  properties:
+    image:
+      type: 'Neos.Media:Image'
+      ui:
+        label: 'Bild'
+        reloadIfChanged: true
+        inspector:
+          group: 'image'
+          position: 101
+  constraints:
+    nodeTypes:
+      "*": false

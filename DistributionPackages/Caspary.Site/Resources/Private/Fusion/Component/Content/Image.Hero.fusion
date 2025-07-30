@@ -1,0 +1,16 @@
+prototype(Caspary.Site:Content.Image.Hero) < prototype(Neos.Neos:ContentComponent) {
+
+    # if the current node has previous siblings it is not the
+	# first content and should be loaded lazy otherwise not
+	lazy = ${q(node).prev().is()}
+
+    src = ${q(node).property('image')}
+
+    renderer = afx`
+       <div class="hero-img" style={'background-image: url(\'' + props.src + '\') ;'}>
+        <div class="hero-img-content">
+            <h1>${q(node).property('title')}</h1>
+        </div>
+       </div>
+	`
+}

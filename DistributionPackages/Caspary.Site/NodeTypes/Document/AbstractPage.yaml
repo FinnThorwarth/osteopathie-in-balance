@@ -1,0 +1,63 @@
+"Caspary.Site:Document.AbstractPage":
+  abstract: true
+  superTypes:
+    "Neos.Neos:Document": true
+  childNodes:
+    main:
+      type: "Neos.Neos:ContentCollection"
+      constraints:
+        nodeTypes:
+          "Caspary.Site:Content.Image.Hero": true
+
+  constraints:
+    nodeTypes:
+      "Caspary.Site:Document.Homepage": false
+      "Caspary.Site:Constraint.Document.Restricted": false
+
+  properties:
+    footerInfoLeft:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            inlineStyling:
+              linkStyle: true
+            preset: "text.free"
+            formatting:
+              strong: true
+              em: true
+              sub: true
+              sup: true
+              p: false
+              h1: false
+              h2: false
+              h3: false
+              pre: false
+              ol: true
+              ul: true
+              a: true
+            placeholder: Footer Inhalt
+    footerInfoRight:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            inlineStyling:
+              linkStyle: true
+            preset: "text.free"
+            formatting:
+              strong: true
+              em: true
+              sub: true
+              sup: true
+              p: false
+              h1: false
+              h2: false
+              h3: false
+              pre: false
+              ol: true
+              ul: true
+              a: true
+            placeholder: Footer Inhalt

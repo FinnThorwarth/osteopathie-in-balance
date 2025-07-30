@@ -1,6 +1,7 @@
 'Caspary.Site:Document.Homepage':
   superTypes:
     'Neos.Neos:Site': true
+    'Caspary.Site:Document.AbstractPage': true
   ui:
     icon: globe
     label: 'Startseite'
