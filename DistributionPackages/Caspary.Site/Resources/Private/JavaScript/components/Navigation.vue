@@ -2,7 +2,7 @@
   <div class="navigation-wrapper">
     <button
       @click="toggleMenu"
-      class="flex items-center p-2 hover:bg-gray-100 rounded"
+      class="flex items-center hover:bg-gray-100"
     >
       <img :src="menuIconUrl" alt="Menü" class="h-8" />
     </button>
@@ -47,7 +47,7 @@
                     <a
                       v-if="child.url && child.url !== '#'"
                       :href="child.url"
-                      class="uppercase block py-2"
+                      class="uppercase block"
                       :class="{
                         'text-black': child.isActive,
                       }"
@@ -89,7 +89,7 @@
                   v-else
                   :href="child.url"
                   @click="handleNavClick"
-                  class="uppercase block py-2"
+                  class="uppercase block"
                   :class="{ 'text-black': child.isActive }"
                 >
                   <span v-if="child.isActive">\</span> {{ child.title }}
@@ -105,7 +105,7 @@
     <div v-if="isMenuOpen" class="fixed inset-0 z-50 bg-white md:hidden">
       <!-- Mobile Menu Content -->
       <div class="h-full overflow-y-auto pb-20">
-        <div class="px-6 py-2">
+        <div class="px-6">
           <div
             v-for="item in mobileMenuItems"
             :key="item.title"

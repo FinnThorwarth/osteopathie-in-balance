@@ -33,19 +33,19 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
                         </div>
                         <div class="flex items-center space-x-4">
                             <button title="Kontrast" onclick="if(window.toggleGrayscale) window.toggleGrayscale(); return false;" class="hover:underline flex items-center gap-1">
-                                <img src={StaticResource.uri('Caspary.Site', 'Public/Images/kontrast.svg')} alt="Kontrast" class="h-6" />
+                                <img src={StaticResource.uri('Caspary.Site', 'Public/Images/kontrast.svg')} alt="Kontrast" class="h-5" />
                                 <span class="hidden md:inline">Kontrast</span>
                             </button>
                             <a href={props.searchPageUri} class="flex items-center gap-1">
-                                <img src={StaticResource.uri('Caspary.Site', 'Public/Images/search.svg')} alt="Suche" class="h-6" />
+                                <img src={StaticResource.uri('Caspary.Site', 'Public/Images/search.svg')} alt="Suche" class="h-5" />
                                 <span class="hidden md:inline">Suche</span>
                             </a>
                             <a href="mailto:info@caspary-bestattungen.de" class="flex items-center gap-1">
-                                <span class="text-[26px] leading-[26px]">@</span>
+                                <span class="text-[22px] leading-[22px]">@</span>
                                 <span class="hidden md:inline">E-Mail</span>
                             </a>
                             <a href="tel:0421363080" class="flex items-center gap-1">
-                                <img src={StaticResource.uri('Caspary.Site', 'Public/Images/telefon.svg')} alt="Anruf" class="h-6" />
+                                <img src={StaticResource.uri('Caspary.Site', 'Public/Images/telefon.svg')} alt="Anruf" class="h-4" />
                                 <span class="hidden md:inline">Anruf</span>
                             </a>
                         </div>
@@ -60,7 +60,7 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
                             <a href="/">
                                 <img src={StaticResource.uri('Caspary.Site', 'Public/Images/logo.svg')}
                                     alt="Caspary Bestattungen"
-                                    class="h-auto w-[300px]" />
+                                    class="h-auto w-[175px] md:w-[300px]" />
                             </a>
                         </div>
                         <div id="navigation-vue" data-navigation={props.navigationData || '{"menuItems":[],"currentNodeIdentifier":"debug-no-context"}'}></div>

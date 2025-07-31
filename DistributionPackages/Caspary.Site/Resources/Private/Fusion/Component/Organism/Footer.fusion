@@ -9,7 +9,7 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
         path = 'resource://Caspary.Site/Public/Images/Icon-Footer.svg'
       }
       alt="Logo"
-      class = 'h-40 absolute top-0 right-0 -translate-y-[150px]'
+      class = 'h-40 absolute top-0 right-0 hidden md:block md:-translate-y-[150px]'
     }
   }
 
