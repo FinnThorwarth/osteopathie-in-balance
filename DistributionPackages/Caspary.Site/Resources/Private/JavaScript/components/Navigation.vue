@@ -107,12 +107,13 @@
       <div class="h-full overflow-y-auto pb-20">
         <div class="px-6">
           <div
-            v-for="item in mobileMenuItems"
+            v-for="(item, index) in mobileMenuItems"
             :key="item.title"
-            class="border-t border-gray-600"
+            class="border-t border-caspary-purple"
+            :class="{ 'border-b': index === mobileMenuItems.length - 1 }"
           >
             <!-- Top level items with children -->
-            <div v-if="item.items && item.items.length > 0" class="flex items-center justify-between py-4">
+            <div v-if="item.items && item.items.length > 0" class="flex items-center justify-between">
               <a
                 v-if="item.href && item.href !== '#'"
                 :href="item.href"
@@ -128,7 +129,7 @@
               </span>
               <button
                 @click="toggleMobileSubmenu(item.title)"
-                class="text-2xl px-4"
+                class="text-2xl px-4 border-l border-caspary-purple"
               >
                 {{ item.isOpen ? "−" : "+" }}
               </button>
@@ -145,14 +146,14 @@
             </a>
 
             <div v-if="item.isOpen && item.items && item.items.length > 0" class="pb-4">
-              <ul class="space-y-3 pl-4">
-                <li v-for="subItem in item.items" :key="subItem.title">
+              <ul class="">
+                <li v-for="(subItem, subIndex) in item.items" :key="subItem.title" class="border-t border-caspary-purple" :class="{ 'border-b': subIndex === item.items.length - 1 }">
                   <!-- Sub items without children -->
                   <a
                     v-if="!subItem.children || subItem.children.length === 0"
                     :href="subItem.href"
                     @click="handleNavClick"
-                    class="block text-gray-600 uppercase"
+                    class="block text-gray-600 uppercase py-2 pl-4"
                     :class="{
                       'text-black': subItem.isActive,
                     }"
@@ -161,7 +162,7 @@
                   </a>
                   <!-- Sub items with children -->
                   <div v-else>
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between pl-4">
                       <a
                         v-if="subItem.href && subItem.href !== '#'"
                         :href="subItem.href"
@@ -178,17 +179,17 @@
                       </span>
                       <button
                         @click="toggleMobileSubmenu(subItem.title)"
-                        class="text-xl text-gray-400 px-3"
+                        class="text-xl text-gray-400 px-3 border-l border-caspary-purple"
                       >
                         {{ subItem.isOpen ? "−" : "+" }}
                       </button>
                     </div>
-                    <ul v-if="subItem.isOpen" class="mt-2 space-y-2 pl-4">
-                      <li v-for="child in subItem.children" :key="child.title">
+                    <ul v-if="subItem.isOpen" class="">
+                      <li v-for="(child, childIndex) in subItem.children" :key="child.title" class="border-t border-caspary-purple">
                         <a
                           :href="child.href"
                           @click="handleNavClick"
-                          class="block text-gray-400"
+                          class="block text-gray-400 py-1 pl-8"
                           :class="{
                             'text-black': child.isActive,
                           }"
