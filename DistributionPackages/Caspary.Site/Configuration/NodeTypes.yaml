@@ -5,6 +5,7 @@
       'Caspary.Site:Document.HomePage': true
       'Caspary.Site:Document.StandardPage': true
       'Caspary.Site:Document.TrauerfallPage': true
+      'Caspary.Site:Document.SearchPage': true
       'Neos.NodeTypes:Page': false
 
 'Neos.Neos:Content':

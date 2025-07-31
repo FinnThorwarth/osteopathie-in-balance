@@ -1,0 +1,28 @@
+prototype(Caspary.Site:Document.SearchPage) < prototype(Caspary.Site:Document.AbstractPage) {
+    body {
+        templatePath = 'resource://Caspary.Site/Private/Templates/Page/SearchPage.html'
+        
+        content = Neos.Fusion:Component {
+            searchPlaceholder = ${q(node).property('searchPlaceholder') || 'Suche...'}
+            noResultsMessage = ${q(node).property('noResultsMessage') || 'Keine Ergebnisse gefunden.'}
+            searchTerm = ${request.arguments.q || ''}
+            resultsPerPage = ${q(node).property('resultsPerPage') || 10}
+            currentPage = ${request.arguments.page || 1}
+            
+            renderer = afx`
+                <div class="container mx-auto px-4 py-8">
+                    <h1 class="text-4xl font-bold mb-8">Suche</h1>
+                    
+                    <div id="search-vue" 
+                        data-placeholder={props.searchPlaceholder}
+                        data-no-results-message={props.noResultsMessage}
+                        data-search-term={props.searchTerm}
+                        data-results-per-page={props.resultsPerPage}
+                        data-current-page={props.currentPage}>
+                        <!-- Vue component will be mounted here -->
+                    </div>
+                </div>
+            `
+        }
+    }
+}

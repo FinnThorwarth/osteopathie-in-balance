@@ -1,0 +1,8 @@
+-
+  name: 'Search API'
+  uriPattern: 'api/search'
+  defaults:
+    '@controller': 'Search'
+    '@action': 'search'
+    '@format': 'json'
+  httpMethods: ['GET']

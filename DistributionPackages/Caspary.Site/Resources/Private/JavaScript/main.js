@@ -8,6 +8,7 @@ import Navigation from './components/Navigation.vue'
 import Accordion from './components/Accordion.vue'
 import AccordionItem from './components/AccordionItem.vue'
 import ImageSlider from './components/ImageSlider.vue'
+import Search from './components/Search.vue'
 
 // Function to mount Vue components
 function mountVueComponents() {
@@ -56,6 +57,19 @@ function mountVueComponents() {
 			element._vueInstance = sliderApp.mount(element)
 		}
 	})
+	
+	// Mount Search component
+	const searchElement = document.getElementById('search-vue')
+	if (searchElement && !searchElement._vueInstance) {
+		const searchApp = createApp(Search, {
+			placeholder: searchElement.getAttribute('data-placeholder') || 'Suche...',
+			noResultsMessage: searchElement.getAttribute('data-no-results-message') || 'Keine Ergebnisse gefunden.',
+			searchTerm: searchElement.getAttribute('data-search-term') || '',
+			resultsPerPage: parseInt(searchElement.getAttribute('data-results-per-page') || '10')
+		})
+		searchElement._vueInstance = searchApp.mount(searchElement)
+		console.log('Search Vue component mounted')
+	}
 }
 
 // Function to setup mutation observer for dynamic content

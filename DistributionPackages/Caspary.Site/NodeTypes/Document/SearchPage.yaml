@@ -1,0 +1,40 @@
+'Caspary.Site:Document.SearchPage':
+  superTypes:
+    'Neos.Neos:Document': true
+    'Caspary.Site:Document.AbstractPage': true
+  ui:
+    icon: search
+    label: 'Suchseite'
+    inspector:
+      groups:
+        search:
+          label: 'Sucheinstellungen'
+          position: 10
+  properties:
+    resultsPerPage:
+      type: integer
+      defaultValue: 10
+      ui:
+        label: 'Ergebnisse pro Seite'
+        inspector:
+          group: search
+    searchPlaceholder:
+      type: string
+      defaultValue: 'Suche...'
+      ui:
+        label: 'Suchfeld Platzhalter'
+        inspector:
+          group: search
+    noResultsMessage:
+      type: string
+      defaultValue: 'Keine Ergebnisse gefunden.'
+      ui:
+        label: 'Keine Ergebnisse Nachricht'
+        inspector:
+          group: search
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
+      constraints:
+        nodeTypes:
+          '*': false

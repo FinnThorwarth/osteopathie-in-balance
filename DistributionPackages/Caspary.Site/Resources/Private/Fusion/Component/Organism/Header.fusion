@@ -9,6 +9,19 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
     }
     
     navigationData = Caspary.Site:Component.Molecule.NavigationData
+    
+    searchPageUri = Neos.Fusion:Case {
+        searchPage {
+            condition = ${q(site).find('[instanceof Caspary.Site:Document.SearchPage]').count() > 0}
+            renderer = Neos.Neos:NodeUri {
+                node = ${q(site).find('[instanceof Caspary.Site:Document.SearchPage]').get(0)}
+            }
+        }
+        default {
+            condition = true
+            renderer = '#'
+        }
+    }
 
     renderer = afx`
         <div class="sticky top-0 right-0 left-0 z-50 bg-white">
@@ -23,7 +36,7 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
                                 <img src={StaticResource.uri('Caspary.Site', 'Public/Images/kontrast.svg')} alt="Kontrast" class="w-6 h-6" />
                                 <span>Kontrast</span>
                             </button>
-                            <a href="#" class="hover:underline flex items-center gap-1">
+                            <a href={props.searchPageUri} class="hover:underline flex items-center gap-1">
                                 <img src={StaticResource.uri('Caspary.Site', 'Public/Images/search.svg')} alt="Suche" class="w-6 h-6" />
                                 <span>Suche</span>
                             </a>
