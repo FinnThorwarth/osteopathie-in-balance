@@ -102,7 +102,7 @@
     </div>
 
     <!-- Mobile Menu Overlay -->
-    <div v-if="isMenuOpen" class="fixed inset-0 z-50 bg-white md:hidden">
+    <div v-if="isMenuOpen" class="fixed inset-0 top-[150px] z-50 bg-white md:hidden">
       <!-- Mobile Menu Content -->
       <div class="h-full overflow-y-auto pb-20">
         <div class="px-6">
