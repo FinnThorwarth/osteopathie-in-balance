@@ -1,0 +1,126 @@
+<?php
+namespace Caspary\Site\Controller;
+
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Mvc\Controller\ActionController;
+use Neos\ContentRepository\Domain\Projection\Content\TraversableNodeInterface;
+use Neos\ContentRepositoryRegistry\ContentRepositoryRegistry;
+use Neos\Flow\Mvc\View\JsonView;
+use Neos\Neos\FrontendRouting\NodeUriBuilderFactory;
+use Neos\Neos\Domain\Service\NodeTypeNameFactory;
+
+/**
+ * @Flow\Scope("singleton")
+ */
+class SearchController extends ActionController
+{
+    /**
+     * @Flow\Inject
+     * @var ContentRepositoryRegistry
+     */
+    protected $contentRepositoryRegistry;
+
+    /**
+     * @Flow\Inject
+     * @var NodeUriBuilderFactory
+     */
+    protected $nodeUriBuilderFactory;
+
+    /**
+     * @var string
+     */
+    protected $defaultViewObjectName = JsonView::class;
+
+    /**
+     * Search action for API endpoint
+     * 
+     * @param string $q Search query
+     * @return void
+     */
+    public function searchAction(string $q = '')
+    {
+        $results = [];
+        
+        if (strlen($q) >= 2) {
+            try {
+                // Get content repository
+                $contentRepository = $this->contentRepositoryRegistry->get(
+                    \Neos\ContentRepository\Core\SharedModel\ContentRepository\ContentRepositoryId::fromString('default')
+                );
+                
+                // Get the workspace
+                $workspace = $contentRepository->getWorkspaceFinder()->findOneByName(
+                    \Neos\ContentRepository\Core\SharedModel\Workspace\WorkspaceName::fromString('live')
+                );
+                
+                // Get subgraph
+                $subgraph = $contentRepository->getContentGraph($workspace->workspaceName)->getSubgraph(
+                    \Neos\ContentRepository\Core\DimensionSpace\DimensionSpacePoint::createWithoutDimensions(),
+                    \Neos\ContentRepository\Core\SharedModel\Node\VisibilityConstraints::withoutRestrictions()
+                );
+                
+                // Get site node
+                $siteNode = $subgraph->findRootNodeByType(
+                    \Neos\ContentRepository\Core\NodeType\NodeTypeName::fromString('Neos.Neos:Sites')
+                )->findChildNodes()->first();
+                
+                if ($siteNode) {
+                    // Find all document nodes
+                    $this->searchInNode($subgraph, $siteNode, $q, $results);
+                    
+                }
+            } catch (\Exception $e) {
+                // Log error and return empty results
+                $this->logger->error('Search error: ' . $e->getMessage());
+            }
+        }
+        
+        $this->view->assign('value', ['results' => $results]);
+    }
+    
+    /**
+     * Search in node and its children
+     */
+    protected function searchInNode($subgraph, TraversableNodeInterface $node, string $q, array &$results)
+    {
+        $nodeType = $node->nodeType;
+        
+        // Check if this is a document node
+        if ($nodeType && $nodeType->isOfType('Neos.Neos:Document')) {
+            $title = $node->getProperty('title') ?? '';
+            $teaser = $node->getProperty('teaser') ?? '';
+            
+            // Simple search in title and teaser
+            $searchContent = strtolower($title . ' ' . $teaser);
+            if (stripos($searchContent, $q) !== false) {
+                $results[] = [
+                    'identifier' => $node->aggregateId->value,
+                    'title' => $title,
+                    'uri' => $this->getNodeUri($node),
+                    'teaser' => $teaser ?: ''
+                ];
+            }
+        }
+        
+        // Search in child nodes
+        foreach ($node->findChildNodes() as $childNode) {
+            $this->searchInNode($subgraph, $childNode, $q, $results);
+        }
+    }
+    
+    /**
+     * Get node URI
+     * 
+     * @param TraversableNodeInterface $node
+     * @return string
+     */
+    protected function getNodeUri($node)
+    {
+        try {
+            $nodeUriBuilder = $this->nodeUriBuilderFactory->forActionRequest($this->request);
+            return $nodeUriBuilder->uriFor($node)->__toString();
+        } catch (\Exception $e) {
+            return '#';
+        }
+    }
+}
