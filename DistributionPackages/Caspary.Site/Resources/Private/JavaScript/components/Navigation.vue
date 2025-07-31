@@ -111,22 +111,45 @@
             :key="item.title"
             class="border-t border-gray-600"
           >
-            <button
-              @click="toggleMobileSubmenu(item.title)"
-              class="w-full flex items-center justify-between py-4 text-left"
-            >
-              <span
-                class="text-lg tracking-wide uppercase"
+            <!-- Top level items with children -->
+            <div v-if="item.items && item.items.length > 0" class="flex items-center justify-between py-4">
+              <a
+                v-if="item.href && item.href !== '#'"
+                :href="item.href"
+                @click="handleNavClick"
+                class="text-lg tracking-wide uppercase flex-1"
                 :class="{ 'text-black': item.isActive }"
-                ><span v-if="item.isActive">\</span> {{ item.title }}</span
               >
-              <span class="text-2xl">{{ item.isOpen ? "−" : "+" }}</span>
-            </button>
-            <div v-if="item.isOpen" class="pb-4">
+                <span v-if="item.isActive">\</span> {{ item.title }}
+
+              </a>
+              <span v-else class="text-lg tracking-wide uppercase flex-1" :class="{ 'text-black': item.isActive }">
+                <span v-if="item.isActive">\</span> {{ item.title }}
+              </span>
+              <button
+                @click="toggleMobileSubmenu(item.title)"
+                class="text-2xl px-4"
+              >
+                {{ item.isOpen ? "−" : "+" }}
+              </button>
+            </div>
+            <!-- Top level items without children -->
+            <a
+              v-else
+              :href="item.href"
+              @click="handleNavClick"
+              class="block py-4 text-lg tracking-wide uppercase"
+              :class="{ 'text-black': item.isActive }"
+            >
+              <span v-if="item.isActive">\</span> {{ item.title }}
+            </a>
+
+            <div v-if="item.isOpen && item.items && item.items.length > 0" class="pb-4">
               <ul class="space-y-3 pl-4">
                 <li v-for="subItem in item.items" :key="subItem.title">
+                  <!-- Sub items without children -->
                   <a
-                    v-if="!subItem.children"
+                    v-if="!subItem.children || subItem.children.length === 0"
                     :href="subItem.href"
                     @click="handleNavClick"
                     class="block text-gray-600 uppercase"
@@ -136,22 +159,30 @@
                   >
                     <span v-if="subItem.isActive">\</span> {{ subItem.title }}
                   </a>
+                  <!-- Sub items with children -->
                   <div v-else>
-                    <button
-                      @click="toggleMobileSubmenu(subItem.title)"
-                      class="w-full flex items-center justify-between text-left"
-                    >
-                      <span
-                        class="text-gray-600 uppercase"
+                    <div class="flex items-center justify-between">
+                      <a
+                        v-if="subItem.href && subItem.href !== '#'"
+                        :href="subItem.href"
+                        @click="handleNavClick"
+                        class="text-gray-600 uppercase flex-1"
                         :class="{
                           'text-black': subItem.isActive,
                         }"
-                        ><span v-if="subItem.isActive">\</span> {{ subItem.title }}</span
                       >
-                      <span class="text-xl text-gray-400">{{
-                        subItem.isOpen ? "−" : "+"
-                      }}</span>
-                    </button>
+                        <span v-if="subItem.isActive">\</span> {{ subItem.title }}
+                      </a>
+                      <span v-else class="text-gray-600 uppercase flex-1" :class="{ 'text-black': subItem.isActive }">
+                        <span v-if="subItem.isActive">\</span> {{ subItem.title }}
+                      </span>
+                      <button
+                        @click="toggleMobileSubmenu(subItem.title)"
+                        class="text-xl text-gray-400 px-3"
+                      >
+                        {{ subItem.isOpen ? "−" : "+" }}
+                      </button>
+                    </div>
                     <ul v-if="subItem.isOpen" class="mt-2 space-y-2 pl-4">
                       <li v-for="child in subItem.children" :key="child.title">
                         <a

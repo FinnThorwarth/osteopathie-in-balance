@@ -1,9 +1,7 @@
 import { createApp } from 'vue'
 import '../Styles/app.css'
-import { initMobileMenu } from './mobile-menu.js'
 
 // Import Vue components
-import MobileMenu from './components/MobileMenu.vue'
 import Navigation from './components/Navigation.vue'
 import Accordion from './components/Accordion.vue'
 import AccordionItem from './components/AccordionItem.vue'
@@ -13,30 +11,25 @@ import Search from './components/Search.vue'
 // Function to mount Vue components
 function mountVueComponents() {
 	// Mount Vue components if needed
-	const mobileMenuElement = document.getElementById('mobile-menu-vue')
-	if (mobileMenuElement && !mobileMenuElement._vueInstance) {
-		mobileMenuElement._vueInstance = createApp(MobileMenu).mount(mobileMenuElement)
-		console.log('Mobile menu Vue component mounted')
-	}
 
 	// Mount Navigation component
 	const navigationElement = document.getElementById('navigation-vue')
 	if (navigationElement && !navigationElement._vueInstance) {
 		console.log('Navigation element found, checking for navigation data...')
-		
+
 		// Get navigation data from data attribute
 		let navigationItems = navigationElement.getAttribute('data-navigation')
 		console.log('Navigation data from attribute:', navigationItems)
-		
+
 		// Create app with props
 		const navApp = createApp(Navigation, {
 			navigationItems: navigationItems
 		})
-		
+
 		navigationElement._vueInstance = navApp.mount(navigationElement)
 		console.log('Navigation Vue component mounted with data:', navigationItems ? 'yes' : 'no')
 	}
-	
+
 	// Mount Accordion components
 	document.querySelectorAll('[data-vue-accordion]').forEach(element => {
 		if (!element._vueInstance) {
@@ -46,7 +39,7 @@ function mountVueComponents() {
 			element._vueInstance = accordionApp.mount(element)
 		}
 	})
-	
+
 	// Mount ImageSlider components
 	document.querySelectorAll('[data-vue-slider]').forEach(element => {
 		if (!element._vueInstance) {
@@ -57,7 +50,7 @@ function mountVueComponents() {
 			element._vueInstance = sliderApp.mount(element)
 		}
 	})
-	
+
 	// Mount Search component
 	const searchElement = document.getElementById('search-vue')
 	if (searchElement && !searchElement._vueInstance) {
@@ -77,9 +70,8 @@ function setupMutationObserver() {
 	const observer = new MutationObserver((mutations) => {
 		// Check if navigation-vue element was added
 		const hasNavigationElement = document.getElementById('navigation-vue')
-		const hasMobileMenuElement = document.getElementById('mobile-menu-vue')
 
-		if (hasNavigationElement || hasMobileMenuElement) {
+		if (hasNavigationElement) {
 			// Try to mount components
 			mountVueComponents()
 		}
@@ -94,9 +86,6 @@ function setupMutationObserver() {
 
 // Initialize functionality
 document.addEventListener('DOMContentLoaded', () => {
-	// Initialize mobile menu
-	initMobileMenu();
-
 	// Create main Vue app with template that preserves existing content
 	const app = createApp({
 		data() {
