@@ -19,14 +19,14 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
         <div class="grid md:grid-cols-2 md:gap-0">
             <div class="md:pr-8">
                 <div class="space-y-1 text-2xl uppercase">
-                    <div>ANFANG</div>
-                    <div>TRAUERFALL</div>
-                    <div>LEISTUNGEN</div>
-                    <div>PHILOSOPHIE</div>
-                    <div>TEAM</div>
-                    <div>JOURNAL</div>
-                    <div>VERANSTALTUNGEN</div>
-                    <div>KONTAKT</div>
+                    <div><a href="/">ANFANG</a></div>
+                    <div><a href="/im-trauerfall">TRAUERFALL</a></div>
+                    <div><a href="/leistungen">LEISTUNGEN</a></div>
+                    <div><a href="/wir/was-uns-ausmacht">PHILOSOPHIE</a></div>
+                    <div><a href="/wir/team">TEAM</a></div>
+                    <div><a href="/wir/journal">JOURNAL</a></div>
+                    <div><a href="/veranstaltungen">VERANSTALTUNGEN</a></div>
+                    <div><a href="/wir/kontakt">KONTAKT</a></div>
                 </div>
             </div>
             <div class="relative md:pl-8 md:border-l-2 md:border-white">
@@ -43,10 +43,10 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
                   </address>
                 </p>
                 <div class="mt-6 space-y-1 text-xl uppercase">
-                    <div>KOOPERATIONSPARTNER*INNEN</div>
-                    <div>DOWNLOADS</div>
-                    <div>IMPRESSUM</div>
-                    <div>DATENSCHUTZ</div>
+                    <div><a href="/kooperationen">KOOPERATIONSPARTNER*INNEN</a></div>
+                    <div><a href="/downloads">DOWNLOADS</a></div>
+                    <div><a href="/impressum">IMPRESSUM</a></div>
+                    <div><a href="/datenschutz">DATENSCHUTZ</a></div>
                 </div>
                 {props.includeIconFooter}
             </div>

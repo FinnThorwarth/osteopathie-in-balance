@@ -7,9 +7,9 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
             2 = 'documentNode'
         }
     }
-    
+
     navigationData = Caspary.Site:Component.Molecule.NavigationData
-    
+
     searchPageUri = Neos.Fusion:Case {
         searchPage {
             condition = ${q(site).find('[instanceof Caspary.Site:Document.SearchPage]').count() > 0}
@@ -29,24 +29,24 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
                 <header class="text-white max-w-7xl mx-auto">
                     <div class="flex items-center font-light justify-between px-6 py-6">
                         <div class="flex items-center space-x-2">
-                            <span>Büro: Mo-Fr 8-16.00 / Notfall: Mo-So 10-22.00</span>
+                            <span class="hidden md:inline">Büro: Mo-Fr 8-16.00 / Notfall: Mo-So 10-22.00</span>
                         </div>
                         <div class="flex items-center space-x-4">
                             <button title="Kontrast" onclick="if(window.toggleGrayscale) window.toggleGrayscale(); return false;" class="hover:underline flex items-center gap-1">
-                                <img src={StaticResource.uri('Caspary.Site', 'Public/Images/kontrast.svg')} alt="Kontrast" class="w-6 h-6" />
-                                <span>Kontrast</span>
+                                <img src={StaticResource.uri('Caspary.Site', 'Public/Images/kontrast.svg')} alt="Kontrast" class="h-6" />
+                                <span class="hidden md:inline">Kontrast</span>
                             </button>
-                            <a href={props.searchPageUri} class="hover:underline flex items-center gap-1">
-                                <img src={StaticResource.uri('Caspary.Site', 'Public/Images/search.svg')} alt="Suche" class="w-6 h-6" />
-                                <span>Suche</span>
+                            <a href={props.searchPageUri} class="flex items-center gap-1">
+                                <img src={StaticResource.uri('Caspary.Site', 'Public/Images/search.svg')} alt="Suche" class="h-6" />
+                                <span class="hidden md:inline">Suche</span>
                             </a>
-                            <a href="mailto:info@caspary-bestattungen.de" class="hover:underline flex items-center gap-1">
-                                <span class="text-2xl">@</span>
-                                <span>E-Mail</span>
+                            <a href="mailto:info@caspary-bestattungen.de" class="flex items-center gap-1">
+                                <span class="text-[26px] leading-[26px]">@</span>
+                                <span class="hidden md:inline">E-Mail</span>
                             </a>
-                            <a href="tel:0421363080" class="hover:underline flex items-center gap-1">
-                                <img src={StaticResource.uri('Caspary.Site', 'Public/Images/telefon.svg')} alt="Anruf" class="w-6 h-6" />
-                                <span>Anruf</span>
+                            <a href="tel:0421363080" class="flex items-center gap-1">
+                                <img src={StaticResource.uri('Caspary.Site', 'Public/Images/telefon.svg')} alt="Anruf" class="h-6" />
+                                <span class="hidden md:inline">Anruf</span>
                             </a>
                         </div>
                     </div>
