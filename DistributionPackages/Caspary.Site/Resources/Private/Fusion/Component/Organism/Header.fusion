@@ -1,5 +1,13 @@
 prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Component) {
-    site = ${site}
+    # Disable caching to ensure context is available
+    @cache {
+        mode = 'uncached'
+        context {
+            1 = 'site'
+            2 = 'documentNode'
+        }
+    }
+    
     navigationData = Caspary.Site:Component.Molecule.NavigationData
 
     renderer = afx`
@@ -36,11 +44,13 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
                 <nav class="bg-white relative z-40">
                     <div class="flex items-center justify-between px-6 py-4">
                         <div class="flex items-center">
-                            <img src={StaticResource.uri('Caspary.Site', 'Public/Images/logo.svg')}
-                                 alt="Caspary Bestattungen"
-                                 class="h-auto w-[300px]" />
+                            <a href="/">
+                                <img src={StaticResource.uri('Caspary.Site', 'Public/Images/logo.svg')}
+                                    alt="Caspary Bestattungen"
+                                    class="h-auto w-[300px]" />
+                            </a>
                         </div>
-                        <div id="navigation-vue" data-navigation={props.navigationData}></div>
+                        <div id="navigation-vue" data-navigation={props.navigationData || '{"menuItems":[],"currentNodeIdentifier":"debug-no-context"}'}></div>
                     </div>
                 </nav>
             </div>

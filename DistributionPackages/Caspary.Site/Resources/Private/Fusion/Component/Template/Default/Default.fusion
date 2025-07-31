@@ -5,6 +5,12 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
   documentNode = ${documentNode}
   site = ${site}
   javascripts = ''
+  
+  # Ensure context is available
+  @context {
+    documentNode = ${documentNode}
+    site = ${site}
+  }
 
   # Template
   renderer = afx`

@@ -27,9 +27,10 @@
               v-if="item.url && item.url !== '#'"
               :href="item.url"
               @click="handleNavClick"
-              class="font-semibold font-headline uppercase mb-4 pb-4"
+              class="font-semibold font-headline uppercase pb-2 block"
+              :class="{ 'text-black': item.isActive }"
             >
-              {{ item.title }}
+              <span v-if="item.isActive">\</span> {{ item.title }}
             </a>
             <span v-else>{{ item.title }}</span>
 
@@ -46,9 +47,12 @@
                     <a
                       v-if="child.url && child.url !== '#'"
                       :href="child.url"
-                      class="uppercase"
+                      class="uppercase block py-2"
+                      :class="{
+                        'text-black': child.isActive,
+                      }"
                     >
-                      <span>{{ child.title }}</span>
+                      <span><span v-if="child.isActive">\</span> {{ child.title }}</span>
                     </a>
                     <button
                       @click="toggleSubmenu(getSubmenuKey(child.title))"
@@ -69,9 +73,12 @@
                       <a
                         :href="subChild.url"
                         @click="handleNavClick"
-                        class="ml-4"
+                        class="ml-4 block py-1"
+                        :class="{
+                          'text-black': subChild.isActive,
+                        }"
                       >
-                        {{ subChild.title }}
+                        <span v-if="subChild.isActive">\</span> {{ subChild.title }}
                       </a>
                     </li>
                   </ul>
@@ -82,9 +89,10 @@
                   v-else
                   :href="child.url"
                   @click="handleNavClick"
-                  class="uppercase"
+                  class="uppercase block py-2"
+                  :class="{ 'text-black': child.isActive }"
                 >
-                  {{ child.title }}
+                  <span v-if="child.isActive">\</span> {{ child.title }}
                 </a>
               </li>
             </ul>
@@ -107,9 +115,11 @@
               @click="toggleMobileSubmenu(item.title)"
               class="w-full flex items-center justify-between py-4 text-left"
             >
-              <span class="text-lg tracking-wide uppercase">{{
-                item.title
-              }}</span>
+              <span
+                class="text-lg tracking-wide uppercase"
+                :class="{ 'text-black': item.isActive }"
+                ><span v-if="item.isActive">\</span> {{ item.title }}</span
+              >
               <span class="text-2xl">{{ item.isOpen ? "−" : "+" }}</span>
             </button>
             <div v-if="item.isOpen" class="pb-4">
@@ -120,17 +130,24 @@
                     :href="subItem.href"
                     @click="handleNavClick"
                     class="block text-gray-600 uppercase"
+                    :class="{
+                      'text-black': subItem.isActive,
+                    }"
                   >
-                    {{ subItem.title }}
+                    <span v-if="subItem.isActive">\</span> {{ subItem.title }}
                   </a>
                   <div v-else>
                     <button
                       @click="toggleMobileSubmenu(subItem.title)"
                       class="w-full flex items-center justify-between text-left"
                     >
-                      <span class="text-gray-600 uppercase">{{
-                        subItem.title
-                      }}</span>
+                      <span
+                        class="text-gray-600 uppercase"
+                        :class="{
+                          'text-black': subItem.isActive,
+                        }"
+                        ><span v-if="subItem.isActive">\</span> {{ subItem.title }}</span
+                      >
                       <span class="text-xl text-gray-400">{{
                         subItem.isOpen ? "−" : "+"
                       }}</span>
@@ -141,8 +158,11 @@
                           :href="child.href"
                           @click="handleNavClick"
                           class="block text-gray-400"
+                          :class="{
+                            'text-black': child.isActive,
+                          }"
                         >
-                          {{ child.title }}
+                          <span v-if="child.isActive">\</span> {{ child.title }}
                         </a>
                       </li>
                     </ul>
@@ -175,17 +195,40 @@ export default {
     };
   },
   created() {
+    console.log("[Navigation] Component created");
+    console.log("[Navigation] navigationItems prop:", this.navigationItems);
+    console.log("[Navigation] Current URL:", window.location.pathname);
+
     if (this.navigationItems) {
       try {
         const items = JSON.parse(this.navigationItems);
-        this.menuItems = items.menuItems || [];
+        console.log("[Navigation] Parsed items:", items);
+        console.log("[Navigation] Current node info:", {
+          identifier: items.currentNodeIdentifier,
+          path: items.currentNodePath,
+          name: items.currentNodeName,
+        });
+
+        // Check if menuItems is an array or needs conversion
+        if (
+          items.menuItems &&
+          typeof items.menuItems === "object" &&
+          !Array.isArray(items.menuItems)
+        ) {
+          this.menuItems = [];
+        } else {
+          this.menuItems = items.menuItems || [];
+        }
+
+        this.setActiveStatesBasedOnUrl();
+
         this.processMobileMenuItems();
       } catch (e) {
-        console.error("Failed to parse navigation items:", e);
-        console.error("Navigation data:", this.navigationItems);
+        console.error("[Navigation] Failed to parse navigation items:", e);
+        console.error("[Navigation] Navigation data:", this.navigationItems);
       }
     } else {
-      console.warn("No navigation data provided from Neos");
+      console.warn("[Navigation] No navigation data provided from Neos");
     }
   },
   methods: {
@@ -194,24 +237,84 @@ export default {
       this.mobileMenuItems = this.menuItems.map((item) => ({
         title: item.title,
         href: item.url,
-        isOpen: false,
+        isActive: item.isActive,
+        isOpen:
+          item.isActive ||
+          (item.children &&
+            item.children.some(
+              (child) =>
+                child.isActive ||
+                (child.children &&
+                  child.children.some((subChild) => subChild.isActive))
+            )),
         items: item.children
           ? item.children.map((child) => ({
               title: child.title,
               href: child.url,
-              isOpen: false,
-              children: child.children || [],
+              isActive: child.isActive,
+              isOpen:
+                child.isActive ||
+                (child.children &&
+                  child.children.some((subChild) => subChild.isActive)),
+              children: child.children
+                ? child.children.map((subChild) => ({
+                    title: subChild.title,
+                    href: subChild.url,
+                    isActive: subChild.isActive,
+                  }))
+                : [],
             }))
           : [],
       }));
 
-      // Initialize submenu open states
+      // Initialize submenu open states and check for active children
       this.menuItems.forEach((item) => {
         if (item.children && item.children.length > 0) {
           item.children.forEach((child) => {
             if (child.children && child.children.length > 0) {
               const key = this.getSubmenuKey(child.title);
-              this.submenuOpen[key] = false;
+              // Open submenu if any child is active or if this item is active
+              const hasActiveChild = child.children.some(
+                (subChild) => subChild.isActive
+              );
+              this.submenuOpen[key] = child.isActive || hasActiveChild;
+            }
+          });
+        }
+      });
+    },
+    setActiveStatesBasedOnUrl() {
+      const currentPath = window.location.pathname;
+      console.log("[Navigation] Setting active states for path:", currentPath);
+
+      // Iterate through all menu items
+      this.menuItems.forEach((item) => {
+        // Check if this item is active
+        item.isActive = currentPath === item.url;
+        item.hasActiveChild = false;
+
+        if (item.children && item.children.length > 0) {
+          item.children.forEach((child) => {
+            // Check if child is active
+            child.isActive = currentPath === child.url;
+            child.hasActiveChild = false;
+
+            if (child.children && child.children.length > 0) {
+              child.children.forEach((subChild) => {
+                // Check if subchild is active
+                subChild.isActive = currentPath === subChild.url;
+
+                // If subchild is active, mark parent and grandparent as having active children
+                if (subChild.isActive) {
+                  child.hasActiveChild = true;
+                  item.hasActiveChild = true;
+                }
+              });
+            }
+
+            // If child is active, mark parent as having active child
+            if (child.isActive) {
+              item.hasActiveChild = true;
             }
           });
         }
@@ -219,7 +322,13 @@ export default {
     },
     getSubmenuKey(title) {
       // Convert title to key for submenu tracking
-      return title.toLowerCase().replace(/[^\w]+/g, "");
+      if (!title) {
+        console.warn("[Navigation] getSubmenuKey called with empty title");
+        return "untitled";
+      }
+      return String(title)
+        .toLowerCase()
+        .replace(/[^\w]+/g, "");
     },
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
