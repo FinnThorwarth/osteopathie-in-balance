@@ -15,7 +15,7 @@
       <nav class="relative h-full">
         <!-- Navigation boxes - 4 columns -->
         <div
-          class="container grid grid-cols-4 gap-2 items-start justify-center text-caspary-purple px-8"
+          class="container grid grid-cols-4 gap-2 items-start justify-center text-caspary-purple"
         >
           <!-- Dynamic columns based on menu items -->
           <div
