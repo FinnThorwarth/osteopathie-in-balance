@@ -13,12 +13,24 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
     }
   }
 
+  includeIconFooterMobile = Neos.Fusion:Tag {
+    tagName = 'img'
+    attributes {
+      src = Neos.Fusion:ResourceUri {
+        path = 'resource://Caspary.Site/Public/Images/Icon-Footer.svg'
+      }
+      alt="Logo"
+      class = 'h-20 absolute top-0 right-0 md:hidden -translate-y-[50%]'
+    }
+  }
+
   renderer = afx`
-   <footer class="bg-caspary-footer text-white py-12 mt-20">
+   <footer class="bg-caspary-footer text-white py-8 md:py-12 mt-20 relative">
+    {props.includeIconFooterMobile}
     <div class="max-w-7xl mx-auto px-8">
         <div class="grid md:grid-cols-2 md:gap-0">
             <div class="md:pr-8">
-                <div class="space-y-1 text-2xl uppercase">
+                <div class="md:space-y-1 text-2xl uppercase">
                     <div><a href="/">ANFANG</a></div>
                     <div><a href="/im-trauerfall">TRAUERFALL</a></div>
                     <div><a href="/leistungen">LEISTUNGEN</a></div>
@@ -29,8 +41,8 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
                     <div><a href="/wir/kontakt">KONTAKT</a></div>
                 </div>
             </div>
-            <div class="relative md:pl-8 md:border-l-2 md:border-white">
-                <h3 class="text-xl mb-4 uppercase">Caspary Bestattungen</h3>
+            <div class="relative mt-8 md:mt-0 md:pl-8 md:border-l-2 md:border-white">
+                <h3 class="text-2xl mb-4 uppercase">Caspary Bestattungen</h3>
                 <div class="space-y-1">
                     <p><span class="font-bold">T</span> <a href="tel:0421363080">0421 - 36 30 80</a></p>
                     <p><span class="font-bold">M</span> <a href="mailto:info@caspary-bestattungen.de">info@caspary-bestattungen.de</a></p>
