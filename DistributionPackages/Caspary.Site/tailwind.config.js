@@ -10,6 +10,7 @@ export default {
 		extend: {
 			colors: {
 				'caspary-blue': '#587e87',
+				'caspary-blue-text': '#528495',
 				'caspary-blue-light': '#A9CFCF',
 				'caspary-gray': '#2B2B2A',
 				'caspary-gray-medium': '#B4B1B8',
