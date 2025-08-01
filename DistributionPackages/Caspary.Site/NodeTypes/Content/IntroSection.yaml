@@ -44,6 +44,8 @@
         inspector:
           group: 'content'
           editor: 'Neos.Neos/Inspector/Editors/RichTextEditor'
+        inlineEditable: true
+        inline:
           editorOptions:
             formatting:
               strong: true
@@ -53,10 +55,7 @@
               ul: true
               ol: true
               a: true
-        inlineEditable: true
-        inline:
-          editorOptions:
-            placeholder: 'Text linke Spalte'
+          placeholder: 'Text linke Spalte'
     rightColumnText:
       type: string
       ui:
@@ -65,18 +64,17 @@
         inspector:
           group: 'content'
           editor: 'Neos.Neos/Inspector/Editors/RichTextEditor'
-          editorOptions:
-            formatting:
-              strong: true
-              em: true
-              p: true
-              h3: true
-              ul: true
-              ol: true
-              a: true
         inlineEditable: true
         inline:
           editorOptions:
+            formatting:
+                strong: true
+                em: true
+                p: true
+                h3: true
+                ul: true
+                ol: true
+                a: true
             placeholder: 'Text rechte Spalte'
     columnMode:
       type: string
