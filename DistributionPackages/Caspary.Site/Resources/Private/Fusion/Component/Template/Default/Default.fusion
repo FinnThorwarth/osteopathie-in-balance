@@ -5,7 +5,7 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
   documentNode = ${documentNode}
   site = ${site}
   javascripts = ''
-  
+
   # Ensure context is available
   @context {
     documentNode = ${documentNode}
@@ -20,7 +20,7 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
         <Caspary.Site:Component.Organism.Header />
         <Caspary.Site:Component.Organism.MobileMenu />
 
-        <main id="main" class="min-h-screen">
+        <main id="main" class="">
           {props.content}
         </main>
 

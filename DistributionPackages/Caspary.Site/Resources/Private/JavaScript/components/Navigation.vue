@@ -102,18 +102,18 @@
     </div>
 
     <!-- Mobile Menu Overlay -->
-    <div v-if="isMenuOpen" class="fixed inset-0 top-[150px] z-50 bg-white md:hidden">
+    <div v-if="isMenuOpen" class="fixed inset-0 top-[128px] z-50 bg-white md:hidden">
       <!-- Mobile Menu Content -->
       <div class="h-full overflow-y-auto pb-20">
-        <div class="px-6">
+        <div class="">
           <div
             v-for="(item, index) in mobileMenuItems"
             :key="item.title"
-            class="border-t border-caspary-purple"
+            class="border-t border-caspary-purple first-of-type:border-t-0 "
             :class="{ 'border-b': index === mobileMenuItems.length - 1 }"
           >
             <!-- Top level items with children -->
-            <div v-if="item.items && item.items.length > 0" class="flex items-center justify-between">
+            <div v-if="item.items && item.items.length > 0" class="flex items-center justify-between px-4">
               <a
                 v-if="item.href && item.href !== '#'"
                 :href="item.href"
@@ -129,7 +129,7 @@
               </span>
               <button
                 @click="toggleMobileSubmenu(item.title)"
-                class="text-2xl px-4 border-l border-caspary-purple"
+                class="text-2xl pl-4 border-l border-caspary-purple"
               >
                 {{ item.isOpen ? "−" : "+" }}
               </button>
@@ -139,21 +139,21 @@
               v-else
               :href="item.href"
               @click="handleNavClick"
-              class="block py-4 text-lg tracking-wide uppercase"
+              class="block text-lg tracking-wide uppercase px-4 py-1"
               :class="{ 'text-black': item.isActive }"
             >
               <span v-if="item.isActive">\</span> {{ item.title }}
             </a>
 
-            <div v-if="item.isOpen && item.items && item.items.length > 0" class="pb-4">
+            <div v-if="item.isOpen && item.items && item.items.length > 0" class="">
               <ul class="">
-                <li v-for="(subItem, subIndex) in item.items" :key="subItem.title" class="border-t border-caspary-purple" :class="{ 'border-b': subIndex === item.items.length - 1 }">
+                <li v-for="(subItem, subIndex) in item.items" :key="subItem.title" class="border-t border-caspary-purple" >
                   <!-- Sub items without children -->
                   <a
                     v-if="!subItem.children || subItem.children.length === 0"
                     :href="subItem.href"
                     @click="handleNavClick"
-                    class="block text-gray-600 uppercase py-2 pl-4"
+                    class="block py-2 pl-8"
                     :class="{
                       'text-black': subItem.isActive,
                     }"
@@ -162,12 +162,12 @@
                   </a>
                   <!-- Sub items with children -->
                   <div v-else>
-                    <div class="flex items-center justify-between pl-4">
+                    <div class="flex items-center justify-between pl-8">
                       <a
                         v-if="subItem.href && subItem.href !== '#'"
                         :href="subItem.href"
                         @click="handleNavClick"
-                        class="text-gray-600 uppercase flex-1"
+                        class="flex-1"
                         :class="{
                           'text-black': subItem.isActive,
                         }"
@@ -179,7 +179,7 @@
                       </span>
                       <button
                         @click="toggleMobileSubmenu(subItem.title)"
-                        class="text-xl text-gray-400 px-3 border-l border-caspary-purple"
+                        class="text-2xl text-gray-400 px-4 border-l border-caspary-purple"
                       >
                         {{ subItem.isOpen ? "−" : "+" }}
                       </button>
@@ -189,7 +189,7 @@
                         <a
                           :href="child.href"
                           @click="handleNavClick"
-                          class="block text-gray-400 py-1 pl-8"
+                          class="block py-1 pl-12"
                           :class="{
                             'text-black': child.isActive,
                           }"
