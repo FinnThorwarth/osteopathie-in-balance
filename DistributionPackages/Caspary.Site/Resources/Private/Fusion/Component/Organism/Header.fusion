@@ -26,8 +26,8 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
     renderer = afx`
         <div class="sticky top-0 right-0 left-0 z-50 bg-white">
             <div class="bg-caspary-blue">
-                <header class="text-white max-w-7xl mx-auto">
-                    <div class="flex items-center font-light justify-between  px-6 py-2  md:py-6">
+                <header class="text-white container">
+                    <div class="flex items-center font-light justify-between py-2  md:py-6">
                         <div class="flex items-center space-x-2">
                             <span class="hidden md:inline">Büro: Mo-Fr 8-16.00 / Notfall: Mo-So 10-22.00</span>
                         </div>
@@ -53,9 +53,9 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
                 </header>
             </div>
             <div class="shadow-md">
-            <div class="max-w-7xl mx-auto ">
+            <div class="container">
                 <nav class="bg-white relative z-40">
-                    <div class="flex items-center justify-between px-6 py-4">
+                    <div class="flex items-center justify-between py-4">
                         <div class="flex items-center">
                             <a href="/">
                                 <img src={StaticResource.uri('Caspary.Site', 'Public/Images/logo.svg')}

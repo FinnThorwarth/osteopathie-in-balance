@@ -27,7 +27,7 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
   renderer = afx`
    <footer class="bg-caspary-footer text-white py-8 md:py-12 mt-20 relative">
     {props.includeIconFooterMobile}
-    <div class="max-w-7xl mx-auto px-8">
+    <div class="container">
         <div class="grid md:grid-cols-2 md:gap-0">
             <div class="md:pr-8">
                 <div class="md:space-y-1 text-2xl uppercase">
