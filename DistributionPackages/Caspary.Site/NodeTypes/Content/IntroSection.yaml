@@ -4,12 +4,11 @@
   ui:
     label: 'Einstieg'
     icon: 'icon-info-circle'
-    position: 5
-    group: 'general'
+    group: 'caspary'
     inspector:
       groups:
         content:
-          label: 'Inhalt'
+          label: 'Content'
           position: 10
         layout:
           label: 'Layout'
@@ -17,68 +16,68 @@
   properties:
     sectionTitle:
       type: string
-      defaultValue: ''
       ui:
-        label: 'Abschnittstitel'
+        label: 'Seitentitel'
         reloadIfChanged: true
-        inlineEditable: true
         inspector:
           group: 'content'
-          position: 10
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Seitentitel'
     subtitle:
       type: string
-      defaultValue: ''
-      placeholder: 'Untertitel'
       ui:
         label: 'Untertitel'
         reloadIfChanged: true
-        inlineEditable: true
         inspector:
           group: 'content'
-          position: 20
-          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Untertitel'
     leftColumnText:
       type: string
-      defaultValue: ''
-      placeholder: 'Text linke Spalte'
       ui:
         label: 'Text linke Spalte'
-        placeholder: 'Text linke Spalte'
         reloadIfChanged: true
-        inlineEditable: true
-        inline:
+        inspector:
+          group: 'content'
+          editor: 'Neos.Neos/Inspector/Editors/RichTextEditor'
           editorOptions:
-            autoparagraph: true
             formatting:
               strong: true
               em: true
-        inspector:
-          group: 'content'
-          position: 30
-          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+              p: true
+              h3: true
+              ul: true
+              ol: true
+              a: true
+        inlineEditable: true
+        inline:
           editorOptions:
-            rows: 6
+            placeholder: 'Text linke Spalte'
     rightColumnText:
       type: string
-      defaultValue: ''
-      placeholder: 'Text rechte Spalte'
       ui:
         label: 'Text rechte Spalte'
-        placeholder: 'Text rechte Spalte'
         reloadIfChanged: true
-        inlineEditable: true
-        inline:
+        inspector:
+          group: 'content'
+          editor: 'Neos.Neos/Inspector/Editors/RichTextEditor'
           editorOptions:
-            autoparagraph: true
             formatting:
               strong: true
               em: true
-        inspector:
-          group: 'content'
-          position: 40
-          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+              p: true
+              h3: true
+              ul: true
+              ol: true
+              a: true
+        inlineEditable: true
+        inline:
           editorOptions:
-            rows: 4
+            placeholder: 'Text rechte Spalte'
     columnMode:
       type: string
       defaultValue: 'two-columns'
@@ -87,7 +86,6 @@
         reloadIfChanged: true
         inspector:
           group: 'layout'
-          position: 10
           editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
           editorOptions:
             values:

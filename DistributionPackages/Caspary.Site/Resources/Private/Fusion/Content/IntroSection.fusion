@@ -17,6 +17,12 @@ prototype(Caspary.Site:Content.IntroSection) < prototype(Neos.Neos:ContentCompon
         property = 'rightColumnText'
         placeholder = 'Text rechte Spalte'
     }
+    
+    # Show placeholders when content is empty
+    showLeftPlaceholder = ${!q(node).property('leftColumnText')}
+    showRightPlaceholder = ${!q(node).property('rightColumnText')}
+    showSectionTitlePlaceholder = ${!q(node).property('sectionTitle')}
+    showSubtitlePlaceholder = ${!q(node).property('subtitle')}
 
     columnMode = ${q(node).property('columnMode') || 'two-columns'}
 
@@ -36,12 +42,14 @@ prototype(Caspary.Site:Content.IntroSection) < prototype(Neos.Neos:ContentCompon
                     <div class="space-y-6">
                         <div class="text-gray-700 leading-relaxed">
                             {props.leftColumnText}
+                            <span @if={props.leftColumnPlaceholder} class="text-gray-400 italic">{props.leftColumnPlaceholder}</span>
                         </div>
                     </div>
 
                     <div @if={props.columnMode == 'two-columns'} class="space-y-6">
                         <div class="text-gray-700 leading-relaxed mb-8">
                             {props.rightColumnText}
+                            <span @if={props.rightColumnPlaceholder} class="text-gray-400 italic">{props.rightColumnPlaceholder}</span>
                         </div>
                     </div>
                 </div>
@@ -49,6 +57,7 @@ prototype(Caspary.Site:Content.IntroSection) < prototype(Neos.Neos:ContentCompon
                 <div @if={props.columnMode == 'one-column'} class="mt-8 space-y-6">
                     <div class="text-gray-700 leading-relaxed">
                         {props.rightColumnText}
+                        <span @if={props.rightColumnPlaceholder} class="text-gray-400 italic">{props.rightColumnPlaceholder}</span>
                     </div>
                 </div>
             </div>
