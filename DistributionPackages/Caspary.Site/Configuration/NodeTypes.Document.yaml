@@ -1,0 +1,43 @@
+'Caspary.Site:Document.HomePage':
+  superTypes:
+    'Neos.Neos:Document': true
+  ui:
+    label: 'Homepage'
+    icon: 'icon-home'
+    group: 'caspary'
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
+
+'Caspary.Site:Document.StandardPage':
+  superTypes:
+    'Neos.Neos:Document': true
+  ui:
+    label: 'Standard Page'
+    icon: 'icon-file'
+    group: 'caspary'
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
+
+'Caspary.Site:Document.TrauerfallPage':
+  superTypes:
+    'Neos.Neos:Document': true
+  ui:
+    label: 'Trauerfall Page'
+    icon: 'icon-heart'
+    group: 'caspary'
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
+
+'Caspary.Site:Document.SearchPage':
+  superTypes:
+    'Neos.Neos:Document': true
+  ui:
+    label: 'Search Page'
+    icon: 'icon-search'
+    group: 'caspary'
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
