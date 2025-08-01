@@ -1,0 +1,53 @@
+prototype(Caspary.Site:Content.IntroSection) < prototype(Neos.Neos:ContentComponent) {
+    sectionTitle = Neos.Neos:Editable {
+        property = 'sectionTitle'
+        block = false
+    }
+    subtitle = Neos.Neos:Editable {
+        property = 'subtitle'
+        block = false
+    }
+    leftColumnText = Neos.Neos:Editable {
+        property = 'leftColumnText'
+    }
+    rightColumnText = Neos.Neos:Editable {
+        property = 'rightColumnText'
+    }
+
+    columnMode = ${q(node).property('columnMode')}
+
+    renderer = afx`
+        <section class="intro-section py-16 px-6 md:px-12 lg:px-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-8">
+                        <span class="inline-block border-l-4 border-purple-600 pl-4">{props.sectionTitle}</span>
+                    </h2>
+                    <p class="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-4xl">
+                        {props.subtitle}
+                    </p>
+                </div>
+
+                <div class={props.columnMode == 'two-columns' ? 'grid md:grid-cols-2 gap-12' : 'max-w-4xl'}>
+                    <div class="space-y-6">
+                        <div class="text-gray-700 leading-relaxed">
+                            {props.leftColumnText}
+                        </div>
+                    </div>
+
+                    <div @if={props.columnMode == 'two-columns'} class="space-y-6">
+                        <div class="text-gray-700 leading-relaxed mb-8">
+                            {props.rightColumnText}
+                        </div>
+                    </div>
+                </div>
+
+                <div @if={props.columnMode == 'one-column'} class="mt-8 space-y-6">
+                    <div class="text-gray-700 leading-relaxed">
+                        {props.rightColumnText}
+                    </div>
+                </div>
+            </div>
+        </section>
+    `
+}

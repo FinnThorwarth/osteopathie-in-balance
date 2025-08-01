@@ -8,3 +8,10 @@
   childNodes:
     main:
       type: 'Neos.Neos:ContentCollection'
+      childNodes:
+        heroImage:
+          type: 'Caspary.Site:Content.Image.Hero'
+          position: 10
+        introSection:
+          type: 'Caspary.Site:Content.IntroSection'
+          position: 20

@@ -7,3 +7,4 @@ include: Accordion.fusion
 include: Button.fusion
 include: ImageSlider.fusion
 include: Headline.fusion
+include: IntroSection.fusion

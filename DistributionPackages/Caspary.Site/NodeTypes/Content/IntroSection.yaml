@@ -1,0 +1,97 @@
+'Caspary.Site:Content.IntroSection':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Einstieg'
+    icon: 'icon-info-circle'
+    position: 5
+    group: 'general'
+    inspector:
+      groups:
+        content:
+          label: 'Inhalt'
+          position: 10
+        layout:
+          label: 'Layout'
+          position: 20
+  properties:
+    sectionTitle:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Abschnittstitel'
+        reloadIfChanged: true
+        inlineEditable: true
+        inspector:
+          group: 'content'
+          position: 10
+    subtitle:
+      type: string
+      defaultValue: ''
+      placeholder: 'Untertitel'
+      ui:
+        label: 'Untertitel'
+        reloadIfChanged: true
+        inlineEditable: true
+        inspector:
+          group: 'content'
+          position: 20
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+    leftColumnText:
+      type: string
+      defaultValue: ''
+      placeholder: 'Text linke Spalte'
+      ui:
+        label: 'Text linke Spalte'
+        placeholder: 'Text linke Spalte'
+        reloadIfChanged: true
+        inlineEditable: true
+        inline:
+          editorOptions:
+            autoparagraph: true
+            formatting:
+              strong: true
+              em: true
+        inspector:
+          group: 'content'
+          position: 30
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+          editorOptions:
+            rows: 6
+    rightColumnText:
+      type: string
+      defaultValue: ''
+      placeholder: 'Text rechte Spalte'
+      ui:
+        label: 'Text rechte Spalte'
+        placeholder: 'Text rechte Spalte'
+        reloadIfChanged: true
+        inlineEditable: true
+        inline:
+          editorOptions:
+            autoparagraph: true
+            formatting:
+              strong: true
+              em: true
+        inspector:
+          group: 'content'
+          position: 40
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+          editorOptions:
+            rows: 4
+    columnMode:
+      type: string
+      defaultValue: 'two-columns'
+      ui:
+        label: 'Spaltenmodus'
+        reloadIfChanged: true
+        inspector:
+          group: 'layout'
+          position: 10
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'one-column':
+                label: 'Eine Spalte'
+              'two-columns':
+                label: 'Zwei Spalten'
