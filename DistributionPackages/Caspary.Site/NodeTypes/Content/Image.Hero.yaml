@@ -8,18 +8,22 @@
     group: content
     inspector:
       groups:
+        image:
+          label: 'Bild'
+          position: 1
         options:
           label: 'Optionen'
           position: 3
   properties:
     image:
-      type: 'Neos.Media:Image'
+      type: 'Neos\Media\Domain\Model\ImageInterface'
       ui:
         label: 'Bild'
         reloadIfChanged: true
         inspector:
           group: 'image'
           position: 101
+          editor: 'Neos.Neos/Inspector/Editors/ImageEditor'
   constraints:
     nodeTypes:
       "*": false

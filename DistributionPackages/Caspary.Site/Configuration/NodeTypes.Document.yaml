@@ -1,4 +1,4 @@
-'Caspary.Site:Document.HomePage':
+'Caspary.Site:Document.Homepage':
   superTypes:
     'Neos.Neos:Document': true
   ui:

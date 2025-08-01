@@ -2,13 +2,16 @@
 'Neos.Neos:Document':
   constraints:
     nodeTypes:
-      'Caspary.Site:Document.HomePage': true
+      'Caspary.Site:Document.Homepage': true
       'Caspary.Site:Document.StandardPage': true
       'Caspary.Site:Document.TrauerfallPage': true
       'Caspary.Site:Document.SearchPage': true
       'Neos.NodeTypes:Page': false
 
 'Neos.Neos:Content':
+  constraints:
+    nodeTypes:
+      'Caspary.Site:Content.*': true
 
 # Custom content groups
 'Neos.Neos:ContentCollection':
@@ -23,4 +26,4 @@
 'Neos.Neos:Sites':
   constraints:
     nodeTypes:
-      'Caspary.Site:Document.HomePage': true
+      'Caspary.Site:Document.Homepage': true
