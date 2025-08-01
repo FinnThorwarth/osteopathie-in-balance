@@ -2,19 +2,23 @@ prototype(Caspary.Site:Content.IntroSection) < prototype(Neos.Neos:ContentCompon
     sectionTitle = Neos.Neos:Editable {
         property = 'sectionTitle'
         block = false
+        placeholder = 'Seitentitel'
     }
     subtitle = Neos.Neos:Editable {
         property = 'subtitle'
         block = false
+        placeholder = 'Untertitel'
     }
     leftColumnText = Neos.Neos:Editable {
         property = 'leftColumnText'
+        placeholder = 'Text linke Spalte'
     }
     rightColumnText = Neos.Neos:Editable {
         property = 'rightColumnText'
+        placeholder = 'Text rechte Spalte'
     }
 
-    columnMode = ${q(node).property('columnMode')}
+    columnMode = ${q(node).property('columnMode') || 'two-columns'}
 
     renderer = afx`
         <section class="intro-section py-16 px-6 md:px-12 lg:px-24 bg-gray-50">

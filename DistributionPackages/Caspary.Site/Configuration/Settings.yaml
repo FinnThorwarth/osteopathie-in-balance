@@ -3,6 +3,11 @@ Neos:
     sites:
       '*':
         uriPathSuffix: ''
+    nodeTypes:
+      groups:
+        caspary:
+          label: 'Caspary Elements'
+          position: 100
 #     userInterface:
 #       translation:
 #         autoInclude:

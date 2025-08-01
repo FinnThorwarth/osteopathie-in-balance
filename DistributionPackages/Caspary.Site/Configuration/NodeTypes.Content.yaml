@@ -309,3 +309,99 @@
       constraints:
         nodeTypes:
           'Caspary.Site:Content.ServiceCard': true
+
+'Caspary.Site:Content.IntroSection':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Intro Section'
+    icon: 'icon-info-circle'
+    group: 'caspary'
+    inspector:
+      groups:
+        content:
+          label: 'Content'
+          position: 10
+        layout:
+          label: 'Layout'
+          position: 20
+  properties:
+    sectionTitle:
+      type: string
+      defaultValue: 'Seitentitel'
+      ui:
+        label: 'Seitentitel'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+        inlineEditable: true
+        inline:
+          placeholder: 'Seitentitel'
+    subtitle:
+      type: string
+      defaultValue: 'Untertitel'
+      ui:
+        label: 'Untertitel'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+        inlineEditable: true
+        inline:
+          placeholder: 'Untertitel'
+    leftColumnText:
+      type: string
+      defaultValue: 'Text linke Spalte'
+      ui:
+        label: 'Text linke Spalte'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+          editor: 'Neos.Neos/Inspector/Editors/RichTextEditor'
+          editorOptions:
+            formatting:
+              strong: true
+              em: true
+              p: true
+              h3: true
+              ul: true
+              ol: true
+              a: true
+        inlineEditable: true
+        inline:
+          placeholder: 'Text linke Spalte'
+    rightColumnText:
+      type: string
+      defaultValue: 'Text rechte Spalte'
+      ui:
+        label: 'Text rechte Spalte'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+          editor: 'Neos.Neos/Inspector/Editors/RichTextEditor'
+          editorOptions:
+            formatting:
+              strong: true
+              em: true
+              p: true
+              h3: true
+              ul: true
+              ol: true
+              a: true
+        inlineEditable: true
+        inline:
+          placeholder: 'Text rechte Spalte'
+    columnMode:
+      type: string
+      defaultValue: 'two-columns'
+      ui:
+        label: 'Spaltenmodus'
+        reloadIfChanged: true
+        inspector:
+          group: 'layout'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'one-column':
+                label: 'Eine Spalte'
+              'two-columns':
+                label: 'Zwei Spalten'
