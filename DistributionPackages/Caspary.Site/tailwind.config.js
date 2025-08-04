@@ -66,7 +66,8 @@ export default {
 					'caspary-text': '#4A4A49',
 					'caspary-purple': 'var(--color-purple)',
 					'caspary-purple-dark': '#9D939D',
-					'caspary-footer': '#5d4d5e'
+					'caspary-footer': '#5d4d5e',
+					'caspary-team-member': '#f4f1ed'
 				},
 			},
 			fontFamily: {

@@ -1,28 +1,14 @@
 prototype(Caspary.Site:Component.Content.TeamSection) < prototype(Neos.Fusion:Component) {
-    headline = ${q(node).property('headline')}
-    subheadline = ${q(node).property('subheadline')}
-    backgroundColor = ${q(node).property('backgroundColor') || 'white'}
-    
+
     members = Neos.Neos:ContentCollection {
         nodePath = 'members'
+        attributes.class = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12'
+        tagName = 'div'
     }
 
     renderer = afx`
-        <section class={'py-20 ' + (props.backgroundColor == 'gray' ? 'bg-[#f4f1ed]' : 'bg-white')}>
-            <div class="container mx-auto px-4 max-w-7xl">
-                <div class="text-center mb-16" @if.hasHeader={props.headline || props.subheadline}>
-                    <h2 class="text-4xl md:text-5xl font-light text-gray-800 mb-6" @if.hasHeadline={props.headline}>
-                        {props.headline}
-                    </h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed" @if.hasSubheadline={props.subheadline}>
-                        {props.subheadline}
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
-                    {props.members}
-                </div>
-            </div>
+        <section class={'py-20'}>
+            {props.members}
         </section>
     `
 }

@@ -1,27 +1,15 @@
 prototype(Caspary.Site:Content.TeamMember) < prototype(Neos.Neos:ContentComponent) {
-    name = Neos.Neos:Editable {
-        property = 'name'
-        block = false
-    }
-    position = Neos.Neos:Editable {
-        property = 'position'
-        block = false
-    }
-    pronouns = Neos.Neos:Editable {
-        property = 'pronouns'
-        block = false
-    }
     image = ${q(node).property('image')}
     imageAlt = ${q(node).property('imageAlt')}
     imageTitle = ${q(node).property('imageTitle')}
 
     renderer = afx`
         <div class="team-member group">
-            <div class="relative aspect-[3/4] overflow-hidden bg-gray-100 mb-4">
+            <div class="relative aspect-[3/4] overflow-hidden bg-caspary-team-member mb-4">
                 <Caspary.Site:TeamMemberImage
                     @if.hasImage={props.image}
                     image={props.image}
-                    alternativeText={props.imageAlt || props.name}
+                    alternativeText={props.imageAlt || q(node).property('name')}
                     title={props.imageTitle}
                     class="w-full h-full object-cover object-center"
                 />
@@ -33,16 +21,16 @@ prototype(Caspary.Site:Content.TeamMember) < prototype(Neos.Neos:ContentComponen
             </div>
 
             <div class="text-center">
-                <h3 class="text-xl font-medium text-gray-800 mb-1" @if.hasName={props.name}>
-                    {props.name}
+                <h3 class="text-xl font-medium text-gray-800 mb-1">
+                    <Neos.Neos:Editable property="name" block={true} />
                 </h3>
 
-                <p class="text-base text-gray-600 mb-1" @if.hasPosition={props.position}>
-                    {props.position}
+                <p class="text-base text-gray-600 mb-1">
+                    <Neos.Neos:Editable property="position" block={true} />
                 </p>
 
-                <p class="text-sm" @if.hasPronouns={props.pronouns}>
-                    {props.pronouns}
+                <p class="text-sm">
+                    <Neos.Neos:Editable property="pronouns" block={true} />
                 </p>
             </div>
         </div>
