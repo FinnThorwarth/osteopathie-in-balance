@@ -3,15 +3,10 @@
     "file": "JavaScript/main.js",
     "name": "main",
     "src": "JavaScript/main.js",
-    "isEntry": true,
-    "css": [
-      "Styles/main.css",
-      "Styles/app.css"
-    ]
-  },
-  "Styles/app.css": {
-    "file": "Styles/app.css",
-    "src": "Styles/app.css",
     "isEntry": true
+  },
+  "style.css": {
+    "file": "Styles/style.css",
+    "src": "style.css"
   }
 }

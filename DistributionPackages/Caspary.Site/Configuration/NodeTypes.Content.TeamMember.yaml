@@ -22,22 +22,28 @@
       ui:
         label: 'Name'
         reloadIfChanged: true
+        inlineEditable: true
         inspector:
           group: 'content'
+          editor: 'Neos.Neos/Inspector/Editors/TextFieldEditor'
     position:
       type: string
       ui:
         label: 'Position / Rolle'
         reloadIfChanged: true
+        inlineEditable: true
         inspector:
           group: 'content'
+          editor: 'Neos.Neos/Inspector/Editors/TextFieldEditor'
     pronouns:
       type: string
       ui:
         label: 'Pronomen'
         reloadIfChanged: true
+        inlineEditable: true
         inspector:
           group: 'content'
+          editor: 'Neos.Neos/Inspector/Editors/TextFieldEditor'
           editorOptions:
             placeholder: 'e.g. sie/ihr, er/ihm, keine'
     image:

@@ -2,7 +2,9 @@
   <div class="navigation-wrapper">
     <button
       @click="toggleMenu"
-      class="flex items-center hover:bg-gray-100"
+      class="flex items-center hover:bg-gray-100 p-2"
+      :aria-expanded="isMenuOpen"
+      aria-label="Menü öffnen/schließen"
     >
       <img :src="menuIconUrl" alt="Menü" class="h-8" />
     </button>
@@ -363,7 +365,9 @@ export default {
         .replace(/[^\w]+/g, "");
     },
     toggleMenu() {
+      console.log('[Navigation] toggleMenu called, current state:', this.isMenuOpen);
       this.isMenuOpen = !this.isMenuOpen;
+      console.log('[Navigation] Menu state changed to:', this.isMenuOpen);
       this.updateBodyScroll();
     },
     closeMenu() {
@@ -403,13 +407,19 @@ export default {
   },
   computed: {
     menuIconUrl() {
-      return "/_Resources/Static/Packages/Caspary.Site/Images/menu-icon.svg";
+      const url = "/_Resources/Static/Packages/Caspary.Site/Images/menu-icon.svg";
+      console.log('[Navigation] Menu icon URL:', url);
+      return url;
     },
     logoUrl() {
       return "/_Resources/Static/Packages/Caspary.Site/Images/logo.svg";
     },
   },
   mounted() {
+    console.log('[Navigation] Component mounted successfully');
+    console.log('[Navigation] Menu button element:', this.$el.querySelector('button'));
+    
+    
     // Close menu on escape key
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && this.isMenuOpen) {

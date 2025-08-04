@@ -12,9 +12,6 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
       `
     }
 
-    # Critical CSS inline
-    criticalCSS = Caspary.Site:Component.CriticalCSS
-
      titleTag = Neos.Fusion:Tag {
             tagName = 'title'
             content = Neos.Fusion:Case {
@@ -31,7 +28,7 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
 
     # Add stylesheets to your page
      stylesheets.site = afx`
-        <link rel="stylesheet" href={StaticResource.uri('Caspary.Site', 'Public/Styles/app.css')} media="all" />
+        <link rel="stylesheet" href={StaticResource.uri('Caspary.Site', 'Public/Styles/style.css')} media="all" />
     `
 
     # Add header javascripts to your page

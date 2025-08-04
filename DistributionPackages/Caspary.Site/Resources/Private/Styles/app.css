@@ -1,23 +1,9 @@
 /* Adobe TypeKit fonts */
 @import url("https://use.typekit.net/lug5qgq.css");
 
-/* Font fallback definitions for better performance */
-.font-headline {
-  font-family: 'apparat', Arial, sans-serif;
-}
-
-.font-light {
-  font-family: 'apparat-light', Arial, sans-serif;
-}
-
 :root {
   --font-size-base: 18px;
   --color-purple: #7b5664;
-}
-
-/* Ensure menu icon SVG displays with correct colors */
-img[src*="menu-icon.svg"] {
-  filter: none;
 }
 
 .menu-wrapper {

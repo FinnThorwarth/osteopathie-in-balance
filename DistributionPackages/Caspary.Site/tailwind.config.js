@@ -58,7 +58,7 @@ export default {
 					900: '#0b436d',
 				},
 				caspary: {
-					'caspary-blue': '#587e87',
+					'caspary-blue': '#2c5c6a',
 					'caspary-blue-light': '#A9CFCF',
 					'caspary-gray': '#2B2B2A',
 					'caspary-gray-medium': '#B4B1B8',
@@ -66,7 +66,7 @@ export default {
 					'caspary-text': '#4A4A49',
 					'caspary-purple': 'var(--color-purple)',
 					'caspary-purple-dark': '#9D939D',
-					'caspary-footer': '#9D939D'
+					'caspary-footer': '#5d4d5e'
 				},
 			},
 			fontFamily: {
