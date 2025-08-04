@@ -24,6 +24,20 @@
           group: 'image'
           position: 101
           editor: 'Neos.Neos/Inspector/Editors/ImageEditor'
+    imageAlt:
+      type: string
+      ui:
+        label: 'Bild Alternativtext'
+        inspector:
+          group: 'image'
+          position: 102
+    imageTitle:
+      type: string
+      ui:
+        label: 'Bild Titel'
+        inspector:
+          group: 'image'
+          position: 103
   constraints:
     nodeTypes:
       "*": false

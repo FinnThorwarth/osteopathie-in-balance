@@ -23,6 +23,12 @@
         label: 'Logo Alt Text'
         inspector:
           group: 'header'
+    logoImageTitle:
+      type: string
+      ui:
+        label: 'Logo Image Title'
+        inspector:
+          group: 'header'
     showMobileMenuButton:
       type: boolean
       defaultValue: true

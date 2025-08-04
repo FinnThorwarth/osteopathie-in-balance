@@ -12,6 +12,8 @@ prototype(Caspary.Site:Content.TeamMember) < prototype(Neos.Neos:ContentComponen
         block = false
     }
     image = ${q(node).property('image')}
+    imageAlt = ${q(node).property('imageAlt')}
+    imageTitle = ${q(node).property('imageTitle')}
 
     renderer = afx`
         <div class="team-member group">
@@ -19,7 +21,8 @@ prototype(Caspary.Site:Content.TeamMember) < prototype(Neos.Neos:ContentComponen
                 <Caspary.Site:TeamMemberImage
                     @if.hasImage={props.image}
                     image={props.image}
-                    alternativeText={props.name}
+                    alternativeText={props.imageAlt || props.name}
+                    title={props.imageTitle}
                     class="w-full h-full object-cover object-center"
                 />
                 <div class="flex items-center justify-center w-full h-full" @if.hasNoImage={!props.image}>

@@ -60,3 +60,15 @@
                 locked:
                   width: 3
                   height: 4
+    imageAlt:
+      type: string
+      ui:
+        label: 'Foto Alternativtext'
+        inspector:
+          group: 'image'
+    imageTitle:
+      type: string
+      ui:
+        label: 'Foto Titel'
+        inspector:
+          group: 'image'

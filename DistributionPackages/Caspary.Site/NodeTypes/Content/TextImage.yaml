@@ -40,6 +40,20 @@
         inspector:
           group: 'image'
           position: 20
+    imageAlt:
+      type: string
+      ui:
+        label: 'Bild Alternativtext'
+        inspector:
+          group: 'image'
+          position: 21
+    imageTitle:
+      type: string
+      ui:
+        label: 'Bild Titel'
+        inspector:
+          group: 'image'
+          position: 22
     columnLayout:
       type: string
       defaultValue: 'image-text-50-50'
