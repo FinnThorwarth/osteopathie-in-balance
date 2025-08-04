@@ -1,0 +1,79 @@
+'Caspary.Site:Content.TwoColumnSection':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Two Column Section'
+    icon: 'icon-columns'
+    group: 'caspary'
+    inspector:
+      groups:
+        content:
+          label: 'Content'
+          position: 10
+        appearance:
+          label: 'Appearance'
+          position: 20
+  properties:
+    headline:
+      type: string
+      ui:
+        label: 'Headline'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+    subheadline:
+      type: string
+      ui:
+        label: 'Subheadline'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+    leftContent:
+      type: string
+      ui:
+        label: 'Left Column Content'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+          editor: 'Neos.Neos/Inspector/Editors/RichTextEditor'
+          editorOptions:
+            formatting:
+              strong: true
+              em: true
+              p: true
+              h3: true
+              ul: true
+              ol: true
+              a: true
+    rightContent:
+      type: string
+      ui:
+        label: 'Right Column Content'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+          editor: 'Neos.Neos/Inspector/Editors/RichTextEditor'
+          editorOptions:
+            formatting:
+              strong: true
+              em: true
+              p: true
+              h3: true
+              ul: true
+              ol: true
+              a: true
+    backgroundColor:
+      type: string
+      defaultValue: 'white'
+      ui:
+        label: 'Background Color'
+        reloadIfChanged: true
+        inspector:
+          group: 'appearance'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'white':
+                label: 'White'
+              'gray':
+                label: 'Gray'

@@ -1,0 +1,41 @@
+'Caspary.Site:Content.ServiceCard':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Service Card'
+    icon: 'icon-credit-card'
+    group: 'caspary'
+    inspector:
+      groups:
+        content:
+          label: 'Content'
+          position: 10
+  properties:
+    title:
+      type: string
+      ui:
+        label: 'Title'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+    description:
+      type: string
+      ui:
+        label: 'Description'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+    icon:
+      type: string
+      ui:
+        label: 'Icon (optional)'
+        inspector:
+          group: 'content'
+    link:
+      type: string
+      ui:
+        label: 'Link'
+        inspector:
+          group: 'content'
+          editor: 'Neos.Neos/Inspector/Editors/LinkEditor'

@@ -18,6 +18,7 @@
           "Caspary.Site:Content.Accordion": true
           "Caspary.Site:Content.ImageSlider": true
           "Caspary.Site:Content.Button": true
+          "Caspary.Site:Content.TeamSection": true
 
   constraints:
     nodeTypes:

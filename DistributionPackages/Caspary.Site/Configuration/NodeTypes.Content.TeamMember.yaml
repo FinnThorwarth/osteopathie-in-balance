@@ -1,0 +1,49 @@
+'Caspary.Site:Content.TeamMember':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Teamkachel'
+    icon: 'icon-user'
+    group: 'caspary'
+    inspector:
+      groups:
+        content:
+          label: 'Content'
+          position: 10
+  options:
+    fusion:
+      prototypeGenerator: null
+  search:
+    searchNodeType: false
+  label: "${node.properties.name ? 'Teamkachel (' + node.properties.name + ')' : 'Teamkachel'}"
+  properties:
+    name:
+      type: string
+      ui:
+        label: 'Name'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+    position:
+      type: string
+      ui:
+        label: 'Position / Rolle'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+    pronouns:
+      type: string
+      ui:
+        label: 'Pronomen'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+          editorOptions:
+            placeholder: 'e.g. sie/ihr, er/ihm, keine'
+    image:
+      type: 'Neos\Media\Domain\Model\ImageInterface'
+      ui:
+        label: 'Foto'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'

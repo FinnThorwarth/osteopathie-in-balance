@@ -1,0 +1,51 @@
+'Caspary.Site:Content.ServiceGrid':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Service Grid'
+    icon: 'icon-th'
+    group: 'caspary'
+    inspector:
+      groups:
+        content:
+          label: 'Content'
+          position: 10
+        appearance:
+          label: 'Appearance'
+          position: 20
+  properties:
+    headline:
+      type: string
+      ui:
+        label: 'Headline'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+    subheadline:
+      type: string
+      ui:
+        label: 'Subheadline'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+    backgroundColor:
+      type: string
+      defaultValue: 'gray'
+      ui:
+        label: 'Background Color'
+        reloadIfChanged: true
+        inspector:
+          group: 'appearance'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'white':
+                label: 'White'
+              'gray':
+                label: 'Gray'
+  childNodes:
+    services:
+      type: 'Neos.Neos:ContentCollection'
+      constraints:
+        nodeTypes:
+          'Caspary.Site:Content.ServiceCard': true

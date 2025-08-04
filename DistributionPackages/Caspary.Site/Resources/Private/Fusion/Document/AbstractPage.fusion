@@ -6,6 +6,9 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
       renderer = afx`
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="preconnect" href="https://use.typekit.net" crossorigin />
+        <link rel="preconnect" href="https://p.typekit.net" crossorigin />
       `
     }
 
@@ -28,7 +31,7 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
 
     # Add stylesheets to your page
      stylesheets.site = afx`
-        <link rel="stylesheet" href={StaticResource.uri('Caspary.Site', 'Public/Styles/style.css')} media="all" />
+        <link rel="stylesheet" href={StaticResource.uri('Caspary.Site', 'Public/Styles/app.css')} media="all" />
     `
 
     # Add header javascripts to your page

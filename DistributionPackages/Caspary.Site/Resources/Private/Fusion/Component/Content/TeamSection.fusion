@@ -1,10 +1,10 @@
-prototype(Caspary.Site:Component.Content.ServiceGrid) < prototype(Neos.Fusion:Component) {
+prototype(Caspary.Site:Component.Content.TeamSection) < prototype(Neos.Fusion:Component) {
     headline = ${q(node).property('headline')}
     subheadline = ${q(node).property('subheadline')}
-    backgroundColor = ${q(node).property('backgroundColor') || 'gray'}
+    backgroundColor = ${q(node).property('backgroundColor') || 'white'}
     
-    services = Neos.Neos:ContentCollection {
-        nodePath = 'services'
+    members = Neos.Neos:ContentCollection {
+        nodePath = 'members'
     }
 
     renderer = afx`
@@ -19,13 +19,12 @@ prototype(Caspary.Site:Component.Content.ServiceGrid) < prototype(Neos.Fusion:Co
                     </p>
                 </div>
 
-                {/* Service Cards Grid */}
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {props.services}
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    {props.members}
                 </div>
             </div>
         </section>
     `
 }
 
-prototype(Caspary.Site:Content.ServiceGrid) < prototype(Caspary.Site:Component.Content.ServiceGrid)
+prototype(Caspary.Site:Content.TeamSection) < prototype(Caspary.Site:Component.Content.TeamSection)

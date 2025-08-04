@@ -1,0 +1,59 @@
+'Caspary.Site:Content.HeroSection':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Hero Section'
+    icon: 'icon-image'
+    group: 'caspary'
+    inspector:
+      groups:
+        content:
+          label: 'Content'
+          position: 10
+        appearance:
+          label: 'Appearance'
+          position: 20
+  properties:
+    title:
+      type: string
+      ui:
+        label: 'Title'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+    subtitle:
+      type: string
+      ui:
+        label: 'Subtitle'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+    backgroundImage:
+      type: 'Neos\Media\Domain\Model\ImageInterface'
+      ui:
+        label: 'Background Image'
+        reloadIfChanged: true
+        inspector:
+          group: 'appearance'
+    overlayOpacity:
+      type: string
+      defaultValue: '0.5'
+      ui:
+        label: 'Overlay Opacity'
+        reloadIfChanged: true
+        inspector:
+          group: 'appearance'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              '0':
+                label: 'None'
+              '0.3':
+                label: 'Light'
+              '0.5':
+                label: 'Medium'
+              '0.7':
+                label: 'Dark'
+              '0.9':
+                label: 'Very Dark'
