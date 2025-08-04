@@ -7,7 +7,7 @@ prototype(Caspary.Site:Component.Content.TeamSection) < prototype(Neos.Fusion:Co
     }
 
     renderer = afx`
-        <section class={'py-20'}>
+        <section>
             {props.members}
         </section>
     `

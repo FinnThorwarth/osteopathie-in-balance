@@ -2,7 +2,7 @@
   superTypes:
     'Neos.Neos:Content': true
   ui:
-    label: 'Intro Abschnitt'
+    label: 'Einstieg'
     icon: 'icon-file-text-o'
     inlineEditable: true
     inspector:
