@@ -1,0 +1,73 @@
+prototype(Caspary.Site:Component.CriticalCSS) < prototype(Neos.Fusion:Component) {
+  renderer = afx`
+    <style>
+      /* Critical CSS for above-the-fold content */
+      :root {
+        --font-size-base: 18px;
+        --color-purple: #7b5664;
+      }
+      
+      /* Base reset */
+      *, ::before, ::after {
+        box-sizing: border-box;
+        border-width: 0;
+        border-style: solid;
+        border-color: #e5e7eb;
+      }
+      
+      /* Typography */
+      .font-headline {
+        font-family: apparat, Arial, sans-serif;
+      }
+      
+      .font-light {
+        font-family: apparat-light, Arial, sans-serif;
+      }
+      
+      /* Layout */
+      body {
+        margin: 0;
+        font-family: apparat, ui-sans-serif, system-ui;
+        background-color: #fff;
+      }
+      
+      .container {
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: 1rem;
+        padding-left: 1rem;
+      }
+      
+      /* Header critical styles */
+      header {
+        position: relative;
+        z-index: 50;
+      }
+      
+      .bg-caspary-blue {
+        background-color: rgb(88 126 135 / 1);
+      }
+      
+      .text-white {
+        color: rgb(255 255 255 / 1);
+      }
+      
+      /* Utilities */
+      .flex { display: flex; }
+      .hidden { display: none; }
+      .relative { position: relative; }
+      .absolute { position: absolute; }
+      .block { display: block; }
+      .justify-between { justify-content: space-between; }
+      .items-center { align-items: center; }
+      .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+      .px-4 { padding-left: 1rem; padding-right: 1rem; }
+      
+      /* Hide content until fonts load */
+      .font-headline, .font-light {
+        visibility: visible;
+      }
+    </style>
+  `
+}
