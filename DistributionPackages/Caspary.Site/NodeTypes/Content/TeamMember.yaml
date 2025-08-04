@@ -53,8 +53,10 @@
           group: 'image'
           editorOptions:
             features:
-              crop:
-                aspectRatio:
-                  locked: true
+              crop: true
+            crop:
+              aspectRatio:
+                forceCrop: true
+                locked:
                   width: 3
                   height: 4
