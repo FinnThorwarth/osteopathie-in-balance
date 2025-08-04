@@ -10,6 +10,9 @@ import Search from './components/Search.vue'
 
 // Function to mount Vue components
 function mountVueComponents() {
+	// Check if we're in Neos backend
+	const isNeosBackend = window.parent !== window && window.parent.Neos;
+	
 	// Mount Vue components if needed
 
 	// Mount Navigation component
@@ -28,6 +31,11 @@ function mountVueComponents() {
 
 		navigationElement._vueInstance = navApp.mount(navigationElement)
 		console.log('Navigation Vue component mounted with data:', navigationItems ? 'yes' : 'no')
+		
+		// Dispatch event for Neos backend
+		if (isNeosBackend) {
+			document.dispatchEvent(new CustomEvent('vue:mounted', { detail: { component: 'Navigation' } }));
+		}
 	}
 
 	// Mount Accordion components
@@ -37,6 +45,11 @@ function mountVueComponents() {
 			// Register AccordionItem as a global component for this app instance
 			accordionApp.component('AccordionItem', AccordionItem)
 			element._vueInstance = accordionApp.mount(element)
+			
+			// Dispatch event for Neos backend
+			if (isNeosBackend) {
+				document.dispatchEvent(new CustomEvent('vue:mounted', { detail: { component: 'Accordion' } }));
+			}
 		}
 	})
 
@@ -48,6 +61,11 @@ function mountVueComponents() {
 				slidesPerView: parseInt(slidesPerView)
 			})
 			element._vueInstance = sliderApp.mount(element)
+			
+			// Dispatch event for Neos backend
+			if (isNeosBackend) {
+				document.dispatchEvent(new CustomEvent('vue:mounted', { detail: { component: 'ImageSlider' } }));
+			}
 		}
 	})
 
@@ -62,6 +80,11 @@ function mountVueComponents() {
 		})
 		searchElement._vueInstance = searchApp.mount(searchElement)
 		console.log('Search Vue component mounted')
+		
+		// Dispatch event for Neos backend
+		if (isNeosBackend) {
+			document.dispatchEvent(new CustomEvent('vue:mounted', { detail: { component: 'Search' } }));
+		}
 	}
 }
 
@@ -106,7 +129,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		},
 		compilerOptions: {
 			// Allow Vue to work with server-rendered content
-			whitespace: 'preserve'
+			whitespace: 'preserve',
+			// Don't treat these as Vue components - they're Neos elements
+			isCustomElement: tag => {
+				return tag.includes('neos-') || 
+					   tag === 'div' && document.querySelector(tag)?.hasAttribute('contenteditable');
+			}
 		}
 	})
 

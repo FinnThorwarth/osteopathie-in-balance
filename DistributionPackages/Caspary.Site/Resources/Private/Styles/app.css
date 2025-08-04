@@ -98,3 +98,30 @@ nav li {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Neos Backend Inline Editing Fixes */
+.neos-backend [contenteditable="true"] {
+  outline: 1px dashed rgba(0, 0, 0, 0.2) !important;
+  min-height: 1.2em !important;
+  cursor: text !important;
+}
+
+.neos-backend [contenteditable="true"]:hover {
+  outline-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+.neos-backend [contenteditable="true"]:focus {
+  outline: 2px solid #00b5ff !important;
+  outline-offset: 2px !important;
+}
+
+/* Ensure Vue doesn't interfere with Neos elements */
+[data-__neos-property] {
+  position: relative !important;
+}
+
+/* Fix for empty contenteditable elements */
+[contenteditable="true"]:empty:before {
+  content: "\00a0"; /* Non-breaking space */
+  opacity: 0;
+}

@@ -28,7 +28,8 @@ export default defineConfig({
     cssCodeSplit: false, // Keep CSS in one file for easier critical CSS extraction
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'Resources/Private/JavaScript/main.js')
+        main: resolve(__dirname, 'Resources/Private/JavaScript/main.js'),
+        'neos-backend-fixes': resolve(__dirname, 'Resources/Private/JavaScript/neos-backend-fixes.js')
       },
       output: {
         entryFileNames: 'JavaScript/[name].js',
