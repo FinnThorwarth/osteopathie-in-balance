@@ -3,6 +3,7 @@
   superTypes:
     "Neos.Neos:Document": true
     "Caspary.Site:Mixin.Image": true
+    'Neos.Seo:NoindexMixin': true # noindex gesetzt
   childNodes:
     main:
       type: "Neos.Neos:ContentCollection"
