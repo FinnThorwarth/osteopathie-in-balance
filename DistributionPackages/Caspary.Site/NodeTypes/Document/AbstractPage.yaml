@@ -10,14 +10,7 @@
       constraints:
         nodeTypes:
           "*": false
-          "Caspary.Site:Content.Image.Hero": true
           "Caspary.Site:Content.IntroSection": true
-          "Caspary.Site:Content.Text": true
-          "Caspary.Site:Content.Headline": true
-          "Caspary.Site:Content.TextImage": true
-          "Caspary.Site:Content.Accordion": true
-          "Caspary.Site:Content.ImageSlider": false
-          "Caspary.Site:Content.Button": false
           "Caspary.Site:Content.TeamSection": true
 
   constraints:

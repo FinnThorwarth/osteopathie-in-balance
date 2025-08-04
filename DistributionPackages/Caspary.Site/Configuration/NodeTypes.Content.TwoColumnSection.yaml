@@ -77,3 +77,11 @@
                 label: 'White'
               'gray':
                 label: 'Gray'
+    showDivider:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Show Divider Line'
+        reloadIfChanged: true
+        inspector:
+          group: 'appearance'

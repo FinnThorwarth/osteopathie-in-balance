@@ -4,6 +4,7 @@ prototype(Caspary.Site:Component.Content.TwoColumnSection) < prototype(Neos.Fusi
     leftContent = ${q(node).property('leftContent')}
     rightContent = ${q(node).property('rightContent')}
     backgroundColor = ${q(node).property('backgroundColor') || 'white'}
+    showDivider = ${q(node).property('showDivider') || false}
 
     renderer = afx`
         <section class={'py-16 ' + (props.backgroundColor == 'gray' ? 'bg-caspary-gray-light' : 'bg-white')}>
@@ -18,9 +19,9 @@ prototype(Caspary.Site:Component.Content.TwoColumnSection) < prototype(Neos.Fusi
                 </div>
 
                 {/* Two Column Content */}
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+                <div class={'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto ' + (props.showDivider ? 'lg:divide-x lg:divide-gray-300' : '')}>
                     {/* Left Column */}
-                    <div class="prose prose-lg text-gray-700" @if.hasLeftContent={props.leftContent}>
+                    <div class={'prose prose-lg text-gray-700 ' + (props.showDivider ? 'lg:pr-12' : '')} @if.hasLeftContent={props.leftContent}>
                         <Neos.Fusion:Renderer
                             type="Neos.Fusion:RawContent"
                             value={props.leftContent}
@@ -28,7 +29,7 @@ prototype(Caspary.Site:Component.Content.TwoColumnSection) < prototype(Neos.Fusi
                     </div>
 
                     {/* Right Column */}
-                    <div class="prose prose-lg text-gray-700" @if.hasRightContent={props.rightContent}>
+                    <div class={'prose prose-lg text-gray-700 ' + (props.showDivider ? 'lg:pl-12' : '')} @if.hasRightContent={props.rightContent}>
                         <Neos.Fusion:Renderer
                             type="Neos.Fusion:RawContent"
                             value={props.rightContent}
