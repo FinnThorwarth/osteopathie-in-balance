@@ -12,7 +12,7 @@
     <!-- Desktop Menu Overlay -->
     <div
       v-if="isMenuOpen"
-      class="menu-wrapper mainnav text-xl  font-light fixed inset-0 z-50 hidden md:block"
+      class="menu-wrapper mainnav text-xl  font-light fixed inset-0 z-50 hidden xl:block"
     >
       <nav class="relative h-full">
         <!-- Navigation boxes - 4 columns -->
@@ -104,7 +104,7 @@
     </div>
 
     <!-- Mobile Menu Overlay -->
-    <div v-if="isMenuOpen" class="fixed inset-0 top-[123px] z-50 bg-white md:hidden">
+    <div v-if="isMenuOpen" class="fixed inset-0 top-[123px] z-50 bg-white xl:hidden">
       <!-- Mobile Menu Content -->
       <div class="h-full text-caspary-purple   overflow-y-auto pb-20">
         <div class="">

@@ -27,7 +27,7 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
         <div class="sticky top-0 right-0 left-0 z-50 bg-white">
             <div class="bg-caspary-blue">
                 <header class="text-white container">
-                    <div class="flex items-center font-light justify-between py-2  md:py-6">
+                    <div class="flex items-center font-light justify-between py-2  xl:py-6">
                         <div class="flex items-center space-x-2">
                             <span class="hidden md:inline">Büro: Mo-Fr 8-16.00 / Notfall: Mo-So 10-22.00</span>
                         </div>
@@ -60,7 +60,7 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
                             <a href="/">
                                 <img src={StaticResource.uri('Caspary.Site', 'Public/Images/logo.svg')}
                                     alt="Caspary Bestattungen"
-                                    class="h-auto w-[150px] md:w-[300px]" />
+                                    class="h-auto w-[150px] xl:w-[300px]" />
                             </a>
                         </div>
                         <div id="navigation-vue" data-navigation={props.navigationData || '{"menuItems":[],"currentNodeIdentifier":"debug-no-context"}'}></div>
