@@ -138,12 +138,21 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	})
 
-	// Mount main app if app element exists
+	// Mount main app if app element exists - but exclude Neos editable areas
 	const appElement = document.getElementById('app')
 	if (appElement) {
-		// Mount the app directly without wrapper to preserve Vue directives
-		app.mount('#app')
-		console.log('Main Vue app mounted on #app element')
+		// Check if we're in Neos backend
+		const isNeosBackend = window.parent !== window && window.location.href.includes('/neos/');
+		
+		if (isNeosBackend) {
+			console.log('Neos backend detected - mounting Vue with restrictions');
+			// In backend, don't mount Vue on the entire app to preserve Neos functionality
+			// Only mount specific components that don't interfere with inline editing
+		} else {
+			// In frontend, mount Vue normally
+			app.mount('#app')
+			console.log('Main Vue app mounted on #app element')
+		}
 	}
 
 	// Initial mount attempt

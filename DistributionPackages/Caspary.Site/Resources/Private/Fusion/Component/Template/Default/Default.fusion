@@ -14,8 +14,20 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
 
   # Template
   renderer = afx`
-    <div id="app" v-cloak>
+    <div id="app" v-cloak @if={!node.context.inBackend}>
       <div :class="grayscaleActive ? 'grayscale-mode' : ''">
+        <Caspary.Site:Component.Organism.Header />
+        <Caspary.Site:Component.Organism.MobileMenu />
+
+        <main id="main" class="">
+          {props.content}
+        </main>
+
+        <Caspary.Site:Component.Organism.Footer />
+      </div>
+    </div>
+    <div @if={node.context.inBackend}>
+      <div>
         <Caspary.Site:Component.Organism.Header />
         <Caspary.Site:Component.Organism.MobileMenu />
 

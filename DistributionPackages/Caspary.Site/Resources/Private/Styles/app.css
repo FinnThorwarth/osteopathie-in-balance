@@ -108,19 +108,25 @@ nav li {
 @tailwind utilities;
 
 /* Neos Backend Inline Editing Fixes */
-.neos-backend [contenteditable="true"] {
+.neos-backend [contenteditable="true"],
+.neos-inline-editable {
   outline: 1px dashed rgba(0, 0, 0, 0.2) !important;
   min-height: 1.2em !important;
   cursor: text !important;
+  transition: outline-color 0.2s ease;
 }
 
-.neos-backend [contenteditable="true"]:hover {
+.neos-backend [contenteditable="true"]:hover,
+.neos-inline-editable:hover {
   outline-color: rgba(0, 0, 0, 0.4) !important;
 }
 
-.neos-backend [contenteditable="true"]:focus {
+.neos-backend [contenteditable="true"]:focus,
+.neos-inline-editable:focus,
+.neos-inline-editing {
   outline: 2px solid #00b5ff !important;
   outline-offset: 2px !important;
+  background-color: rgba(0, 181, 255, 0.05) !important;
 }
 
 /* Ensure Vue doesn't interfere with Neos elements */
@@ -132,4 +138,14 @@ nav li {
 [contenteditable="true"]:empty:before {
   content: "\00a0"; /* Non-breaking space */
   opacity: 0;
+}
+
+/* Show placeholder text for empty fields */
+.neos-backend [contenteditable="true"]:empty:not(:focus):after {
+  content: attr(data-placeholder);
+  position: absolute;
+  color: #999;
+  pointer-events: none;
+  opacity: 0.6;
+  font-style: italic;
 }
