@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import fullReload from 'vite-plugin-full-reload'
 import { resolve } from 'path'
+import Critters from 'critters'
 
 export default defineConfig({
   plugins: [
@@ -24,10 +25,10 @@ export default defineConfig({
     outDir: resolve(__dirname, 'Resources/Public'),
     emptyOutDir: false,
     manifest: true,
+    cssCodeSplit: false, // Keep CSS in one file for easier critical CSS extraction
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'Resources/Private/JavaScript/main.js'),
-        app: resolve(__dirname, 'Resources/Private/Styles/app.css')
+        main: resolve(__dirname, 'Resources/Private/JavaScript/main.js')
       },
       output: {
         entryFileNames: 'JavaScript/[name].js',

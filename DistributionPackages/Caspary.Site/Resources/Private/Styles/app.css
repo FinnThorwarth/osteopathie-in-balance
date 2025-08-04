@@ -1,14 +1,31 @@
-/* Preconnect to Adobe Fonts */
-/* Add this to your HTML head:
-   <link rel="preconnect" href="https://use.typekit.net" crossorigin>
-   <link rel="preconnect" href="https://p.typekit.net" crossorigin>
-*/
+/* Adobe Fonts are now loaded via preload in the HTML head for better performance */
+/* The TypeKit CSS is loaded asynchronously to prevent render blocking */
 
-/* Font loading with font-display: swap for better performance */
-@import url("https://use.typekit.net/lug5qgq.css");
+/* Font Display Optimization for Adobe TypeKit Fonts - Merged from font-optimization.css */
+/* Override font-display for all TypeKit fonts */
+@font-face {
+  font-family: 'apparat';
+  font-display: swap !important;
+}
 
-/* Import font optimization overrides */
-@import "./font-optimization.css";
+@font-face {
+  font-family: 'apparat-light';
+  font-display: swap !important;
+}
+
+/* Critical CSS for above-the-fold content */
+.font-headline {
+  font-family: 'apparat', Arial, sans-serif;
+}
+
+.font-light {
+  font-family: 'apparat-light', Arial, sans-serif;
+}
+
+/* Ensure fonts load with swap behavior */
+* {
+  font-display: swap;
+}
 
 :root {
   --font-size-base: 18px;

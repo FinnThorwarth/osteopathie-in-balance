@@ -6,9 +6,16 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
       renderer = afx`
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        
+
+        <!-- DNS prefetch for performance -->
+        <link rel="dns-prefetch" href="https://use.typekit.net" />
+        <link rel="dns-prefetch" href="https://p.typekit.net" />
+
+        <!-- Optimized font loading -->
         <link rel="preconnect" href="https://use.typekit.net" crossorigin />
         <link rel="preconnect" href="https://p.typekit.net" crossorigin />
+        <link rel="preload" href="https://use.typekit.net/lug5qgq.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+        <noscript><link rel="stylesheet" href="https://use.typekit.net/lug5qgq.css" /></noscript>
       `
     }
 
@@ -26,9 +33,10 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
             }
         }
 
-    # Add stylesheets to your page
+    # Add stylesheets to your page with optimized loading
      stylesheets.site = afx`
-        <link rel="stylesheet" href={StaticResource.uri('Caspary.Site', 'Public/Styles/app.css')} media="all" />
+        <link rel="preload" href={StaticResource.uri('Caspary.Site', 'Public/Styles/style.css')} as="style" onload="this.onload=null;this.rel='stylesheet'" />
+        <noscript><link rel="stylesheet" href={StaticResource.uri('Caspary.Site', 'Public/Styles/style.css')} media="all" /></noscript>
     `
 
     # Add header javascripts to your page
