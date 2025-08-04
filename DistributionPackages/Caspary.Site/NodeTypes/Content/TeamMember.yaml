@@ -7,8 +7,8 @@
     group: 'caspary'
     inspector:
       groups:
-        content:
-          label: 'Content'
+        image:
+          label: 'Bild'
           position: 10
   options:
     fusion:
@@ -26,9 +26,6 @@
         inline:
           editorOptions:
             placeholder: 'Name'
-        inspector:
-          group: 'content'
-          editor: 'Neos.Neos/Inspector/Editors/TextFieldEditor'
     position:
       type: string
       ui:
@@ -38,9 +35,6 @@
         inline:
           editorOptions:
             placeholder: 'Position / Rolle'
-        inspector:
-          group: 'content'
-          editor: 'Neos.Neos/Inspector/Editors/TextFieldEditor'
     pronouns:
       type: string
       ui:
@@ -50,18 +44,10 @@
         inline:
           editorOptions:
             placeholder: 'Pronomen'
-        inspector:
-          group: 'content'
-          editor: 'Neos.Neos/Inspector/Editors/TextFieldEditor'
-          editorOptions:
-            placeholder: 'e.g. sie/ihr, er/ihm, keine'
     image:
       type: 'Neos\Media\Domain\Model\ImageInterface'
       ui:
         label: 'Foto'
         reloadIfChanged: true
-        inline:
-          editorOptions:
-            placeholder: 'Foto'
         inspector:
-          group: 'content'
+          group: 'image'
