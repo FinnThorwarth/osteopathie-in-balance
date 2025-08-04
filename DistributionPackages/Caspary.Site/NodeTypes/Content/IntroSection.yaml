@@ -17,21 +17,13 @@
     sectionTitle:
       type: string
       ui:
-        label: 'Seitentitel'
-        reloadIfChanged: true
-        inspector:
-          group: 'content'
         inlineEditable: true
         inline:
           editorOptions:
-            placeholder: 'Seitentitel'
+            placeholder: 'Einstiegstext'
     subtitle:
       type: string
       ui:
-        label: 'Untertitel'
-        reloadIfChanged: true
-        inspector:
-          group: 'content'
         inlineEditable: true
         inline:
           editorOptions:
@@ -39,11 +31,6 @@
     leftColumnText:
       type: string
       ui:
-        label: 'Text linke Spalte'
-        reloadIfChanged: true
-        inspector:
-          group: 'content'
-          editor: 'Neos.Neos/Inspector/Editors/RichTextEditor'
         inlineEditable: true
         inline:
           editorOptions:
@@ -55,15 +42,13 @@
               ul: true
               ol: true
               a: true
-          placeholder: 'Text linke Spalte'
+            linking:
+              a: true
+              startingPoint: '/'
+            placeholder: 'Text linke Spalte'
     rightColumnText:
       type: string
       ui:
-        label: 'Text rechte Spalte'
-        reloadIfChanged: true
-        inspector:
-          group: 'content'
-          editor: 'Neos.Neos/Inspector/Editors/RichTextEditor'
         inlineEditable: true
         inline:
           editorOptions:
@@ -75,6 +60,9 @@
                 ul: true
                 ol: true
                 a: true
+            linking:
+                a: true
+                startingPoint: '/'
             placeholder: 'Text rechte Spalte'
     columnMode:
       type: string

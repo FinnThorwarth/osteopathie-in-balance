@@ -77,7 +77,7 @@ export default {
 				'light': ['apparat-light'],
 				'light-body': ['Roboto Slab light'],
 				'sans': ['apparat', 'ui-sans-serif', 'system-ui'],
-				'serif': ['ui-serif', 'Georgia'],
+				'serif': ['Roboto Serif', 'Georgia'],
 				'mono': ['ui-monospace', 'SFMono-Regular'],
 			},
 			fontSize: {

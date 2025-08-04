@@ -2,7 +2,7 @@
   <div class="navigation-wrapper font-headline">
     <button
       @click="toggleMenu"
-      class="flex items-center hover:bg-gray-100 p-2"
+      class="flex items-center hover:bg-gray-100"
       :aria-expanded="isMenuOpen"
       aria-label="Menü öffnen/schließen"
     >
@@ -104,9 +104,9 @@
     </div>
 
     <!-- Mobile Menu Overlay -->
-    <div v-if="isMenuOpen" class="fixed inset-0 top-[128px] z-50 bg-white md:hidden">
+    <div v-if="isMenuOpen" class="fixed inset-0 top-[123px] z-50 bg-white md:hidden">
       <!-- Mobile Menu Content -->
-      <div class="h-full overflow-y-auto pb-20">
+      <div class="h-full text-caspary-purple   overflow-y-auto pb-20">
         <div class="">
           <div
             v-for="(item, index) in mobileMenuItems"
@@ -181,7 +181,7 @@
                       </span>
                       <button
                         @click="toggleMobileSubmenu(subItem.title)"
-                        class="text-2xl text-gray-400 px-4 border-l border-caspary-purple"
+                        class="text-2xl px-4 border-l border-caspary-purple"
                       >
                         {{ subItem.isOpen ? "−" : "+" }}
                       </button>

@@ -30,7 +30,7 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
     <div class="container">
         <div class="grid md:grid-cols-2 md:gap-0">
             <div class="md:pr-8">
-                <div class="md:space-y-1 text-2xl uppercase">
+                <div class="text-2xl uppercase">
                     <div><a href="/">ANFANG</a></div>
                     <div><a href="/im-trauerfall">TRAUERFALL</a></div>
                     <div><a href="/leistungen">LEISTUNGEN</a></div>
@@ -52,7 +52,7 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
                     Schwachhauser Heerstr. 47<br/>
                     28211 Bremen
                   </address>
-                <div class="mt-6 space-y-1 text-xl uppercase">
+                <div class="mt-6 text-xl uppercase">
                     <div><a href="/kooperationen">KOOPERATIONSPARTNER*INNEN</a></div>
                     <div><a href="/downloads">DOWNLOADS</a></div>
                     <div><a href="/impressum">IMPRESSUM</a></div>
