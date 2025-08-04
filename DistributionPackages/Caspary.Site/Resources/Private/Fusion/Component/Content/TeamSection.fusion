@@ -2,7 +2,7 @@ prototype(Caspary.Site:Component.Content.TeamSection) < prototype(Neos.Fusion:Co
 
     members = Neos.Neos:ContentCollection {
         nodePath = 'members'
-        attributes.class = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12'
+        attributes.class = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12'
         tagName = 'div'
     }
 

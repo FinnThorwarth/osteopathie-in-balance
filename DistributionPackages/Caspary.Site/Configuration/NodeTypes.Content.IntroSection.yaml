@@ -1,0 +1,67 @@
+'Caspary.Site:Content.IntroSection':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Intro Abschnitt'
+    icon: 'icon-file-text-o'
+    inlineEditable: true
+    inspector:
+      groups:
+        content:
+          label: 'Inhalt'
+          position: 10
+        layout:
+          label: 'Layout'
+          position: 20
+  childNodes:
+    header:
+      type: 'Caspary.Site:Content.SectionHeader'
+      position: 10
+      constraints:
+        nodeTypes:
+          'Caspary.Site:Content.SectionHeader': true
+          '*': false
+  properties:
+    leftColumnText:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Text linke Spalte'
+            formatting:
+              strong: true
+              em: true
+              p: true
+              ul: true
+              ol: true
+              a: true
+    rightColumnText:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Text rechte Spalte'
+            formatting:
+              strong: true
+              em: true
+              p: true
+              ul: true
+              ol: true
+              a: true
+    columnMode:
+      type: string
+      defaultValue: 'two-columns'
+      ui:
+        label: 'Spalten-Modus'
+        reloadIfChanged: true
+        inspector:
+          group: 'layout'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'two-columns':
+                label: 'Zwei Spalten'
+              'one-column':
+                label: 'Eine Spalte'

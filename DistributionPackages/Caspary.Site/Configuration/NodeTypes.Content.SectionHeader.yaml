@@ -1,0 +1,33 @@
+'Caspary.Site:Content.SectionHeader':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Abschnittsüberschrift'
+    icon: 'icon-heading'
+    inlineEditable: true
+    inspector:
+      groups:
+        content:
+          label: 'Inhalt'
+          position: 10
+  properties:
+    sectionTitle:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Seitentitel'
+            formatting:
+              strong: true
+              em: true
+    subtitle:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Untertitel'
+            formatting:
+              strong: true
+              em: true

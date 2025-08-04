@@ -20,6 +20,8 @@ export default {
 				'caspary-purple-dark': '#9D939D',
 				'caspary-footer': '#9D939D',
 				'caspary-blue-alt': '#6fa1ae',
+				'caspary-team-member-bg': '#f4f1ed',
+				'caspary-team-member-text': '#818384',
 				// Legacy colors for backward compatibility
 				primary: {
 					50: '#faf9f9',
@@ -67,7 +69,6 @@ export default {
 					'caspary-purple': 'var(--color-purple)',
 					'caspary-purple-dark': '#9D939D',
 					'caspary-footer': '#5d4d5e',
-					'caspary-team-member': '#f4f1ed'
 				},
 			},
 			fontFamily: {

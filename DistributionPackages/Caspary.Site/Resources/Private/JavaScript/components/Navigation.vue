@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation-wrapper">
+  <div class="navigation-wrapper font-headline">
     <button
       @click="toggleMenu"
       class="flex items-center hover:bg-gray-100 p-2"
@@ -12,7 +12,7 @@
     <!-- Desktop Menu Overlay -->
     <div
       v-if="isMenuOpen"
-      class="menu-wrapper mainnav text-xl font-light fixed inset-0 z-50 hidden md:block"
+      class="menu-wrapper mainnav text-xl  font-light fixed inset-0 z-50 hidden md:block"
     >
       <nav class="relative h-full">
         <!-- Navigation boxes - 4 columns -->
@@ -418,8 +418,8 @@ export default {
   mounted() {
     console.log('[Navigation] Component mounted successfully');
     console.log('[Navigation] Menu button element:', this.$el.querySelector('button'));
-    
-    
+
+
     // Close menu on escape key
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && this.isMenuOpen) {

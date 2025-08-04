@@ -58,8 +58,8 @@
               aspectRatio:
                 forceCrop: true
                 locked:
-                  width: 3
-                  height: 4
+                  width: 1
+                  height: 1
     imageAlt:
       type: string
       ui:
