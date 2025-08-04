@@ -39,8 +39,12 @@ prototype(Caspary.Site:ResponsiveImage) < prototype(Neos.Fusion:Component) {
     
     renderer = afx`
         <picture @if={props.image}>
-            {props.webpEnabled && props._webpSources}
-            {props._sources}
+            <Neos.Fusion:Loop items={props._webpSources} @if={props.webpEnabled}>
+                {item}
+            </Neos.Fusion:Loop>
+            <Neos.Fusion:Loop items={props._sources}>
+                {item}
+            </Neos.Fusion:Loop>
             <img
                 src={props._fallbackSrc}
                 srcset={props._srcset}

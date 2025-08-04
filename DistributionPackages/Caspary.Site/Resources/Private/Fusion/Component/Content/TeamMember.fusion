@@ -1,48 +1,3 @@
-prototype(Caspary.Site:Component.Content.TeamMember) < prototype(Neos.Fusion:Component) {
-    name = ${q(node).property('name')}
-    position = ${q(node).property('position')}
-    pronouns = ${q(node).property('pronouns')}
-    image = ${q(node).property('image')}
-
-    renderer = afx`
-        <div class="team-member group">
-            <div class="relative aspect-[3/4] overflow-hidden bg-gray-100 mb-4">
-                <div @if.hasImage={props.image}>
-                    <Neos.Neos:ImageTag
-                        asset={props.image}
-                        maximumWidth="600"
-                        maximumHeight="800"
-                        allowCropping={true}
-                        allowUpScaling={true}
-                        additionalAttributes={{
-                            class: 'w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all duration-500'
-                        }}
-                    />
-                </div>
-                <div class="flex items-center justify-center w-full h-full" @if.hasNoImage={!props.image}>
-                    <svg class="w-32 h-32 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
-                    </svg>
-                </div>
-            </div>
-
-            <div class="text-center">
-                <h3 class="text-xl font-medium text-gray-800 mb-1" @if.hasName={props.name}>
-                    {props.name}
-                </h3>
-
-                <p class="text-base text-gray-600 mb-1" @if.hasPosition={props.position}>
-                    {props.position}
-                </p>
-
-                <p class="text-sm text-gray-500 italic" @if.hasPronouns={props.pronouns}>
-                    {props.pronouns}
-                </p>
-            </div>
-        </div>
-    `
-}
-
 prototype(Caspary.Site:Content.TeamMember) < prototype(Neos.Neos:ContentComponent) {
     name = Neos.Neos:Editable {
         property = 'name'
@@ -61,18 +16,12 @@ prototype(Caspary.Site:Content.TeamMember) < prototype(Neos.Neos:ContentComponen
     renderer = afx`
         <div class="team-member group">
             <div class="relative aspect-[3/4] overflow-hidden bg-gray-100 mb-4">
-                <div @if.hasImage={props.image}>
-                    <Neos.Neos:ImageTag
-                        asset={props.image}
-                        maximumWidth="600"
-                        maximumHeight="800"
-                        allowCropping={true}
-                        allowUpScaling={true}
-                        additionalAttributes={{
-                            class: 'w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all duration-500'
-                        }}
-                    />
-                </div>
+                <Caspary.Site:TeamMemberImage
+                    @if.hasImage={props.image}
+                    image={props.image}
+                    alternativeText={props.name}
+                    class="w-full h-full object-cover object-center"
+                />
                 <div class="flex items-center justify-center w-full h-full" @if.hasNoImage={!props.image}>
                     <svg class="w-32 h-32 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
@@ -81,15 +30,15 @@ prototype(Caspary.Site:Content.TeamMember) < prototype(Neos.Neos:ContentComponen
             </div>
 
             <div class="text-center">
-                <h3 class="text-xl font-medium text-gray-800 mb-1">
+                <h3 class="text-xl font-medium text-gray-800 mb-1" @if.hasName={props.name}>
                     {props.name}
                 </h3>
 
-                <p class="text-base text-gray-600 mb-1">
+                <p class="text-base text-gray-600 mb-1" @if.hasPosition={props.position}>
                     {props.position}
                 </p>
 
-                <p class="text-sm text-gray-500 italic">
+                <p class="text-sm" @if.hasPronouns={props.pronouns}>
                     {props.pronouns}
                 </p>
             </div>

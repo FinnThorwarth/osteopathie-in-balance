@@ -51,3 +51,10 @@
         reloadIfChanged: true
         inspector:
           group: 'image'
+          editorOptions:
+            features:
+              crop:
+                aspectRatio:
+                  locked: true
+                  width: 3
+                  height: 4
