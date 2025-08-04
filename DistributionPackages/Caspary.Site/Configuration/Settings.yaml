@@ -3,11 +3,42 @@ Neos:
     sites:
       '*':
         uriPathSuffix: ''
+        errorHandling:
+          'Neos\Flow\Mvc\Exception\NoMatchingRouteException':
+            renderingGroups:
+              'Neos.Neos:Fallback':
+                options:
+                  templatePathAndFilename: 'resource://Caspary.Site/Private/Templates/Error/404.html'
+                  variables:
+                    errorCode: 404
+                    errorTitle: 'Seite nicht gefunden'
+                    errorMessage: 'Die angeforderte Seite konnte leider nicht gefunden werden.'
+          'Neos\Flow\Mvc\Exception\StopActionException':
+            renderingGroups:
+              'Neos.Neos:Fallback':
+                options:
+                  templatePathAndFilename: 'resource://Caspary.Site/Private/Templates/Error/404.html'
+                  variables:
+                    errorCode: 404
+                    errorTitle: 'Seite nicht gefunden'
+                    errorMessage: 'Die angeforderte Seite konnte leider nicht gefunden werden.'
+          'Neos\Flow\Security\Exception\AccessDeniedException':
+            renderingGroups:
+              'Neos.Neos:Fallback':
+                options:
+                  templatePathAndFilename: 'resource://Caspary.Site/Private/Templates/Error/403.html'
+                  variables:
+                    errorCode: 403
+                    errorTitle: 'Zugriff verweigert'
+                    errorMessage: 'Sie haben keine Berechtigung, auf diese Seite zuzugreifen.'
     nodeTypes:
       groups:
         caspary:
           label: 'Caspary Module'
           position: 100
+        error:
+          label: 'Fehlerseiten'
+          position: 200
 #     userInterface:
 #       translation:
 #         autoInclude:

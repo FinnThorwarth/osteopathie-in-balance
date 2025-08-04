@@ -1,0 +1,108 @@
+# Example usage of responsive image components
+prototype(Caspary.Site:ResponsiveImageExample) < prototype(Neos.Fusion:Component) {
+    # Example 1: Basic responsive image with ratio
+    example1 = Caspary.Site:ResponsiveImage {
+        image = ${q(node).property('image')}
+        alternativeText = ${q(node).property('alternativeText')}
+        ratio = '16:9'
+        sizes = '(min-width: 1024px) 50vw, 100vw'
+        class = 'rounded-lg shadow-lg'
+    }
+    
+    # Example 2: Hero image with custom variants
+    example2 = Caspary.Site:HeroImage {
+        image = ${q(node).property('heroImage')}
+        alternativeText = 'Hero banner'
+        ratio = '21:9' # Ultra-wide for hero
+    }
+    
+    # Example 3: Content image preserving original ratio
+    example3 = Caspary.Site:ContentImage {
+        image = ${q(node).property('contentImage')}
+        alternativeText = ${q(node).property('imageAlt')}
+        # No ratio specified - preserves original
+    }
+    
+    # Example 4: Team member portrait
+    example4 = Caspary.Site:TeamMemberImage {
+        image = ${q(node).property('portrait')}
+        alternativeText = ${q(node).property('name')}
+        webpEnabled = true
+        quality = 95 # Higher quality for portraits
+    }
+    
+    # Example 5: Picture element with art direction
+    example5 = Caspary.Site:Picture {
+        image = ${q(node).property('defaultImage')}
+        alternativeText = 'Responsive art direction example'
+        
+        sources = Neos.Fusion:DataStructure {
+            # Square image on mobile
+            mobile = ${{'image': q(node).property('mobileImage'), 'media': '(max-width: 767px)', 'ratio': '1:1', 'sizes': '100vw'}}
+            
+            # 4:3 on tablet
+            tablet = ${{'image': q(node).property('tabletImage'), 'media': '(min-width: 768px) and (max-width: 1023px)', 'ratio': '4:3', 'sizes': '100vw'}}
+            
+            # Widescreen on desktop
+            desktop = ${{'media': '(min-width: 1024px)', 'ratio': '16:9', 'sizes': '100vw'}}
+        }
+        
+        defaultSource {
+            ratio = '16:9'
+            sizes = '100vw'
+        }
+    }
+    
+    # Example 6: Custom responsive configuration
+    example6 = Caspary.Site:ResponsiveImage {
+        image = ${q(node).property('customImage')}
+        alternativeText = 'Custom breakpoints'
+        ratio = '3:2'
+        
+        # Custom variants for specific needs
+        variants = Neos.Fusion:DataStructure {
+            tiny = ${{'width': 320}}
+            small = ${{'width': 640, 'media': '(min-width: 480px)'}}
+            medium = ${{'width': 960, 'media': '(min-width: 640px)'}}
+            large = ${{'width': 1280, 'media': '(min-width: 960px)'}}
+            huge = ${{'width': 1920, 'media': '(min-width: 1280px)'}}
+        }
+        
+        # Corresponding sizes
+        sizes = '(min-width: 1280px) 1280px, (min-width: 960px) 960px, (min-width: 640px) 640px, (min-width: 480px) 480px, 320px'
+    }
+    
+    renderer = afx`
+        <div class="space-y-8">
+            <section>
+                <h3>Basic Responsive Image</h3>
+                {props.example1}
+            </section>
+            
+            <section>
+                <h3>Hero Image</h3>
+                {props.example2}
+            </section>
+            
+            <section>
+                <h3>Content Image</h3>
+                {props.example3}
+            </section>
+            
+            <section>
+                <h3>Team Member Portrait</h3>
+                {props.example4}
+            </section>
+            
+            <section>
+                <h3>Art Direction with Picture</h3>
+                {props.example5}
+            </section>
+            
+            <section>
+                <h3>Custom Configuration</h3>
+                {props.example6}
+            </section>
+        </div>
+    `
+}

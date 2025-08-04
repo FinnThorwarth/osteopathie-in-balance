@@ -1,0 +1,141 @@
+# Advanced Picture element for art direction with multiple sources
+prototype(Caspary.Site:Picture) < prototype(Neos.Fusion:Component) {
+    # Required
+    image = null
+    alternativeText = ''
+    title = ''
+    
+    # Art direction sources - define different images for different breakpoints
+    # Example:
+    # sources = Neos.Fusion:DataStructure {
+    #     mobile = ${{'image': mobileImage, 'media': '(max-width: 767px)', 'ratio': '1:1'}}
+    #     tablet = ${{'image': tabletImage, 'media': '(min-width: 768px) and (max-width: 1023px)', 'ratio': '4:3'}}
+    #     desktop = ${{'image': desktopImage, 'media': '(min-width: 1024px)', 'ratio': '16:9'}}
+    # }
+    sources = Neos.Fusion:DataStructure
+    
+    # Default source configuration (used as fallback)
+    defaultSource = Neos.Fusion:DataStructure {
+        ratio = '16:9'
+        variants = ${Configuration.setting('Caspary.Site.imageVariants.default')}
+        sizes = '100vw'
+        quality = 85
+    }
+    
+    # HTML attributes
+    class = ''
+    loading = 'lazy'
+    decoding = 'async'
+    
+    # Enable WebP generation
+    webpEnabled = true
+    
+    renderer = afx`
+        <picture @if={props.image} class={props.class}>
+            <Neos.Fusion:Loop items={props._processedSources} itemName="source">
+                {props.webpEnabled && source.webpElement}
+                {source.standardElement}
+            </Neos.Fusion:Loop>
+            
+            <img
+                src={props._fallbackSrc}
+                srcset={props._fallbackSrcset}
+                sizes={props.defaultSource.sizes}
+                alt={props.alternativeText}
+                title={props.title}
+                loading={props.loading}
+                decoding={props.decoding}
+                width={props._fallbackDimensions.width}
+                height={props._fallbackDimensions.height}
+            />
+        </picture>
+    `
+    
+    # Process sources for rendering
+    _processedSources = Neos.Fusion:Map {
+        items = ${props.sources}
+        itemName = 'source'
+        itemKey = 'key'
+        itemRenderer = Neos.Fusion:DataStructure {
+            media = ${source.media}
+            image = ${source.image || props.image}
+            ratio = ${source.ratio || props.defaultSource.ratio}
+            variants = ${source.variants || props.defaultSource.variants}
+            sizes = ${source.sizes || props.defaultSource.sizes}
+            quality = ${source.quality || props.defaultSource.quality}
+            
+            # Generate WebP source element
+            webpElement = afx`
+                <source
+                    type="image/webp"
+                    media={source.media}
+                    srcset={props._generateSrcset(this.image, this.variants, this.ratio, this.quality, 'webp')}
+                    sizes={this.sizes}
+                />
+            `
+            
+            # Generate standard source element
+            standardElement = afx`
+                <source
+                    media={source.media}
+                    srcset={props._generateSrcset(this.image, this.variants, this.ratio, this.quality)}
+                    sizes={this.sizes}
+                />
+            `
+        }
+    }
+    
+    # Calculate fallback dimensions
+    _fallbackDimensions = ${Caspary.Image.calculateDimensions(1024, this.defaultSource.ratio)}
+    
+    # Generate fallback src
+    _fallbackSrc = Neos.Neos:ImageUri {
+        asset = ${props.image}
+        width = ${props._fallbackDimensions.width}
+        height = ${props._fallbackDimensions.height}
+        quality = ${props.defaultSource.quality}
+    }
+    
+    # Generate fallback srcset
+    _fallbackSrcset = ${this._generateSrcset(this.image, this.defaultSource.variants, this.defaultSource.ratio, this.defaultSource.quality)}
+    
+    # Helper to generate srcset string
+    _generateSrcset = ${(image, variants, ratio, quality, format = null) => {
+        var srcsetItems = [];
+        var variantArray = Type.isArray(variants) ? variants : Neos.Fusion:DataStructure.values(variants);
+        
+        Array.forEach(variantArray, (variant) => {
+            var dimensions = ratio && variant.width ? Caspary.Image.calculateDimensions(variant.width, ratio) : variant;
+            var params = {
+                'width': dimensions.width,
+                'height': dimensions.height || null,
+                'quality': quality,
+                'allowCropping': true
+            };
+            
+            if (format) {
+                params['format'] = format;
+            }
+            
+            var url = Neos.Media.uri(image, params);
+            Array.push(srcsetItems, url + ' ' + dimensions.width + 'w');
+        });
+        
+        return Array.join(srcsetItems, ', ');
+    }}
+}
+
+# Simplified picture element using preset configurations
+prototype(Caspary.Site:PictureSimple) < prototype(Caspary.Site:Picture) {
+    # Preset name from Settings.ImageVariants.yaml
+    preset = 'Caspary.Site:Content'
+    
+    # Override ratio for all variants
+    ratio = null
+    
+    # Custom sizes attribute
+    sizes = ${Configuration.setting('Caspary.Site.imageSizes.content.sizes')}
+    
+    # Build variants from preset
+    defaultSource.variants = ${Configuration.setting('Neos.Media.variantPresets.' + this.preset + '.variants')}
+}
