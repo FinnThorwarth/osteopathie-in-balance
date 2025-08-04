@@ -7,7 +7,6 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         
-        {/* Preconnect to Adobe Fonts for better performance */}
         <link rel="preconnect" href="https://use.typekit.net" crossorigin />
         <link rel="preconnect" href="https://p.typekit.net" crossorigin />
       `
