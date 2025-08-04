@@ -16,8 +16,8 @@
           "Caspary.Site:Content.Headline": true
           "Caspary.Site:Content.TextImage": true
           "Caspary.Site:Content.Accordion": true
-          "Caspary.Site:Content.ImageSlider": true
-          "Caspary.Site:Content.Button": true
+          "Caspary.Site:Content.ImageSlider": false
+          "Caspary.Site:Content.Button": false
           "Caspary.Site:Content.TeamSection": true
 
   constraints:

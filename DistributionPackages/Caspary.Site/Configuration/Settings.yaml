@@ -6,7 +6,7 @@ Neos:
     nodeTypes:
       groups:
         caspary:
-          label: 'Caspary Elements'
+          label: 'Caspary Module'
           position: 100
 #     userInterface:
 #       translation:

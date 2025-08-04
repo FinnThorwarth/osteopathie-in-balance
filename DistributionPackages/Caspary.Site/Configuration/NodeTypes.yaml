@@ -19,7 +19,7 @@
     inspector:
       groups:
         caspary:
-          label: 'Caspary Elements'
+          label: 'Caspary Module'
           position: 5
 
 # Site root constraints
