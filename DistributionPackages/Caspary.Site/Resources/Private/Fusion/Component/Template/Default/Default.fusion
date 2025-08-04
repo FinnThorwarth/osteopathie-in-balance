@@ -5,6 +5,7 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
   documentNode = ${documentNode}
   site = ${site}
   javascripts = ''
+  language = 'de'
 
   # Ensure context is available
   @context {
@@ -14,6 +15,7 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
 
   # Template
   renderer = afx`
+  <html lang={props.language}>
     <body class="font-headline bg-white text-caspary-black">
       <div id="app" v-cloak>
         <div :class="grayscaleActive ? 'grayscale-mode' : ''">
