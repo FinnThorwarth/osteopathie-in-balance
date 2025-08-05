@@ -24,7 +24,7 @@ prototype(Caspary.Site:Content.IntroSection) < prototype(Neos.Neos:ContentCompon
         <section class="intro-section py-8">
                 {props.header}
 
-                <div class={props.columnMode == 'two-columns' ? 'grid md:grid-cols-2 gap-12' : 'max-w-4xl'}>
+                <div class={props.columnMode == 'two-columns' ? 'grid md:grid-cols-2 gap-4 md:gap-8 lg:gap-12' : 'max-w-4xl'}>
                     <div class="space-y-6">
                         <div class="leading-relaxed font-light-body ">
                             {props.leftColumnText}
