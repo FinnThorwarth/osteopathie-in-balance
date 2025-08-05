@@ -15,11 +15,11 @@ prototype(Caspary.Site:Content.SectionHeader) < prototype(Neos.Neos:ContentCompo
 
     renderer = afx`
         <div @if={props.backend} class="mb-2">
-            <hgroup>
+            <hgroup class="font-headline">
                 <h1 class="text-4xl md:text-5xl uppercase mb-2">
                     <span class="inline-block text-caspary-purple"><span @if={q(node).property('sectionTitle')} class=" font-light">\</span> {props.sectionTitle}</span>
                 </h1>
-                <h2 class="text-xl md:text-2xl text-caspary-blue leading-relaxed max-w-4xl">
+                <h2 class="text-xl md:text-2xl text-caspary-blue leading-relaxed ">
                     {props.subtitle}
                 </h2>
             </hgroup>
@@ -29,7 +29,7 @@ prototype(Caspary.Site:Content.SectionHeader) < prototype(Neos.Neos:ContentCompo
                 <h1 @if={props.sectionTitle} class="text-4xl md:text-5xl uppercase mb-2">
                     <span class="inline-block text-caspary-purple"><span @if={q(node).property('sectionTitle')} class=" font-light">\</span> {props.sectionTitle}</span>
                 </h1>
-                <h2 @if={props.subtitle} class="text-xl md:text-2xl text-caspary-blue leading-relaxed max-w-4xl">
+                <h2 @if={props.subtitle} class="text-xl md:text-2xl text-caspary-blue leading-relaxed">
                     {props.subtitle}
                 </h2>
             </hgroup>
