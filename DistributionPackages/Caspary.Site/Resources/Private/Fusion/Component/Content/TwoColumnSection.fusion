@@ -24,7 +24,7 @@ prototype(Caspary.Site:Content.TwoColumnSection) < prototype(Neos.Neos:ContentCo
                     </p>
                 </div>
 
-                <div class={'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto'}>
+                <div class={'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12'}>
                     <div class={'font-light-body'}>
                         {props.leftContent}
                     </div>
