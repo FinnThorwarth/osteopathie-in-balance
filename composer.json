@@ -20,10 +20,13 @@
         }
     },
     "require": {
-        "neos/neos": "~9.0.0",
-        "neos/contentgraph-doctrinedbaladapter": "~9.0.0",
-        "neos/neos-ui": "~9.0.0",
+        "neos/neos": "~9.0.1",
+        "neos/contentgraph-doctrinedbaladapter": "~9.0.1",
+        "neos/neos-ui": "~9.0.1",
         "neos/seo": "~4.1",
+        "neos/redirecthandler": "~6.0.2",
+        "neos/redirecthandler-databasestorage": "~6.0.4",
+        "neos/redirecthandler-ui": "~3.0.1",
         "caspary/site": "@dev"
     },
     "require-dev": {
