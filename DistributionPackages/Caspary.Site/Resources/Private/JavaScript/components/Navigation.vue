@@ -12,7 +12,7 @@
     <!-- Desktop Menu Overlay -->
     <div
       v-if="isMenuOpen"
-      class="menu-wrapper mainnav text-xl  font-light fixed inset-0 z-50 hidden xl:block"
+      class="menu-wrapper mainnav text-lg 2xl:text-xl  font-light fixed inset-0 z-50 hidden xl:block"
     >
       <nav class="relative h-full">
         <!-- Navigation boxes - 4 columns -->
@@ -75,7 +75,7 @@
                       <a
                         :href="subChild.url"
                         @click="handleNavClick"
-                        class="ml-4 block py-1"
+                        class="ml-4 block"
                         :class="{
                           'text-black': subChild.isActive,
                         }"
