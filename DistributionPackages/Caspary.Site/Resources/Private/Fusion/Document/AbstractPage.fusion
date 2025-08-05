@@ -6,9 +6,16 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
       renderer = afx`
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="apple-mobile-web-app-title" content="Caspary Bestattungen" />
 
         <link rel="preconnect" href="https://use.typekit.net" crossorigin />
         <link rel="preconnect" href="https://p.typekit.net" crossorigin />
+
+        <link rel="icon" type="image/png" href={StaticResource.uri('Caspary.Site', 'Public/Favicon/favicon-96x96.png')} sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href={StaticResource.uri('Caspary.Site', 'Public/Favicon/favicon.svg')} />
+        <link rel="shortcut icon" href={StaticResource.uri('Caspary.Site', 'Public/Favicon/favicon.ico')} />
+        <link rel="apple-touch-icon" sizes="180x180" href={StaticResource.uri('Caspary.Site', 'Public/Favicon/apple-touch-icon.png')} />
+        <link rel="manifest" href={StaticResource.uri('Caspary.Site', 'Public/Favicon/site.webmanifest')} />
       `
     }
 
