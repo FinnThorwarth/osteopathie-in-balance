@@ -48,6 +48,3 @@
       constraints:
         nodeTypes:
           "*": false
-          "Caspary.Site:Content.Text": true
-          "Caspary.Site:Content.Headline": true
-          "Caspary.Site:Content.Button": true
