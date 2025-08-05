@@ -12,6 +12,7 @@
           "*": false
           "Caspary.Site:Content.IntroSection": true
           "Caspary.Site:Content.TeamSection": true
+          "Caspary.Site:Content.TwoColumnSection": true
 
   constraints:
     nodeTypes:

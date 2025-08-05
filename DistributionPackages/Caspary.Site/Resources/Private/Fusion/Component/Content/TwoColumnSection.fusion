@@ -1,44 +1,38 @@
-prototype(Caspary.Site:Component.Content.TwoColumnSection) < prototype(Neos.Fusion:Component) {
-    headline = ${q(node).property('headline')}
-    subheadline = ${q(node).property('subheadline')}
-    leftContent = ${q(node).property('leftContent')}
-    rightContent = ${q(node).property('rightContent')}
-    backgroundColor = ${q(node).property('backgroundColor') || 'white'}
-    showDivider = ${q(node).property('showDivider') || false}
+prototype(Caspary.Site:Content.TwoColumnSection) < prototype(Neos.Neos:ContentComponent) {
+    headline = Neos.Neos:Editable {
+        property = 'headline'
+        block = true
+    }
+    leftContent = Neos.Neos:Editable {
+        property = 'leftContent'
+        block = true
+    }
+    rightContent = Neos.Neos:Editable {
+        property = 'rightContent'
+        block = true
+    }
+    showDivider = ${q(node).property('showDivider') || true}
 
     renderer = afx`
-        <section class={'py-16 ' + (props.backgroundColor == 'gray' ? 'bg-caspary-gray-light' : 'bg-white')}>
-            <div class="container mx-auto px-4">
-                <div class="max-w-4xl mx-auto mb-12" @if.hasHeader={props.headline || props.subheadline}>
-                    <h2 class="text-3xl md:text-4xl font-bold text-primary-800 mb-4" @if.hasHeadline={props.headline}>
+        <section class='py-8 lg:py-16 bg-white'>
+                <div class="text-caspary-purple font-headline border-t-4 border-caspary-purple pt-2">
+                    <h2 class="text-3xl md:text-4xl">
                         {props.headline}
                     </h2>
-                    <p class="text-lg text-secondary-500 font-medium" @if.hasSubheadline={props.subheadline}>
-                        {props.subheadline}
+                     <p class="text-3xl md:text-4xl">
+                        /
                     </p>
                 </div>
 
-                {/* Two Column Content */}
-                <div class={'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto ' + (props.showDivider ? 'lg:divide-x lg:divide-gray-300' : '')}>
-                    {/* Left Column */}
-                    <div class={'prose prose-lg text-gray-700 ' + (props.showDivider ? 'lg:pr-12' : '')} @if.hasLeftContent={props.leftContent}>
-                        <Neos.Fusion:Renderer
-                            type="Neos.Fusion:RawContent"
-                            value={props.leftContent}
-                        />
+                <div class={'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto'}>
+                    <div class={'font-light-body'}>
+                        {props.leftContent}
                     </div>
 
-                    {/* Right Column */}
-                    <div class={'prose prose-lg text-gray-700 ' + (props.showDivider ? 'lg:pl-12' : '')} @if.hasRightContent={props.rightContent}>
-                        <Neos.Fusion:Renderer
-                            type="Neos.Fusion:RawContent"
-                            value={props.rightContent}
-                        />
+                    <div class={'font-light-body'}>
+                        {props.rightContent}
                     </div>
                 </div>
-            </div>
         </section>
     `
 }
-
-prototype(Caspary.Site:Content.TwoColumnSection) < prototype(Caspary.Site:Component.Content.TwoColumnSection)

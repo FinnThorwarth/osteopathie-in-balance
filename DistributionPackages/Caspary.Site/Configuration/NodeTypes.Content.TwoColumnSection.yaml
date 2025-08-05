@@ -2,44 +2,43 @@
   superTypes:
     'Neos.Neos:Content': true
   ui:
-    label: 'Two Column Section'
+    label: 'Zweispaltiger Abschnitt'
     icon: 'icon-columns'
     group: 'caspary'
     inspector:
       groups:
         content:
-          label: 'Content'
+          label: 'Inhalt'
           position: 10
         appearance:
-          label: 'Appearance'
+          label: 'Aussehen'
           position: 20
   properties:
     headline:
       type: string
       ui:
-        label: 'Headline'
+        label: 'Überschrift'
         reloadIfChanged: true
-        inspector:
-          group: 'content'
-    subheadline:
-      type: string
-      ui:
-        label: 'Subheadline'
-        reloadIfChanged: true
-        inspector:
-          group: 'content'
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Überschrift'
+
+
     leftContent:
       type: string
       ui:
-        label: 'Left Column Content'
+        label: 'Inhalt linke Spalte'
         reloadIfChanged: true
-        inspector:
-          group: 'content'
+        inlineEditable: true
+        inline:
           editor: 'Neos.Neos/Inspector/Editors/RichTextEditor'
           editorOptions:
+            placeholder: 'Inhalt linke Spalte'
             formatting:
               strong: true
               em: true
+              u: true
               p: true
               h3: true
               ul: true
@@ -48,40 +47,27 @@
     rightContent:
       type: string
       ui:
-        label: 'Right Column Content'
+        label: 'Inhalt rechte Spalte'
         reloadIfChanged: true
-        inspector:
-          group: 'content'
+        inlineEditable: true
+        inline:
           editor: 'Neos.Neos/Inspector/Editors/RichTextEditor'
           editorOptions:
+            placeholder: 'Inhalt rechte Spalte'
             formatting:
               strong: true
               em: true
+              u: true
               p: true
               h3: true
               ul: true
               ol: true
               a: true
-    backgroundColor:
-      type: string
-      defaultValue: 'white'
-      ui:
-        label: 'Background Color'
-        reloadIfChanged: true
-        inspector:
-          group: 'appearance'
-          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
-          editorOptions:
-            values:
-              'white':
-                label: 'White'
-              'gray':
-                label: 'Gray'
     showDivider:
       type: boolean
-      defaultValue: false
+      defaultValue: true
       ui:
-        label: 'Show Divider Line'
+        label: 'Zeige Trennlinie'
         reloadIfChanged: true
         inspector:
           group: 'appearance'
