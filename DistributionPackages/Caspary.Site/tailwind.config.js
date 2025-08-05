@@ -18,7 +18,7 @@ export default {
 				'caspary-text': '#4A4A49',
 				'caspary-purple': '#7B5664',
 				'caspary-purple-dark': '#9D939D',
-				'caspary-footer': '#9D939D',
+				'caspary-footer': '#5d4d5e',
 				'caspary-blue-alt': '#6fa1ae',
 				'caspary-team-member-bg': '#f4f1ed',
 				'caspary-team-member-text': '#818384',
