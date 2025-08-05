@@ -2,28 +2,28 @@
   <div class="search-container">
     <form @submit.prevent="performSearch" class="mb-8">
       <div class="flex gap-4 max-w-2xl">
-        <input 
+        <input
           v-model="searchQuery"
-          type="text" 
+          type="text"
           :placeholder="placeholder"
           class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-caspary-blue"
           minlength="2"
           required
         />
-        <button 
-          type="submit" 
-          class="px-6 py-2 bg-caspary-blue text-white rounded-lg hover:bg-blue-700 transition-colors"
+        <button
+          type="submit"
+          class="px-6 py-2 bg-caspary-blue text-white rounded-lg hover:bg-caspary-purple transition-colors"
           :disabled="loading"
         >
           {{ loading ? 'Suche läuft...' : 'Suchen' }}
         </button>
       </div>
     </form>
-    
+
     <div v-if="hasSearched && !loading" class="search-results">
       <div v-if="results.length > 0">
-        <div 
-          v-for="result in paginatedResults" 
+        <div
+          v-for="result in paginatedResults"
           :key="result.identifier"
           class="search-result-item mb-6 p-4 border-b border-gray-200"
         >
@@ -37,36 +37,36 @@
             {{ truncate(result.teaser, 150) }}
           </p>
         </div>
-        
+
         <div v-if="totalPages > 1" class="pagination mt-8 flex justify-center gap-2">
-          <button 
-            @click="currentPage = 1" 
+          <button
+            @click="currentPage = 1"
             :disabled="currentPage === 1"
             class="px-3 py-1 border rounded hover:bg-gray-100 disabled:opacity-50"
           >
             &laquo;
           </button>
-          <button 
-            @click="currentPage--" 
+          <button
+            @click="currentPage--"
             :disabled="currentPage === 1"
             class="px-3 py-1 border rounded hover:bg-gray-100 disabled:opacity-50"
           >
             &lsaquo;
           </button>
-          
+
           <span class="px-3 py-1">
             Seite {{ currentPage }} von {{ totalPages }}
           </span>
-          
-          <button 
-            @click="currentPage++" 
+
+          <button
+            @click="currentPage++"
             :disabled="currentPage === totalPages"
             class="px-3 py-1 border rounded hover:bg-gray-100 disabled:opacity-50"
           >
             &rsaquo;
           </button>
-          <button 
-            @click="currentPage = totalPages" 
+          <button
+            @click="currentPage = totalPages"
             :disabled="currentPage === totalPages"
             class="px-3 py-1 border rounded hover:bg-gray-100 disabled:opacity-50"
           >
@@ -74,12 +74,12 @@
           </button>
         </div>
       </div>
-      
+
       <div v-else class="no-results text-center py-8 text-gray-600">
         {{ noResultsMessage }}
       </div>
     </div>
-    
+
     <div v-if="loading" class="text-center py-8">
       <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-caspary-blue"></div>
     </div>
@@ -115,29 +115,29 @@ export default {
     const loading = ref(false)
     const hasSearched = ref(false)
     const currentPage = ref(1)
-    
-    const totalPages = computed(() => 
+
+    const totalPages = computed(() =>
       Math.ceil(results.value.length / props.resultsPerPage)
     )
-    
+
     const paginatedResults = computed(() => {
       const start = (currentPage.value - 1) * props.resultsPerPage
       const end = start + props.resultsPerPage
       return results.value.slice(start, end)
     })
-    
+
     const truncate = (text, length) => {
       if (!text || text.length <= length) return text
       return text.substring(0, length) + '...'
     }
-    
+
     const performSearch = async () => {
       if (searchQuery.value.length < 2) return
-      
+
       loading.value = true
       hasSearched.value = true
       currentPage.value = 1
-      
+
       try {
         // Call our search API
         const response = await fetch(`/api/search?q=${encodeURIComponent(searchQuery.value)}`)
@@ -157,13 +157,13 @@ export default {
         loading.value = false
       }
     }
-    
+
     onMounted(() => {
       if (searchQuery.value) {
         performSearch()
       }
     })
-    
+
     return {
       searchQuery,
       results,

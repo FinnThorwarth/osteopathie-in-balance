@@ -7,12 +7,3 @@
     '@action': 'search'
     '@format': 'json'
   httpMethods: ['GET']
-
--
-  name: 'Caspary.Site'
-  uriPattern: '<CasparySubroutes>'
-  defaults:
-    '@package': 'Caspary.Site'
-  subRoutes:
-    CasparySubroutes:
-      package: 'Caspary.Site'

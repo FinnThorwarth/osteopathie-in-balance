@@ -1,4 +1,9 @@
 Neos:
+  Flow:
+    mvc:
+      routes:
+        'Caspary.Site':
+          position: 'before Neos.Neos'
   Neos:
     sites:
       '*':
