@@ -31,3 +31,11 @@
             formatting:
               strong: true
               em: true
+    halfWidth:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Halbe Breite'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
