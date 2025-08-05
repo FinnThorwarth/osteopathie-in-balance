@@ -11,8 +11,8 @@ prototype(Caspary.Site:Document.SearchPage) < prototype(Caspary.Site:Document.Ab
 
             renderer = afx`
                 <div class="container py-8">
-                    <h1 class="text-4xl md:text-5xl uppercase mb-2">
-                        <span class="inline-block text-caspary-purple">Suche</span>
+                    <h1 class="text-4xl md:text-5xl uppercase mb-2 font-headline">
+                        <span class="inline-block text-caspary-purple">\ Suche</span>
                     </h1>
 
                     <div id="search-vue"
