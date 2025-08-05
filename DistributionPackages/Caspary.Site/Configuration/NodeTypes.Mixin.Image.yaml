@@ -21,15 +21,3 @@
         label: 'Alternativer Text'
         inspector:
           group: 'image'
-    imageAlt:
-      type: string
-      ui:
-        label: 'Bild Alternativtext'
-        inspector:
-          group: 'image'
-    imageTitle:
-      type: string
-      ui:
-        label: 'Bild Titel'
-        inspector:
-          group: 'image'
