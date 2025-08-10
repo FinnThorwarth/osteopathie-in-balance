@@ -2,9 +2,7 @@
     "description": "",
     "type": "neos-site",
     "require": {
-        "neos/neos": "*",
-        "carbon/link": "^2.0",
-        "sitegeist/archaeopteryx": "~2.0.1"
+        "neos/neos": "*"
     },
     "name": "caspary/site",
     "autoload": {
