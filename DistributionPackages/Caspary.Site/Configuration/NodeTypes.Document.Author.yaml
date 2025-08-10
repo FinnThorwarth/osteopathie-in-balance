@@ -6,6 +6,16 @@
     label: 'Autor'
     icon: 'icon-user'
     group: 'general'
+    inspector:
+      groups:
+        author:
+          label: 'Autor-Informationen'
+          position: 100
+          icon: 'icon-user'
+        social:
+          label: 'Social Media'
+          position: 200
+          icon: 'icon-share'
     # Autoren sollen nur im AuthorsContainer erstellt werden können
     creationDialog:
       elements:
@@ -31,16 +41,6 @@
   options:
     # Autoren sollen nur im Container erstellt werden
     grandparentNodeType: 'Caspary.Site:Document.AuthorsContainer'
-    inspector:
-      groups:
-        author:
-          label: 'Autor-Informationen'
-          position: 10
-          icon: 'icon-user'
-        social:
-          label: 'Social Media'
-          position: 20
-          icon: 'icon-share'
   properties:
     # Title wird im Creation Dialog gesetzt
     title:
@@ -86,6 +86,8 @@
         inspector:
           group: 'author'
           position: 10
+      validation:
+        'Neos.Neos/Validation/NotEmptyValidator': []
 
     jobTitle:
       type: string
