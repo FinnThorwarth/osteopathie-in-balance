@@ -18,6 +18,8 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
         <link rel="manifest" href={StaticResource.uri('Caspary.Site', 'Public/Favicon/site.webmanifest')} />
       `
     }
+    
+    authorMetaTags = Caspary.Site:Component.Meta.AuthorMetaTags
 
      titleTag = Neos.Fusion:Tag {
             tagName = 'title'
@@ -70,10 +72,13 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
         `
       }
 
+      authorCard = Caspary.Site:Component.Content.AuthorCard
+      
       renderer = afx`
             {props.heroImage}
             <div class="container font-body py-8">
               {props.main}
+              {props.authorCard}
             </div>
       `
     }

@@ -3,6 +3,7 @@
   superTypes:
     "Neos.Neos:Document": true
     "Caspary.Site:Mixin.Image": true
+    "Caspary.Site:Mixin.AuthorReference": true
     'Neos.Seo:NoindexMixin': true # noindex gesetzt
   childNodes:
     main:

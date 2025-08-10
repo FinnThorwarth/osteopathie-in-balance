@@ -1,0 +1,43 @@
+'Caspary.Site:Mixin.AuthorReference':
+  abstract: true
+  ui:
+    inspector:
+      groups:
+        author:
+          label: 'Autor'
+          position: 100
+          icon: 'icon-user'
+          tab: 'meta'
+  properties:
+    author:
+      type: reference
+      ui:
+        label: 'Autor'
+        inspector:
+          group: 'author'
+          position: 10
+          editorOptions:
+            nodeTypes: ['Caspary.Site:Document.Author']
+            startingPoint: '/sites'
+            placeholder: 'Autor auswählen...'
+    
+    authorName:
+      type: string
+      ui:
+        label: 'Autor Name (Überschreibung)'
+        help:
+          message: 'Überschreibt den Namen des verknüpften Autors, falls gesetzt'
+        inspector:
+          group: 'author'
+          position: 20
+    
+    showAuthorCard:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Autorenkarte anzeigen'
+        help:
+          message: 'Zeigt eine Autorenkarte am Ende des Artikels'
+        inspector:
+          group: 'author'
+          position: 30

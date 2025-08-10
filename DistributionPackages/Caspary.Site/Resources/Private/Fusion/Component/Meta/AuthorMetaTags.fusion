@@ -1,0 +1,18 @@
+prototype(Caspary.Site:Component.Meta.AuthorMetaTags) < prototype(Neos.Fusion:Component) {
+    # Get the author reference from the page
+    authorReference = ${q(documentNode).property('author')}
+    # Get the author node if reference exists
+    authorNode = ${this.authorReference ? q(node).find('#' + this.authorReference).get(0) : null}
+    # Get author name - either from override field or from author node
+    authorName = ${q(documentNode).property('authorName') || (this.authorNode ? q(this.authorNode).property('fullName') : null)}
+    # Get author URL if author node exists
+    authorUrl = ${this.authorNode ? Neos.Neos.ConvertUris.convertUriNode(this.authorNode, request) : null}
+    
+    renderer = afx`
+        <Neos.Fusion:Fragment @if={props.authorName}>
+            <meta name="author" content={props.authorName} />
+            <meta property="article:author" content={props.authorName} />
+            <link rel="author" href={props.authorUrl} @if={props.authorUrl} />
+        </Neos.Fusion:Fragment>
+    `
+}

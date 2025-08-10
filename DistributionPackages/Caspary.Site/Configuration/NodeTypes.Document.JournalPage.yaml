@@ -1,0 +1,56 @@
+'Caspary.Site:Document.JournalPage':
+  superTypes:
+    'Caspary.Site:Document.AbstractPage': true
+  ui:
+    label: 'Journal-Artikel'
+    icon: 'icon-newspaper'
+    group: 'general'
+    position: 200
+    inspector:
+      groups:
+        journal:
+          label: 'Journal-Einstellungen'
+          position: 5
+          icon: 'icon-newspaper'
+  properties:
+    publicationDate:
+      type: DateTime
+      defaultValue: 'now'
+      ui:
+        label: 'Veröffentlichungsdatum'
+        inspector:
+          group: 'journal'
+          position: 10
+          editorOptions:
+            format: 'd.m.Y'
+    
+    excerpt:
+      type: string
+      ui:
+        label: 'Kurzbeschreibung'
+        help:
+          message: 'Wird in Übersichten und für SEO verwendet'
+        inspector:
+          group: 'journal'
+          position: 20
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+          editorOptions:
+            rows: 3
+            placeholder: 'Kurze Zusammenfassung des Artikels...'
+    
+    categories:
+      type: string
+      ui:
+        label: 'Kategorien'
+        help:
+          message: 'Komma-getrennte Liste von Kategorien'
+        inspector:
+          group: 'journal'
+          position: 30
+          editorOptions:
+            placeholder: 'z.B. Ratgeber, Vorsorge, Trauer'
+    
+    # Override default to show author card by default on journal pages
+    showAuthorCard:
+      type: boolean
+      defaultValue: true

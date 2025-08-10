@@ -1,0 +1,105 @@
+'Caspary.Site:Document.Author':
+  superTypes:
+    'Neos.Neos:Document': true
+  ui:
+    label: 'Autor'
+    icon: 'icon-user'
+    group: 'general'
+    inspector:
+      groups:
+        author:
+          label: 'Autor-Informationen'
+          position: 10
+          icon: 'icon-user'
+        social:
+          label: 'Social Media'
+          position: 20
+          icon: 'icon-share'
+  properties:
+    fullName:
+      type: string
+      ui:
+        label: 'Vollständiger Name'
+        reloadIfChanged: true
+        inspector:
+          group: 'author'
+          position: 10
+      validation:
+        'Neos.Neos/Validation/NotEmptyValidator': []
+    
+    jobTitle:
+      type: string
+      ui:
+        label: 'Position/Titel'
+        inspector:
+          group: 'author'
+          position: 20
+    
+    bio:
+      type: string
+      ui:
+        label: 'Biografie'
+        inspector:
+          group: 'author'
+          position: 30
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+          editorOptions:
+            rows: 5
+    
+    email:
+      type: string
+      ui:
+        label: 'E-Mail'
+        inspector:
+          group: 'author'
+          position: 40
+      validation:
+        'Neos.Neos/Validation/EmailAddressValidator': []
+    
+    phone:
+      type: string
+      ui:
+        label: 'Telefon'
+        inspector:
+          group: 'author'
+          position: 50
+    
+    profileImage:
+      type: 'Neos\Media\Domain\Model\ImageInterface'
+      ui:
+        label: 'Profilbild'
+        inspector:
+          group: 'author'
+          position: 60
+          editorOptions:
+            features:
+              crop: true
+            crop:
+              aspectRatio:
+                forcedAspectRatio: true
+                width: 1
+                height: 1
+    
+    linkedin:
+      type: string
+      ui:
+        label: 'LinkedIn URL'
+        inspector:
+          group: 'social'
+          position: 10
+    
+    twitter:
+      type: string
+      ui:
+        label: 'Twitter/X URL'
+        inspector:
+          group: 'social'
+          position: 20
+    
+    facebook:
+      type: string
+      ui:
+        label: 'Facebook URL'
+        inspector:
+          group: 'social'
+          position: 30
