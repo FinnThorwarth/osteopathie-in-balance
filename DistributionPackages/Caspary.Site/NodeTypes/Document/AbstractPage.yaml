@@ -13,6 +13,7 @@
           "Caspary.Site:Content.IntroSection": true
           "Caspary.Site:Content.TeamSection": true
           "Caspary.Site:Content.TwoColumnSection": true
+          "Caspary.Site:Content.TextModule": true
 
   constraints:
     nodeTypes:

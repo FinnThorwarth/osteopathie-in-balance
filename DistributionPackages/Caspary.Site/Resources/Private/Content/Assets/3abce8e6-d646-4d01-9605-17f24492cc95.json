@@ -1,0 +1,14 @@
+{
+    "identifier": "3abce8e6-d646-4d01-9605-17f24492cc95",
+    "type": "IMAGE",
+    "title": "",
+    "copyrightNotice": "",
+    "caption": "",
+    "assetSourceIdentifier": "neos",
+    "resource": {
+        "filename": "weering.jpg",
+        "collectionName": "persistent",
+        "mediaType": "image\/jpeg",
+        "sha1": "c229fd50799872dc8af40cbc210205869fec431a"
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "identifier": "bdff4eef-b5b9-41d6-bcae-d47e248e1a31",
+    "originalAssetIdentifier": "3abce8e6-d646-4d01-9605-17f24492cc95",
+    "name": "",
+    "width": 768,
+    "height": 768,
+    "presetIdentifier": null,
+    "presetVariantName": null,
+    "imageAdjustments": [
+        {
+            "type": "CROP_IMAGE",
+            "properties": {
+                "x": 0,
+                "y": 0,
+                "width": 768,
+                "height": 768
+            }
+        }
+    ]
+}

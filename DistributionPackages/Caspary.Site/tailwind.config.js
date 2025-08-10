@@ -117,7 +117,89 @@ export default {
 					'2xl': '6rem',
 				},
 			},
+			typography: (theme) => ({
+				DEFAULT: {
+					css: {
+						color: theme('colors.caspary-text'),
+						fontWeight: '300',
+						strong: {
+							color: theme('colors.caspary-gray'),
+							fontWeight: '700',
+						},
+						em: {
+							fontStyle: 'italic',
+						},
+						a: {
+							color: theme('colors.caspary-purple'),
+							textDecoration: 'underline',
+							fontFamily: theme('fontFamily.serif'),
+							fontStyle: 'italic',
+							'&:hover': {
+								color: theme('colors.caspary-purple-dark'),
+							},
+						},
+						h2: {
+							color: theme('colors.caspary-gray'),
+							fontFamily: theme('fontFamily.headline'),
+							fontWeight: '400',
+							marginTop: '2rem',
+							marginBottom: '1rem',
+						},
+						h3: {
+							color: theme('colors.caspary-gray'),
+							fontFamily: theme('fontFamily.headline'),
+							fontWeight: '400',
+							marginTop: '1.5rem',
+							marginBottom: '0.75rem',
+						},
+						h4: {
+							color: theme('colors.caspary-gray'),
+							fontFamily: theme('fontFamily.headline'),
+							fontWeight: '400',
+							marginTop: '1rem',
+							marginBottom: '0.5rem',
+						},
+						p: {
+							marginBottom: '1rem',
+							lineHeight: '1.75',
+						},
+						ul: {
+							listStyleType: 'disc',
+							paddingLeft: '1.5rem',
+							marginBottom: '1rem',
+							'li': {
+								marginBottom: '0.25rem',
+								paddingLeft: '0.25rem',
+							},
+						},
+						ol: {
+							listStyleType: 'decimal',
+							paddingLeft: '1.5rem',
+							marginBottom: '1rem',
+							'li': {
+								marginBottom: '0.25rem',
+								paddingLeft: '0.25rem',
+							},
+						},
+						'ul ul, ol ol': {
+							marginTop: '0.5rem',
+							marginBottom: '0.5rem',
+						},
+					},
+				},
+				lg: {
+					css: {
+						fontSize: '1.125rem',
+						lineHeight: '1.75',
+						p: {
+							marginBottom: '1.25rem',
+						},
+					},
+				},
+			}),
 		},
 	},
-	plugins: [],
+	plugins: [
+		require('@tailwindcss/typography'),
+	],
 }

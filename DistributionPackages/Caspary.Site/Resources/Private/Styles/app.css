@@ -159,6 +159,88 @@ main {
 @tailwind components;
 @tailwind utilities;
 
+/* WYSIWYG Editor Styles */
+@layer components {
+  /* Rich text editor content styling */
+  .rich-text-content,
+  .neos-inline-editable {
+    /* Bold */
+    strong, b {
+      @apply font-bold;
+    }
+
+    /* Italic */
+    em, i {
+      @apply italic;
+    }
+
+    /* Underline */
+    u {
+      @apply underline decoration-2 underline-offset-2;
+    }
+
+    /* Headings */
+    h2 {
+      @apply text-3xl font-bold mb-4 mt-8 text-gray-900;
+    }
+
+    h3 {
+      @apply text-2xl font-semibold mb-3 mt-6 text-gray-800;
+    }
+
+    h4 {
+      @apply text-xl font-semibold mb-2 mt-4 text-gray-800;
+    }
+
+    /* Paragraphs */
+    p {
+      @apply mb-4 leading-relaxed;
+    }
+
+    /* Unordered Lists */
+    ul {
+      @apply list-disc ml-6 mb-4 space-y-1;
+      
+      li {
+        @apply leading-relaxed;
+      }
+
+      /* Nested lists */
+      ul {
+        @apply ml-4 mt-2 mb-2;
+      }
+    }
+
+    /* Ordered Lists */
+    ol {
+      @apply list-decimal ml-6 mb-4 space-y-1;
+      
+      li {
+        @apply leading-relaxed;
+      }
+
+      /* Nested lists */
+      ol {
+        @apply ml-4 mt-2 mb-2;
+      }
+    }
+
+    /* Links */
+    a {
+      @apply text-purple-600 underline hover:text-purple-800 transition-colors;
+    }
+
+    /* Subscript & Superscript */
+    sub {
+      @apply text-xs align-sub;
+    }
+
+    sup {
+      @apply text-xs align-super;
+    }
+  }
+}
+
 /* Neos Backend Inline Editing Fixes */
 .neos-backend [contenteditable="true"],
 .neos-inline-editable {

@@ -1,0 +1,89 @@
+/* WYSIWYG Editor Styles */
+
+/* Typography */
+.neos-contentcollection strong,
+.neos-inline-editable strong {
+  @apply font-bold text-gray-900;
+}
+
+.neos-contentcollection em,
+.neos-inline-editable em {
+  @apply italic;
+}
+
+.neos-contentcollection u,
+.neos-inline-editable u {
+  @apply underline decoration-2 underline-offset-2;
+}
+
+/* Headings */
+.neos-contentcollection h2,
+.neos-inline-editable h2 {
+  @apply text-3xl font-bold mb-4 mt-8 text-gray-900;
+}
+
+.neos-contentcollection h3,
+.neos-inline-editable h3 {
+  @apply text-2xl font-semibold mb-3 mt-6 text-gray-800;
+}
+
+.neos-contentcollection h4,
+.neos-inline-editable h4 {
+  @apply text-xl font-semibold mb-2 mt-4 text-gray-800;
+}
+
+/* Paragraphs */
+.neos-contentcollection p,
+.neos-inline-editable p {
+  @apply mb-4 leading-relaxed text-gray-700;
+}
+
+/* Lists */
+.neos-contentcollection ul,
+.neos-inline-editable ul {
+  @apply list-disc list-inside mb-4 ml-4 space-y-2;
+}
+
+.neos-contentcollection ol,
+.neos-inline-editable ol {
+  @apply list-decimal list-inside mb-4 ml-4 space-y-2;
+}
+
+.neos-contentcollection li,
+.neos-inline-editable li {
+  @apply text-gray-700 leading-relaxed;
+}
+
+/* Nested lists */
+.neos-contentcollection ul ul,
+.neos-inline-editable ul ul {
+  @apply ml-6 mt-2;
+}
+
+.neos-contentcollection ol ol,
+.neos-inline-editable ol ol {
+  @apply ml-6 mt-2;
+}
+
+/* Links */
+.neos-contentcollection a,
+.neos-inline-editable a {
+  @apply text-blue-600 underline hover:text-blue-800 transition-colors;
+}
+
+/* Subscript & Superscript */
+.neos-contentcollection sub,
+.neos-inline-editable sub {
+  @apply text-xs align-sub;
+}
+
+.neos-contentcollection sup,
+.neos-inline-editable sup {
+  @apply text-xs align-super;
+}
+
+/* Block quotes (optional) */
+.neos-contentcollection blockquote,
+.neos-inline-editable blockquote {
+  @apply border-l-4 border-gray-300 pl-4 italic my-4 text-gray-600;
+}

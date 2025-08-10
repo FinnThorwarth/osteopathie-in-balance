@@ -1,0 +1,32 @@
+prototype(Caspary.Site:Content.TextModule) < prototype(Neos.Neos:ContentComponent) {
+    columnLayout = ${q(node).property('columnLayout') || 'single'}
+
+    leftColumnContent = Neos.Neos:Editable {
+        property = 'leftColumnContent'
+        block = true
+        placeholder = ${q(node).property('columnLayout') == 'single' ? 'Text...' : 'Inhalt linke Spalte...'}
+    }
+
+    rightColumnContent = Neos.Neos:Editable {
+        property = 'rightColumnContent'
+        block = true
+        placeholder = 'Inhalt rechte Spalte...'
+    }
+
+    renderer = afx`
+        <section class={'py-8 lg:py-16'}>
+                <div @if={props.columnLayout == 'single'} class="rich-text-content prose prose-lg max-w-none font-light-body">
+                    {props.leftColumnContent}
+                </div>
+
+                <div @if={props.columnLayout == 'double'} class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                    <div class="rich-text-content prose prose-lg max-w-none font-light-body">
+                        {props.leftColumnContent}
+                    </div>
+                    <div class="rich-text-content prose prose-lg max-w-none font-light-body">
+                        {props.rightColumnContent}
+                    </div>
+                </div>
+        </section>
+    `
+}

@@ -1,6 +1,7 @@
 'Caspary.Site:Content.TwoColumnSection':
   superTypes:
     'Neos.Neos:Content': true
+  label: "${node.properties.headline ? 'Zweispaltiger Abschnitt (' + node.properties.headline + ')' : 'Zweispaltiger Abschnitt'}"
   ui:
     label: 'Zweispaltiger Abschnitt'
     icon: 'icon-columns'

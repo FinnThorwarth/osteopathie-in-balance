@@ -1,0 +1,14 @@
+{
+    "identifier": "58914a91-ad17-434d-9e69-467d53d70bca",
+    "type": "IMAGE",
+    "title": "",
+    "copyrightNotice": "",
+    "caption": "",
+    "assetSourceIdentifier": "neos",
+    "resource": {
+        "filename": "mertens.jpg",
+        "collectionName": "persistent",
+        "mediaType": "image\/jpeg",
+        "sha1": "c25c064a53c962da71204eb97a94932afce9418f"
+    }
+}

@@ -71,6 +71,11 @@
           editorOptions:
             placeholder: 'Text Spalte 1'
             autoparagraph: true
+            linking:
+              anchor: true
+              title: true
+              relNofollow: true
+              targetBlank: true
             formatting:
               strong: true
               em: true
@@ -85,6 +90,11 @@
           editorOptions:
             placeholder: 'Text Spalte 2'
             autoparagraph: true
+            linking:
+              anchor: true
+              title: true
+              relNofollow: true
+              targetBlank: true
             formatting:
               strong: true
               em: true
@@ -99,6 +109,11 @@
           editorOptions:
             placeholder: 'Text Spalte 3'
             autoparagraph: true
+            linking:
+              anchor: true
+              title: true
+              relNofollow: true
+              targetBlank: true
             formatting:
               strong: true
               em: true

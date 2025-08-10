@@ -1,4 +1,0 @@
-Neos:
-  Fusion:
-    defaultContext:
-      Caspary.Image: 'Caspary\Site\Eel\Helper\ImageHelper'

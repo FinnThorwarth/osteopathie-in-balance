@@ -27,7 +27,7 @@ class SearchController extends ActionController
         
         if (strlen($q) >= 2) {
             // For now, let's return sample data
-            // TODO: Implement proper Neos 9 content repository search
+            // TODO: Implement proper Neos 9 content repository search when API is stable
             $samplePages = [
                 [
                     'identifier' => '1',
@@ -58,16 +58,47 @@ class SearchController extends ActionController
                     'title' => 'Kontakt',
                     'uri' => '/kontakt',
                     'teaser' => 'Nehmen Sie Kontakt mit uns auf. Wir sind rund um die Uhr für Sie erreichbar.'
+                ],
+                [
+                    'identifier' => '6',
+                    'title' => 'Trauerbegleitung',
+                    'uri' => '/leistungen/trauerbegleitung',
+                    'teaser' => 'Wir begleiten Sie und Ihre Familie in der schweren Zeit der Trauer mit professioneller Unterstützung.'
+                ],
+                [
+                    'identifier' => '7',
+                    'title' => 'Vorsorge',
+                    'uri' => '/vorsorge',
+                    'teaser' => 'Mit einer Bestattungsvorsorge können Sie Ihre Wünsche festlegen und Ihre Angehörigen entlasten.'
                 ]
             ];
             
             // Filter results based on search query
+            $searchQuery = strtolower($q);
             foreach ($samplePages as $page) {
-                $searchableContent = strtolower($page['title'] . ' ' . $page['teaser']);
-                if (stripos($searchableContent, strtolower($q)) !== false) {
+                // Search in all text fields
+                $searchableContent = strtolower(
+                    $page['title'] . ' ' . 
+                    $page['teaser'] . ' ' . 
+                    str_replace('/', ' ', $page['uri']) // Also search in URL segments
+                );
+                
+                if (stripos($searchableContent, $searchQuery) !== false) {
                     $results[] = $page;
                 }
             }
+            
+            // Sort results by relevance (title matches first)
+            usort($results, function($a, $b) use ($searchQuery) {
+                $aInTitle = stripos(strtolower($a['title']), $searchQuery) !== false ? 2 : 0;
+                $bInTitle = stripos(strtolower($b['title']), $searchQuery) !== false ? 2 : 0;
+                
+                // Exact title match gets highest priority
+                if (strtolower($a['title']) === $searchQuery) $aInTitle = 3;
+                if (strtolower($b['title']) === $searchQuery) $bInTitle = 3;
+                
+                return $bInTitle - $aInTitle;
+            });
         }
         
         $this->view->assign('value', ['results' => $results]);
