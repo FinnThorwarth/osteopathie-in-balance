@@ -1,10 +1,36 @@
 'Caspary.Site:Document.Author':
   superTypes:
     'Neos.Neos:Document': true
+    'Neos.Seo:NoindexMixin': true  # Nicht von Suchmaschinen indexieren
   ui:
     label: 'Autor'
     icon: 'icon-user'
     group: 'general'
+    # Autoren sollen nur im AuthorsContainer erstellt werden können
+    creationDialog:
+      elements:
+        fullName:
+          type: string
+          ui:
+            label: 'Name des Autors'
+            editor: 'Neos.Neos/Inspector/Editors/TextFieldEditor'
+          validation:
+            'Neos.Neos/Validation/NotEmptyValidator': []
+
+  # Main Content Collection explizit deaktivieren
+  childNodes:
+    main:
+      type: null  # Entfernt die main ContentCollection
+  
+  # Constraints - Autor-Seiten können nur bestimmte Inhalte haben
+  constraints:
+    nodeTypes:
+      '*': false  # Keine Unterseiten erlaubt
+
+  # Options - zur besseren Organisation
+  options:
+    # Autoren sollen nur im Container erstellt werden
+    grandparentNodeType: 'Caspary.Site:Document.AuthorsContainer'
     inspector:
       groups:
         author:
@@ -16,6 +42,33 @@
           position: 20
           icon: 'icon-share'
   properties:
+    # Standardmäßig versteckt
+    _hidden:
+      type: boolean
+      defaultValue: true
+      ui:
+        label: 'Seite verstecken'
+        help:
+          message: 'Autorenseiten sind nur für die Backend-Verwaltung'
+
+    _hiddenInIndex:
+      type: boolean
+      defaultValue: true
+
+    # SEO: Nicht indexieren
+    metaRobotsNoindex:
+      defaultValue: true
+
+    metaRobotsNofollow:
+      defaultValue: true
+
+    # Aus Sitemap ausschließen
+    xmlSitemapPriority:
+      defaultValue: 0
+
+    xmlSitemapChangeFrequency:
+      defaultValue: 'never'
+
     fullName:
       type: string
       ui:
@@ -26,7 +79,7 @@
           position: 10
       validation:
         'Neos.Neos/Validation/NotEmptyValidator': []
-    
+
     jobTitle:
       type: string
       ui:
@@ -34,7 +87,7 @@
         inspector:
           group: 'author'
           position: 20
-    
+
     bio:
       type: string
       ui:
@@ -45,7 +98,7 @@
           editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
           editorOptions:
             rows: 5
-    
+
     email:
       type: string
       ui:
@@ -55,7 +108,7 @@
           position: 40
       validation:
         'Neos.Neos/Validation/EmailAddressValidator': []
-    
+
     phone:
       type: string
       ui:
@@ -63,7 +116,7 @@
         inspector:
           group: 'author'
           position: 50
-    
+
     profileImage:
       type: 'Neos\Media\Domain\Model\ImageInterface'
       ui:
@@ -79,7 +132,7 @@
                 forcedAspectRatio: true
                 width: 1
                 height: 1
-    
+
     linkedin:
       type: string
       ui:
@@ -87,7 +140,7 @@
         inspector:
           group: 'social'
           position: 10
-    
+
     twitter:
       type: string
       ui:
@@ -95,7 +148,7 @@
         inspector:
           group: 'social'
           position: 20
-    
+
     facebook:
       type: string
       ui:

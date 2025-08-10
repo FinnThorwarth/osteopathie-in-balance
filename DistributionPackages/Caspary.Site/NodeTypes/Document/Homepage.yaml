@@ -5,6 +5,15 @@
   ui:
     icon: globe
     label: 'Startseite'
+  # Erlaubte Unterseiten der Homepage
+  constraints:
+    nodeTypes:
+      'Caspary.Site:Document.Homepage': false  # Keine weitere Homepage
+      'Caspary.Site:Document.AuthorsContainer': true  # Autoren-Container erlaubt
+      'Caspary.Site:Document.Page': true  # Normale Seiten erlaubt
+      'Caspary.Site:Document.JournalPage': true  # Journal-Seiten erlaubt
+      'Caspary.Site:Document.SearchPage': true  # Such-Seite erlaubt
+      'Caspary.Site:Document.Author': false  # Autoren nur im Container
   childNodes:
     main:
       type: 'Neos.Neos:ContentCollection'
