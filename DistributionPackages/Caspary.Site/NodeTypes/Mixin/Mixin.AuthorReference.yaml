@@ -4,7 +4,7 @@
     inspector:
       groups:
         author:
-          label: 'Autor'
+          label: 'Autor:in'
           position: 100
           icon: 'icon-user'
           tab: 'meta'
@@ -12,7 +12,7 @@
     author:
       type: reference
       ui:
-        label: 'Autor'
+        label: 'Autor:in'
         inspector:
           group: 'author'
           position: 10
@@ -20,7 +20,7 @@
             nodeTypes: ['Caspary.Site:Document.Author']
             startingPoint: '/sites'
             placeholder: 'Autor auswählen...'
-    
+
     authorName:
       type: string
       ui:
@@ -30,7 +30,7 @@
         inspector:
           group: 'author'
           position: 20
-    
+
     showAuthorCard:
       type: boolean
       defaultValue: false

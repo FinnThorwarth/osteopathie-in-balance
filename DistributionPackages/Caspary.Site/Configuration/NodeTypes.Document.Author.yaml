@@ -3,7 +3,7 @@
     'Neos.Neos:Document': true
     'Neos.Seo:NoindexMixin': true  # Nicht von Suchmaschinen indexieren
   ui:
-    label: 'Autor'
+    label: 'Autor:in'
     icon: 'icon-user'
     group: 'general'
     inspector:
@@ -31,7 +31,7 @@
   childNodes:
     main:
       type: null  # Entfernt die main ContentCollection
-  
+
   # Constraints - Autor-Seiten können nur bestimmte Inhalte haben
   constraints:
     nodeTypes:
@@ -50,7 +50,7 @@
         inspector:
           group: 'document'
           position: 10
-    
+
     # Standardmäßig versteckt
     _hidden:
       type: boolean
@@ -82,12 +82,12 @@
       type: string
       ui:
         label: 'Vollständiger Name'
+        help:
+          message: 'Wird automatisch aus dem Titel übernommen, kann aber überschrieben werden'
         reloadIfChanged: true
         inspector:
           group: 'author'
           position: 10
-      validation:
-        'Neos.Neos/Validation/NotEmptyValidator': []
 
     jobTitle:
       type: string
