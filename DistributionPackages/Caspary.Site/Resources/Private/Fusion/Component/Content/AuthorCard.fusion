@@ -1,8 +1,6 @@
 prototype(Caspary.Site:Component.Content.AuthorCard) < prototype(Neos.Fusion:Component) {
-    # Get the author reference from the page
-    authorReference = ${q(documentNode).property('author')}
-    # Get the author node if reference exists
-    authorNode = ${this.authorReference ? q(node).find('#' + this.authorReference).get(0) : null}
+    # Get the author node directly from the page
+    authorNode = ${q(documentNode).property('author')}
     # Check if author card should be shown
     showCard = ${q(documentNode).property('showAuthorCard') && this.authorNode}
     

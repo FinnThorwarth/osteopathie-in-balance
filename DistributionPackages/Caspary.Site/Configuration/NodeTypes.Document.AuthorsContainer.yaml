@@ -62,9 +62,7 @@
       defaultValue: 'autoren'
 
   # Main Content Collection explizit deaktivieren
-  childNodes:
-    main:
-      type: null  # Entfernt die main ContentCollection
+  childNodes: []
   
   # Nur Autor-Seiten als Unterseiten erlauben
   constraints:

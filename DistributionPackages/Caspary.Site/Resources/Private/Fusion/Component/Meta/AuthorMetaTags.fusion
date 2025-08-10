@@ -1,8 +1,6 @@
 prototype(Caspary.Site:Component.Meta.AuthorMetaTags) < prototype(Neos.Fusion:Component) {
-    # Get the author reference from the page
-    authorReference = ${q(documentNode).property('author')}
-    # Get the author node if reference exists
-    authorNode = ${this.authorReference ? q(node).find('#' + this.authorReference).get(0) : null}
+    # Get the author node directly from the page
+    authorNode = ${q(documentNode).property('author')}
     # Get author name - either from override field or from author node
     authorName = ${q(documentNode).property('authorName') || (this.authorNode ? q(this.authorNode).property('fullName') : null)}
     # Get author URL if author node exists

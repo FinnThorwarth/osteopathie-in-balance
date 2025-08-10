@@ -28,9 +28,7 @@
             'Neos.Neos/Validation/NotEmptyValidator': []
 
   # Main Content Collection explizit deaktivieren
-  childNodes:
-    main:
-      type: null  # Entfernt die main ContentCollection
+  childNodes: []
 
   # Constraints - Autor-Seiten können nur bestimmte Inhalte haben
   constraints:

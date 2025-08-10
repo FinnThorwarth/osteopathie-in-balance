@@ -13,14 +13,7 @@
         layout:
           label: 'Layout'
           position: 20
-  childNodes:
-    header:
-      type: 'Caspary.Site:Content.SectionHeader'
-      position: 10
-      constraints:
-        nodeTypes:
-          'Caspary.Site:Content.SectionHeader': true
-          '*': false
+  childNodes: []
   properties:
     leftColumnText:
       type: string

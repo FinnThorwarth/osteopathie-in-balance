@@ -2,8 +2,7 @@ prototype(Caspary.Site:Document.JournalPage) < prototype(Caspary.Site:Document.A
     head {
         # Add structured data for articles
         structuredData = Neos.Fusion:Component {
-            authorReference = ${q(documentNode).property('author')}
-            authorNode = ${this.authorReference ? q(node).find('#' + this.authorReference).get(0) : null}
+            authorNode = ${q(documentNode).property('author')}
             authorName = ${q(documentNode).property('authorName') || (this.authorNode ? q(this.authorNode).property('fullName') : 'Caspary Bestattungen')}
             
             publicationDate = ${q(documentNode).property('publicationDate')}
@@ -55,8 +54,7 @@ prototype(Caspary.Site:Document.JournalPage) < prototype(Caspary.Site:Document.A
             imageUrl = ${this.image ? Neos.Neos.ConvertUris.convertImageUri(this.image) : null}
             publicationDate = ${q(documentNode).property('publicationDate')}
             
-            authorReference = ${q(documentNode).property('author')}
-            authorNode = ${this.authorReference ? q(node).find('#' + this.authorReference).get(0) : null}
+            authorNode = ${q(documentNode).property('author')}
             authorName = ${q(documentNode).property('authorName') || (this.authorNode ? q(this.authorNode).property('fullName') : null)}
             
             renderer = afx`
@@ -79,8 +77,7 @@ prototype(Caspary.Site:Document.JournalPage) < prototype(Caspary.Site:Document.A
             categories = ${q(documentNode).property('categories')}
             categoriesArray = ${this.categories ? String.split(this.categories, ',') : []}
             
-            authorReference = ${q(documentNode).property('author')}
-            authorNode = ${this.authorReference ? q(node).find('#' + this.authorReference).get(0) : null}
+            authorNode = ${q(documentNode).property('author')}
             authorName = ${q(documentNode).property('authorName') || (this.authorNode ? q(this.authorNode).property('fullName') : null)}
             
             renderer = afx`
