@@ -9,7 +9,7 @@
     # Autoren sollen nur im AuthorsContainer erstellt werden können
     creationDialog:
       elements:
-        fullName:
+        title:
           type: string
           ui:
             label: 'Name des Autors'
@@ -42,6 +42,15 @@
           position: 20
           icon: 'icon-share'
   properties:
+    # Title wird im Creation Dialog gesetzt
+    title:
+      type: string
+      ui:
+        label: 'Titel'
+        inspector:
+          group: 'document'
+          position: 10
+    
     # Standardmäßig versteckt
     _hidden:
       type: boolean
@@ -77,8 +86,6 @@
         inspector:
           group: 'author'
           position: 10
-      validation:
-        'Neos.Neos/Validation/NotEmptyValidator': []
 
     jobTitle:
       type: string
