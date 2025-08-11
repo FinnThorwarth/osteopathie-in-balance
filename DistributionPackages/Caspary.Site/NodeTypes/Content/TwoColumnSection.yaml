@@ -1,9 +1,9 @@
 'Caspary.Site:Content.TwoColumnSection':
   superTypes:
     'Neos.Neos:Content': true
-  label: "${node.properties.headline ? 'Zweispaltiger Abschnitt (' + node.properties.headline + ')' : 'Zweispaltiger Abschnitt'}"
+  label: "${node.properties.headline ? 'Abschnitt (' + node.properties.headline + ')' : 'Abschnitt'}"
   ui:
-    label: 'Zweispaltiger Abschnitt'
+    label: 'Abschnitt mit Überschrift'
     icon: 'icon-columns'
     group: 'caspary'
     inspector:
@@ -11,10 +11,29 @@
         content:
           label: 'Inhalt'
           position: 10
+        layout:
+          label: 'Layout'
+          position: 15
         appearance:
           label: 'Aussehen'
           position: 20
   properties:
+    columnLayout:
+      type: string
+      defaultValue: 'two-columns'
+      ui:
+        label: 'Spaltenaufteilung'
+        reloadIfChanged: true
+        inspector:
+          group: 'layout'
+          position: 10
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'one-column':
+                label: 'Eine Spalte (volle Breite)'
+              'two-columns':
+                label: 'Zwei Spalten (50|50)'
     headline:
       type: string
       ui:
@@ -29,12 +48,12 @@
     leftContent:
       type: string
       ui:
-        label: 'Inhalt linke Spalte'
+        label: 'Inhalt linke Spalte / Hauptinhalt'
         reloadIfChanged: false
         inlineEditable: true
         inline:
           editorOptions:
-            placeholder: 'Inhalt linke Spalte'
+            placeholder: 'Inhalt eingeben...'
             autoparagraph: true
             formatting:
               p: true
@@ -58,7 +77,7 @@
         inlineEditable: true
         inline:
           editorOptions:
-            placeholder: 'Inhalt rechte Spalte'
+            placeholder: 'Inhalt rechte Spalte (nur bei zwei Spalten)'
             autoparagraph: true
             formatting:
               p: true

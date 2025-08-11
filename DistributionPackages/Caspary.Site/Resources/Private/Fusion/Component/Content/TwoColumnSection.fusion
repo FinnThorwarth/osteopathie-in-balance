@@ -12,6 +12,7 @@ prototype(Caspary.Site:Content.TwoColumnSection) < prototype(Neos.Neos:ContentCo
         block = true
     }
     showDivider = ${q(node).property('showDivider') || true}
+    columnLayout = ${q(node).property('columnLayout') || 'two-columns'}
 
     renderer = afx`
         <section class='py-8 lg:py-16 bg-white'>
@@ -24,12 +25,12 @@ prototype(Caspary.Site:Content.TwoColumnSection) < prototype(Neos.Neos:ContentCo
                     </p>
                 </div>
 
-                <div class={'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12'}>
+                <div class={props.columnLayout == 'one-column' ? 'max-w-4xl' : 'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12'}>
                     <div class={'font-light-body'}>
                         {props.leftContent}
                     </div>
 
-                    <div class={'font-light-body'}>
+                    <div @if={props.columnLayout == 'two-columns'} class={'font-light-body'}>
                         {props.rightContent}
                     </div>
                 </div>
