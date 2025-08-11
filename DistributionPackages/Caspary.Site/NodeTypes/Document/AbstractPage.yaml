@@ -15,6 +15,7 @@
           "Caspary.Site:Content.TeamSection": true
           "Caspary.Site:Content.TwoColumnSection": true
           "Caspary.Site:Content.TextModule": true
+          "Caspary.Site:Content.ImageSlider": true
 
   constraints:
     nodeTypes:

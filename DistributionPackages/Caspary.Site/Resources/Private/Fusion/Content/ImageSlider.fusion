@@ -4,18 +4,46 @@ prototype(Caspary.Site:Content.ImageSlider) < prototype(Neos.Neos:ContentCompone
     }
     slidesPerView = ${q(node).property('slidesPerView')}
     aspectRatio = ${q(node).property('aspectRatio')}
+    assets = ${q(node).property('assets')}
     
     items = Neos.Neos:ContentCollection {
         nodePath = '.'
     }
     
+    # Process assets for Vue component
+    sliderImages = Neos.Fusion:Collection {
+        collection = ${props.assets}
+        itemName = 'asset'
+        itemRenderer = Neos.Fusion:DataStructure {
+            src = Neos.Neos:ImageUri {
+                asset = ${asset}
+                width = 1200
+                height = ${props.aspectRatio == '16-9' ? 675 : (props.aspectRatio == '4-3' ? 900 : (props.aspectRatio == '1-1' ? 1200 : 1600))}
+                allowCropping = true
+                allowUpScaling = false
+            }
+            alt = ${asset.title}
+            title = ${asset.caption ? asset.caption : asset.title}
+            caption = ${asset.caption}
+        }
+    }
+    
+    sliderData = Neos.Fusion:DataStructure {
+        items = ${props.sliderImages}
+        @process.toJson = ${Json.stringify(value)}
+    }
+    
     renderer = afx`
         <div class="image-slider-wrapper">
             <div @if={props.heading} class="mb-6">{props.heading}</div>
-            <div data-vue-slider data-slides-per-view={props.slidesPerView}>
-                <image-slider :slides-per-view={props.slidesPerView}>
-                    {props.items}
-                </image-slider>
+            <div 
+                data-vue-slider="true"
+                data-slides-per-view={props.slidesPerView}
+                data-aspect-ratio={props.aspectRatio}
+                data-slider-data={props.sliderData}
+                class="vue-image-slider"
+            >
+                {props.items}
             </div>
         </div>
     `

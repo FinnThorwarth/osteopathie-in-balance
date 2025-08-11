@@ -3,7 +3,7 @@
     'Neos.Neos:Content': true
     'Neos.Neos:ContentCollection': true
   ui:
-    label: 'Bildergalerie'
+    label: 'Bildslider'
     icon: 'icon-images'
     position: 50
     group: 'media'
@@ -13,6 +13,23 @@
           label: 'Optionen'
           position: 10
   properties:
+    assets:
+      type: array<Neos\Media\Domain\Model\Asset>
+      ui:
+        label: 'Bilder'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 5
+          editor: 'Neos.Neos/Inspector/Editors/AssetListEditor'
+          editorOptions:
+            placeholder: 'Bilder hinzufügen...'
+            maximumFileSize: '10M'
+            features:
+              mediaBrowser: true
+              upload: true
+            validation:
+              'Neos.Neos/Validation/ImageTypeValidator': []
     heading:
       type: string
       ui:

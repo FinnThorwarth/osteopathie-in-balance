@@ -57,8 +57,12 @@ function mountVueComponents() {
 	document.querySelectorAll('[data-vue-slider]').forEach(element => {
 		if (!element._vueInstance) {
 			const slidesPerView = element.getAttribute('data-slides-per-view') || 3
+			const aspectRatio = element.getAttribute('data-aspect-ratio') || '16-9'
+			const sliderData = element.getAttribute('data-slider-data') || null
 			const sliderApp = createApp(ImageSlider, {
-				slidesPerView: parseInt(slidesPerView)
+				slidesPerView: parseInt(slidesPerView),
+				aspectRatio: aspectRatio,
+				sliderData: sliderData
 			})
 			element._vueInstance = sliderApp.mount(element)
 			

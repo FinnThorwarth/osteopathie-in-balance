@@ -6,8 +6,14 @@ Neos:
     nodeTypes:
       groups:
         caspary:
-          label: 'Caspary Module'
+          label: 'Text-Module'
           position: 100
+        overview:
+          label: 'Übersichts-Module'
+          position: 200
+        media:
+          label: 'Medien-Module'
+          position: 300
 #     userInterface:
 #       translation:
 #         autoInclude:

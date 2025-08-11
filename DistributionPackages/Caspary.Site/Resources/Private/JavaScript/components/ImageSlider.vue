@@ -4,9 +4,29 @@
       <div class="overflow-hidden">
         <div 
           class="slider-container flex transition-transform duration-300"
-          :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
+          :style="{ transform: `translateX(-${currentSlide * (100 / slidesPerView)}%)` }"
         >
-          <slot></slot>
+          <template v-if="collectionImages && collectionImages.length > 0">
+            <div
+              v-for="(image, index) in collectionImages"
+              :key="index"
+              class="slider-item flex-shrink-0 px-2"
+              :style="{ width: `${100 / slidesPerView}%` }"
+            >
+              <div :class="aspectRatioClass" class="relative overflow-hidden rounded-lg">
+                <img
+                  :src="image.src"
+                  :alt="image.alt || image.title || ''"
+                  :title="image.title || ''"
+                  class="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div v-if="image.caption" class="mt-2 text-sm text-gray-600">
+                {{ image.caption }}
+              </div>
+            </div>
+          </template>
+          <slot v-else></slot>
         </div>
       </div>
       
@@ -60,12 +80,21 @@ export default {
     showDots: {
       type: Boolean,
       default: true
+    },
+    aspectRatio: {
+      type: String,
+      default: '16-9'
+    },
+    sliderData: {
+      type: String,
+      default: null
     }
   },
   data() {
     return {
       currentSlide: 0,
-      totalSlides: 0
+      totalSlides: 0,
+      collectionImages: []
     }
   },
   computed: {
@@ -74,28 +103,55 @@ export default {
     },
     totalPages() {
       return Math.ceil(this.totalSlides / this.slidesPerView)
+    },
+    aspectRatioClass() {
+      const ratioMap = {
+        '16-9': 'aspect-w-16 aspect-h-9',
+        '4-3': 'aspect-w-4 aspect-h-3',
+        '1-1': 'aspect-w-1 aspect-h-1',
+        '3-4': 'aspect-w-3 aspect-h-4'
+      }
+      return ratioMap[this.aspectRatio] || 'aspect-w-16 aspect-h-9'
     }
   },
   mounted() {
-    this.countSlides()
+    // Parse collection data if provided
+    if (this.sliderData) {
+      try {
+        const data = JSON.parse(this.sliderData)
+        if (data.items && Array.isArray(data.items)) {
+          this.collectionImages = data.items
+          this.totalSlides = this.collectionImages.length
+        }
+      } catch (e) {
+        console.error('Error parsing slider data:', e)
+      }
+    }
     
-    // Watch for changes in slot content
-    const observer = new MutationObserver(() => {
+    // If no collection data, count slot items
+    if (!this.collectionImages.length) {
       this.countSlides()
-    })
-    
-    observer.observe(this.$el, {
-      childList: true,
-      subtree: true
-    })
-    
-    this.$once('hook:beforeDestroy', () => {
-      observer.disconnect()
-    })
+      
+      // Watch for changes in slot content
+      const observer = new MutationObserver(() => {
+        this.countSlides()
+      })
+      
+      observer.observe(this.$el, {
+        childList: true,
+        subtree: true
+      })
+      
+      this.$once('hook:beforeDestroy', () => {
+        observer.disconnect()
+      })
+    }
   },
   methods: {
     countSlides() {
-      this.totalSlides = this.$el.querySelectorAll('.slider-item').length
+      if (!this.collectionImages.length) {
+        this.totalSlides = this.$el.querySelectorAll('.slider-item').length
+      }
     },
     nextSlide() {
       if (this.currentSlide < this.maxSlide) {
