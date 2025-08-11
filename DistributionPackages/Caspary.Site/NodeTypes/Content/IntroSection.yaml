@@ -41,10 +41,8 @@
               h3: true
               ul: true
               ol: true
-              a: true
             linking:
               a: true
-              startingPoint: '/'
             placeholder: 'Text linke Spalte'
     rightColumnText:
       type: string
@@ -53,16 +51,14 @@
         inline:
           editorOptions:
             formatting:
-                strong: true
-                em: true
-                p: true
-                h3: true
-                ul: true
-                ol: true
-                a: true
+              strong: true
+              em: true
+              p: true
+              h3: true
+              ul: true
+              ol: true
             linking:
-                a: true
-                startingPoint: '/'
+              a: true
             placeholder: 'Text rechte Spalte'
     columnMode:
       type: string
