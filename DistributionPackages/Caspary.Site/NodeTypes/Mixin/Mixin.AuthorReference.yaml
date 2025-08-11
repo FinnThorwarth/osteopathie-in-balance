@@ -24,7 +24,7 @@
     authorName:
       type: string
       ui:
-        label: 'Autor Name (Überschreibung)'
+        label: 'Autor Name (ohne Verknüpfung)'
         help:
           message: 'Überschreibt den Namen des verknüpften Autors, falls gesetzt'
         inspector:
