@@ -161,84 +161,181 @@ main {
 
 /* WYSIWYG Editor Styles */
 @layer components {
-  /* Rich text editor content styling */
+  /* Rich text editor content styling - with higher specificity to override prose styles */
   .rich-text-content,
   .neos-inline-editable {
     /* Bold */
     strong, b {
-      @apply font-bold;
+      font-family: "Roboto Slab";
+      @apply font-bold !important;
     }
 
     /* Italic */
     em, i {
-      @apply italic;
+      font-family: "Roboto Serif";
+      @apply italic !important;
     }
 
     /* Underline */
     u {
-      @apply underline decoration-2 underline-offset-2;
+      @apply underline decoration-2 underline-offset-2 !important;
     }
 
     /* Headings */
     h2 {
-      @apply text-3xl font-bold mb-4 mt-8 text-gray-900;
+      @apply text-3xl font-bold mb-4 mt-8 text-caspary-gray !important;
     }
 
     h3 {
-      @apply text-2xl font-semibold mb-3 mt-6 text-gray-800;
+      @apply text-2xl font-semibold mb-3 mt-6 text-caspary-gray !important;
     }
 
     h4 {
-      @apply text-xl font-semibold mb-2 mt-4 text-gray-800;
+      @apply text-xl font-semibold mb-2 mt-4 text-caspary-gray !important;
     }
 
     /* Paragraphs */
     p {
-      @apply mb-4 leading-relaxed;
+      @apply mb-4 leading-relaxed text-caspary-text !important;
     }
 
     /* Unordered Lists */
     ul {
-      @apply list-disc ml-6 mb-4 space-y-1;
-      
+      @apply list-disc ml-6 mb-4 space-y-1 !important;
+
       li {
-        @apply leading-relaxed;
+        @apply leading-relaxed text-caspary-text !important;
       }
 
       /* Nested lists */
       ul {
-        @apply ml-4 mt-2 mb-2;
+        @apply ml-4 mt-2 mb-2 !important;
       }
     }
 
     /* Ordered Lists */
     ol {
-      @apply list-decimal ml-6 mb-4 space-y-1;
-      
+      @apply list-decimal ml-6 mb-4 space-y-1 !important;
+
       li {
-        @apply leading-relaxed;
+        @apply leading-relaxed text-caspary-text !important;
       }
 
       /* Nested lists */
       ol {
-        @apply ml-4 mt-2 mb-2;
+        @apply ml-4 mt-2 mb-2 !important;
       }
     }
 
     /* Links */
     a {
-      @apply text-purple-600 underline hover:text-purple-800 transition-colors;
+      @apply text-caspary-purple underline hover:text-caspary-purple-dark transition-colors !important;
     }
 
     /* Subscript & Superscript */
     sub {
-      @apply text-xs align-sub;
+      @apply text-xs align-sub !important;
     }
 
     sup {
-      @apply text-xs align-super;
+      @apply text-xs align-super !important;
     }
   }
+
+  /* Override prose styles when used with rich-text-content */
+  .rich-text-content.prose,
+  .neos-inline-editable.prose {
+    ul {
+      @apply list-disc !important;
+      list-style-type: disc !important;
+      padding-left: 1.5rem !important;
+    }
+
+    ol {
+      @apply list-decimal !important;
+      list-style-type: decimal !important;
+      padding-left: 1.5rem !important;
+    }
+
+    ul > li, ol > li {
+      padding-left: 0.25rem !important;
+    }
+
+    ul > li::marker {
+      color: #4A4A49 !important;
+    }
+
+    ol > li::marker {
+      color: #4A4A49 !important;
+    }
+  }
+}
+
+/* Direct HTML element styles for WYSIWYG content without classes */
+/* Target lists within font-light-body containers (actual structure from TextModule) */
+.font-light-body ul:not([class]),
+.font-light-body ol:not([class]),
+.rich-text-content ul:not([class]),
+.rich-text-content ol:not([class]),
+.neos-inline-editable ul:not([class]),
+.neos-inline-editable ol:not([class]),
+.prose ul,
+.prose ol {
+  list-style-type: inherit !important;
+  list-style-position: outside !important;
+  margin-left: 1.5rem !important;
+  padding-left: 0.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.font-light-body ul:not([class]),
+.rich-text-content ul:not([class]),
+.neos-inline-editable ul:not([class]),
+.prose ul {
+  list-style-type: disc !important;
+}
+
+.font-light-body ol:not([class]),
+.rich-text-content ol:not([class]),
+.neos-inline-editable ol:not([class]),
+.prose ol {
+  list-style-type: decimal !important;
+}
+
+.font-light-body li,
+.rich-text-content li,
+.neos-inline-editable li,
+.prose li {
+  display: list-item !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1.75 !important;
+  color: #4A4A49 !important;
+}
+
+/* Ensure strong elements use correct font - target all contexts */
+.font-light-body strong,
+.rich-text-content strong,
+.neos-inline-editable strong,
+.prose strong,
+section strong {
+  font-family: "Roboto Slab" !important;
+  font-weight: 700 !important;
+  color: #2B2B2A !important;
+}
+
+/* Ensure em/italic elements use correct font */
+.font-light-body em,
+.font-light-body i,
+.rich-text-content em,
+.rich-text-content i,
+.neos-inline-editable em,
+.neos-inline-editable i,
+.prose em,
+.prose i,
+section em,
+section i {
+  font-family: "Roboto Serif" !important;
+  font-style: italic !important;
 }
 
 /* Neos Backend Inline Editing Fixes */
