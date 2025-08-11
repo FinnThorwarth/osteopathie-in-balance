@@ -58,11 +58,13 @@ function mountVueComponents() {
 		if (!element._vueInstance) {
 			const slidesPerView = element.getAttribute('data-slides-per-view') || 3
 			const aspectRatio = element.getAttribute('data-aspect-ratio') || '16-9'
-			const sliderData = element.getAttribute('data-slider-data') || null
+			const autoplay = element.getAttribute('data-autoplay') === 'true'
+			const autoplayDelay = parseInt(element.getAttribute('data-autoplay-delay') || 3000)
 			const sliderApp = createApp(ImageSlider, {
 				slidesPerView: parseInt(slidesPerView),
 				aspectRatio: aspectRatio,
-				sliderData: sliderData
+				autoplay: autoplay,
+				autoplayDelay: autoplayDelay
 			})
 			element._vueInstance = sliderApp.mount(element)
 			

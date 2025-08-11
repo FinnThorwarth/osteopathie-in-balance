@@ -16,6 +16,7 @@
           "Caspary.Site:Content.TwoColumnSection": true
           "Caspary.Site:Content.TextModule": true
           "Caspary.Site:Content.ImageSlider": true
+          "Caspary.Site:Content.FullWidthImage": true
 
   constraints:
     nodeTypes:

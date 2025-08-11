@@ -1,7 +1,6 @@
 'Caspary.Site:Content.ImageSlider':
   superTypes:
     'Neos.Neos:Content': true
-    'Neos.Neos:ContentCollection': true
   ui:
     label: 'Bildslider'
     icon: 'icon-images'
@@ -9,27 +8,13 @@
     group: 'media'
     inspector:
       groups:
+        images:
+          label: 'Bilder'
+          position: 10
         options:
           label: 'Optionen'
-          position: 10
+          position: 20
   properties:
-    assets:
-      type: array<Neos\Media\Domain\Model\Asset>
-      ui:
-        label: 'Bilder'
-        reloadIfChanged: true
-        inspector:
-          group: 'options'
-          position: 5
-          editor: 'Neos.Neos/Inspector/Editors/AssetListEditor'
-          editorOptions:
-            placeholder: 'Bilder hinzufügen...'
-            maximumFileSize: '10M'
-            features:
-              mediaBrowser: true
-              upload: true
-            validation:
-              'Neos.Neos/Validation/ImageTypeValidator': []
     heading:
       type: string
       ui:
@@ -41,6 +26,15 @@
               h2: true
               h3: true
               h4: true
+    images:
+      type: 'Neos\Media\Domain\Model\ImageInterface'
+      ui:
+        label: 'Bilder'
+        reloadIfChanged: true
+        inspector:
+          group: 'images'
+          position: 10
+          multiple: true
     slidesPerView:
       type: integer
       defaultValue: 3
@@ -81,89 +75,25 @@
                 label: '1:1 (Quadrat)'
               '3-4':
                 label: '3:4 (Hochformat)'
-  constraints:
-    nodeTypes:
-      '*': false
-      'Caspary.Site:Content.ImageSlider.Item': true
-
-'Caspary.Site:Content.ImageSlider.Item':
-  superTypes:
-    'Neos.Neos:Content': true
-  ui:
-    label: 'Slider Bild'
-    icon: 'icon-image'
-    position: 10
-    inspector:
-      groups:
-        image:
-          label: 'Bild'
-          position: 10
-        link:
-          label: 'Link'
-          position: 20
-  properties:
-    image:
-      type: 'Neos\Media\Domain\Model\ImageInterface'
+    autoplay:
+      type: boolean
+      defaultValue: true
       ui:
-        label: 'Bild'
+        label: 'Automatisch abspielen'
         reloadIfChanged: true
         inspector:
-          group: 'image'
-          position: 10
+          group: 'options'
+          position: 30
+    autoplayDelay:
+      type: integer
+      defaultValue: 3000
+      ui:
+        label: 'Verzögerung (ms)'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 40
           editorOptions:
-            features:
-              crop: true
-              resize: false
-    alternativeText:
-      type: string
-      ui:
-        label: 'Alternativtext'
-        inspector:
-          group: 'image'
-          position: 20
-    imageAlt:
-      type: string
-      ui:
-        label: 'Bild Alternativtext'
-        inspector:
-          group: 'image'
-          position: 21
-    imageTitle:
-      type: string
-      ui:
-        label: 'Bild Titel'
-        inspector:
-          group: 'image'
-          position: 22
-    caption:
-      type: string
-      ui:
-        inlineEditable: true
-        inline:
-          editorOptions:
-            placeholder: 'Bildunterschrift (optional)'
-            autoparagraph: false
-    link:
-      type: string
-      ui:
-        label: 'Link (optional)'
-        inspector:
-          group: 'link'
-          position: 10
-          editor: 'Neos.Neos/Inspector/Editors/LinkEditor'
-    linkTarget:
-      type: string
-      defaultValue: ''
-      ui:
-        label: 'Link öffnen in'
-        inspector:
-          group: 'link'
-          position: 20
-          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
-          editorOptions:
-            allowEmpty: true
-            values:
-              '':
-                label: 'Gleichem Fenster'
-              '_blank':
-                label: 'Neuem Fenster'
+            placeholder: '3000'
+            validation:
+              'Neos.Neos/Validation/IntegerValidator': []

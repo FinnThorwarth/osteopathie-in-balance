@@ -1,42 +1,37 @@
 <template>
-  <div class="content-image-slider mb-12">
+  <div class="image-slider-component">
     <div class="relative">
-      <div class="overflow-hidden">
+      <div class="overflow-hidden rounded-lg">
         <div 
-          class="slider-container flex transition-transform duration-300"
-          :style="{ transform: `translateX(-${currentSlide * (100 / slidesPerView)}%)` }"
+          class="flex transition-transform duration-500 ease-in-out"
+          :style="{ transform: `translateX(-${currentSlide * slideWidth}%)` }"
         >
-          <template v-if="collectionImages && collectionImages.length > 0">
-            <div
-              v-for="(image, index) in collectionImages"
-              :key="index"
-              class="slider-item flex-shrink-0 px-2"
-              :style="{ width: `${100 / slidesPerView}%` }"
-            >
-              <div :class="aspectRatioClass" class="relative overflow-hidden rounded-lg">
-                <img
-                  :src="image.src"
-                  :alt="image.alt || image.title || ''"
-                  :title="image.title || ''"
-                  class="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div v-if="image.caption" class="mt-2 text-sm text-gray-600">
-                {{ image.caption }}
-              </div>
+          <div
+            v-for="(image, index) in images"
+            :key="index"
+            class="slider-slide flex-shrink-0"
+            :style="{ width: slideWidth + '%' }"
+          >
+            <div :class="aspectRatioClass + ' relative overflow-hidden'">
+              <img
+                :src="image.src"
+                :alt="image.alt || ''"
+                :title="image.title || ''"
+                class="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
-          </template>
-          <slot v-else></slot>
+          </div>
         </div>
       </div>
       
-      <!-- Navigation buttons -->
       <button
-        v-if="slidesPerView < totalSlides"
+        v-if="showNavigation"
         type="button"
-        class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-shadow disabled:opacity-50"
+        class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-all z-10"
         @click="previousSlide"
-        :disabled="currentSlide === 0"
+        :disabled="!canGoPrevious"
+        aria-label="Vorheriges Bild"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -44,25 +39,29 @@
       </button>
       
       <button
-        v-if="slidesPerView < totalSlides"
+        v-if="showNavigation"
         type="button"
-        class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-shadow disabled:opacity-50"
+        class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-all z-10"
         @click="nextSlide"
-        :disabled="currentSlide >= maxSlide"
+        :disabled="!canGoNext"
+        aria-label="Nächstes Bild"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </button>
       
-      <!-- Dots indicator -->
-      <div v-if="showDots && totalSlides > slidesPerView" class="flex justify-center mt-4 space-x-2">
+      <div 
+        v-if="showDots"
+        class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10"
+      >
         <button
           v-for="i in totalPages"
           :key="i"
-          class="w-2 h-2 rounded-full transition-colors"
-          :class="currentSlide === (i - 1) ? 'bg-gray-800' : 'bg-gray-300'"
-          @click="goToSlide(i - 1)"
+          class="w-2 h-2 rounded-full transition-all"
+          :class="currentPage === i - 1 ? 'bg-white w-8' : 'bg-white/50 hover:bg-white/75'"
+          @click="goToPage(i - 1)"
+          :aria-label="'Zu Seite ' + i + ' springen'"
         ></button>
       </div>
     </div>
@@ -77,32 +76,53 @@ export default {
       type: Number,
       default: 3
     },
-    showDots: {
-      type: Boolean,
-      default: true
-    },
     aspectRatio: {
       type: String,
       default: '16-9'
     },
-    sliderData: {
-      type: String,
-      default: null
+    autoplay: {
+      type: Boolean,
+      default: false
+    },
+    autoplayDelay: {
+      type: Number,
+      default: 3000
     }
   },
   data() {
     return {
       currentSlide: 0,
-      totalSlides: 0,
-      collectionImages: []
+      images: [],
+      autoplayInterval: null
     }
   },
   computed: {
+    slideWidth() {
+      return 100 / this.slidesPerView
+    },
+    totalSlides() {
+      return this.images.length
+    },
     maxSlide() {
       return Math.max(0, this.totalSlides - this.slidesPerView)
     },
     totalPages() {
       return Math.ceil(this.totalSlides / this.slidesPerView)
+    },
+    currentPage() {
+      return Math.floor(this.currentSlide / this.slidesPerView)
+    },
+    showNavigation() {
+      return this.totalSlides > this.slidesPerView
+    },
+    showDots() {
+      return this.totalPages > 1
+    },
+    canGoPrevious() {
+      return this.currentSlide > 0
+    },
+    canGoNext() {
+      return this.currentSlide < this.maxSlide
     },
     aspectRatioClass() {
       const ratioMap = {
@@ -115,57 +135,72 @@ export default {
     }
   },
   mounted() {
-    // Parse collection data if provided
-    if (this.sliderData) {
-      try {
-        const data = JSON.parse(this.sliderData)
-        if (data.items && Array.isArray(data.items)) {
-          this.collectionImages = data.items
-          this.totalSlides = this.collectionImages.length
-        }
-      } catch (e) {
-        console.error('Error parsing slider data:', e)
-      }
-    }
+    this.extractImages()
+    this.startAutoplay()
     
-    // If no collection data, count slot items
-    if (!this.collectionImages.length) {
-      this.countSlides()
-      
-      // Watch for changes in slot content
-      const observer = new MutationObserver(() => {
-        this.countSlides()
-      })
-      
-      observer.observe(this.$el, {
-        childList: true,
-        subtree: true
-      })
-      
-      this.$once('hook:beforeDestroy', () => {
-        observer.disconnect()
-      })
-    }
+    const observer = new MutationObserver(() => {
+      this.extractImages()
+    })
+    
+    observer.observe(this.$el.parentElement, {
+      childList: true,
+      subtree: true
+    })
+    
+    this.$once('hook:beforeDestroy', () => {
+      observer.disconnect()
+      this.stopAutoplay()
+    })
+  },
+  beforeUnmount() {
+    this.stopAutoplay()
   },
   methods: {
-    countSlides() {
-      if (!this.collectionImages.length) {
-        this.totalSlides = this.$el.querySelectorAll('.slider-item').length
-      }
+    extractImages() {
+      const imageElements = this.$el.parentElement.querySelectorAll('.slider-item img')
+      this.images = Array.from(imageElements).map(img => ({
+        src: img.getAttribute('src'),
+        alt: img.getAttribute('alt'),
+        title: img.getAttribute('title')
+      }))
+      
+      const itemElements = this.$el.parentElement.querySelectorAll('.slider-item')
+      itemElements.forEach(item => item.style.display = 'none')
     },
     nextSlide() {
-      if (this.currentSlide < this.maxSlide) {
-        this.currentSlide++
+      if (this.canGoNext) {
+        this.currentSlide = Math.min(this.currentSlide + this.slidesPerView, this.maxSlide)
+      } else if (this.autoplay) {
+        this.currentSlide = 0
       }
     },
     previousSlide() {
-      if (this.currentSlide > 0) {
-        this.currentSlide--
+      if (this.canGoPrevious) {
+        this.currentSlide = Math.max(this.currentSlide - this.slidesPerView, 0)
       }
     },
-    goToSlide(index) {
-      this.currentSlide = Math.min(index, this.maxSlide)
+    goToPage(page) {
+      this.currentSlide = Math.min(page * this.slidesPerView, this.maxSlide)
+    },
+    startAutoplay() {
+      if (this.autoplay && this.showNavigation) {
+        this.autoplayInterval = setInterval(() => {
+          this.nextSlide()
+        }, this.autoplayDelay)
+      }
+    },
+    stopAutoplay() {
+      if (this.autoplayInterval) {
+        clearInterval(this.autoplayInterval)
+        this.autoplayInterval = null
+      }
     }
   }
 }
 </script>
+
+<style scoped>
+.slider-slide {
+  padding: 0 0.5rem;
+}
+</style>

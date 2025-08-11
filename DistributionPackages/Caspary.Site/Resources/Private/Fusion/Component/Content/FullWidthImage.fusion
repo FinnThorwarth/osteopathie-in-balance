@@ -1,0 +1,30 @@
+prototype(Caspary.Site:Component.Content.FullWidthImage) < prototype(Neos.Neos:ContentComponent) {
+    image = ${q(node).property('image')}
+    alternativeText = ${q(node).property('alternativeText')}
+    title = ${q(node).property('title')}
+
+    renderer = afx`
+        <div class="w-full">
+            <div class="relative w-full aspect-video">
+                <Neos.Neos:ImageTag 
+                    @if.hasImage={props.image}
+                    asset={props.image}
+                    attributes.alt={props.alternativeText}
+                    attributes.title={props.title}
+                    attributes.class="w-full h-full object-cover"
+                    attributes.loading="lazy"
+                    maximumWidth="1920"
+                    maximumHeight="1080"
+                    allowCropping={true}
+                />
+                <div @if.noImage={!props.image} class="w-full h-full bg-gray-200 flex items-center justify-center">
+                    <span class="text-gray-500">Bild auswählen</span>
+                </div>
+            </div>
+        </div>
+    `
+}
+
+prototype(Caspary.Site:Content.FullWidthImage) < prototype(Neos.Neos:ContentComponent) {
+    renderer = Caspary.Site:Component.Content.FullWidthImage
+}

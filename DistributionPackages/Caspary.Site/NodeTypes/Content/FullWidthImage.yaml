@@ -1,0 +1,53 @@
+'Caspary.Site:Content.FullWidthImage':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Vollbreites Bild (16:9)'
+    group: 'media'
+    icon: 'icon-image'
+    position: 150
+    inspector:
+      groups:
+        image:
+          label: 'Bild'
+          position: 10
+  properties:
+    image:
+      type: Neos\Media\Domain\Model\ImageInterface
+      ui:
+        label: 'Bild'
+        reloadIfChanged: true
+        inspector:
+          group: 'image'
+          position: 10
+          editorOptions:
+            features:
+              crop: true
+              resize: false
+            crop:
+              aspectRatio:
+                locked:
+                  width: 16
+                  height: 9
+    alternativeText:
+      type: string
+      ui:
+        label: 'Alternativtext'
+        reloadIfChanged: false
+        inspector:
+          group: 'image'
+          position: 20
+        help:
+          message: 'Beschreibung des Bildes für Barrierefreiheit'
+      validation:
+        'Neos.Neos/Validation/NotEmptyValidator': true
+    title:
+      type: string
+      ui:
+        label: 'Titel'
+        reloadIfChanged: false
+        inspector:
+          group: 'image'
+          position: 30
+        help:
+          message: 'Tooltip-Text beim Überfahren mit der Maus'
