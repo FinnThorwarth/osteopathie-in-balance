@@ -25,7 +25,7 @@ prototype(Caspary.Site:Content.TwoColumnSection) < prototype(Neos.Neos:ContentCo
                     </p>
                 </div>
 
-                <div class={props.columnLayout == 'one-column' ? 'max-w-4xl' : 'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12'}>
+                <div class={props.columnLayout == 'one-column' ? 'max-w-full' : 'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12'}>
                     <div class={'font-light-body'}>
                         {props.leftContent}
                     </div>
