@@ -3,7 +3,7 @@
     'Neos.Neos:Content': true
   ui:
     label: 'Einstieg'
-    icon: 'icon-info-circle'
+    icon: 'icon-file-text-o'
     group: 'caspary'
     inspector:
       groups:

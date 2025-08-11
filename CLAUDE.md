@@ -1,0 +1,1 @@
+- Alle NodeTypes sollen in dem Verzeichnis '/Users/finn/Documents/Entwicklung/caspary/neos-app/DistributionPackages/Caspary.Site/NodeTypes' abgelegt werden! Bevor ein neues angelegt wird, muss geprüft werden, ob es bereits welche gibt.
