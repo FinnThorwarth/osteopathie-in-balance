@@ -13,6 +13,9 @@
         layout:
           label: 'Layout'
           position: 20
+  childNodes:
+    header:
+      type: 'Caspary.Site:Content.SectionHeader'
   properties:
     sectionTitle:
       type: string
