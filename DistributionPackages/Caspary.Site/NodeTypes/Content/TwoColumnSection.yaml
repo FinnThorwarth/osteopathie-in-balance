@@ -30,40 +30,50 @@
       type: string
       ui:
         label: 'Inhalt linke Spalte'
-        reloadIfChanged: true
+        reloadIfChanged: false
         inlineEditable: true
         inline:
-          editor: 'Neos.Neos/Inspector/Editors/RichTextEditor'
           editorOptions:
             placeholder: 'Inhalt linke Spalte'
+            autoparagraph: true
             formatting:
+              p: true
               strong: true
               em: true
               u: true
-              p: true
               h3: true
               ul: true
               ol: true
               a: true
+            linking:
+              anchor: true
+              title: true
+              relNofollow: true
+              targetBlank: true
     rightContent:
       type: string
       ui:
         label: 'Inhalt rechte Spalte'
-        reloadIfChanged: true
+        reloadIfChanged: false
         inlineEditable: true
         inline:
-          editor: 'Neos.Neos/Inspector/Editors/RichTextEditor'
           editorOptions:
             placeholder: 'Inhalt rechte Spalte'
+            autoparagraph: true
             formatting:
+              p: true
               strong: true
               em: true
               u: true
-              p: true
               h3: true
               ul: true
               ol: true
               a: true
+            linking:
+              anchor: true
+              title: true
+              relNofollow: true
+              targetBlank: true
     showDivider:
       type: boolean
       defaultValue: true

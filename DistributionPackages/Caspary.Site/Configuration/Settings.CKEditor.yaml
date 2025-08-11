@@ -1,0 +1,40 @@
+Neos:
+  Neos:
+    Ui:
+      frontendConfiguration:
+        'Neos.Neos.Ui:CkEditor5':
+          config:
+            enterMode: 'p'
+            shiftEnterMode: 'br'
+            autoParagraph: true
+          formatting:
+            p:
+              label: 'Absatz'
+              isActive: ['p']
+              button:
+                tooltip: 'Absatz'
+                icon: 'paragraph'
+            ul:
+              label: 'Ungeordnete Liste'
+              isActive: ['ul']
+              button:
+                tooltip: 'Ungeordnete Liste einfügen'
+                icon: 'list-ul'
+            ol:
+              label: 'Geordnete Liste'
+              isActive: ['ol']
+              button:
+                tooltip: 'Geordnete Liste einfügen'
+                icon: 'list-ol'
+            strong:
+              label: 'Fett'
+              isActive: ['strong', 'b']
+              button:
+                tooltip: 'Fett'
+                icon: 'bold'
+            em:
+              label: 'Kursiv'
+              isActive: ['em', 'i']
+              button:
+                tooltip: 'Kursiv'
+                icon: 'italic'

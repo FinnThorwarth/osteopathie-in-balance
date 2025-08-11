@@ -34,17 +34,17 @@
       type: string
       ui:
         label: 'Linke Spalte'
-        reloadIfChanged: true
+        reloadIfChanged: false
         inlineEditable: true
         inline:
-          editor: 'Neos.Neos/Inspector/Editors/RichTextEditor'
           editorOptions:
             placeholder: 'Text eingeben...'
+            autoparagraph: true
             formatting:
+              p: true
               strong: true
               em: true
               u: true
-              p: true
               h2: true
               h3: true
               h4: true
@@ -53,22 +53,27 @@
               a: true
               sub: true
               sup: true
+            linking:
+              anchor: true
+              title: true
+              relNofollow: true
+              targetBlank: true
 
     rightColumnContent:
       type: string
       ui:
         label: 'Rechte Spalte'
-        reloadIfChanged: true
+        reloadIfChanged: false
         inlineEditable: true
         inline:
-          editor: 'Neos.Neos/Inspector/Editors/RichTextEditor'
           editorOptions:
             placeholder: 'Inhalt rechte Spalte...'
+            autoparagraph: true
             formatting:
+              p: true
               strong: true
               em: true
               u: true
-              p: true
               h2: true
               h3: true
               h4: true
@@ -77,3 +82,8 @@
               a: true
               sub: true
               sup: true
+            linking:
+              anchor: true
+              title: true
+              relNofollow: true
+              targetBlank: true
