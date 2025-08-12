@@ -432,14 +432,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.menu-wrapper {
-  transform: translateY(14rem);
-}
-
-nav ul,
-nav li {
-  list-style: none;
-}
-</style>

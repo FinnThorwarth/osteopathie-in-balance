@@ -16,7 +16,7 @@ prototype(Caspary.Site:Content.SectionHeader) < prototype(Neos.Neos:ContentCompo
 
     renderer = afx`
         <div @if={props.backend} class="mb-2">
-            <hgroup class={props.halfWidth ? 'lg:w-1/2' : '' + 'font-headline'}>
+            <hgroup class={props.halfWidth ? 'lg:w-1/2 font-headline' : '' + 'font-headline'}>
                 <h1 class="text-4xl md:text-5xl uppercase mb-2">
                     <span class="inline-block text-caspary-purple"><span @if={q(node).property('sectionTitle')} class=" font-light">\</span> {props.sectionTitle}</span>
                 </h1>
@@ -26,7 +26,7 @@ prototype(Caspary.Site:Content.SectionHeader) < prototype(Neos.Neos:ContentCompo
             </hgroup>
         </div>
         <div @if={!props.backend} class="mb-2">
-            <hgroup class={props.halfWidth ? 'lg:w-1/2' : '' + 'font-headline'}>
+            <hgroup class={props.halfWidth ? 'lg:w-1/2 font-headline' : '' + 'font-headline'}>
                   <h1 @if={props.sectionTitle} class="text-4xl md:text-5xl uppercase mb-2">
                     <span class="inline-block text-caspary-purple"><span @if={q(node).property('sectionTitle')} class=" font-light">\</span> {props.sectionTitle}</span>
                 </h1>
