@@ -43,11 +43,11 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
             </div>
             <div class="relative mt-8 md:mt-0 md:pl-8 md:border-l-2 md:border-white">
                 <h1 class="text-2xl mb-4 uppercase">Caspary Bestattungen</h1>
-                <div class="space-y-1">
-                    <p><span class="font-bold font-body">T</span> <a href="tel:0421363080">0421 - 36 30 80</a></p>
-                    <p><span class="font-bold font-body">M</span> <a href="mailto:info@caspary-bestattungen.de">info@caspary-bestattungen.de</a></p>
+                <div class="space-y-1 font-light-body">
+                    <p><span class="font-body">T </span> <a href="tel:0421363080">0421 - 36 30 80</a></p>
+                    <p><span class="font-body">M</span> <a href="mailto:info@caspary-bestattungen.de">info@caspary-bestattungen.de</a></p>
                 </div>
-                  <address class="not-italic mt-4">
+                  <address class="not-italic font-light-body mt-4">
                     Sie finden uns hier:<br/>
                     Schwachhauser Heerstr. 47<br/>
                     28211 Bremen
