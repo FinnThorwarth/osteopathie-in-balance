@@ -74,7 +74,7 @@ export default {
 			fontFamily: {
 				'headline': ['Ubuntu Sans', 'Arial', 'sans-serif'],
 				'body': ['Roboto Slab', 'Georgia', 'serif'],
-				'light': ['Ubuntu Sans-light'],
+				'light': ['Ubuntu Sans light'],
 				'light-body': ['Roboto Slab light'],
 				'sans': ['Ubuntu Sans', 'ui-sans-serif', 'system-ui'],
 				'serif': ['Roboto Serif', 'Georgia'],
