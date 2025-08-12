@@ -17,20 +17,20 @@ prototype(Caspary.Site:Content.SectionHeader) < prototype(Neos.Neos:ContentCompo
     renderer = afx`
         <div @if={props.backend} class="mb-2">
             <hgroup class={props.halfWidth ? 'lg:w-1/2 font-headline' : '' + 'font-headline'}>
-                <h1 class="text-4xl md:text-4xl font-medium uppercase mb-2">
+                <h1 class="text-4xl md:text-4xl font-medium uppercase leading-[1.25em] mb-2">
                     <span class="inline-block text-caspary-purple"><span @if={q(node).property('sectionTitle')} class=" font-light">\</span> {props.sectionTitle}</span>
                 </h1>
-                <h2 class="text-xl md:text-2xl text-caspary-blue leading-relaxed ">
+                <h2 class="text-xl md:text-2xl text-caspary-blue leading-[1.25em] ">
                     {props.subtitle}
                 </h2>
             </hgroup>
         </div>
         <div @if={!props.backend} class="mb-2">
             <hgroup class={props.halfWidth ? 'lg:w-1/2 font-headline' : '' + 'font-headline'}>
-                  <h1 @if={props.sectionTitle} class="text-4xl md:text-4xl font-medium uppercase mb-2">
+                  <h1 @if={props.sectionTitle} class="text-4xl md:text-4xl font-medium uppercase leading-[1.25em] mb-2">
                     <span class="inline-block text-caspary-purple"><span @if={q(node).property('sectionTitle')} class=" font-light">\</span> {props.sectionTitle}</span>
                 </h1>
-                <h2 @if={props.subtitle} class="text-xl md:text-2xl text-caspary-blue leading-relaxed">
+                <h2 @if={props.subtitle} class="text-xl md:text-2xl text-caspary-blue leading-[1.25em]">
                     {props.subtitle}
                 </h2>
             </hgroup>
