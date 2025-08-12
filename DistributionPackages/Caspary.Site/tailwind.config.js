@@ -9,6 +9,7 @@ export default {
 	theme: {
 		extend: {
 			colors: {
+				'caspary-black': '#323232',
 				'caspary-blue': '#2c5c6a',
 				'caspary-blue-text': '#528495',
 				'caspary-blue-light': '#A9CFCF',
