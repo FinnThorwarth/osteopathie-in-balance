@@ -17,10 +17,10 @@ prototype(Caspary.Site:Content.TwoColumnSection) < prototype(Neos.Neos:ContentCo
     renderer = afx`
         <section class='py-8 lg:py-16 bg-white'>
                 <div class="text-caspary-purple font-headline border-t-3 border-caspary-purple pt-2">
-                    <h2 class="text-3xl md:text-4xl">
+                    <h2 class="text-3xl md:text-3xl">
                         {props.headline}
                     </h2>
-                     <p class="text-3xl md:text-4xl">
+                     <p class="text-3xl md:text-3xl">
                         /
                     </p>
                 </div>
