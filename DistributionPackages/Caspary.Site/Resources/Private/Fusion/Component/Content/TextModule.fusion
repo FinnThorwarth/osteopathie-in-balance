@@ -14,7 +14,7 @@ prototype(Caspary.Site:Content.TextModule) < prototype(Neos.Neos:ContentComponen
     }
 
     renderer = afx`
-        <section class={'py-8 lg:py-16'}>
+        <section class={'py-4 lg:py-8'}>
                 <div @if={props.columnLayout == 'single'} class="rich-text-content prose prose-lg max-w-none font-light-body">
                     {props.leftColumnContent}
                 </div>
