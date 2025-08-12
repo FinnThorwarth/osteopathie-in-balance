@@ -338,8 +338,6 @@ main {
 .prose li {
   display: list-item !important;
   margin-bottom: 0.25rem !important;
-  line-height: 1.75 !important;
-  color: #4A4A49 !important;
 }
 
 /* Ensure strong elements use correct font - target all contexts */
