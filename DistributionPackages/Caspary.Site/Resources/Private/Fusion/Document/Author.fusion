@@ -1,4 +1,4 @@
-prototype(Caspary.Site: Document.Author) < prototype(Caspary.Site: Document.AbstractPage) {
+prototype(Caspary.Site:Document.Author) < prototype(Caspary.Site:Document.AbstractPage) {
     # Meta - Tags für noindex / nofollow
     head.metaRobotsTags=Neos.Fusion:Tag {
     tagName='meta'

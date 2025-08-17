@@ -27,6 +27,7 @@
         "neos/redirecthandler": "~6.0.2",
         "neos/redirecthandler-databasestorage": "~6.0.4",
         "neos/redirecthandler-ui": "~3.0.1",
+        "neos/form-builder": "^3.0.3",
         "caspary/site": "@dev",
         "sitegeist/archaeopteryx": "^2.0"
     },
