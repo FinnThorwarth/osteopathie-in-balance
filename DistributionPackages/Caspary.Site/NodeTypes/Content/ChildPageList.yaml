@@ -1,40 +1,9 @@
 'Caspary.Site:Content.ChildPageList':
   superTypes:
     'Neos.Neos:Content': true
-  properties:
-    title:
-      type: string
-      ui:
-        label: 'Titel'
-        group: 'options'
-    layout:
-      type: string
-      defaultValue: 'list'
-      ui:
-        label: 'Layout'
-        group: 'display'
-        editor: 'Neos.Neos:SelectBoxEditor'
-        editorOptions:
-          values:
-            list: 'Liste'
-            grid: 'Grid'
-    maxItems:
-      type: integer
-      defaultValue: 0
-      ui:
-        label: 'Max. Anzahl Einträge (0 = alle)'
-        group: 'options'
-        editor: 'Neos.Neos:IntegerEditor'
   ui:
     label: 'Seitenliste (Unterordner)'
     icon: 'icon-list'
     position: 20
-    group: 'caspary'
-    inspector:
-      groups:
-        options:
-          label: 'Optionen'
-          position: 10
-        display:
-          label: 'Darstellung'
-          position: 20
+    group: 'overview'
+
