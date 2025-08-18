@@ -1,0 +1,59 @@
+prototype(Caspary.Site:Document.JournalOverviewPage) < prototype(Caspary.Site:Document.AbstractPage) {
+    # Add custom CSS variables for journal pages
+    head.journalStyles = Neos.Fusion:Component {
+        footerBackground = ${q(documentNode).property('footerBackground') || '#6B9F8C'}
+        headingColor = ${q(documentNode).property('headingColor') || '#6B9F8C'}
+        borderColor = ${q(documentNode).property('borderColor') || '#6B9F8C'}
+        
+        renderer = afx`
+            <style>
+                {':root {' + 
+                 '--journal-footer-bg: ' + props.footerBackground + ';' +
+                 '--journal-heading-color: ' + props.headingColor + ';' +
+                 '--journal-border-color: ' + props.borderColor + ';' +
+                 '}'}
+            </style>
+        `
+    }
+    
+    body.content {
+        journalHeading = ${q(documentNode).property('journalHeading') || 'JOURNAL'}
+        itemsPerPage = ${q(documentNode).property('itemsPerPage') || 10}
+        sortBy = ${q(documentNode).property('sortBy') || 'publicationDate'}
+        
+        # Get all journal pages that are children of this overview page
+        journalPages = ${q(documentNode).children('[instanceof Caspary.Site:Document.JournalPage]')}
+        sortedJournalPages = ${this.sortBy == 'title' ? this.journalPages.sort('title', 'ASC') : this.journalPages.sort('publicationDate', 'DESC')}
+        
+        journalList = Neos.Fusion:Component {
+            items = ${props.sortedJournalPages}
+            
+            renderer = afx`
+                <div class="journal-overview">
+                    <h1 class="text-4xl md:text-5xl font-headline mb-12 text-center" style={'color: var(--journal-heading-color)'}>{props.journalHeading}</h1>
+                    
+                    <div class="space-y-8">
+                        <Neos.Fusion:Loop items={props.items}>
+                            <Caspary.Site:Component.JournalCard node={item} />
+                        </Neos.Fusion:Loop>
+                    </div>
+                    
+                    <div @if={!props.items || Array.length(props.items) == 0} class="text-center py-12 text-gray-500">
+                        <p>Noch keine Journal-Artikel vorhanden.</p>
+                    </div>
+                </div>
+            `
+        }
+        
+        renderer = afx`
+            {props.heroImage}
+            <div class="container font-body py-8">
+                {props.journalList}
+                {props.main}
+            </div>
+        `
+    }
+    
+    # Override footer styling for journal pages
+    body.@process.addJournalFooterClass = ${value + '<script>document.addEventListener("DOMContentLoaded", function() { var footer = document.querySelector("footer"); if (footer) { footer.style.backgroundColor = "var(--journal-footer-bg)"; } });</script>'}
+}

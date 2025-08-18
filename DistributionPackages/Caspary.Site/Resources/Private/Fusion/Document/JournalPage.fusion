@@ -1,5 +1,23 @@
 prototype(Caspary.Site:Document.JournalPage) < prototype(Caspary.Site:Document.AbstractPage) {
     head {
+        # Inherit journal styles from parent overview page if exists
+        journalStyles = Neos.Fusion:Component {
+            parentOverview = ${q(documentNode).parents('[instanceof Caspary.Site:Document.JournalOverviewPage]').first()}
+            footerBackground = ${this.parentOverview ? q(this.parentOverview).property('footerBackground') : '#6B9F8C'}
+            headingColor = ${this.parentOverview ? q(this.parentOverview).property('headingColor') : '#6B9F8C'}
+            borderColor = ${this.parentOverview ? q(this.parentOverview).property('borderColor') : '#6B9F8C'}
+            
+            renderer = afx`
+                <style>
+                    {':root {' + 
+                     '--journal-footer-bg: ' + props.footerBackground + ';' +
+                     '--journal-heading-color: ' + props.headingColor + ';' +
+                     '--journal-border-color: ' + props.borderColor + ';' +
+                     '}'}
+                </style>
+            `
+        }
+        
         # Add structured data for articles
         structuredData = Neos.Fusion:Component {
             authorNode = ${q(documentNode).property('author')}
@@ -81,7 +99,7 @@ prototype(Caspary.Site:Document.JournalPage) < prototype(Caspary.Site:Document.A
             authorName = ${q(documentNode).property('authorName') || (this.authorNode ? q(this.authorNode).property('fullName') : null)}
             
             renderer = afx`
-                <div class="article-meta border-b border-gray-200 pb-4 mb-8">
+                <div class="article-meta pb-4 mb-8" style={'border-bottom: 2px solid var(--journal-border-color)'}>
                     <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600">
                         <time datetime={Date.format(props.publicationDate, 'Y-m-d')} @if={props.publicationDate}>
                             <span class="inline-flex items-center gap-1">
@@ -101,7 +119,7 @@ prototype(Caspary.Site:Document.JournalPage) < prototype(Caspary.Site:Document.A
                         
                         <div @if={props.categoriesArray} class="flex gap-2">
                             <Neos.Fusion:Loop items={props.categoriesArray}>
-                                <span class="px-2 py-1 bg-gray-100 rounded-md text-xs">
+                                <span class="px-2 py-1 rounded-md text-xs text-white" style={'background-color: var(--journal-border-color)'}>
                                     {String.trim(item)}
                                 </span>
                             </Neos.Fusion:Loop>
@@ -122,4 +140,7 @@ prototype(Caspary.Site:Document.JournalPage) < prototype(Caspary.Site:Document.A
             </div>
         `
     }
+    
+    # Override footer styling for journal pages
+    body.@process.addJournalFooterClass = ${value + '<script>document.addEventListener("DOMContentLoaded", function() { var footer = document.querySelector("footer"); if (footer) { footer.style.backgroundColor = "var(--journal-footer-bg)"; } });</script>'}
 }
