@@ -17,12 +17,12 @@ prototype(Caspary.Site:Content.ChildPageList) < prototype(Neos.Neos:ContentCompo
     renderer = afx`
         <nav class="content-child-page-list mb-6">
             <Neos.Fusion:Fragment @if={props.childPages && Array.length(props.childPages) > 0}>
-                <ul class="space-y-3">
+                <ul class="">
                     <Neos.Fusion:Loop items={props.childPages}>
-                        <li class="border-b border-gray-200 pb-3 last:border-b-0">
-                            <a 
+                        <li class="border-t last-of-type:border-b first-of-type:border-t-0 border-caspary-purple">
+                            <a
                                 href={item.url}
-                                class="block text-lg text-gray-700 hover:text-primary transition-colors duration-200"
+                                class="font-headline uppercase block no-underline not-italic text-caspary-black hover:text-caspary-purple"
                             >
                                 {item.title}
                             </a>

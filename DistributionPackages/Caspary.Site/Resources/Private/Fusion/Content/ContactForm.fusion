@@ -57,6 +57,18 @@ prototype(Caspary.Site:Content.ContactForm) < prototype(Neos.Neos:ContentCompone
         }
 
         action {
+            email {
+                type = 'Neos.Fusion.Form.Runtime:Email'
+                options {
+                    senderAddress = ${data.email}
+                    senderName = ${data.name}
+                    recipientAddress = ${props.recipientEmail}
+                    recipientName = 'Caspary Bestattungen'
+                    subject = ${'Neue Kontaktanfrage von ' + data.name}
+                    text = ${'Name: ' + data.name + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + data.email + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + data.nachricht}
+                }
+            }
+
             message {
                 type = 'Neos.Fusion.Form.Runtime:Message'
                 options {
