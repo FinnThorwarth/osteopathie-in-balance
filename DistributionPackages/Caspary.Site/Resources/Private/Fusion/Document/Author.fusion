@@ -105,7 +105,7 @@ prototype(Caspary.Site:Document.Author) < prototype(Caspary.Site:Document.Abstra
                         attributes.loading="lazy" />
                 </div>
 
-                <div class="flex-grow bg-caspary-green-light text-caspary-gray-2 overflow-hidden flex flex-col">
+                <div class="md:w-2/3 flex-grow bg-caspary-green-light text-caspary-gray-2 overflow-hidden flex flex-col">
                     <div class="pt-4 pb-2 px-2 grid content-between h-full">
                         <div>
                             <div class="mb-4">
