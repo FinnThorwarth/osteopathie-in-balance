@@ -1,38 +1,37 @@
 prototype(Caspary.Site:Document.JournalPage) < prototype(Caspary.Site:Document.AbstractPage) {
     head {
-        # Inherit journal styles from parent overview page if exists
-        journalStyles = Neos.Fusion:Component {
-            parentOverview = ${q(documentNode).parents('[instanceof Caspary.Site:Document.JournalOverviewPage]').first()}
-            footerBackground = ${this.parentOverview ? q(this.parentOverview).property('footerBackground') : '#6B9F8C'}
-            headingColor = ${this.parentOverview ? q(this.parentOverview).property('headingColor') : '#6B9F8C'}
-            borderColor = ${this.parentOverview ? q(this.parentOverview).property('borderColor') : '#6B9F8C'}
-            
-            renderer = afx`
-                <style>
-                    {':root {' + 
-                     '--journal-footer-bg: ' + props.footerBackground + ';' +
-                     '--journal-heading-color: ' + props.headingColor + ';' +
-                     '--journal-border-color: ' + props.borderColor + ';' +
-                     '}'}
-                </style>
-            `
-        }
-        
+           # Add custom CSS variables for journal pages
+    journalStyles = Neos.Fusion:Component {
+        footerBackground = ${q(documentNode).property('footerBackground') || '#6B9F8C'}
+        headingColor = ${q(documentNode).property('headingColor') || '#6B9F8C'}
+        borderColor = ${q(documentNode).property('borderColor') || '#6B9F8C'}
+
+        renderer = afx`
+            <style>
+                {':root {' +
+                 '--journal-footer-bg: ' + props.footerBackground + ';' +
+                 '--journal-heading-color: ' + props.headingColor + ';' +
+                 '--journal-border-color: ' + props.borderColor + ';' +
+                 '}'}
+            </style>
+        `
+    }
+
         # Add structured data for articles
         structuredData = Neos.Fusion:Component {
             authorNode = ${q(documentNode).property('author')}
             authorName = ${q(documentNode).property('authorName') || (this.authorNode ? q(this.authorNode).property('fullName') : 'Caspary Bestattungen')}
-            
+
             publicationDate = ${q(documentNode).property('publicationDate')}
             publicationDateFormatted = ${this.publicationDate ? Date.format(this.publicationDate, 'Y-m-d\\TH:i:sP') : Date.format(Date.now(), 'Y-m-d\\TH:i:sP')}
             modificationDate = ${q(documentNode).property('_lastModificationDateTime')}
             modificationDateFormatted = ${this.modificationDate ? Date.format(this.modificationDate, 'Y-m-d\\TH:i:sP') : this.publicationDateFormatted}
-            
+
             title = ${q(documentNode).property('title')}
             excerpt = ${q(documentNode).property('excerpt') || String.crop(String.stripTags(q(documentNode).children('main').children('[instanceof Caspary.Site:Content.TextModule]').first().property('text')), 160, '...')}
             image = ${q(documentNode).property('image')}
             imageUrl = ${this.image ? Neos.Neos.ConvertUris.convertImageUri(this.image) : null}
-            
+
             renderer = afx`
                 <script type="application/ld+json">
                     {Json.stringify({
@@ -63,7 +62,7 @@ prototype(Caspary.Site:Document.JournalPage) < prototype(Caspary.Site:Document.A
                 </script>
             `
         }
-        
+
         # Add Open Graph tags for better social sharing
         openGraphTags = Neos.Fusion:Component {
             title = ${q(documentNode).property('titleOverride') || q(documentNode).property('title')}
@@ -71,10 +70,10 @@ prototype(Caspary.Site:Document.JournalPage) < prototype(Caspary.Site:Document.A
             image = ${q(documentNode).property('image')}
             imageUrl = ${this.image ? Neos.Neos.ConvertUris.convertImageUri(this.image) : null}
             publicationDate = ${q(documentNode).property('publicationDate')}
-            
+
             authorNode = ${q(documentNode).property('author')}
             authorName = ${q(documentNode).property('authorName') || (this.authorNode ? q(this.authorNode).property('fullName') : null)}
-            
+
             renderer = afx`
                 <Neos.Fusion:Fragment>
                     <meta property="og:type" content="article" />
@@ -87,21 +86,36 @@ prototype(Caspary.Site:Document.JournalPage) < prototype(Caspary.Site:Document.A
             `
         }
     }
-    
+
     # Add publication date and categories display to the content
     body.content {
         articleMeta = Neos.Fusion:Component {
             publicationDate = ${q(documentNode).property('publicationDate')}
             categories = ${q(documentNode).property('categories')}
             categoriesArray = ${this.categories ? String.split(this.categories, ',') : []}
-            
+
             authorNode = ${q(documentNode).property('author')}
             authorName = ${q(documentNode).property('authorName') || (this.authorNode ? q(this.authorNode).property('fullName') : null)}
-            
+
             renderer = afx`
                 <div class="article-meta pb-4 mb-8" style={'border-bottom: 2px solid var(--journal-border-color)'}>
-                    <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600">
-                        <time datetime={Date.format(props.publicationDate, 'Y-m-d')} @if={props.publicationDate}>
+                    <div class="flex flex-wrap items-center justify-end gap-4 text-sm text-gray-600">
+                        <div @if={props.categoriesArray} class="flex gap-2">
+                            <Neos.Fusion:Loop items={props.categoriesArray}>
+                                <span class="px-2 py-1 text-xs text-white" style={'background-color: var(--journal-border-color)'}>
+                                    {String.trim(item)}
+                                </span>
+                            </Neos.Fusion:Loop>
+                        </div>
+
+                        <span @if={props.authorName} class="inline-flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                            {props.authorName}
+                        </span>
+
+                         <time datetime={Date.format(props.publicationDate, 'Y-m-d')} @if={props.publicationDate}>
                             <span class="inline-flex items-center gap-1">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
@@ -109,26 +123,11 @@ prototype(Caspary.Site:Document.JournalPage) < prototype(Caspary.Site:Document.A
                                 {Date.format(props.publicationDate, 'd.m.Y')}
                             </span>
                         </time>
-                        
-                        <span @if={props.authorName} class="inline-flex items-center gap-1">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                            </svg>
-                            {props.authorName}
-                        </span>
-                        
-                        <div @if={props.categoriesArray} class="flex gap-2">
-                            <Neos.Fusion:Loop items={props.categoriesArray}>
-                                <span class="px-2 py-1 rounded-md text-xs text-white" style={'background-color: var(--journal-border-color)'}>
-                                    {String.trim(item)}
-                                </span>
-                            </Neos.Fusion:Loop>
-                        </div>
                     </div>
                 </div>
             `
         }
-        
+
         renderer = afx`
             {props.heroImage}
             <div class="container font-body py-8">
@@ -140,7 +139,7 @@ prototype(Caspary.Site:Document.JournalPage) < prototype(Caspary.Site:Document.A
             </div>
         `
     }
-    
+
     # Override footer styling for journal pages
     body.@process.addJournalFooterClass = ${value + '<script>document.addEventListener("DOMContentLoaded", function() { var footer = document.querySelector("footer"); if (footer) { footer.style.backgroundColor = "var(--journal-footer-bg)"; } });</script>'}
 }
