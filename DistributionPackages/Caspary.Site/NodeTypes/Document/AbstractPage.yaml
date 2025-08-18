@@ -17,6 +17,7 @@
           "Caspary.Site:Content.TextModule": true
           "Caspary.Site:Content.ImageSlider": true
           "Caspary.Site:Content.FullWidthImage": true
+          "Caspary.Site:Content.ChildPageList": true
 
   constraints:
     nodeTypes:

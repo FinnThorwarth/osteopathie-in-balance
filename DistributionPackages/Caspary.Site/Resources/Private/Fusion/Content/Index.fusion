@@ -8,3 +8,4 @@ include: Button.fusion
 include: ImageSlider.fusion
 include: Headline.fusion
 include: IntroSection.fusion
+include: ChildPageList.fusion

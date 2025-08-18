@@ -58,7 +58,7 @@
         help:
           message: 'Autorenseiten sind nur für die Backend-Verwaltung'
 
-    _hiddenInIndex:
+    hiddenInMenu:
       type: boolean
       defaultValue: true
 

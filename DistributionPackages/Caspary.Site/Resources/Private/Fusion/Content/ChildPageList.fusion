@@ -1,0 +1,41 @@
+prototype(Caspary.Site:Content.ChildPageList) < prototype(Neos.Neos:ContentComponent) {
+
+    // Get child documents of the current document node (1 level deep)
+    childPages = Neos.Fusion:Map {
+        items = ${q(documentNode).children('[instanceof Neos.Neos:Document][_hidden != true][hiddenInMenu != true]').get()}
+        itemRenderer = Neos.Fusion:DataStructure {
+            node = ${item}
+            title = ${q(item).property('title')}
+            subtitle = ${q(item).property('subtitle')}
+            url = Neos.Neos:NodeUri {
+                node = ${item}
+            }
+        }
+    }
+
+    // Main renderer
+    renderer = afx`
+        <nav class="content-child-page-list mb-6">
+            <Neos.Fusion:Fragment @if={props.childPages && Array.length(props.childPages) > 0}>
+                <ul class="space-y-3">
+                    <Neos.Fusion:Loop items={props.childPages}>
+                        <li class="border-b border-gray-200 pb-3 last:border-b-0">
+                            <a 
+                                href={item.url}
+                                class="block text-lg text-gray-700 hover:text-primary transition-colors duration-200"
+                            >
+                                {item.title}
+                            </a>
+                            <Neos.Fusion:Fragment @if={item.subtitle}>
+                                <p class="text-sm text-gray-500 mt-1">{item.subtitle}</p>
+                            </Neos.Fusion:Fragment>
+                        </li>
+                    </Neos.Fusion:Loop>
+                </ul>
+            </Neos.Fusion:Fragment>
+            <Neos.Fusion:Fragment @if={!props.childPages || Array.length(props.childPages) == 0}>
+                <p class="text-gray-500">Keine Unterseiten vorhanden.</p>
+            </Neos.Fusion:Fragment>
+        </nav>
+    `
+}

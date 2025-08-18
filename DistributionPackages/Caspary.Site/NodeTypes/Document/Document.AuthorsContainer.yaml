@@ -23,7 +23,7 @@
         help:
           message: 'Diese Seite ist nur für die Backend-Verwaltung und sollte immer versteckt bleiben'
 
-    _hiddenInIndex:
+    hiddenInMenu:
       type: boolean
       defaultValue: true
       ui:
@@ -63,7 +63,7 @@
 
   # Main Content Collection explizit deaktivieren
   childNodes: []
-  
+
   # Nur Autor-Seiten als Unterseiten erlauben
   constraints:
     nodeTypes:
