@@ -35,5 +35,11 @@ services:
     ports:
       - 13307:3306
 
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - 1025:1025
+      - 8025:8025
+
 volumes:
   db:

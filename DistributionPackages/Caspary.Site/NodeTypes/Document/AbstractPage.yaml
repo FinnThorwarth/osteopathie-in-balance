@@ -18,6 +18,7 @@
           "Caspary.Site:Content.ImageSlider": true
           "Caspary.Site:Content.FullWidthImage": true
           "Caspary.Site:Content.ChildPageList": true
+          "Caspary.Site:Content.ContactForm": true
 
   constraints:
     nodeTypes:

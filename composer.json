@@ -29,7 +29,8 @@
         "neos/redirecthandler-ui": "~3.0.1",
         "neos/form-builder": "^3.0.3",
         "caspary/site": "@dev",
-        "sitegeist/archaeopteryx": "^2.0"
+        "sitegeist/archaeopteryx": "^2.0",
+        "neos/symfonymailer": "^1.0"
     },
     "require-dev": {
         "neos/buildessentials": "~9.0.0",

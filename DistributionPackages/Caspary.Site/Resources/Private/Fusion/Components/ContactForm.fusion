@@ -1,0 +1,57 @@
+prototype(Caspary.Site:Component.ContactForm) < prototype(Neos.Fusion:Component) {
+    renderer = Neos.Fusion.Form:Runtime.RuntimeForm {
+        process {
+            content = afx`
+                <div class="contact-form">
+                    <Neos.Fusion.Form:FieldContainer field.name="name" label="Name">
+                        <Neos.Fusion.Form:Input attributes.required={true} attributes.placeholder="Ihr Name" />
+                    </Neos.Fusion.Form:FieldContainer>
+
+                    <Neos.Fusion.Form:FieldContainer field.name="telefon" label="Telefon">
+                        <Neos.Fusion.Form:Input attributes.type="tel" attributes.placeholder="Ihre Telefonnummer" />
+                    </Neos.Fusion.Form:FieldContainer>
+
+                    <Neos.Fusion.Form:FieldContainer field.name="email" label="E-Mail">
+                        <Neos.Fusion.Form:Input attributes.type="email" attributes.required={true} attributes.placeholder="Ihre E-Mail-Adresse" />
+                    </Neos.Fusion.Form:FieldContainer>
+
+                    <Neos.Fusion.Form:FieldContainer field.name="nachricht" label="Nachricht">
+                        <Neos.Fusion.Form:Textarea attributes.required={true} attributes.placeholder="Ihre Nachricht" attributes.rows="5" />
+                    </Neos.Fusion.Form:FieldContainer>
+
+                    <div class="form-actions">
+                        <Neos.Fusion.Form:Button attributes.class="btn btn-primary">Nachricht senden</Neos.Fusion.Form:Button>
+                    </div>
+                </div>
+            `
+        }
+
+        action {
+            email {
+                type = 'Neos.Fusion.Form.Runtime:Email'
+                options {
+                    senderAddress = ${data.email}
+                    senderName = ${data.name}
+                    recipientAddress = 'info@caspary-bestattungen.de'
+                    recipientName = 'Caspary Bestattungen'
+                    subject = ${'Neue Kontaktanfrage von ' + data.name}
+                    text = Neos.Fusion:Join {
+                        glue = ${String.chr(10)}
+                        name = ${'Name: ' + data.name}
+                        telefon = ${'Telefon: ' + data.telefon}
+                        email = ${'E-Mail: ' + data.email}
+                        nachricht = ${'Nachricht: ' + String.chr(10) + data.nachricht}
+                    }
+                }
+            }
+
+            confirmation {
+                type = 'Neos.Fusion.Form.Runtime:Message'
+                options {
+                    message = 'Vielen Dank für Ihre Nachricht. Wir werden uns schnellstmöglich bei Ihnen melden.'
+                    severity = 'success'
+                }
+            }
+        }
+    }
+}
