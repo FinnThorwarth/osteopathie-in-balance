@@ -15,7 +15,7 @@ prototype(Caspary.Site:Content.ChildPageList) < prototype(Neos.Neos:ContentCompo
 
     // Main renderer
     renderer = afx`
-        <nav class="content-child-page-list mb-6">
+        <nav class="content-child-page-list text-xl md:text-2xl mb-6">
             <Neos.Fusion:Fragment @if={props.childPages && Array.length(props.childPages) > 0}>
                 <ul class="">
                     <Neos.Fusion:Loop items={props.childPages}>
