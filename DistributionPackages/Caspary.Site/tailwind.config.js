@@ -83,6 +83,7 @@ export default {
 				'body': ['Roboto Slab', 'Georgia', 'serif'],
 				'light': ['Ubuntu Sans light'],
 				'light-body': ['Roboto Slab light'],
+				'thin': ['Ubuntu Sans thin'],
 				'medium-body': ['Roboto Slab medium'],
 				'sans': ['Ubuntu Sans', 'ui-sans-serif', 'system-ui'],
 				'serif': ['Roboto Serif', 'Georgia'],

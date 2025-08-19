@@ -4,6 +4,15 @@
   --caspary-akzent: var(--color-purple);
 }
 
+/* ubuntu-sans-100 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Ubuntu Sans thin';
+  font-style: normal;
+  font-weight: 100;
+  src: url('../Fonts/ubuntu-sans-v3-latin-100.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
 /* ubuntu-sans-300 - latin */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */

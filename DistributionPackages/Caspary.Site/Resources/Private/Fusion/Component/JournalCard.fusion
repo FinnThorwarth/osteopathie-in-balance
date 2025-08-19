@@ -54,7 +54,7 @@ prototype(Caspary.Site:Component.JournalCard) < prototype(Neos.Fusion:Component)
                         </div>
                     </div>
                     <Neos.Neos:NodeLink node={props.node} attributes.class="inline-flex items-center gap-2 text-lg hover:gap-3 transition-all text-caspary-akzent no-underline">
-                        <span class="text-6xl leading-[0.7] font-light  not-italic">+</span>
+                        <span class="text-6xl leading-[0.7] font-thin  not-italic">+</span>
                     </Neos.Neos:NodeLink>
                 </div>
             </div>
