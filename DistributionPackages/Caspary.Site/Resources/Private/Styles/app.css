@@ -1,6 +1,7 @@
 :root {
   --font-size-base: 18px;
   --color-purple: #7b5664;
+  --caspary-akzent: var(--color-purple);
 }
 
 /* ubuntu-sans-300 - latin */

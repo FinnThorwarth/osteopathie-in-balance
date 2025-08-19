@@ -4,7 +4,7 @@ prototype(Caspary.Site:Content.TeamMember) < prototype(Neos.Neos:ContentComponen
     imageTitle = ${q(node).property('imageTitle')}
 
     renderer = afx`
-        <div class="team-member group bg-caspary-team-member-bg border-t-2 border-caspary-purple">
+        <div class="team-member group bg-caspary-team-member-bg border-t-2 border-caspary-akzent">
             <div class="relative aspect-[1/1] overflow-hidden">
                 <Caspary.Site:TeamMemberImage
                     @if.hasImage={props.image}
@@ -21,7 +21,7 @@ prototype(Caspary.Site:Content.TeamMember) < prototype(Neos.Neos:ContentComponen
             </div>
 
             <div class="p-4 pb-8">
-                <h3 class="text-3xl font-medium font-headline uppercase text-caspary-purple">
+                <h3 class="text-3xl font-medium font-headline uppercase text-caspary-akzent">
                     <Neos.Neos:Editable property="name" block={true} />
                 </h3>
 
