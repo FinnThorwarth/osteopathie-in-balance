@@ -1,50 +1,44 @@
 prototype(Caspary.Site:Document.JournalOverviewPage) < prototype(Caspary.Site:Document.AbstractPage) {
-    # Add custom CSS variables for journal pages
-    head.journalStyles = Neos.Fusion:Component {
-        footerBackground = ${q(documentNode).property('footerBackground') || '#6B9F8C'}
-        headingColor = ${q(documentNode).property('headingColor') || '#6B9F8C'}
-        borderColor = ${q(documentNode).property('borderColor') || '#6B9F8C'}
+    head {
+        journalStyles = Neos.Fusion:Tag {
+            tagName = 'style'
+            content = Neos.Fusion:Value {
+                footerBackground = ${q(documentNode).property('footerBackground') || '#6B9F8C'}
+                headingColor = ${q(documentNode).property('headingColor') || '#6B9F8C'}
+                borderColor = ${q(documentNode).property('borderColor') || '#6B9F8C'}
 
-        renderer = afx`
-            <style>
-                {':root {' +
-                 '--journal-footer-bg: ' + props.footerBackground + ';' +
-                 '--journal-heading-color: ' + props.headingColor + ';' +
-                 '--journal-border-color: ' + props.borderColor + ';' +
-                 '}'}
-            </style>
-        `
+                value = ${':root { --journal-footer-bg: ' + this.footerBackground + '; --journal-heading-color: ' + this.headingColor + '; --journal-border-color: ' + this.borderColor + '; }'}
+            }
+        }
+
+        journalFooterScript = Neos.Fusion:Tag {
+            tagName = 'script'
+            content = 'document.addEventListener("DOMContentLoaded", function() { var footer = document.querySelector("footer"); if (footer) { footer.style.backgroundColor = "var(--journal-footer-bg)"; } });'
+        }
     }
 
-    body.content {
-        @context.journalHeading = ${q(documentNode).property('journalHeading') || 'JOURNAL'}
-        @context.itemsPerPage = ${q(documentNode).property('itemsPerPage') || 10}
-        @context.sortBy = ${q(documentNode).property('sortBy') || 'publicationDate'}
-        
-        # Get journal pages with limit to prevent memory issues
-        @context.journalPages = ${q(documentNode).children('[instanceof Caspary.Site:Document.JournalPage]').slice(0, itemsPerPage).get()}
+    body.content = Neos.Fusion:Component {
+        journalHeading = ${q(documentNode).property('journalHeading') || 'JOURNAL'}
+        itemsPerPage = ${q(documentNode).property('itemsPerPage') || 10}
+
+        journalPages = Neos.Fusion:Loop {
+            @context.itemsLimit = ${props.itemsPerPage}
+            items = ${q(documentNode).children('[instanceof Caspary.Site:Document.JournalPage]').slice(0, itemsLimit).get()}
+            itemName = 'journalNode'
+
+            itemRenderer = Caspary.Site:Component.JournalCard {
+                node = ${journalNode}
+            }
+        }
 
         renderer = afx`
             {props.heroImage}
             <div class="container font-body py-8">
                 <div class="journal-overview">
-                    <h1 class="text-4xl md:text-5xl font-headline mb-12 text-center" style={'color: var(--journal-heading-color)'}>{journalHeading}</h1>
-
-                    <div class="space-y-8" @if={journalPages && Array.length(journalPages) > 0}>
-                        <Neos.Fusion:Loop items={journalPages}>
-                            <Caspary.Site:Component.JournalCard node={item} />
-                        </Neos.Fusion:Loop>
-                    </div>
-
-                    <div @if={!journalPages || Array.length(journalPages) == 0} class="text-center py-12 text-gray-500">
-                        <p>Noch keine Journal-Artikel vorhanden.</p>
-                    </div>
+                    {props.main}
                 </div>
-                {props.main}
+
             </div>
         `
     }
-
-    # Override footer styling for journal pages
-    body.@process.addJournalFooterClass = ${value + '<script>document.addEventListener("DOMContentLoaded", function() { var footer = document.querySelector("footer"); if (footer) { footer.style.backgroundColor = "var(--journal-footer-bg)"; } });</script>'}
 }
