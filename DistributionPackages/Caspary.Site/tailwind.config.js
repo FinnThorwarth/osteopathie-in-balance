@@ -28,6 +28,7 @@ export default {
 				'caspary-blue-alt': '#6fa1ae',
 				'caspary-team-member-bg': '#f4f1ed',
 				'caspary-team-member-text': '#818384',
+				'caspary-white': '#FDFCFB',
 				// Legacy colors for backward compatibility
 				primary: {
 					50: '#faf9f9',
