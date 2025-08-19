@@ -17,13 +17,9 @@ prototype(Caspary.Site:Document.JournalOverviewPage) < prototype(Caspary.Site:Do
         }
     }
 
-    body.content = Neos.Fusion:Component {
-        journalHeading = ${q(documentNode).property('journalHeading') || 'JOURNAL'}
-        itemsPerPage = ${q(documentNode).property('itemsPerPage') || 10}
-
+    body.content {
         journalPages = Neos.Fusion:Loop {
-            @context.itemsLimit = ${props.itemsPerPage}
-            items = ${q(documentNode).children('[instanceof Caspary.Site:Document.JournalPage]').slice(0, itemsLimit).get()}
+            items = ${q(documentNode).children('[instanceof Caspary.Site:Document.JournalPage]').slice(0, q(documentNode).property('itemsPerPage') || 10).get()}
             itemName = 'journalNode'
 
             itemRenderer = Caspary.Site:Component.JournalCard {
@@ -36,8 +32,8 @@ prototype(Caspary.Site:Document.JournalOverviewPage) < prototype(Caspary.Site:Do
             <div class="container font-body py-8">
                 <div class="journal-overview">
                     {props.main}
+                    {props.journalPages}
                 </div>
-
             </div>
         `
     }

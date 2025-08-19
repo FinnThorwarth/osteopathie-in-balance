@@ -1,18 +1,18 @@
 prototype(Caspary.Site:Component.JournalCard) < prototype(Neos.Fusion:Component) {
     node = null
     
-    title = ${q(this.node).property('title')}
-    excerpt = ${q(this.node).property('excerpt')}
-    image = ${q(this.node).property('image')}
-    publicationDate = ${q(this.node).property('publicationDate')}
-    categories = ${q(this.node).property('categories')}
-    categoriesArray = ${this.categories ? String.split(this.categories, ',') : []}
+    title = ${q(props.node).property('title')}
+    excerpt = ${q(props.node).property('excerpt')}
+    image = ${q(props.node).property('image')}
+    publicationDate = ${q(props.node).property('publicationDate')}
+    categories = ${q(props.node).property('categories')}
+    categoriesArray = ${props.categories ? String.split(props.categories, ',') : []}
     uri = Neos.Neos:NodeUri {
-        node = ${this.node}
+        node = ${props.node}
     }
     
     # Use excerpt if available, otherwise show a default message
-    autoExcerpt = ${this.excerpt ? this.excerpt : ''}
+    autoExcerpt = ${props.excerpt ? props.excerpt : ''}
     
     renderer = afx`
         <article class="journal-card bg-white rounded-lg overflow-hidden flex flex-col md:flex-row" style={'border: 2px solid var(--journal-border-color)'}>
