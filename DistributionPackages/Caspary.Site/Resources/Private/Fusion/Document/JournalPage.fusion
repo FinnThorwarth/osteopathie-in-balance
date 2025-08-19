@@ -100,7 +100,7 @@ prototype(Caspary.Site:Document.JournalPage) < prototype(Caspary.Site:Document.A
 
             renderer = afx`
                 <div class="article-meta pb-4 mb-8 border-b-2 border-caspary-akzent">
-                    <div class="flex flex-wrap items-center justify-end gap-4 text-sm text-gray-600">
+                    <div class="flex flex-col md:flex-row flex-wrap md:items-center items-end justify-end gap-1 md:gap-4 text-sm">
                         <div @if={props.categoriesArray} class="flex gap-2">
                             <Neos.Fusion:Loop items={props.categoriesArray}>
                                 <span class="px-2 py-1 text-xs text-white bg-caspary-akzent">

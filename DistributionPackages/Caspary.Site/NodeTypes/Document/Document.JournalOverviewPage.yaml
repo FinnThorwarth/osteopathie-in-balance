@@ -4,7 +4,7 @@
   ui:
     label: 'Journal-Übersicht'
     icon: 'icon-th-list'
-    group: 'general'
+    group: 'structure'
     position: 190
     inspector:
       groups:
@@ -26,7 +26,7 @@
           group: 'journalSettings'
           position: 10
         inlineEditable: true
-    
+
     itemsPerPage:
       type: integer
       defaultValue: 10
@@ -38,7 +38,7 @@
           editorOptions:
             minimum: 1
             maximum: 50
-    
+
     sortBy:
       type: string
       defaultValue: 'publicationDate'
@@ -55,7 +55,7 @@
                 label: 'Veröffentlichungsdatum (neueste zuerst)'
               title:
                 label: 'Titel (alphabetisch)'
-    
+
     # Custom colors for journal pages
     footerBackground:
       type: string
@@ -68,7 +68,7 @@
           editor: 'Neos.Neos/Inspector/Editors/TextFieldEditor'
           editorOptions:
             placeholder: '#6B9F8C'
-    
+
     headingColor:
       type: string
       defaultValue: '#6B9F8C'
@@ -80,7 +80,7 @@
           editor: 'Neos.Neos/Inspector/Editors/TextFieldEditor'
           editorOptions:
             placeholder: '#6B9F8C'
-    
+
     borderColor:
       type: string
       defaultValue: '#6B9F8C'
