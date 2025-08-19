@@ -1,14 +1,4 @@
 prototype(Caspary.Site:Content.ContactForm) < prototype(Neos.Neos:ContentComponent) {
-    @cache {
-        mode = 'uncached'
-        context {
-            1 = 'node'
-            2 = 'documentNode'
-            3 = 'site'
-            4 = 'request'
-        }
-    }
-    
     renderer = Neos.Fusion.Form:Runtime.RuntimeForm {
         namespace = 'contact'
         
@@ -66,26 +56,12 @@ prototype(Caspary.Site:Content.ContactForm) < prototype(Neos.Neos:ContentCompone
             email {
                 type = 'Neos.Fusion.Form.Runtime:Email'
                 options {
-                    senderAddress = ${formRuntime.formState.formValues.email || 'noreply@caspary-bestattungen.de'}
-                    senderName = ${formRuntime.formState.formValues.name || 'Kontaktformular'}
+                    senderAddress = 'noreply@caspary-bestattungen.de'
+                    senderName = 'Kontaktformular'
                     recipientAddress = 'info@caspary-bestattungen.de'
                     recipientName = 'Caspary Bestattungen'
-                    subject = ${'Neue Kontaktanfrage von ' + (formRuntime.formState.formValues.name || 'Unbekannt')}
-                    text = ${'Name: ' + (formRuntime.formState.formValues.name || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (formRuntime.formState.formValues.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (formRuntime.formState.formValues.email || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + (formRuntime.formState.formValues.nachricht || 'Keine Nachricht')}
-                    html = afx`
-                        <html>
-                            <body>
-                                <h2>Neue Kontaktanfrage</h2>
-                                <p><strong>Name:</strong> {formRuntime.formState.formValues.name || 'Nicht angegeben'}</p>
-                                <p><strong>Telefon:</strong> {formRuntime.formState.formValues.telefon || 'Nicht angegeben'}</p>
-                                <p><strong>E-Mail:</strong> {formRuntime.formState.formValues.email || 'Nicht angegeben'}</p>
-                                <p><strong>Nachricht:</strong></p>
-                                <p>{formRuntime.formState.formValues.nachricht || 'Keine Nachricht'}</p>
-                                <hr />
-                                <p><small>Diese Nachricht wurde über das Kontaktformular der Website gesendet.</small></p>
-                            </body>
-                        </html>
-                    `
+                    subject = 'Neue Kontaktanfrage'
+                    text = ${'Name: ' + data.name + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + data.email + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + data.nachricht}
                 }
             }
 

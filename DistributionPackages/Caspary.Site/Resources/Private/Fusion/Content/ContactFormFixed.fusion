@@ -1,18 +1,15 @@
 prototype(Caspary.Site:Content.ContactForm) < prototype(Neos.Neos:ContentComponent) {
-    @cache {
-        mode = 'uncached'
-        context {
-            1 = 'node'
-            2 = 'documentNode'
-            3 = 'site'
-            4 = 'request'
-        }
+    # Get properties from node or use defaults
+    @context {
+        recipientEmailAddress = ${q(node).property('recipientEmail') || 'info@caspary-bestattungen.de'}
+        successMessageText = ${q(node).property('successMessage') || 'Vielen Dank für Ihre Nachricht. Wir werden uns schnellstmöglich bei Ihnen melden.'}
     }
-    
+
     renderer = Neos.Fusion.Form:Runtime.RuntimeForm {
         namespace = 'contact'
         
         process {
+            footer = ''
             content = afx`
                 <div class="contact-form">
                     <div class="mb-4">
@@ -66,21 +63,21 @@ prototype(Caspary.Site:Content.ContactForm) < prototype(Neos.Neos:ContentCompone
             email {
                 type = 'Neos.Fusion.Form.Runtime:Email'
                 options {
-                    senderAddress = ${formRuntime.formState.formValues.email || 'noreply@caspary-bestattungen.de'}
-                    senderName = ${formRuntime.formState.formValues.name || 'Kontaktformular'}
-                    recipientAddress = 'info@caspary-bestattungen.de'
+                    senderAddress = ${data.email || 'noreply@caspary-bestattungen.de'}
+                    senderName = ${data.name || 'Website Kontaktformular'}
+                    recipientAddress = ${recipientEmailAddress}
                     recipientName = 'Caspary Bestattungen'
-                    subject = ${'Neue Kontaktanfrage von ' + (formRuntime.formState.formValues.name || 'Unbekannt')}
-                    text = ${'Name: ' + (formRuntime.formState.formValues.name || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (formRuntime.formState.formValues.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (formRuntime.formState.formValues.email || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + (formRuntime.formState.formValues.nachricht || 'Keine Nachricht')}
+                    subject = ${'Neue Kontaktanfrage von ' + (data.name || 'Unbekannt')}
+                    text = ${'Name: ' + (data.name || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (data.email || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + (data.nachricht || 'Keine Nachricht')}
                     html = afx`
                         <html>
                             <body>
                                 <h2>Neue Kontaktanfrage</h2>
-                                <p><strong>Name:</strong> {formRuntime.formState.formValues.name || 'Nicht angegeben'}</p>
-                                <p><strong>Telefon:</strong> {formRuntime.formState.formValues.telefon || 'Nicht angegeben'}</p>
-                                <p><strong>E-Mail:</strong> {formRuntime.formState.formValues.email || 'Nicht angegeben'}</p>
+                                <p><strong>Name:</strong> {data.name || 'Nicht angegeben'}</p>
+                                <p><strong>Telefon:</strong> {data.telefon || 'Nicht angegeben'}</p>
+                                <p><strong>E-Mail:</strong> {data.email || 'Nicht angegeben'}</p>
                                 <p><strong>Nachricht:</strong></p>
-                                <p>{formRuntime.formState.formValues.nachricht || 'Keine Nachricht'}</p>
+                                <p>{data.nachricht || 'Keine Nachricht'}</p>
                                 <hr />
                                 <p><small>Diese Nachricht wurde über das Kontaktformular der Website gesendet.</small></p>
                             </body>
@@ -92,7 +89,7 @@ prototype(Caspary.Site:Content.ContactForm) < prototype(Neos.Neos:ContentCompone
             message {
                 type = 'Neos.Fusion.Form.Runtime:Message'
                 options {
-                    message = 'Vielen Dank für Ihre Nachricht. Wir werden uns schnellstmöglich bei Ihnen melden.'
+                    message = ${successMessageText}
                     severity = 'success'
                 }
             }

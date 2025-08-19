@@ -1,0 +1,92 @@
+prototype(Caspary.Site:Content.ContactForm.Debug) < prototype(Caspary.Site:Content.ContactForm) {
+    # Enable debug mode for testing
+    @context.debugMode = ${Configuration.setting('Caspary.Site.Forms.ContactForm.debug') || false}
+    
+    # Override recipient for testing
+    recipientEmail = ${debugMode ? Configuration.setting('Caspary.Site.Forms.ContactForm.testRecipient') : this.recipientEmail}
+    
+    renderer.@process.debugInfo = ${debugMode ? '<div class="debug-info bg-yellow-100 border border-yellow-400 p-4 mb-4 rounded"><strong>Debug Mode Active</strong><br>Recipient: ' + props.recipientEmail + '</div>' + value : value}
+    
+    renderer {
+        # Add debug output to form
+        process.content.@process.addDebugFields = afx`
+            {value}
+            <Neos.Fusion:Fragment @if={debugMode}>
+                <div class="debug-panel bg-gray-100 border border-gray-300 p-4 mt-4 rounded">
+                    <h4 class="font-bold mb-2">Debug Information</h4>
+                    <div class="text-sm">
+                        <p>Form Namespace: {props.namespace}</p>
+                        <p>Recipient Email: {props.recipientEmail}</p>
+                        <p>Success Message: {props.successMessage}</p>
+                        <p>Node Path: {node.path}</p>
+                    </div>
+                </div>
+            </Neos.Fusion:Fragment>
+        `
+        
+        # Add debug action to log form data
+        action.debug {
+            type = 'Neos.Fusion.Form.Runtime:Log'
+            options {
+                severity = 'DEBUG'
+                message = ${'Contact form submitted: ' + Json.stringify(data)}
+            }
+            @if.isDebugMode = ${debugMode}
+            @position = 'before email'
+        }
+        
+        # Add console output action for debugging
+        action.console {
+            type = 'Neos.Fusion.Form.Runtime:Message'
+            options {
+                message = ${'Form Data: ' + Json.stringify(data)}
+                severity = 'info'
+            }
+            @if.isDebugMode = ${debugMode}
+            @position = 'before email'
+        }
+        
+        # Override email action for testing
+        action.email.options {
+            # Add debug prefix to subject in debug mode
+            subject = ${debugMode ? '[DEBUG] ' + this.subject : this.subject}
+            
+            # Add debug information to email body
+            text.@process.addDebugInfo = ${debugMode ? value + String.chr(10) + String.chr(10) + '--- DEBUG INFO ---' + String.chr(10) + 'Sent at: ' + Date.now() + String.chr(10) + 'Debug Mode: Active' : value}
+        }
+        
+        # Add validation debugging
+        validation {
+            email {
+                type = 'Email'
+                @if.hasEmail = ${data.email}
+            }
+            name {
+                type = 'NotEmpty'
+                @if.hasName = ${data.name}
+            }
+        }
+        
+        # Error handling with debug output
+        @process.handleErrors = Neos.Fusion:Case {
+            hasErrors {
+                condition = ${form.validationResult.hasErrors()}
+                renderer = afx`
+                    <div class="alert alert-danger">
+                        <h4>Validation Errors:</h4>
+                        <ul>
+                            <Neos.Fusion:Loop items={form.validationResult.errors}>
+                                <li>{item.message} (Field: {item.field})</li>
+                            </Neos.Fusion:Loop>
+                        </ul>
+                    </div>
+                    {value}
+                `
+            }
+            default {
+                condition = true
+                renderer = ${value}
+            }
+        }
+    }
+}
