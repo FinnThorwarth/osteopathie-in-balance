@@ -20,26 +20,13 @@ prototype(Caspary.Site:Content.IntroSection) < prototype(Neos.Neos:ContentCompon
 
     columnMode = ${q(node).property('columnMode') || 'two-columns'}
 
-    isBackend = ${q(node).property('isBackend') || false}
+    isBackend = ${renderingMode.isEdit}
 
     renderer = afx`
         <section class="intro-section py-8">
                 {props.header}
 
-                <div @if={!props.isBackend && (props.showLeftPlaceholder || props.showRightPlaceholder)} class={props.columnMode == 'two-columns' ? 'grid md:grid-cols-2 gap-4 md:gap-8 lg:gap-12' : 'max-w-4xl'}>
-                    <div class="space-y-6">
-                        <div class="leading-relaxed font-light-body ">
-                            {props.leftColumnText}
-                        </div>
-                    </div>
-
-                    <div @if={props.columnMode == 'two-columns'} class="space-y-6">
-                        <div class="leading-relaxed font-light-body mb-8">
-                            {props.rightColumnText}
-                        </div>
-                    </div>
-                </div>
-                <div @if={props.isBackend} class={props.columnMode == 'two-columns' ? 'grid md:grid-cols-2 gap-4 md:gap-8 lg:gap-12' : 'max-w-4xl'}>
+                <div @if={renderingMode.isEdit || q(node).property('leftColumnText') || q(node).property('rightColumnText')} class={props.columnMode == 'two-columns' ? 'grid md:grid-cols-2 gap-4 md:gap-8 lg:gap-12' : 'max-w-4xl'}>
                     <div class="space-y-6">
                         <div class="leading-relaxed font-light-body ">
                             {props.leftColumnText}
