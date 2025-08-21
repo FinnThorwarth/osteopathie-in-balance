@@ -17,7 +17,6 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
     <div id="app" v-cloak @if={!node.context.inBackend}>
       <div :class="grayscaleActive ? 'grayscale-mode' : ''">
         <Caspary.Site:Component.Organism.Header />
-        <Caspary.Site:Component.Organism.MobileMenu />
 
         <main id="main" class="">
           {props.content}
@@ -29,7 +28,6 @@ prototype(Caspary.Site:Component.Template.Default) < prototype(Neos.Fusion:Compo
     <div @if={node.context.inBackend}>
       <div>
         <Caspary.Site:Component.Organism.Header />
-        <Caspary.Site:Component.Organism.MobileMenu />
 
         <main id="main" class="">
           {props.content}
