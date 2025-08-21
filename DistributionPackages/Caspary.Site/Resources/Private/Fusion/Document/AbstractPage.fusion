@@ -36,11 +36,6 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
      stylesheets.site = afx`
         <link rel="stylesheet" href={StaticResource.uri('Caspary.Site', 'Public/Styles/style.css')} media="all" />
     `
-
-    # Add header javascripts to your page
-    # javascripts.site = afx`
-    #     <script type="module" src={StaticResource.uri('Caspary.Site', 'Public/JavaScript/main.js')}></script>
-    # `
   }
 
   body = Caspary.Site:Component.Template.Default {
@@ -64,6 +59,8 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
               asset={props.image}
               attributes.alt={props.alternativeText}
               attributes.class="w-full h-full object-cover"
+              attributes.loading="eager"
+              attributes.fetchpriority="high"
             />
           </div>
         `
