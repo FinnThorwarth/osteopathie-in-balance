@@ -8,9 +8,6 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="apple-mobile-web-app-title" content="Caspary Bestattungen" />
 
-        <link rel="preconnect" href="https://use.typekit.net" crossorigin />
-        <link rel="preconnect" href="https://p.typekit.net" crossorigin />
-
         <link rel="icon" type="image/png" href={StaticResource.uri('Caspary.Site', 'Public/Favicon/favicon-96x96.png')} sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href={StaticResource.uri('Caspary.Site', 'Public/Favicon/favicon.svg')} />
         <link rel="shortcut icon" href={StaticResource.uri('Caspary.Site', 'Public/Favicon/favicon.ico')} />
@@ -18,7 +15,7 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
         <link rel="manifest" href={StaticResource.uri('Caspary.Site', 'Public/Favicon/site.webmanifest')} />
       `
     }
-    
+
     authorMetaTags = Caspary.Site:Component.Meta.AuthorMetaTags
 
      titleTag = Neos.Fusion:Tag {
@@ -73,7 +70,7 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
       }
 
       authorCard = Caspary.Site:Component.Content.AuthorCard
-      
+
       renderer = afx`
             {props.heroImage}
             <div class="container font-body py-8">
@@ -84,14 +81,12 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
     }
 
     # Script includes before the closing body tag should go here
-    javascripts = ${bodyJavaScripts}
+    javascripts = Neos.Fusion:Join {
+      site = afx`
+          <script type="module" src={StaticResource.uri('Caspary.Site', 'Public/JavaScript/main.js')}></script>
+      `
+    }
     # This processor appends the rendered javascripts Array to the rendered template
     @process.appendJavaScripts = ${value + this.javascripts}
-  }
-
-  bodyJavaScripts = Neos.Fusion:Join {
-    site = afx`
-        <script type="module" src={StaticResource.uri('Caspary.Site', 'Public/JavaScript/main.js')}></script>
-    `
   }
 }

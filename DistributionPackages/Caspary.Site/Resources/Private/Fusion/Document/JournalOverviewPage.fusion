@@ -1,4 +1,15 @@
 prototype(Caspary.Site:Document.JournalOverviewPage) < prototype(Caspary.Site:Document.AbstractPage) {
+    @cache {
+        mode = 'cached'
+        entryIdentifier {
+            documentNode = ${documentNode}
+        }
+        entryTags {
+            1 = ${Neos.Caching.nodeTag(documentNode)}
+            2 = ${Neos.Caching.descendantOfTag(documentNode)}
+        }
+    }
+    
     head {
         journalStyles = Neos.Fusion:Tag {
             tagName = 'style'
