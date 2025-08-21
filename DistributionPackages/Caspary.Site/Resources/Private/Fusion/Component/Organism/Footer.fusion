@@ -36,8 +36,8 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
                     <div><a href="/leistungen">LEISTUNGEN</a></div>
                     <div><a href="/wir/was-uns-ausmacht">PHILOSOPHIE</a></div>
                     <div><a href="/wir/team">TEAM</a></div>
-                    <div><a href="/wir/journal">JOURNAL</a></div>
-                    <div><a href="/veranstaltungen">VERANSTALTUNGEN</a></div>
+                    <div><a href="/journal">JOURNAL</a></div>
+                    <div><a href="/wir/veranstaltungen">VERANSTALTUNGEN</a></div>
                     <div><a href="/wir/kontakt">KONTAKT</a></div>
                 </div>
             </div>
