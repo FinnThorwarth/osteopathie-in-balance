@@ -54,7 +54,7 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
         alternativeText = ${q(node).property('alternativeText')}
 
         renderer = afx`
-          <div @if={props.image} class="relative w-full h-[500px] md:h-[600px] lg:h-[750px] xl:h-[800px] overflow-hidden -mt-20">
+          <div @if={props.image} class="relative w-full h-[230px] md:h-[450px] lg:h-[600px] xl:h-[800px] overflow-hidden">
             <Neos.Neos:ImageTag
               asset={props.image}
               attributes.alt={props.alternativeText}
