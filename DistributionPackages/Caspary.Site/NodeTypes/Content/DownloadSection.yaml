@@ -14,15 +14,6 @@
           label: 'Allgemein'
           position: 10
   properties:
-    sectionTitle:
-      type: string
-      defaultValue: 'DOWNLOADS'
-      ui:
-        inlineEditable: true
-        inline:
-          editorOptions:
-            placeholder: 'Bereichstitel'
-            autoparagraph: false
   constraints:
     nodeTypes:
       'Caspary.Site:Content.DownloadItem': true
