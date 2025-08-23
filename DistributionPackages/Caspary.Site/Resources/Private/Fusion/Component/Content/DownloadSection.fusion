@@ -1,0 +1,17 @@
+prototype(Caspary.Site:Component.Content.DownloadSection) < prototype(Neos.Fusion:Component) {
+    sectionTitle = ${q(node).property('sectionTitle')}
+    content = Neos.Neos:ContentCollectionRenderer
+    
+    renderer = afx`
+        <section class="download-section py-12">
+            <div class="container mx-auto px-4">
+                <h2 class="text-5xl font-bold text-gray-600 mb-8">{props.sectionTitle}</h2>
+                <div class="space-y-6">
+                    {props.content}
+                </div>
+            </div>
+        </section>
+    `
+}
+
+prototype(Caspary.Site:Content.DownloadSection) < prototype(Caspary.Site:Component.Content.DownloadSection)

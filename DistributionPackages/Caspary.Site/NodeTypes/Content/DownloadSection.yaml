@@ -1,0 +1,29 @@
+'Caspary.Site:Content.DownloadSection':
+  superTypes:
+    'Neos.Neos:Content': true
+    'Neos.Neos:ContentCollection': true
+  ui:
+    label: 'Download Bereich'
+    icon: 'icon-folder-open'
+    position: 51
+    group: 'media'
+    inlineEditable: true
+    inspector:
+      groups:
+        general:
+          label: 'Allgemein'
+          position: 10
+  properties:
+    sectionTitle:
+      type: string
+      defaultValue: 'DOWNLOADS'
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Bereichstitel'
+            autoparagraph: false
+  constraints:
+    nodeTypes:
+      'Caspary.Site:Content.DownloadItem': true
+      '*': false

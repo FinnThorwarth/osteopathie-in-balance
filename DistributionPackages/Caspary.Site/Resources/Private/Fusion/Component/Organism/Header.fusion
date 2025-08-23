@@ -36,10 +36,12 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
                                 <img src={StaticResource.uri('Caspary.Site', 'Public/Images/kontrast.svg')} alt="" class="h-5" />
                                 <span class="hidden md:inline">Kontrast</span>
                             </button>
+                            <!--
                             <a href={props.searchPageUri} title="Zur Suche" class="flex items-center gap-1">
                                 <img src={StaticResource.uri('Caspary.Site', 'Public/Images/search.svg')} alt="" class="h-6" />
                                 <span class="hidden md:inline">Suche</span>
                             </a>
+                            -->
                             <a href="mailto:info@caspary-bestattungen.de" title="E-Mail schreiben" class="flex items-center gap-1">
                                 <span class="text-[22px] leading-[22px] -translate-y-[10%]">@</span>
                                 <span class="hidden md:inline">E-Mail</span>
