@@ -418,3 +418,33 @@ section i {
   opacity: 0.6;
   font-style: italic;
 }
+
+/* Menü Icon */
+.menu-icon0 {
+  fill: none;
+}
+
+.menu-icon1 {
+  fill: #675568;
+}
+
+.menu-icon2 {
+  fill: #2b2b2a;
+}
+
+.menu-icon3 {
+  fill: #2d5d6b;
+}
+
+.menu-icon4 {
+  fill: #8cb7b8;
+}
+
+.menu-icon5 {
+  clip-path: url(#clippath);
+}
+
+/* Animated SVG Hamburger Menu */
+.hamburger-svg-line {
+  transition: all 0.3s ease-in-out;
+}
