@@ -26,6 +26,7 @@
       type: Neos\Media\Domain\Model\Asset
       ui:
         label: 'Datei'
+        reloadIfChanged: true
         inspector:
           group: 'download'
           position: 10
