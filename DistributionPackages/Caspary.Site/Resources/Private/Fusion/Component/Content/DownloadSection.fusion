@@ -1,15 +1,13 @@
-prototype(Caspary.Site:Component.Content.DownloadSection) < prototype(Neos.Fusion:Component) {
-    content = Neos.Neos:ContentCollectionRenderer
-
+prototype(Caspary.Site:Content.DownloadSection) < prototype(Neos.Neos:ContentCollection) {
     renderer = afx`
         <section class="download-section py-12">
             <div class="container mx-auto px-4">
-                <div class="space-y-6">
-                    {props.content}
-                </div>
+                <Neos.Neos:ContentCollection nodePath="." @context.node={node}>
+                    <div class="space-y-6">
+                        {props.content}
+                    </div>
+                </Neos.Neos:ContentCollection>
             </div>
         </section>
     `
 }
-
-prototype(Caspary.Site:Content.DownloadSection) < prototype(Caspary.Site:Component.Content.DownloadSection)

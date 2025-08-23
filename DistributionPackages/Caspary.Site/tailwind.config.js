@@ -23,7 +23,7 @@ export default {
 				'caspary-purple-dark': '#9D939D',
 				'caspary-green': '#176037',
 				'caspary-green-light': '#F0F4F2',
-				'caspary-journal-green': '#6B9F8C',
+				'caspary-journal-green': '#2e5f5a',
 				'caspary-footer': '#5d4d5e',
 				'caspary-blue-alt': '#6fa1ae',
 				'caspary-team-member-bg': '#f4f1ed',

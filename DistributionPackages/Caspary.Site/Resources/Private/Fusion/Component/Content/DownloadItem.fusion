@@ -43,13 +43,13 @@ prototype(Caspary.Site:Content.DownloadItem) < prototype(Neos.Neos:ContentCompon
                 tagName={renderingMode.isEdit ? 'div' : 'a'}
                 attributes.href={renderingMode.isEdit ? null : props.fileUri}
                 attributes.download={renderingMode.isEdit ? null : props.fileName}
-                attributes.class="download-link bg-gray-600 text-white px-6 py-4 rounded-md hover:bg-gray-700 transition-colors flex items-center justify-between group block"
+                attributes.class="download-link bg-caspary-blue text-white px-6 py-4 rounded-md hover:bg-gray-700 transition-colors flex items-center justify-between group block no-underline not-italic"
             >
                 <div class="flex items-center space-x-4">
                     <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd"/>
                     </svg>
-                    <span class="text-lg font-medium flex-1">
+                    <span class="text-lg font-headline no-underline flex-1">
                         <Neos.Neos:Editable property="title" block={false} />
                     </span>
                 </div>
