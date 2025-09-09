@@ -22,6 +22,20 @@
       type: boolean
       defaultValue: true
 
+    previewImage:
+      type: Neos\Media\Domain\Model\ImageInterface
+      ui:
+        label: 'Vorschaubild'
+        inspector:
+          group: 'image'
+        reloadIfChanged: true
+      previewImageAlternativeText:
+        type: string
+        ui:
+          label: 'Alternativer Text'
+          inspector:
+            group: 'image'
+
     publicationDate:
       type: DateTime
       defaultValue: 'now'
