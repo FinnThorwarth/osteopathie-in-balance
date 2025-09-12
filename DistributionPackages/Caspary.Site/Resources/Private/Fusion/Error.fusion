@@ -3,7 +3,7 @@
 // This extends the root error matcher to use a custom 404 page
 //
 
-error {
+error = Neos.Fusion:Case {
   // Find the 404 error page by URI segment
   @context.notfoundDocument = ${q(site).children('[instanceof Neos.Neos:Document]').filter('[uriPathSegment="404"]').get(0)}
   
