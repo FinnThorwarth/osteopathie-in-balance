@@ -64,7 +64,7 @@
           <div
             v-for="(item, index) in menuItems"
             :key="item.title"
-            class="bg-white shadow-xl py-6 px-4"
+            class="bg-white shadow-xl py-6 px-4 max-h-[calc(100vh-213px)] overflow-y-auto"
           >
             <a
               v-if="item.url && item.url !== '#'"
