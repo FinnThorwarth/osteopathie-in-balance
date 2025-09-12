@@ -53,7 +53,7 @@ prototype(Caspary.Site:Component.Organism.Footer) < prototype(Neos.Fusion:Compon
                     28211 Bremen
                   </address>
                 <div class="mt-6 text-xl uppercase">
-                    <div><a href="/kooperationspartner-innen">KOOPERATIONSPARTNER*INNEN</a></div>
+                    <div><a href="/kooperationspartnerinnen">KOOPERATIONSPARTNER*INNEN</a></div>
                     <div><a href="/downloads">DOWNLOADS</a></div>
                     <div><a href="/impressum">IMPRESSUM</a></div>
                     <div><a href="/datenschutz">DATENSCHUTZ</a></div>
