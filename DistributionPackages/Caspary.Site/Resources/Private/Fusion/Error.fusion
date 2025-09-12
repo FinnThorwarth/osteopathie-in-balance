@@ -11,17 +11,11 @@ error = Neos.Fusion:Case {
   notFound {
     @position = 'start'
     condition = ${statusCode == 404 && notfoundDocument}
-    renderer = Neos.Fusion:Http.Message {
-      httpResponseHead {
-        statusCode = 404
-        headers.Content-Type = 'text/html'
-      }
-      body = Neos.Fusion:Renderer {
-        @context.node = ${notfoundDocument}
-        @context.site = ${site}
-        @context.documentNode = ${notfoundDocument}
-        renderPath = '/root'
-      }
+    renderer = Neos.Neos:Page {
+      @context.node = ${notfoundDocument}
+      @context.site = ${site}
+      @context.documentNode = ${notfoundDocument}
+      @process.httpStatus = ${response.setStatusCode(404)}
     }
   }
   
@@ -29,17 +23,11 @@ error = Neos.Fusion:Case {
   4xx {
     @position = 'end'
     condition = ${statusCode >= 400 && statusCode < 500 && notfoundDocument}
-    renderer = Neos.Fusion:Http.Message {
-      httpResponseHead {
-        statusCode = ${statusCode}
-        headers.Content-Type = 'text/html'
-      }
-      body = Neos.Fusion:Renderer {
-        @context.node = ${notfoundDocument}
-        @context.site = ${site}
-        @context.documentNode = ${notfoundDocument}
-        renderPath = '/root'
-      }
+    renderer = Neos.Neos:Page {
+      @context.node = ${notfoundDocument}
+      @context.site = ${site}
+      @context.documentNode = ${notfoundDocument}
+      @process.httpStatus = ${response.setStatusCode(statusCode)}
     }
   }
 }
