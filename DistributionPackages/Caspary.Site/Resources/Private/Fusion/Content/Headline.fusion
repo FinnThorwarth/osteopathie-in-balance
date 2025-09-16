@@ -12,11 +12,11 @@ prototype(Caspary.Site:Content.Headline) < prototype(Neos.Neos:ContentComponent)
             'right' = 'text-right'
         }
         headingSizeClasses = Neos.Fusion:Map {
-            'h2' = 'text-3xl md:text-3xl font-bold'
-            'h3' = 'text-xl md:text-2xl font-semibold'
-            'h4' = 'text-xl md:text-2xl font-semibold'
-            'h5' = 'text-xl md:text-2xl font-medium'
-            'h6' = 'text-lg md:text-xl font-medium'
+            'h2' = 'text-3xl md:text-3xl font-bold hyphens-auto'
+            'h3' = 'text-xl md:text-2xl font-semibold hyphens-auto'
+            'h4' = 'text-xl md:text-2xl font-semibold hyphens-auto'
+            'h5' = 'text-xl md:text-2xl font-medium hyphens-auto'
+            'h6' = 'text-lg md:text-xl font-medium hyphens-auto'
         }
     }
 
