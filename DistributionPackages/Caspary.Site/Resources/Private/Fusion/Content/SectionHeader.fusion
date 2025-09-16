@@ -20,7 +20,7 @@ prototype(Caspary.Site:Content.SectionHeader) < prototype(Neos.Neos:ContentCompo
                <div class="flex flex-row gap-2">
                <span class="inline-block text-caspary-akzent">
                 <span @if={q(node).property('sectionTitle')} class=" font-light">\</span></span>
-                <h1 class="text-3xl md:text-4xl font-medium uppercase leading-[1.25em] mb-2 text-caspary-akzent inline-block hyphens-auto">{props.sectionTitle}</h1>
+                <h1 class="text-3xl md:text-4xl font-medium uppercase leading-[1.25em] text-caspary-akzent inline-block hyphens-auto">{props.sectionTitle}</h1>
                 </div>
                 <h2 class="hyphens-auto text-xl md:text-2xl text-caspary-blue leading-[1.25em] ">
                     {props.subtitle}
@@ -30,7 +30,7 @@ prototype(Caspary.Site:Content.SectionHeader) < prototype(Neos.Neos:ContentCompo
         <div @if={!props.backend} class="mb-2">
             <div class={props.halfWidth ? 'lg:w-1/2 font-headline' : '' + 'font-headline'}>
               <div class="flex flex-row gap-2">
-                <span class="text-3xl md:text-4xl inline-block text-caspary-akzent pr-1"><span @if={q(node).property('sectionTitle')} class=" font-light">\</span></span> <h1 class="text-3xl md:text-4xl font-medium uppercase leading-[1.25em] mb-2 text-caspary-akzent inline-block hyphens-auto">{props.sectionTitle}</h1>
+                <span class="text-3xl md:text-4xl inline-block text-caspary-akzent pr-1"><span @if={q(node).property('sectionTitle')} class=" font-light">\</span></span> <h1 class="text-3xl md:text-4xl font-medium uppercase leading-[1.25em] text-caspary-akzent inline-block hyphens-auto">{props.sectionTitle}</h1>
                 </div>
                 <h2 @if={props.subtitle} class="hyphens-auto text-xl md:text-2xl text-caspary-blue leading-[1.25em]">
                     {props.subtitle}
