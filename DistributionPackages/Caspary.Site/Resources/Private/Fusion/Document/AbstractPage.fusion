@@ -70,7 +70,7 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
 
       renderer = afx`
             {props.heroImage}
-            <div class="container font-body py-8">
+            <div class="container font-body py-4 md:py-8">
               {props.main}
               {props.authorCard}
             </div>

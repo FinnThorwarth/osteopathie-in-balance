@@ -9,7 +9,7 @@ prototype(Caspary.Site:Document.JournalOverviewPage) < prototype(Caspary.Site:Do
             2 = ${Neos.Caching.descendantOfTag(documentNode)}
         }
     }
-    
+
     head {
         journalStyles = Neos.Fusion:Tag {
             tagName = 'style'
@@ -40,7 +40,7 @@ prototype(Caspary.Site:Document.JournalOverviewPage) < prototype(Caspary.Site:Do
 
         renderer = afx`
             {props.heroImage}
-            <div class="container font-body py-8">
+            <div class="container font-body py-4 md:py-8">
                 <div class="journal-overview">
                     {props.main}
                     {props.journalPages}

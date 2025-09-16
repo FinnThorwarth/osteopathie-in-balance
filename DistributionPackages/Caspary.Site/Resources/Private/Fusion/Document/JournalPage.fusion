@@ -62,7 +62,7 @@ prototype(Caspary.Site:Document.JournalPage) < prototype(Caspary.Site:Document.A
 
         renderer = afx`
             {props.heroImage}
-            <div class="container font-body py-8">
+            <div class="container font-body py-4 md:py-8">
                 <article>
                     {props.articleMeta}
                     {props.main}
