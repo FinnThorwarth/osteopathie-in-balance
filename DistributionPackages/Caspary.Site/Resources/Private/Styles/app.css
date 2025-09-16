@@ -325,7 +325,6 @@ main {
   list-style-position: outside !important;
   margin-left: 1.5rem !important;
   padding-left: 0.5rem !important;
-  margin-bottom: 1rem !important;
 }
 
 .font-light-body ul:not([class]),
