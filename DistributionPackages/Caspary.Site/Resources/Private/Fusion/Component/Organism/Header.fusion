@@ -29,7 +29,7 @@ prototype(Caspary.Site:Component.Organism.Header) < prototype(Neos.Fusion:Compon
                 <div class="text-white container">
                     <div class="flex items-center font-light justify-between py-2  xl:py-4">
                         <div class="flex items-center space-x-2">
-                            <span class="hidden lg:inline">Büro: Mo-Fr 8-16.00 / Bereitschaftsdienst: Mo-So 7 - 22 Uhr</span>
+                            <span class="hidden lg:inline">Büro: Mo-Fr 9 - 16.00 / Bereitschaftsdienst: Mo-So 7 - 22 Uhr</span>
                         </div>
                         <div class="flex items-center space-x-4">
                             <button title="Kontrast umschalten" onclick="if(window.toggleGrayscale) window.toggleGrayscale(); return false;" class="hover:underline flex items-center gap-1">
