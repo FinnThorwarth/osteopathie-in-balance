@@ -7,6 +7,7 @@ prototype(Caspary.Site:Document.AbstractPage) < prototype(Neos.Neos:Page) {
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="apple-mobile-web-app-title" content="Caspary Bestattungen" />
+        <meta name="google-site-verification" content="5aFqiw7mBARiKWnZTFCJj2c1Njm4ONPHs3q1a9GPisU" />
 
         <link rel="icon" type="image/png" href={StaticResource.uri('Caspary.Site', 'Public/Favicon/favicon-96x96.png')} sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href={StaticResource.uri('Caspary.Site', 'Public/Favicon/favicon.svg')} />
