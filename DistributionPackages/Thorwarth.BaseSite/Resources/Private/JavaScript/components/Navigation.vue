@@ -94,9 +94,9 @@
       ></div>
 
       <!-- Slide-in Menu Panel from right -->
-      <div class="absolute right-0 top-0 bottom-0 w-full max-w-md xl:max-w-xl bg-mobility-red rounded-bl-[3rem] flex items-center justify-center shadow-2xl">
+      <div class="absolute right-0 top-0 bottom-0 w-full max-w-md xl:max-w-xl bg-mobility-red rounded-bl-[3rem] shadow-2xl overflow-y-auto">
         <!-- Menu Content -->
-        <div class="w-full text-center px-8 py-16">
+        <div class="w-full text-center px-8 py-16 min-h-full flex flex-col justify-start pt-24">
           <nav>
             <!-- Main menu items (white text, larger) -->
             <ul class="space-y-6 mb-12">
@@ -266,18 +266,38 @@ export default {
 
     window.addEventListener('scroll', this.handleScroll);
 
+    // Handle window resize - close menu when switching to desktop
+    this.handleResize = () => {
+      const isDesktop = window.innerWidth >= 1280; // xl breakpoint
+      if (isDesktop && this.isMenuOpen && !this.isScrolled) {
+        // Close menu when switching to desktop breakpoint where horizontal nav is visible
+        this.closeMenu();
+      }
+    };
+
+    window.addEventListener('resize', this.handleResize);
+
     // Close menu on escape key
-    document.addEventListener("keydown", (e) => {
+    this.escapeListener = (e) => {
       if (e.key === "Escape" && this.isMenuOpen) {
         this.closeMenu();
       }
-    });
+    };
+    document.addEventListener("keydown", this.escapeListener);
   },
   beforeUnmount() {
     document.body.style.overflow = "";
     // Remove scroll listener
     if (this.handleScroll) {
       window.removeEventListener('scroll', this.handleScroll);
+    }
+    // Remove resize listener
+    if (this.handleResize) {
+      window.removeEventListener('resize', this.handleResize);
+    }
+    // Remove escape key listener
+    if (this.escapeListener) {
+      document.removeEventListener('keydown', this.escapeListener);
     }
   },
 };
