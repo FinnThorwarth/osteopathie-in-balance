@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "baef0da6576b15d7664850d18aa64afa",
+    "content-hash": "d22032f53d80242a48466d32f172b8b7",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2724,6 +2724,34 @@
                 "source": "https://github.com/Masterminds/html5-php/tree/2.10.0"
             },
             "time": "2025-07-25T09:04:22+00:00"
+        },
+        {
+            "name": "mobility/site",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./DistributionPackages/Mobility.Site",
+                "reference": "390498e2eabf16542e6efcd9b1ab03d949741720"
+            },
+            "require": {
+                "neos/neos": "*",
+                "thorwarth/basesite": "@dev"
+            },
+            "type": "neos-site",
+            "extra": {
+                "neos": {
+                    "package-key": "Mobility.Site"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Mobility\\Site\\": "Classes/"
+                }
+            },
+            "description": "Site package based on Thorwarth.BaseSite",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "neos/cache",
@@ -7286,45 +7314,6 @@
             "time": "2025-05-28T13:35:51+00:00"
         },
         {
-            "name": "sitegeist/chantalle",
-            "version": "v2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sitegeist/Sitegeist.Chantalle.git",
-                "reference": "924652ee44f98a847c83da5ce2d985349cfe000d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sitegeist/Sitegeist.Chantalle/zipball/924652ee44f98a847c83da5ce2d985349cfe000d",
-                "reference": "924652ee44f98a847c83da5ce2d985349cfe000d",
-                "shasum": ""
-            },
-            "require": {
-                "neos/flow": "^9.0"
-            },
-            "type": "neos-package",
-            "extra": {
-                "neos": {
-                    "package-key": "Sitegeist.Chantalle"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sitegeist\\Chantalle\\": "Classes/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0-or-later"
-            ],
-            "description": "Adopt packages into the local distribution package folder and adjust the names",
-            "support": {
-                "issues": "https://github.com/sitegeist/Sitegeist.Chantalle/issues",
-                "source": "https://github.com/sitegeist/Sitegeist.Chantalle/tree/v2.0.0"
-            },
-            "time": "2025-08-05T11:56:33+00:00"
-        },
-        {
             "name": "symfony/console",
             "version": "v6.4.26",
             "source": {
@@ -9418,34 +9407,6 @@
                 "source": "https://github.com/TYPO3/Fluid"
             },
             "time": "2024-08-30T21:24:26+00:00"
-        },
-        {
-            "name": "vendor/site",
-            "version": "dev-main",
-            "dist": {
-                "type": "path",
-                "url": "./DistributionPackages/Vendor.Site",
-                "reference": "63c3bcf3e6201db1f0f5155302836f795bdb2532"
-            },
-            "require": {
-                "neos/neos": "*",
-                "thorwarth/basesite": "@dev"
-            },
-            "type": "neos-site",
-            "extra": {
-                "neos": {
-                    "package-key": "Vendor.Site"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Vendor\\Site\\": "Classes/"
-                }
-            },
-            "description": "Site package based on Thorwarth.BaseSite",
-            "transport-options": {
-                "relative": true
-            }
         },
         {
             "name": "webmozart/assert",
@@ -11790,7 +11751,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "vendor/site": 20
+        "mobility/site": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

@@ -11,7 +11,7 @@ set -e
 # Default values
 SITE_NAME="${1:-BaseSite}"
 NODE_NAME="${2:-basesite}"
-PACKAGE_KEY="Vendor.Site"
+PACKAGE_KEY="Mobility.Site"
 NODE_TYPE="Thorwarth.BaseSite:Document.Homepage"
 
 echo "================================================"

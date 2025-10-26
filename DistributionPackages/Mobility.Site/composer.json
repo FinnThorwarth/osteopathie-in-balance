@@ -1,6 +1,6 @@
 {
-    "name": "vendor/site",
     "description": "Site package based on Thorwarth.BaseSite",
+    "name": "mobility/site",
     "type": "neos-site",
     "require": {
         "neos/neos": "*",
@@ -8,12 +8,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Vendor\\Site\\": "Classes/"
+            "Mobility\\Site\\": "Classes/"
         }
     },
     "extra": {
         "neos": {
-            "package-key": "Vendor.Site"
+            "package-key": "Mobility.Site"
         }
     },
     "minimum-stability": "dev"
