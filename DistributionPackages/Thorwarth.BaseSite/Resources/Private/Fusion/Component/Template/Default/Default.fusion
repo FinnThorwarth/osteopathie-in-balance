@@ -1,0 +1,40 @@
+prototype(Thorwarth.BaseSite:Component.Template.Default) < prototype(Neos.Fusion:Component) {
+  # Property API
+  menu = ''
+  content = ''
+  documentNode = ${documentNode}
+  site = ${site}
+  javascripts = ''
+
+  # Ensure context is available
+  @context {
+    documentNode = ${documentNode}
+    site = ${site}
+  }
+
+  # Template
+  renderer = afx`
+    <div id="app" v-cloak @if={!node.context.inBackend}>
+      <div :class="grayscaleActive ? 'grayscale-mode' : ''">
+        <Thorwarth.BaseSite:Component.Organism.Header />
+
+        <main id="main" class="">
+          {props.content}
+        </main>
+
+        <Thorwarth.BaseSite:Component.Organism.Footer />
+      </div>
+    </div>
+    <div @if={node.context.inBackend}>
+      <div>
+        <Thorwarth.BaseSite:Component.Organism.Header />
+
+        <main id="main" class="">
+          {props.content}
+        </main>
+
+        <Thorwarth.BaseSite:Component.Organism.Footer />
+      </div>
+    </div>
+  `
+}

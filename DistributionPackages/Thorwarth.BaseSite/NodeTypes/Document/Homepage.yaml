@@ -1,0 +1,20 @@
+'Thorwarth.BaseSite:Document.Homepage':
+  superTypes:
+    'Neos.Neos:Site': true
+    'Thorwarth.BaseSite:Document.AbstractPage': true
+  ui:
+    icon: globe
+    label: 'Startseite'
+  # Erlaubte Unterseiten der Homepage
+  constraints:
+    nodeTypes:
+      'Thorwarth.BaseSite:Document.Homepage': false  # Keine weitere Homepage
+      'Thorwarth.BaseSite:Document.AuthorsContainer': true  # Autoren-Container erlaubt
+      'Thorwarth.BaseSite:Document.Page': true  # Normale Seiten erlaubt
+      'Thorwarth.BaseSite:Document.JournalOverviewPage': true  # Journal-Übersicht erlaubt
+      'Thorwarth.BaseSite:Document.JournalPage': false  # Journal-Seiten nur unter JournalOverviewPage
+      'Thorwarth.BaseSite:Document.SearchPage': true  # Such-Seite erlaubt
+      'Thorwarth.BaseSite:Document.Author': false  # Autoren nur im Container
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'

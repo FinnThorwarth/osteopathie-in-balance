@@ -1,0 +1,105 @@
+'Thorwarth.BaseSite:Content.TextImage':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Bild & Text'
+    icon: 'icon-file-image'
+    position: 20
+    group: 'general'
+    inspector:
+      groups:
+        image:
+          label: 'Bild'
+          position: 10
+        options:
+          label: 'Optionen'
+          position: 20
+  properties:
+    image:
+      type: 'Neos\Media\Domain\Model\ImageInterface'
+      ui:
+        label: 'Bild'
+        reloadIfChanged: true
+        inspector:
+          group: 'image'
+          position: 10
+          editorOptions:
+            features:
+              crop: true
+              resize: false
+            crop:
+              aspectRatio:
+                allowCustom: true
+                locked:
+                  width: 16
+                  height: 9
+    alternativeText:
+      type: string
+      ui:
+        label: 'Alternativtext'
+        inspector:
+          group: 'image'
+          position: 20
+    imageAlt:
+      type: string
+      ui:
+        label: 'Bild Alternativtext'
+        inspector:
+          group: 'image'
+          position: 21
+    imageTitle:
+      type: string
+      ui:
+        label: 'Bild Titel'
+        inspector:
+          group: 'image'
+          position: 22
+    columnLayout:
+      type: string
+      defaultValue: 'image-text-50-50'
+      ui:
+        label: 'Spaltenaufteilung'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 10
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'image-text-50-50':
+                label: 'Bild/Text (50/50)'
+              'image-text-33-66':
+                label: 'Bild/Text (33/66)'
+              'image-text-66-33':
+                label: 'Bild/Text (66/33)'
+              'text-image-50-50':
+                label: 'Text/Bild (50/50)'
+              'text-image-66-33':
+                label: 'Text/Bild (66/33)'
+              'text-image-33-66':
+                label: 'Text/Bild (33/66)'
+    heading:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Überschrift'
+            formatting:
+              h2: true
+              h3: true
+              h4: true
+    text:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Text'
+            autoparagraph: true
+            formatting:
+              strong: true
+              em: true
+              a: true
+              ul: true
+              ol: true

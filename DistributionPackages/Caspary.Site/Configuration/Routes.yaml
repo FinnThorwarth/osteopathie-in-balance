@@ -1,9 +1,0 @@
--
-  name: 'Caspary.Site Search API'
-  uriPattern: 'api/search'
-  defaults:
-    '@package': 'Caspary.Site'
-    '@controller': 'Search'
-    '@action': 'search'
-    '@format': 'json'
-  httpMethods: ['GET']

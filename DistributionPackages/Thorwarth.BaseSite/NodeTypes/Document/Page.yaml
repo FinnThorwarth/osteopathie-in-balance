@@ -1,0 +1,15 @@
+'Thorwarth.BaseSite:Document.Page':
+  superTypes:
+    'Neos.Neos:Document': true
+    'Thorwarth.BaseSite:Document.AbstractPage': true
+  ui:
+    icon: file
+    label: 'Standardseite'
+  constraints:
+    nodeTypes:
+      'Thorwarth.BaseSite:Document.Page': true  # Normale Seiten erlaubt
+      'Thorwarth.BaseSite:Document.JournalOverviewPage': true  # Journal-Übersicht erlaubt
+      'Thorwarth.BaseSite:Document.JournalPage': false  # Journal-Seiten nur unter JournalOverviewPage
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'

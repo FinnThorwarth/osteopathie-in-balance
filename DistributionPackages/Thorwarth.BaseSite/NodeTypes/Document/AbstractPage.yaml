@@ -1,0 +1,74 @@
+"Thorwarth.BaseSite:Document.AbstractPage":
+  abstract: true
+  superTypes:
+    "Neos.Neos:Document": true
+    "Thorwarth.BaseSite:Mixin.Image": true
+    "Thorwarth.BaseSite:Mixin.AuthorReference": true
+  childNodes:
+    main:
+      type: "Neos.Neos:ContentCollection"
+      constraints:
+        nodeTypes:
+          "*": false
+          "Thorwarth.BaseSite:Content.IntroSection": true
+          "Thorwarth.BaseSite:Content.TeamSection": true
+          "Thorwarth.BaseSite:Content.TwoColumnSection": true
+          "Thorwarth.BaseSite:Content.TextModule": true
+          "Thorwarth.BaseSite:Content.ImageSlider": true
+          "Thorwarth.BaseSite:Content.FullWidthImage": true
+          "Thorwarth.BaseSite:Content.ChildPageList": true
+          "Thorwarth.BaseSite:Content.ContactForm": true
+          "Thorwarth.BaseSite:Content.DownloadSection": true
+
+  constraints:
+    nodeTypes:
+      "Thorwarth.BaseSite:Document.Homepage": false
+      "Thorwarth.BaseSite:Constraint.Document.Restricted": false
+
+  properties:
+    footerInfoLeft:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            inlineStyling:
+              linkStyle: true
+            preset: "text.free"
+            formatting:
+              strong: true
+              em: true
+              sub: true
+              sup: true
+              p: false
+              h1: false
+              h2: false
+              h3: false
+              pre: false
+              ol: true
+              ul: true
+              a: true
+            placeholder: Footer Inhalt
+    footerInfoRight:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            inlineStyling:
+              linkStyle: true
+            preset: "text.free"
+            formatting:
+              strong: true
+              em: true
+              sub: true
+              sup: true
+              p: false
+              h1: false
+              h2: false
+              h3: false
+              pre: false
+              ol: true
+              ul: true
+              a: true
+            placeholder: Footer Inhalt

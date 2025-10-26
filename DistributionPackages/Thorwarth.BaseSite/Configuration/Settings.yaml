@@ -1,0 +1,23 @@
+Neos:
+  Neos:
+    sites:
+      '*':
+        uriPathSuffix: ''
+    nodeTypes:
+      groups:
+        caspary:
+          label: 'Text-Module'
+          position: 100
+        overview:
+          label: 'Übersichts-Module'
+          position: 200
+        media:
+          label: 'Medien-Module'
+          position: 300
+#     userInterface:
+#       translation:
+#         autoInclude:
+#           'Thorwarth.BaseSite': ['Main']
+  Fusion:
+    defaultContext:
+      Caspary.Image: 'Thorwarth\BaseSite\Eel\Helper\ImageHelper'

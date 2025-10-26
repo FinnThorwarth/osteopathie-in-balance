@@ -1,0 +1,32 @@
+'Thorwarth.BaseSite:Content.ContactForm':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Kontaktformular'
+    icon: 'icon-envelope'
+    group: 'general'
+    inspector:
+      groups:
+        settings:
+          label: 'Einstellungen'
+          position: 10
+  properties:
+    recipientEmail:
+      type: string
+      defaultValue: 'info@caspary-bestattungen.de'
+      ui:
+        label: 'Empfänger E-Mail'
+        reloadIfChanged: false
+        inspector:
+          group: 'settings'
+        validation:
+          'Neos.Neos/Validation/EmailAddressValidator': true
+    successMessage:
+      type: string
+      defaultValue: 'Vielen Dank für Ihre Nachricht. Wir werden uns schnellstmöglich bei Ihnen melden.'
+      ui:
+        label: 'Erfolgsmeldung'
+        reloadIfChanged: false
+        inspector:
+          group: 'settings'
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'

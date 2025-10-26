@@ -1,0 +1,74 @@
+'Thorwarth.BaseSite:Content.TeamMember':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Teamkachel'
+    icon: 'icon-user'
+    group: 'caspary'
+    inspector:
+      groups:
+        image:
+          label: 'Bild'
+          position: 10
+  options:
+    fusion:
+      prototypeGenerator: null
+  search:
+    searchNodeType: false
+  label: "${node.properties.name ? 'Teamkachel (' + node.properties.name + ')' : 'Teamkachel'}"
+  properties:
+    name:
+      type: string
+      ui:
+        label: 'Name'
+        reloadIfChanged: true
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Name'
+    position:
+      type: string
+      ui:
+        label: 'Position / Rolle'
+        reloadIfChanged: true
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Position / Rolle'
+    pronouns:
+      type: string
+      ui:
+        label: 'Pronomen'
+        reloadIfChanged: true
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Pronomen'
+    image:
+      type: 'Neos\Media\Domain\Model\ImageInterface'
+      ui:
+        label: 'Foto'
+        reloadIfChanged: true
+        inspector:
+          group: 'image'
+          editorOptions:
+            features:
+              crop: true
+            crop:
+              aspectRatio:
+                forceCrop: true
+                locked:
+                  width: 1
+                  height: 1
+    imageAlt:
+      type: string
+      ui:
+        label: 'Foto Alternativtext'
+        inspector:
+          group: 'image'
+    imageTitle:
+      type: string
+      ui:
+        label: 'Foto Titel'
+        inspector:
+          group: 'image'

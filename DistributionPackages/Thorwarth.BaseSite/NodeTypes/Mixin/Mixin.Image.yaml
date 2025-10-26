@@ -1,0 +1,23 @@
+'Thorwarth.BaseSite:Mixin.Image':
+  abstract: true
+  ui:
+    inspector:
+      groups:
+        image:
+          label: 'Bild'
+          position: 5
+          icon: 'icon-image'
+  properties:
+    image:
+      type: Neos\Media\Domain\Model\ImageInterface
+      ui:
+        label: 'Bild'
+        inspector:
+          group: 'image'
+        reloadIfChanged: true
+    alternativeText:
+      type: string
+      ui:
+        label: 'Alternativer Text'
+        inspector:
+          group: 'image'

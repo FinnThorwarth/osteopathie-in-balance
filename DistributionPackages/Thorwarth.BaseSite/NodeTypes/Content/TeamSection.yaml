@@ -1,0 +1,17 @@
+"Thorwarth.BaseSite:Content.TeamSection":
+  superTypes:
+    "Neos.Neos:Content": true
+    "Neos.Neos:ContentCollection": true
+  ui:
+    label: "Team Übersicht"
+    icon: "icon-users"
+    group: "overview"
+    inspector:
+      groups:
+        content:
+          label: "Content"
+          position: 10
+  constraints:
+    nodeTypes:
+      "*": false
+      "Thorwarth.BaseSite:Content.TeamMember": true

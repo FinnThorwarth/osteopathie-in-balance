@@ -1,0 +1,13 @@
+# 
+# Security policy for Thorwarth.BaseSite
+#
+
+roles:
+  'Neos.Flow:Everybody':
+    privileges:
+      -
+        privilegeTarget: 'Neos.Neos:PublicFrontendAccess'
+        permission: GRANT
+      -
+        privilegeTarget: 'Neos.Neos:AllControllerActions'
+        permission: GRANT

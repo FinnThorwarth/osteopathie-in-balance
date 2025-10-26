@@ -1,0 +1,38 @@
+prototype(Thorwarth.BaseSite:Content.TeamMember) < prototype(Neos.Neos:ContentComponent) {
+    image = ${q(node).property('image')}
+    imageAlt = ${q(node).property('imageAlt')}
+    imageTitle = ${q(node).property('imageTitle')}
+
+    renderer = afx`
+        <div class="team-member group bg-caspary-team-member-bg border-t-2 border-caspary-akzent">
+            <div class="relative aspect-[1/1] overflow-hidden">
+                <Thorwarth.BaseSite:TeamMemberImage
+                    @if.hasImage={props.image}
+                    image={props.image}
+                    alternativeText={props.imageAlt || q(node).property('name')}
+                    title={props.imageTitle}
+                    class="w-full h-full object-cover object-center"
+                />
+                <div class="flex items-center justify-center w-full h-full" @if.hasNoImage={!props.image}>
+                    <svg class="w-32 h-32 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="p-4 pb-8">
+                <h3 class="text-3xl font-medium font-headline uppercase text-caspary-akzent">
+                    <Neos.Neos:Editable property="name" block={true} />
+                </h3>
+
+                <p class=" text-lg leading-[1.25em]">
+                    <Neos.Neos:Editable property="position" block={true} />
+                </p>
+
+                <p class=" text-lg leading-[1.25em]">
+                   Pronomen: <Neos.Neos:Editable property="pronouns" block={false} />
+                </p>
+            </div>
+        </div>
+    `
+}

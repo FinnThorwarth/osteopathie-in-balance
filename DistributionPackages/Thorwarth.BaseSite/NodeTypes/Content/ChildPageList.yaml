@@ -1,0 +1,9 @@
+'Thorwarth.BaseSite:Content.ChildPageList':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Seitenliste (Unterordner)'
+    icon: 'icon-list'
+    position: 20
+    group: 'overview'
+

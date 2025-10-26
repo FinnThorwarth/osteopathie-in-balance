@@ -1,0 +1,19 @@
+{
+    "description": "",
+    "type": "neos-site",
+    "name": "mobility/site",
+    "require": {
+        "neos/flow": "*",
+        "thorwarth/basesite": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mobility\\Site\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Mobility.Site"
+        }
+    }
+}

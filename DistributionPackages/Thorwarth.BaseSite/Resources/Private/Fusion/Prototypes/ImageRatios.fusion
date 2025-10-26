@@ -1,0 +1,90 @@
+# Predefined image ratio configurations for common use cases
+prototype(Thorwarth.BaseSite:ImageRatio) < prototype(Neos.Fusion:Component) {
+    ratio = '16:9'
+    
+    # Common ratio presets
+    @context.ratios = ${Configuration.setting('Thorwarth.BaseSite.imageRatios')}
+    
+    # Helper prototypes for specific ratios
+    widescreen = '16:9'
+    standard = '4:3'
+    square = '1:1'
+    portrait = '3:4'
+    ultrawide = '21:9'
+    classic = '3:2'
+    vertical = '2:3'
+    
+    renderer = ${props.ratio}
+}
+
+# Hero image with responsive variants
+prototype(Thorwarth.BaseSite:HeroImage) < prototype(Thorwarth.BaseSite:ResponsiveImage) {
+    ratio = '16:9'
+    sizes = ${Configuration.setting('Thorwarth.BaseSite.imageSizes.hero.sizes')}
+    quality = 90
+    
+    variants = Neos.Fusion:DataStructure {
+        mobile = ${{'width': 768}}
+        tablet = ${{'width': 1024, 'media': '(min-width: 768px)'}}
+        desktop = ${{'width': 1920, 'media': '(min-width: 1024px)'}}
+        wide = ${{'width': 2560, 'media': '(min-width: 1920px)'}}
+        ultra = ${{'width': 3840, 'media': '(min-width: 2560px)'}}
+    }
+    
+    class = 'w-full h-auto'
+}
+
+# Content image with optimized sizes
+prototype(Thorwarth.BaseSite:ContentImage) < prototype(Thorwarth.BaseSite:ResponsiveImage) {
+    ratio = null # Preserve original ratio
+    sizes = ${Configuration.setting('Thorwarth.BaseSite.imageSizes.content.sizes')}
+    quality = 85
+    
+    variants = ${Configuration.setting('Neos.Media.variantPresets.Thorwarth.BaseSite:Content.variants')}
+    
+    class = 'max-w-full h-auto'
+}
+
+# Thumbnail image for cards and listings
+prototype(Thorwarth.BaseSite:ThumbnailImage) < prototype(Thorwarth.BaseSite:ResponsiveImage) {
+    ratio = '4:3'
+    sizes = ${Configuration.setting('Thorwarth.BaseSite.imageSizes.card.sizes')}
+    quality = 85
+    
+    variants = ${Configuration.setting('Neos.Media.variantPresets.Thorwarth.BaseSite:Thumbnail.variants')}
+    
+    class = 'w-full h-auto object-cover'
+}
+
+# Team member portrait
+prototype(Thorwarth.BaseSite:TeamMemberImage) < prototype(Thorwarth.BaseSite:ResponsiveImage) {
+    ratio = '3:4'
+    sizes = ${Configuration.setting('Thorwarth.BaseSite.imageSizes.card.sizes')}
+    quality = 90
+    
+    variants = ${Configuration.setting('Neos.Media.variantPresets.Thorwarth.BaseSite:TeamMember.variants')}
+    
+    class = 'w-full h-auto object-cover'
+    loading = 'lazy'
+}
+
+# Square image for social media or avatars
+prototype(Thorwarth.BaseSite:SquareImage) < prototype(Thorwarth.BaseSite:ResponsiveImage) {
+    ratio = '1:1'
+    sizes = ${Configuration.setting('Thorwarth.BaseSite.imageSizes.card.sizes')}
+    quality = 85
+    
+    variants = ${Configuration.setting('Neos.Media.variantPresets.Thorwarth.BaseSite:Square.variants')}
+    
+    class = 'w-full h-auto object-cover'
+}
+
+# Half-width content image
+prototype(Thorwarth.BaseSite:HalfWidthImage) < prototype(Thorwarth.BaseSite:ContentImage) {
+    sizes = ${Configuration.setting('Thorwarth.BaseSite.imageSizes.halfWidth.sizes')}
+}
+
+# Third-width content image
+prototype(Thorwarth.BaseSite:ThirdWidthImage) < prototype(Thorwarth.BaseSite:ContentImage) {
+    sizes = ${Configuration.setting('Thorwarth.BaseSite.imageSizes.thirdWidth.sizes')}
+}

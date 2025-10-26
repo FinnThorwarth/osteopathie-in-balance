@@ -1,0 +1,79 @@
+'Thorwarth.BaseSite:Document.JournalPage':
+  superTypes:
+    'Thorwarth.BaseSite:Document.AbstractPage': true
+  constraints:
+    nodeTypes:
+      '*': false
+  ui:
+    label: 'Journal-Artikel'
+    icon: 'icon-newspaper'
+    group: 'general'
+    position: 200
+    # Hide from main menu structure
+    showInMenu: false
+    inspector:
+      groups:
+        journal:
+          label: 'Journal-Einstellungen'
+          position: 5
+          icon: 'icon-newspaper'
+  properties:
+    hiddenInMenu:
+      type: boolean
+      defaultValue: true
+
+    previewImage:
+      type: Neos\Media\Domain\Model\ImageInterface
+      ui:
+        label: 'Vorschaubild'
+        inspector:
+          group: 'image'
+        reloadIfChanged: true
+      previewImageAlternativeText:
+        type: string
+        ui:
+          label: 'Alternativer Text'
+          inspector:
+            group: 'image'
+
+    publicationDate:
+      type: DateTime
+      defaultValue: 'now'
+      ui:
+        label: 'Veröffentlichungsdatum'
+        inspector:
+          group: 'journal'
+          position: 10
+          editorOptions:
+            format: 'd.m.Y'
+
+    excerpt:
+      type: string
+      ui:
+        label: 'Kurzbeschreibung'
+        help:
+          message: 'Wird in Übersichten und für SEO verwendet'
+        inspector:
+          group: 'journal'
+          position: 20
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+          editorOptions:
+            rows: 3
+            placeholder: 'Kurze Zusammenfassung des Artikels...'
+
+    categories:
+      type: string
+      ui:
+        label: 'Kategorien'
+        help:
+          message: 'Komma-getrennte Liste von Kategorien'
+        inspector:
+          group: 'journal'
+          position: 30
+          editorOptions:
+            placeholder: 'z.B. Ratgeber, Vorsorge, Trauer'
+
+    # Override default to show author card by default on journal pages
+    showAuthorCard:
+      type: boolean
+      defaultValue: true

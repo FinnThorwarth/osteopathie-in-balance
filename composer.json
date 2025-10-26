@@ -28,9 +28,11 @@
         "neos/redirecthandler-databasestorage": "~6.0.4",
         "neos/redirecthandler-ui": "~3.0.1",
         "neos/form-builder": "^3.0.3",
-        "caspary/site": "@dev",
         "sitegeist/archaeopteryx": "^2.0",
-        "neos/symfonymailer": "^1.0"
+        "neos/symfonymailer": "^1.0",
+        "sitegeist/chantalle": "^2.0",
+        "thorwarth/basesite": "@dev",
+        "mobility/site": "@dev"
     },
     "require-dev": {
         "neos/buildessentials": "~9.0.0",

@@ -1,0 +1,33 @@
+'Thorwarth.BaseSite:Content.MobileMenu':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Mobile Menu'
+    icon: 'fas fa-bars'
+    inspector:
+      groups:
+        menu:
+          label: 'Menu Settings'
+          position: 5
+  properties:
+    menuTitle:
+      type: string
+      defaultValue: 'MENÜ'
+      ui:
+        label: 'Menu Title'
+        inspector:
+          group: 'menu'
+    maxLevels:
+      type: integer
+      defaultValue: 2
+      ui:
+        label: 'Maximum Menu Levels'
+        inspector:
+          group: 'menu'
+    entryLevel:
+      type: integer
+      defaultValue: 1
+      ui:
+        label: 'Entry Level'
+        inspector:
+          group: 'menu'

@@ -1,0 +1,75 @@
+prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:Component) {
+    # Disable caching to ensure context is available
+    @cache {
+        mode = 'uncached'
+        context {
+            1 = 'site'
+            2 = 'documentNode'
+        }
+    }
+
+    navigationData = Thorwarth.BaseSite:Component.Molecule.NavigationData
+
+    searchPageUri = Neos.Fusion:Case {
+        searchPage {
+            condition = ${q(site).find('[instanceof Thorwarth.BaseSite:Document.SearchPage]').count() > 0}
+            renderer = Neos.Neos:NodeUri {
+                node = ${q(site).find('[instanceof Thorwarth.BaseSite:Document.SearchPage]').get(0)}
+            }
+        }
+        default {
+            condition = true
+            renderer = '#'
+        }
+    }
+
+    renderer = afx`
+        <header class="sticky top-0 right-0 left-0 z-50 bg-white">
+            <div class="bg-caspary-blue">
+                <div class="text-white container">
+                    <div class="flex items-center font-light justify-between py-2  xl:py-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="hidden lg:inline">Büro: Mo-Fr 9 - 16.00 / Bereitschaftsdienst: Mo-So 7 - 22 Uhr</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <button title="Kontrast umschalten" onclick="if(window.toggleGrayscale) window.toggleGrayscale(); return false;" class="hover:underline flex items-center gap-1">
+                                <img src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/kontrast.svg')} alt="" class="h-5" />
+                                <span class="hidden md:inline">Kontrast</span>
+                            </button>
+                            <!--
+                            <a href={props.searchPageUri} title="Zur Suche" class="flex items-center gap-1">
+                                <img src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/search.svg')} alt="" class="h-6" />
+                                <span class="hidden md:inline">Suche</span>
+                            </a>
+                            -->
+                            <a href="mailto:info@caspary-bestattungen.de" title="E-Mail schreiben" class="flex items-center gap-1">
+                                <span class="text-[22px] leading-[22px] -translate-y-[10%]">@</span>
+                                <span class="hidden md:inline">E-Mail</span>
+                            </a>
+                            <a href="tel:0421383055" title="Anrufen" class="flex items-center gap-1">
+                                <img src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/telefon.svg')} alt="" class="h-4" />
+                                <span class="hidden md:inline">Anruf</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shadow-md">
+            <div class="container">
+                <nav class="bg-white relative z-40">
+                    <div class="flex items-center justify-between py-6">
+                        <div class="flex items-center">
+                            <a href="/">
+                                <img src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/logo.svg')}
+                                    alt="Caspary Bestattungen"
+                                    class="h-auto w-[150px] xl:w-[300px]" />
+                            </a>
+                        </div>
+                        <div id="navigation-vue" data-navigation={props.navigationData || '{"menuItems":[],"currentNodeIdentifier":"debug-no-context"}'}></div>
+                    </div>
+                </nav>
+            </div>
+            </div>
+        </header>
+    `
+}

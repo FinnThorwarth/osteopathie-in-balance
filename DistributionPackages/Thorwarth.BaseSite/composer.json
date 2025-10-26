@@ -1,0 +1,19 @@
+{
+    "description": "",
+    "type": "neos-package",
+    "require": {
+        "neos/neos": "*"
+    },
+    "name": "thorwarth/basesite",
+    "autoload": {
+        "psr-4": {
+            "Thorwarth\\BaseSite\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Thorwarth.BaseSite"
+        }
+    },
+    "minimum-stability": "dev"
+}

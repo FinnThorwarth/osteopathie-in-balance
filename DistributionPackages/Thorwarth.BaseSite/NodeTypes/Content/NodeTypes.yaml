@@ -1,0 +1,30 @@
+# Define custom node type groups and constraints
+'Neos.Neos:Document':
+  constraints:
+    nodeTypes:
+      'Thorwarth.BaseSite:Document.Homepage': true
+      'Thorwarth.BaseSite:Document.StandardPage': true
+      'Thorwarth.BaseSite:Document.TrauerfallPage': true
+      'Thorwarth.BaseSite:Document.SearchPage': true
+      'Thorwarth.BaseSite:Document.ErrorPage': true
+      'Neos.NodeTypes:Page': false
+
+'Neos.Neos:Content':
+  constraints:
+    nodeTypes:
+      'Thorwarth.BaseSite:Content.*': true
+
+# Custom content groups
+'Neos.Neos:ContentCollection':
+  ui:
+    inspector:
+      groups:
+        caspary:
+          label: 'Caspary Module'
+          position: 5
+
+# Site root constraints
+'Neos.Neos:Sites':
+  constraints:
+    nodeTypes:
+      'Thorwarth.BaseSite:Document.Homepage': true

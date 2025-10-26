@@ -1,0 +1,90 @@
+'Thorwarth.BaseSite:Content.IntroSection':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Einstieg'
+    icon: 'icon-file-text-o'
+    group: 'caspary'
+    inspector:
+      groups:
+        content:
+          label: 'Content'
+          position: 10
+        layout:
+          label: 'Layout'
+          position: 20
+  childNodes:
+    header:
+      type: 'Thorwarth.BaseSite:Content.SectionHeader'
+  properties:
+    sectionTitle:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Einstiegstext'
+    subtitle:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Untertitel'
+    leftColumnText:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Text linke Spalte'
+            autoparagraph: true
+            formatting:
+              p: true
+              strong: true
+              em: true
+              h3: true
+              ul: true
+              ol: true
+              a: true
+            linking:
+              anchor: true
+              title: true
+              relNofollow: true
+              targetBlank: true
+    rightColumnText:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Text rechte Spalte'
+            autoparagraph: true
+            formatting:
+              p: true
+              strong: true
+              em: true
+              h3: true
+              ul: true
+              ol: true
+              a: true
+            linking:
+              anchor: true
+              title: true
+              relNofollow: true
+              targetBlank: true
+    columnMode:
+      type: string
+      defaultValue: 'two-columns'
+      ui:
+        label: 'Spaltenmodus'
+        reloadIfChanged: true
+        inspector:
+          group: 'layout'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'one-column':
+                label: 'Eine Spalte'
+              'two-columns':
+                label: 'Zwei Spalten'

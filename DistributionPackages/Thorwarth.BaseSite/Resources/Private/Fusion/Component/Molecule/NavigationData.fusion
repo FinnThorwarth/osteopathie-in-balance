@@ -1,0 +1,46 @@
+prototype(Thorwarth.BaseSite:Component.Molecule.NavigationData) < prototype(Neos.Fusion:DataStructure) {
+    // Direct access to context variables
+    currentNodeIdentifier = ${documentNode ? documentNode.identifier : null}
+    currentNodePath = ${documentNode ? documentNode.path : null}
+    currentNodeName = ${documentNode ? documentNode.name : null}
+
+    menuItems = Neos.Fusion:Map {
+        items = ${q(site).children('[instanceof Neos.Neos:Document][_hidden != true][hiddenInMenu != true][hiddenInMenu != true]')}
+        itemRenderer = Neos.Fusion:DataStructure {
+            title = ${q(item).property('title')}
+            url = Neos.Neos:NodeUri {
+                node = ${item}
+                format = ''
+            }
+            nodeIdentifier = ${item.identifier}
+            nodePath = ${item.path}
+            isActive = ${item == documentNode || q(documentNode).parents().filter('[_identifier = "' + item.identifier + '"]').count() > 0}
+            hasActiveChild = ${q(documentNode).parents().filter('[_identifier = "' + item.identifier + '"]').count() > 0}
+            children = Neos.Fusion:Map {
+                items = ${q(item).children('[instanceof Neos.Neos:Document][_hidden != true][hiddenInMenu != true][hiddenInMenu != true]')}
+                itemRenderer = Neos.Fusion:DataStructure {
+                    title = ${q(item).property('title')}
+                    url = Neos.Neos:NodeUri {
+                        node = ${item}
+                        format = ''
+                    }
+                    isActive = ${item == documentNode || q(documentNode).parents().filter('[_identifier = "' + item.identifier + '"]').count() > 0}
+                    hasActiveChild = ${q(documentNode).parents().filter('[_identifier = "' + item.identifier + '"]').count() > 0}
+                    children = Neos.Fusion:Map {
+                        items = ${q(item).children('[instanceof Neos.Neos:Document][_hidden != true][hiddenInMenu != true][hiddenInMenu != true]')}
+                        itemRenderer = Neos.Fusion:DataStructure {
+                            title = ${q(item).property('title')}
+                            url = Neos.Neos:NodeUri {
+                                node = ${item}
+                                format = ''
+                            }
+                            isActive = ${item == documentNode}
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @process.toJson = ${Json.stringify(value)}
+}

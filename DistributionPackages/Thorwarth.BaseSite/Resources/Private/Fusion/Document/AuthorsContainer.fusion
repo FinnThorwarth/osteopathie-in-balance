@@ -1,0 +1,70 @@
+prototype(Thorwarth.BaseSite:Document.AuthorsContainer) < prototype(Thorwarth.BaseSite:Document.AbstractPage) {
+    # Meta-Tags für noindex/nofollow
+    head.metaRobotsTags = Neos.Fusion:Tag {
+        tagName = 'meta'
+        attributes {
+            name = 'robots'
+            content = 'noindex, nofollow'
+        }
+    }
+    
+    body.content = Neos.Fusion:Component {
+        title = ${q(node).property('title')}
+        
+        # Liste aller Autoren im Container
+        authors = Neos.Fusion:Loop {
+            items = ${q(node).children('[instanceof Thorwarth.BaseSite:Document.Author]').get()}
+            itemName = 'author'
+            
+            itemRenderer = Neos.Fusion:Component {
+                authorNode = ${author}
+                fullName = ${q(author).property('fullName')}
+                jobTitle = ${q(author).property('jobTitle')}
+                bio = ${q(author).property('bio')}
+                profileImage = ${q(author).property('profileImage')}
+                authorUrl = Neos.Neos:NodeUri {
+                    node = ${author}
+                }
+                
+                renderer = afx`
+                    <div class="author-list-item bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                        <a href={props.authorUrl} class="flex flex-col md:flex-row gap-6">
+                            <div @if={props.profileImage} class="flex-shrink-0">
+                                <Neos.Neos:ImageTag
+                                    asset={props.profileImage}
+                                    attributes.alt={props.fullName + ' Profilbild'}
+                                    attributes.class="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
+                                    attributes.loading="lazy"
+                                />
+                            </div>
+                            
+                            <div class="flex-grow">
+                                <h2 class="text-xl font-bold text-gray-900 mb-1">{props.fullName}</h2>
+                                <p @if={props.jobTitle} class="text-gray-600 mb-3">{props.jobTitle}</p>
+                                <p @if={props.bio} class="text-gray-700 line-clamp-3">{props.bio}</p>
+                                
+                                <span class="inline-block mt-4 text-caspary-green hover:text-caspary-darkgreen font-medium">
+                                    Profil ansehen →
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                `
+            }
+        }
+        
+        renderer = afx`
+            <div class="container py-12">
+                <h1 class="text-3xl md:text-4xl font-bold mb-8">{props.title}</h1>
+                
+                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+                    {props.authors}
+                </div>
+                
+                <div @if={!props.authors} class="bg-gray-50 rounded-lg p-8 text-center">
+                    <p class="text-gray-600">Noch keine Autoren vorhanden.</p>
+                </div>
+            </div>
+        `
+    }
+}

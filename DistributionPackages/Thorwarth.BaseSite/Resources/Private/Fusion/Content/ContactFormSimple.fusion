@@ -1,0 +1,53 @@
+prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentComponent) {
+    renderer = afx`
+        <div class="contact-form-wrapper">
+            <Neos.Fusion.Form:Form form.target.action="contact" form.target.controller="ContactForm" form.target.package="Thorwarth.BaseSite">
+                <div class="contact-form">
+                    <div class="mb-4">
+                        <label for="name">Name *</label>
+                        <Neos.Fusion.Form:Input 
+                            field.name="name"
+                            attributes.required={true}
+                            attributes.placeholder="Ihr Name"
+                            attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded" />
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="telefon">Telefon</label>
+                        <Neos.Fusion.Form:Input 
+                            field.name="telefon"
+                            attributes.type="tel"
+                            attributes.placeholder="Ihre Telefonnummer"
+                            attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded" />
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="email">E-Mail *</label>
+                        <Neos.Fusion.Form:Input 
+                            field.name="email"
+                            attributes.type="email"
+                            attributes.required={true}
+                            attributes.placeholder="Ihre E-Mail-Adresse"
+                            attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded" />
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="nachricht">Nachricht *</label>
+                        <Neos.Fusion.Form:Textarea 
+                            field.name="nachricht"
+                            attributes.required={true}
+                            attributes.placeholder="Ihre Nachricht"
+                            attributes.rows="5"
+                            attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded" />
+                    </div>
+
+                    <div class="form-actions mt-4">
+                        <Neos.Fusion.Form:Button attributes.class="px-6 py-2 bg-caspary-blue text-white rounded hover:bg-blue-700">
+                            Nachricht senden
+                        </Neos.Fusion.Form:Button>
+                    </div>
+                </div>
+            </Neos.Fusion.Form:Form>
+        </div>
+    `
+}
