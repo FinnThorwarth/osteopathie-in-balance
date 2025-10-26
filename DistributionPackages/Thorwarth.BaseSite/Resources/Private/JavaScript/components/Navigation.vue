@@ -3,7 +3,7 @@
     <!-- Desktop Navigation (horizontal bar) - only visible when NOT scrolled -->
     <nav
       v-if="!isScrolled"
-      class="hidden xl:block bg-mobility-red text-white"
+      class="hidden xl:block bg-mobility-red-dark text-white rounded-tl-3xl"
     >
       <div class="container mx-auto px-4">
         <ul class="flex items-center justify-end space-x-8 text-lg 2xl:text-xl font-light">
