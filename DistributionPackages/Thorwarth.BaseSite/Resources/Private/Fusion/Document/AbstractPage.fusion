@@ -6,14 +6,14 @@ prototype(Thorwarth.BaseSite:Document.AbstractPage) < prototype(Neos.Neos:Page) 
       renderer = afx`
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="apple-mobile-web-app-title" content="Caspary Bestattungen" />
+        <meta name="apple-mobile-web-app-title" content="Fahrzeuge Mieten - Mobility" />
         <meta name="google-site-verification" content="5aFqiw7mBARiKWnZTFCJj2c1Njm4ONPHs3q1a9GPisU" />
 
-        <link rel="icon" type="image/png" href={StaticResource.uri('Thorwarth.BaseSite', 'Public/Favicon/favicon-96x96.png')} sizes="96x96" />
-        <link rel="icon" type="image/svg+xml" href={StaticResource.uri('Thorwarth.BaseSite', 'Public/Favicon/favicon.svg')} />
-        <link rel="shortcut icon" href={StaticResource.uri('Thorwarth.BaseSite', 'Public/Favicon/favicon.ico')} />
-        <link rel="apple-touch-icon" sizes="180x180" href={StaticResource.uri('Thorwarth.BaseSite', 'Public/Favicon/apple-touch-icon.png')} />
-        <link rel="manifest" href={StaticResource.uri('Thorwarth.BaseSite', 'Public/Favicon/site.webmanifest')} />
+        <link rel="icon" type="image/png" href={StaticResource.uri('Mobility.Site', 'Public/Favicon/favicon-96x96.png')} sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href={StaticResource.uri('Mobility.Site', 'Public/Favicon/favicon.svg')} />
+        <link rel="shortcut icon" href={StaticResource.uri('Mobility.Site', 'Public/Favicon/favicon.ico')} />
+        <link rel="apple-touch-icon" sizes="180x180" href={StaticResource.uri('Mobility.Site', 'Public/Favicon/apple-touch-icon.png')} />
+        <link rel="manifest" href={StaticResource.uri('Mobility.Site', 'Public/Favicon/site.webmanifest')} />
       `
     }
 
@@ -24,11 +24,11 @@ prototype(Thorwarth.BaseSite:Document.AbstractPage) < prototype(Neos.Neos:Page) 
             content = Neos.Fusion:Case {
                 titleOverwrite {
                     condition = ${q(node).property('titleOverride') ? true : false}
-                    renderer = ${q(node).property('titleOverride') + ' | Caspary Bestattungen in Bremen'}
+                    renderer = ${q(node).property('titleOverride') + ' | Fahrzeuge Mieten - Mobility'}
                 }
                 default {
                     condition = true
-                    renderer = ${q(node).property('title') + ' | Caspary Bestattungen in Bremen'}
+                    renderer = ${q(node).property('title') + ' | Fahrzeuge Mieten - Mobility'}
                 }
             }
         }
@@ -41,7 +41,7 @@ prototype(Thorwarth.BaseSite:Document.AbstractPage) < prototype(Neos.Neos:Page) 
 
   body = Thorwarth.BaseSite:Component.Template.Default {
     @process.addBodyClass = Neos.Fusion:Augmenter {
-      class = 'font-headline bg-white text-caspary-black'
+      class = 'font-headline bg-white text-mobility-gray'
     }
     # Define template properties
     menu = Neos.Neos:Menu

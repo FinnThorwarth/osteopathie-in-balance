@@ -1,7 +1,17 @@
 :root {
   --font-size-base: 18px;
-  --color-purple: #7b5664;
-  --caspary-akzent: var(--color-purple);
+
+  /* Mobility Brand Colors */
+  --mobility-red: #C8102E;
+  --mobility-red-dark: #A00D24;
+  --mobility-red-light: #E31E3A;
+  --mobility-navy: #1E3A5F;
+  --mobility-navy-dark: #162D47;
+  --mobility-blue: #003C71;
+  --mobility-gray: #2B2B2A;
+  --mobility-text: #4A4A49;
+  --mobility-white: #FFFFFF;
+  --mobility-accent: #FFDD00;
 }
 
 /* ubuntu-sans-100 - latin */
@@ -199,6 +209,82 @@ main {
 @tailwind components;
 @tailwind utilities;
 
+/* Mobility Component Styles */
+@layer components {
+  /* Mobility Button Styles */
+  .btn-mobility-primary {
+    @apply bg-mobility-red hover:bg-mobility-red-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
+  }
+
+  .btn-mobility-secondary {
+    @apply bg-mobility-navy hover:bg-mobility-navy-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
+  }
+
+  .btn-mobility-outline {
+    @apply border-2 border-mobility-red text-mobility-red hover:bg-mobility-red hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200;
+  }
+
+  /* Mobility Header */
+  .mobility-header {
+    @apply bg-mobility-red text-white;
+  }
+
+  /* Mobility Footer */
+  .mobility-footer {
+    @apply bg-mobility-footer text-white;
+  }
+
+  /* Mobility Card */
+  .mobility-card {
+    @apply bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300;
+  }
+
+  /* Mobility Section */
+  .mobility-section {
+    @apply py-16 px-4;
+  }
+
+  .mobility-section-red {
+    @apply bg-mobility-red text-white py-16 px-4;
+  }
+
+  .mobility-section-navy {
+    @apply bg-mobility-navy text-white py-16 px-4;
+  }
+
+  .mobility-section-light {
+    @apply bg-mobility-bg-light py-16 px-4;
+  }
+
+  /* Mobility Heading Styles */
+  .mobility-h1 {
+    @apply font-headline text-4xl md:text-5xl lg:text-6xl font-bold text-mobility-gray leading-tight;
+  }
+
+  .mobility-h2 {
+    @apply font-headline text-3xl md:text-4xl font-semibold text-mobility-gray leading-tight;
+  }
+
+  .mobility-h3 {
+    @apply font-headline text-2xl md:text-3xl font-semibold text-mobility-gray leading-tight;
+  }
+
+  /* Mobility Text Styles */
+  .mobility-text-body {
+    @apply font-body text-base md:text-lg text-mobility-text leading-relaxed;
+  }
+
+  /* Mobility Link Styles */
+  .mobility-link {
+    @apply text-mobility-red hover:text-mobility-red-dark underline transition-colors duration-200;
+  }
+
+  /* Mobility Container */
+  .mobility-container {
+    @apply container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl;
+  }
+}
+
 /* WYSIWYG Editor Styles */
 @layer components {
   /* Rich text editor content styling - with higher specificity to override prose styles */
@@ -223,20 +309,20 @@ main {
 
     /* Headings */
     h2 {
-      @apply text-3xl font-bold mb-4 mt-8 text-caspary-gray !important;
+      @apply text-3xl font-bold mb-4 mt-8 text-mobility-gray !important;
     }
 
     h3 {
-      @apply text-2xl font-semibold mb-3 mt-6 text-caspary-gray !important;
+      @apply text-2xl font-semibold mb-3 mt-6 text-mobility-gray !important;
     }
 
     h4 {
-      @apply text-xl font-semibold mb-2 mt-4 text-caspary-gray !important;
+      @apply text-xl font-semibold mb-2 mt-4 text-mobility-gray !important;
     }
 
     /* Paragraphs */
     p {
-      @apply mb-4 leading-relaxed text-caspary-text !important;
+      @apply mb-4 leading-relaxed text-mobility-text !important;
     }
 
     /* Unordered Lists */
@@ -244,7 +330,7 @@ main {
       @apply list-disc ml-6 mb-4 space-y-1 !important;
 
       li {
-        @apply leading-relaxed text-caspary-text !important;
+        @apply leading-relaxed text-mobility-text !important;
       }
 
       /* Nested lists */
@@ -258,7 +344,7 @@ main {
       @apply list-decimal ml-6 mb-4 space-y-1 !important;
 
       li {
-        @apply leading-relaxed text-caspary-text !important;
+        @apply leading-relaxed text-mobility-text !important;
       }
 
       /* Nested lists */
@@ -269,7 +355,7 @@ main {
 
     /* Links */
     a {
-      @apply text-caspary-purple underline hover:text-caspary-purple-dark transition-colors !important;
+      @apply text-mobility-red underline hover:text-mobility-red-dark transition-colors !important;
     }
 
     /* Subscript & Superscript */
@@ -357,7 +443,7 @@ main {
 section strong {
   font-family: "Roboto Slab" !important;
   font-weight: 700 !important;
-  color: #2B2B2A !important;
+  color: var(--mobility-gray) !important;
 }
 
 /* Ensure em/italic elements use correct font */

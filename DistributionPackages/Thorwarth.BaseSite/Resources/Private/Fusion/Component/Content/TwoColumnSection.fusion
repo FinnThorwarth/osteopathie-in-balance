@@ -16,7 +16,7 @@ prototype(Thorwarth.BaseSite:Content.TwoColumnSection) < prototype(Neos.Neos:Con
 
     renderer = afx`
         <section class='py-4 lg:py-8 bg-white'>
-                <div class="text-caspary-akzent font-headline leading-none border-t-2 border-caspary-akzent pt-2">
+                <div class="text-mobility-red font-headline leading-none border-t-2 border-mobility-red pt-2">
                     <h2 class="text-3xl md:text-3xl pb-1">
                         {props.headline}
                     </h2>

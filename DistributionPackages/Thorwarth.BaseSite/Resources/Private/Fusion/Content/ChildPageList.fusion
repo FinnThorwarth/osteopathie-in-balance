@@ -19,10 +19,10 @@ prototype(Thorwarth.BaseSite:Content.ChildPageList) < prototype(Neos.Neos:Conten
             <Neos.Fusion:Fragment @if={props.childPages && Array.length(props.childPages) > 0}>
                 <ul class="">
                     <Neos.Fusion:Loop items={props.childPages}>
-                        <li class="border-t last-of-type:border-b first-of-type:border-t-0 border-caspary-akzent">
+                        <li class="border-t last-of-type:border-b first-of-type:border-t-0 border-mobility-red">
                             <a
                                 href={item.url}
-                                class="font-headline uppercase block no-underline not-italic text-caspary-black hover:text-caspary-akzent"
+                                class="font-headline uppercase block no-underline not-italic text-mobility-gray hover:text-mobility-red"
                             >
                                 {item.title}
                             </a>

@@ -25,7 +25,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
   }
 
   renderer = afx`
-   <footer class="bg-caspary-footer text-white py-8 md:py-12 mt-20 relative">
+   <footer class="mobility-footer text-white py-8 md:py-12 mt-20 relative">
     {props.includeIconFooterMobile}
     <div class="container">
         <div class="grid md:grid-cols-2 md:gap-0">

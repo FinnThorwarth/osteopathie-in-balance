@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Outline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 32 32">
+  <!-- Generator: Adobe Illustrator 29.2.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 116)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+        stroke: #fff;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2.1px;
+      }
+    </style>
+  </defs>
+  <path class="st0" d="M5.6,12.7c0,5.9,6.3,13.9,9,17.2.7.8,1.9.8,2.6,0,2.8-3.3,9-11.3,9-17.2S21.7,2.4,16,2.4,5.6,7,5.6,12.7Z"/>
+  <circle class="st0" cx="16" cy="12.7" r="4.3"/>
+</svg>

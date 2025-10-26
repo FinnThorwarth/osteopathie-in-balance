@@ -42,7 +42,7 @@ prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentC
                     </div>
 
                     <div class="form-actions mt-4">
-                        <Neos.Fusion.Form:Button attributes.class="px-6 py-2 bg-caspary-blue text-white rounded hover:bg-blue-700">
+                        <Neos.Fusion.Form:Button attributes.class="px-6 py-2 bg-mobility-navy text-white rounded hover:bg-mobility-navy-dark">
                             Nachricht senden
                         </Neos.Fusion.Form:Button>
                     </div>

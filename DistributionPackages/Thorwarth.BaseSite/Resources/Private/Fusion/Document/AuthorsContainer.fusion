@@ -43,7 +43,7 @@ prototype(Thorwarth.BaseSite:Document.AuthorsContainer) < prototype(Thorwarth.Ba
                                 <p @if={props.jobTitle} class="text-gray-600 mb-3">{props.jobTitle}</p>
                                 <p @if={props.bio} class="text-gray-700 line-clamp-3">{props.bio}</p>
                                 
-                                <span class="inline-block mt-4 text-caspary-green hover:text-caspary-darkgreen font-medium">
+                                <span class="inline-block mt-4 text-mobility-navy hover:text-mobility-navy-dark font-medium">
                                     Profil ansehen →
                                 </span>
                             </div>

@@ -12,7 +12,7 @@ prototype(Thorwarth.BaseSite:Document.SearchPage) < prototype(Thorwarth.BaseSite
             renderer = afx`
                 <div class="container py-8">
                     <h1 class="text-4xl md:text-5xl uppercase mb-2 font-headline">
-                        <span class="inline-block text-caspary-akzent">\ Suche</span>
+                        <span class="inline-block text-mobility-red">\ Suche</span>
                     </h1>
 
                     <div id="search-vue"

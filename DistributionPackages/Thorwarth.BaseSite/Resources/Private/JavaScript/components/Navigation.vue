@@ -58,7 +58,7 @@
       <nav class="relative h-full">
         <!-- Navigation boxes - 4 columns -->
         <div
-          class="container grid grid-cols-4 gap-2 items-start justify-center text-caspary-purple"
+          class="container grid grid-cols-4 gap-2 items-start justify-center text-mobility-red"
         >
           <!-- Dynamic columns based on menu items -->
           <div
@@ -82,7 +82,7 @@
               <li
                 v-for="child in item.children"
                 :key="child.title"
-                class="border-t last-of-type:border-b border-caspary-purple"
+                class="border-t last-of-type:border-b border-mobility-red"
               >
                 <!-- Items with sub-children -->
                 <div v-if="child.children && child.children.length > 0">
@@ -99,7 +99,7 @@
                     </a>
                     <button
                       @click="toggleSubmenu(getSubmenuKey(child.title))"
-                      class="border-l border-caspary-purple px-2"
+                      class="border-l border-mobility-red px-2"
                     >
                       {{ submenuOpen[getSubmenuKey(child.title)] ? "−" : "+" }}
                     </button>
@@ -111,7 +111,7 @@
                     <li
                       v-for="subChild in child.children"
                       :key="subChild.title"
-                      class="border-t border-caspary-purple"
+                      class="border-t border-mobility-red"
                     >
                       <a
                         :href="subChild.url"
@@ -147,12 +147,12 @@
     <!-- Mobile Menu Overlay -->
     <div v-if="isMenuOpen" class="fixed inset-0 top-[136px] z-50 bg-white xl:hidden">
       <!-- Mobile Menu Content -->
-      <div class="h-full text-caspary-purple overflow-y-auto pb-20">
+      <div class="h-full text-mobility-red overflow-y-auto pb-20">
         <div class="">
           <div
             v-for="(item, index) in mobileMenuItems"
             :key="item.title"
-            class="border-t border-caspary-purple"
+            class="border-t border-mobility-red"
             :class="{ 'border-b': index === mobileMenuItems.length - 1 }"
           >
             <!-- Top level items with children -->
@@ -172,7 +172,7 @@
               </span>
               <button
                 @click="toggleMobileSubmenu(item.title)"
-                class="text-2xl pl-4 border-l border-caspary-purple"
+                class="text-2xl pl-4 border-l border-mobility-red"
               >
                 {{ item.isOpen ? "−" : "+" }}
               </button>
@@ -190,7 +190,7 @@
 
             <div v-if="item.isOpen && item.items && item.items.length > 0" class="">
               <ul class="">
-                <li v-for="(subItem, subIndex) in item.items" :key="subItem.title" class="border-t border-caspary-purple" >
+                <li v-for="(subItem, subIndex) in item.items" :key="subItem.title" class="border-t border-mobility-red" >
                   <!-- Sub items without children -->
                   <a
                     v-if="!subItem.children || subItem.children.length === 0"
@@ -222,13 +222,13 @@
                       </span>
                       <button
                         @click="toggleMobileSubmenu(subItem.title)"
-                        class="text-2xl px-4 border-l border-caspary-purple"
+                        class="text-2xl px-4 border-l border-mobility-red"
                       >
                         {{ subItem.isOpen ? "−" : "+" }}
                       </button>
                     </div>
                     <ul v-if="subItem.isOpen" class="">
-                      <li v-for="(child, childIndex) in subItem.children" :key="child.title" class="border-t border-caspary-purple">
+                      <li v-for="(child, childIndex) in subItem.children" :key="child.title" class="border-t border-mobility-red">
                         <a
                           :href="child.href"
                           @click="handleNavClick"

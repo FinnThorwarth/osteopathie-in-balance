@@ -6,13 +6,13 @@
           v-model="searchQuery"
           type="text"
           :placeholder="placeholder"
-          class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-caspary-blue"
+          class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-mobility-red"
           minlength="2"
           required
         />
         <button
           type="submit"
-          class="px-6 py-2 bg-caspary-blue text-white rounded-lg hover:bg-caspary-purple transition-colors"
+          class="btn-mobility-primary"
           :disabled="loading"
         >
           {{ loading ? 'Suche läuft...' : 'Suchen' }}
@@ -28,7 +28,7 @@
           class="search-result-item mb-6 p-4 border-b border-gray-200"
         >
           <h2 class="text-xl font-semibold mb-2">
-            <a :href="result.uri" class="text-caspary-blue hover:underline">
+            <a :href="result.uri" class="mobility-link">
               {{ result.title }}
             </a>
           </h2>
@@ -81,7 +81,7 @@
     </div>
 
     <div v-if="loading" class="text-center py-8">
-      <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-caspary-blue"></div>
+      <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-mobility-red"></div>
     </div>
   </div>
 </template>

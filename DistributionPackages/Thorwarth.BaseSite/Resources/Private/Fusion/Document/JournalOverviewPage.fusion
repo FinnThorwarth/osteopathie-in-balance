@@ -18,7 +18,7 @@ prototype(Thorwarth.BaseSite:Document.JournalOverviewPage) < prototype(Thorwarth
                 headingColor = ${q(documentNode).property('headingColor') || '#6B9F8C'}
                 borderColor = ${q(documentNode).property('borderColor') || '#6B9F8C'}
 
-                value = ${':root { --journal-footer-bg: ' + this.footerBackground + '; --journal-heading-color: ' + this.headingColor + '; --journal-border-color: ' + this.borderColor + '; --caspary-akzent: #6B9F8C; }'}
+                value = ${':root { --journal-footer-bg: ' + this.footerBackground + '; --journal-heading-color: ' + this.headingColor + '; --journal-border-color: ' + this.borderColor + '; --mobility-red: #E30613; }'}
             }
         }
 

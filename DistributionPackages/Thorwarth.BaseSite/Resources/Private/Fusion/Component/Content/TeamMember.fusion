@@ -4,7 +4,7 @@ prototype(Thorwarth.BaseSite:Content.TeamMember) < prototype(Neos.Neos:ContentCo
     imageTitle = ${q(node).property('imageTitle')}
 
     renderer = afx`
-        <div class="team-member group bg-caspary-team-member-bg border-t-2 border-caspary-akzent">
+        <div class="team-member group bg-mobility-bg-light border-t-2 border-mobility-red">
             <div class="relative aspect-[1/1] overflow-hidden">
                 <Thorwarth.BaseSite:TeamMemberImage
                     @if.hasImage={props.image}
@@ -21,7 +21,7 @@ prototype(Thorwarth.BaseSite:Content.TeamMember) < prototype(Neos.Neos:ContentCo
             </div>
 
             <div class="p-4 pb-8">
-                <h3 class="text-3xl font-medium font-headline uppercase text-caspary-akzent">
+                <h3 class="text-3xl font-medium font-headline uppercase text-mobility-red">
                     <Neos.Neos:Editable property="name" block={true} />
                 </h3>
 

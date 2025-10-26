@@ -23,12 +23,12 @@ prototype(Thorwarth.BaseSite:Content.DownloadItem) < prototype(Neos.Neos:Content
     @process.convertUris = Neos.Neos:ConvertUris
 
     renderer = afx`
-        <div class="download-item mb-4 md:mb-8 text-caspary-footer hover:text-caspary-white" @if.hasFile={props.file}>
+        <div class="download-item mb-4 md:mb-8 text-mobility-text hover:text-white" @if.hasFile={props.file}>
             <Neos.Fusion:Tag
                 tagName={renderingMode.isEdit ? 'div' : 'a'}
                 attributes.href={renderingMode.isEdit ? null : props.fileUri}
                 attributes.download={renderingMode.isEdit ? null : props.fileName}
-                attributes.class="download-link border-t-2 border-caspary-footer bg-caspary-team-member-bg hover:bg-caspary-footer text-caspary-footer hover:text-caspary-white shadow-xl px-6 py-4 transition-colors flex items-center justify-between group block no-underline not-italic"
+                attributes.class="download-link border-t-2 border-mobility-footer bg-mobility-bg-light hover:bg-mobility-footer text-mobility-text hover:text-white shadow-xl px-6 py-4 transition-colors flex items-center justify-between group block no-underline not-italic"
             >
                 <div class="flex items-center space-x-4">
                     <Thorwarth.BaseSite:Component.Molecule.FileIcon fileExtension={props.fileExtension} className="w-6 h-6 " />
