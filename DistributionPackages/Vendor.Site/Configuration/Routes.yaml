@@ -1,0 +1,7 @@
+# Include routes from Thorwarth.BaseSite
+-
+  name: 'Thorwarth.BaseSite'
+  uriPattern: '<Thorwarth.BaseSiteSubroutes>'
+  subRoutes:
+    'Thorwarth.BaseSiteSubroutes':
+      package: 'Thorwarth.BaseSite'

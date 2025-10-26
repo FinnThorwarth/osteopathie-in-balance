@@ -31,7 +31,7 @@
         "sitegeist/archaeopteryx": "^2.0",
         "neos/symfonymailer": "^1.0",
         "sitegeist/chantalle": "^2.0",
-        "thorwarth/basesite": "@dev"
+        "vendor/site": "@dev"
     },
     "require-dev": {
         "neos/buildessentials": "~9.0.0",
@@ -49,6 +49,8 @@
     "replace": {
         "typo3/neos-base-distribution": "9.0.4"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "suggest": {
         "ext-pdo_sqlite": "For running functional tests out-of-the-box this is required",
         "neos/behat": "For running neos behat tests"

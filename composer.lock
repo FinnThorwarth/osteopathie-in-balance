@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e427060e0366bd2b45482e3a6d3d9b33",
+    "content-hash": "baef0da6576b15d7664850d18aa64afa",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -9346,12 +9346,12 @@
             "dist": {
                 "type": "path",
                 "url": "./DistributionPackages/Thorwarth.BaseSite",
-                "reference": "e865dc80b3a805613e533894eaa54a52bc1aee6e"
+                "reference": "4e67ee474d0fc4645ccd887634ab05693317721f"
             },
             "require": {
                 "neos/neos": "*"
             },
-            "type": "neos-site",
+            "type": "neos-package",
             "extra": {
                 "neos": {
                     "package-key": "Thorwarth.BaseSite"
@@ -9362,6 +9362,7 @@
                     "Thorwarth\\BaseSite\\": "Classes/"
                 }
             },
+            "description": "Reusable base package with Vue.js, Tailwind CSS, and Vite build system for Neos CMS",
             "transport-options": {
                 "relative": true
             }
@@ -9417,6 +9418,34 @@
                 "source": "https://github.com/TYPO3/Fluid"
             },
             "time": "2024-08-30T21:24:26+00:00"
+        },
+        {
+            "name": "vendor/site",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./DistributionPackages/Vendor.Site",
+                "reference": "63c3bcf3e6201db1f0f5155302836f795bdb2532"
+            },
+            "require": {
+                "neos/neos": "*",
+                "thorwarth/basesite": "@dev"
+            },
+            "type": "neos-site",
+            "extra": {
+                "neos": {
+                    "package-key": "Vendor.Site"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vendor\\Site\\": "Classes/"
+                }
+            },
+            "description": "Site package based on Thorwarth.BaseSite",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "webmozart/assert",
@@ -11759,11 +11788,11 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
-        "thorwarth/basesite": 20
+        "vendor/site": 20
     },
-    "prefer-stable": false,
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {},
     "platform-dev": {},

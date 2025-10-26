@@ -1,10 +1,10 @@
 {
-    "description": "",
-    "type": "neos-site",
+    "name": "thorwarth/basesite",
+    "description": "Reusable base package with Vue.js, Tailwind CSS, and Vite build system for Neos CMS",
+    "type": "neos-package",
     "require": {
         "neos/neos": "*"
     },
-    "name": "thorwarth/basesite",
     "autoload": {
         "psr-4": {
             "Thorwarth\\BaseSite\\": "Classes/"

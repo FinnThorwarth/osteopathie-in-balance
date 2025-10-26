@@ -1,0 +1,20 @@
+{
+    "name": "vendor/site",
+    "description": "Site package based on Thorwarth.BaseSite",
+    "type": "neos-site",
+    "require": {
+        "neos/neos": "*",
+        "thorwarth/basesite": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vendor\\Site\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Vendor.Site"
+        }
+    },
+    "minimum-stability": "dev"
+}
