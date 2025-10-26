@@ -1,0 +1,14 @@
+{
+    "identifier": "6d1d9089-3a6b-4684-8f7a-74a7e852458d",
+    "type": "IMAGE",
+    "title": "",
+    "copyrightNotice": "",
+    "caption": "",
+    "assetSourceIdentifier": "neos",
+    "resource": {
+        "filename": "wedemeyer.jpg",
+        "collectionName": "persistent",
+        "mediaType": "image\/jpeg",
+        "sha1": "5208d1c5bb50ffc0ff715513b744e196a5b8b74b"
+    }
+}
