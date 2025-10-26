@@ -31,8 +31,7 @@
         "sitegeist/archaeopteryx": "^2.0",
         "neos/symfonymailer": "^1.0",
         "sitegeist/chantalle": "^2.0",
-        "thorwarth/basesite": "@dev",
-        "mobility/site": "@dev"
+        "thorwarth/basesite": "@dev"
     },
     "require-dev": {
         "neos/buildessentials": "~9.0.0",

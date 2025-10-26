@@ -9346,7 +9346,7 @@
             "dist": {
                 "type": "path",
                 "url": "./DistributionPackages/Thorwarth.BaseSite",
-                "reference": "a29073f1223935552c7502ceac62ee0bc6972237"
+                "reference": "e865dc80b3a805613e533894eaa54a52bc1aee6e"
             },
             "require": {
                 "neos/neos": "*"

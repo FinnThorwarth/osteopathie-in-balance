@@ -1,6 +1,6 @@
 {
     "description": "",
-    "type": "neos-package",
+    "type": "neos-site",
     "require": {
         "neos/neos": "*"
     },
