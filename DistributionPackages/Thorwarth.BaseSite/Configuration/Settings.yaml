@@ -3,6 +3,9 @@ Neos:
     sites:
       '*':
         uriPathSuffix: ''
+    fusion:
+      autoInclude:
+        'Thorwarth.BaseSite': true
     nodeTypes:
       groups:
         caspary:
