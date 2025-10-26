@@ -1,7 +1,7 @@
 [
     {
-        "name": "Caspary Bestattungen",
-        "nodeName": "caspary",
+        "name": "BaseSite",
+        "nodeName": "basesite",
         "siteResourcesPackageKey": "Vendor.Site",
         "online": true,
         "domains": []
