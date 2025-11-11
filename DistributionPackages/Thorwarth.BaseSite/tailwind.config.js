@@ -10,9 +10,9 @@ export default {
 		extend: {
 			colors: {
 				// Mobility Brand Colors
-				'mobility-red': '#C8102E',
-				'mobility-red-dark': '#A00D24',
-				'mobility-red-light': '#E31E3A',
+				'mobility-red': '#C00D0D',
+				'mobility-red-dark': '#A50202',
+				'mobility-red-light': '#EC3136',
 				'mobility-navy': '#1E3A5F',
 				'mobility-navy-dark': '#162D47',
 				'mobility-navy-light': '#2C5282',

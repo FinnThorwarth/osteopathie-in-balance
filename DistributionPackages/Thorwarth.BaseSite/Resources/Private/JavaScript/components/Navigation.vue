@@ -5,22 +5,48 @@
       v-if="!isScrolled"
       class="hidden xl:block bg-mobility-red-dark text-white rounded-tl-3xl"
     >
-      <div class="container mx-auto px-4">
-        <ul class="flex items-center justify-end space-x-8 text-lg 2xl:text-xl font-light">
+      <div class="mx-auto pl-8 pr-0">
+        <ul class="flex items-center justify-end space-x-8 text-xl 2xl:text-2xl font-light">
+          <!-- Main menu items (all except last two) -->
           <li
-            v-for="item in menuItems"
+            v-for="item in menuItems.slice(0, -2)"
             :key="item.title"
-            class="relative group py-4"
+            class="relative group py-8"
           >
             <a
               v-if="item.url && item.url !== '#'"
               :href="item.url"
-              class="uppercase hover:opacity-80 transition-opacity"
+              class=" hover:opacity-80 transition-opacity"
               :class="{ 'font-semibold': item.isActive }"
             >
               {{ item.title }}
             </a>
-            <span v-else class="uppercase">{{ item.title }}</span>
+            <span v-else class="">{{ item.title }}</span>
+          </li>
+
+          <!-- Last two items grouped together with separator -->
+          <li v-if="menuItems.length > 2" class="relative group p-8 flex items-center space-x-3 bg-mobility-red rounded-tl-3xl">
+            <a
+              v-if="menuItems[menuItems.length - 2].url && menuItems[menuItems.length - 2].url !== '#'"
+              :href="menuItems[menuItems.length - 2].url"
+              class=" hover:opacity-80 transition-opacity"
+              :class="{ 'font-semibold': menuItems[menuItems.length - 2].isActive }"
+            >
+              {{ menuItems[menuItems.length - 2].title }}
+            </a>
+            <span v-else class="">{{ menuItems[menuItems.length - 2].title }}</span>
+
+            <span class="text-white">|</span>
+
+            <a
+              v-if="menuItems[menuItems.length - 1].url && menuItems[menuItems.length - 1].url !== '#'"
+              :href="menuItems[menuItems.length - 1].url"
+              class=" hover:opacity-80 transition-opacity"
+              :class="{ 'font-semibold': menuItems[menuItems.length - 1].isActive }"
+            >
+              {{ menuItems[menuItems.length - 1].title }}
+            </a>
+            <span v-else class="">{{ menuItems[menuItems.length - 1].title }}</span>
           </li>
         </ul>
       </div>

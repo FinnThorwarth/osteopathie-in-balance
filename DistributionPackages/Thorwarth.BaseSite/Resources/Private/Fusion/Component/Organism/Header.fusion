@@ -13,20 +13,18 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
 
     renderer = afx`
         <header class="mobility-header sticky top-0 right-0 left-0 z-50 bg-white">
-            <div class="container">
                 <nav class="bg-white relative z-40">
-                    <div class="flex items-center justify-between py-6">
+                    <div class="flex items-center justify-between pb-6">
                         <div class="flex items-center">
                             <a href="/">
                                 <img src={StaticResource.uri('Mobility.Site', 'Public/Images/mobility_logo_red.svg')}
                                     alt="Fahrzeuge Mieten - Mobility"
-                                    class="h-auto w-[150px] xl:w-[300px]" />
+                                    class="h-auto h-[50px] xl:h-[70px] px-8" />
                             </a>
                         </div>
                         <div id="navigation-vue" data-navigation={props.navigationData || '{"menuItems":[],"currentNodeIdentifier":"debug-no-context"}'}></div>
                     </div>
                 </nav>
-            </div>
         </header>
     `
 }
