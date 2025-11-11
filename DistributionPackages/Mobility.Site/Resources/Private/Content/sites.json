@@ -1,7 +1,7 @@
 [
     {
-        "name": "BaseSite",
-        "nodeName": "basesite",
+        "name": "Mobility",
+        "nodeName": "mobility",
         "siteResourcesPackageKey": "Mobility.Site",
         "online": true,
         "domains": []
