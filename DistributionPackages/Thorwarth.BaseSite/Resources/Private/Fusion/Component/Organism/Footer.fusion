@@ -4,7 +4,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
   renderer=afx`
   <footer class="mobility-footer text-white py-8 md:py-12 mt-20 relative">
   <div class="container">
-    <div class="grid md:grid-cols-3 md:gap-0">
+    <div class="grid md:grid-cols-3 md:gap-0 align-bottom">
       <div>
         <img src={StaticResource.uri('Mobility.Site', 'Public/Images/mobility_logo_claim.svg' )}
           alt="Fahrzeuge Mieten - Mobility"
@@ -15,7 +15,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
           {site.footerAddress}
         </p>
       </div>
-      <div>
+      <div class="flex align-bottom">
         <a href="/impressum">Impressum</a>
         <a href="/datenschutz">Datenschutz</a>
         <a href="/agb">AGB</a>
