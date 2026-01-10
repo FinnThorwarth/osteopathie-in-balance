@@ -14,7 +14,7 @@ prototype(Thorwarth.BaseSite:Component.Template.Default) < prototype(Neos.Fusion
 
   # Template
   renderer = afx`
-    <div id="app" v-cloak @if={!node.context.inBackend}>
+    <div id="app" v-cloak @if={!renderingMode.isEdit}>
       <div :class="grayscaleActive ? 'grayscale-mode' : ''">
         <Thorwarth.BaseSite:Component.Organism.Header />
 
@@ -25,7 +25,7 @@ prototype(Thorwarth.BaseSite:Component.Template.Default) < prototype(Neos.Fusion
         <Thorwarth.BaseSite:Component.Organism.Footer />
       </div>
     </div>
-    <div @if={node.context.inBackend}>
+    <div @if={renderingMode.isEdit}>
       <div>
         <Thorwarth.BaseSite:Component.Organism.Header />
 

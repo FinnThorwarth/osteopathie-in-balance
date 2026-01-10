@@ -94,7 +94,7 @@ prototype(Thorwarth.BaseSite:Content.ImageSlider) < prototype(Neos.Neos:ContentC
     @cache {
         mode = 'cached'
         entryIdentifier {
-            node = ${node.identifier}
+            node = ${node.aggregateId}
         }
         entryTags {
             node = ${Neos.Caching.nodeTag(node)}

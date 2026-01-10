@@ -2,7 +2,7 @@ prototype(Thorwarth.BaseSite:Document.JournalOverviewPage) < prototype(Thorwarth
     @cache {
         mode = 'cached'
         entryIdentifier {
-            documentNode = ${documentNode.identifier}
+            documentNode = ${documentNode.aggregateId}
         }
         entryTags {
             1 = ${Neos.Caching.nodeTag(documentNode)}

@@ -20,9 +20,9 @@
         }
     },
     "require": {
-        "neos/neos": "~9.0.1",
-        "neos/contentgraph-doctrinedbaladapter": "~9.0.1",
-        "neos/neos-ui": "~9.0.1",
+        "neos/neos": "~9.1.0",
+        "neos/contentgraph-doctrinedbaladapter": "~9.1.0",
+        "neos/neos-ui": "~9.1.0",
         "neos/seo": "~4.1",
         "neos/redirecthandler": "~6.0.2",
         "neos/redirecthandler-databasestorage": "~6.0.4",
@@ -33,11 +33,11 @@
         "apfelbluete/site": "dev-main"
     },
     "require-dev": {
-        "neos/buildessentials": "~9.0.0",
+        "neos/buildessentials": "~9.1.0",
         "mikey179/vfsstream": "^1.6",
         "phpunit/phpunit": "^9.0",
         "neos/neos-setup": "^4.0",
-        "neos/site-kickstarter": "~9.0.0"
+        "neos/site-kickstarter": "~9.1.0"
     },
     "repositories": {
         "distributionPackages": {
@@ -46,7 +46,7 @@
         }
     },
     "replace": {
-        "typo3/neos-base-distribution": "9.0.4"
+        "typo3/neos-base-distribution": "9.1.1"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

@@ -53,7 +53,7 @@ prototype(Thorwarth.BaseSite:Document.Author) < prototype(Thorwarth.BaseSite:Doc
 
     # Artikel des Autors
     authorArticles = Neos.Fusion:Loop {
-    items = ${ q(site).find('[instanceof Thorwarth.BaseSite:Document.JournalPage][author = "' + node.identifier + '"]').sort('publicationDate', 'DESC').get() }
+    items = ${ q(site).find('[instanceof Thorwarth.BaseSite:Document.JournalPage][author = "' + node.aggregateId + '"]').sort('publicationDate', 'DESC').get() }
     itemName = 'article'
 
     itemRenderer = Neos.Fusion:Component {

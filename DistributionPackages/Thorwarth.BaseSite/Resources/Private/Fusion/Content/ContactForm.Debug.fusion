@@ -18,7 +18,7 @@ prototype(Thorwarth.BaseSite:Content.ContactForm.Debug) < prototype(Thorwarth.Ba
                         <p>Form Namespace: {props.namespace}</p>
                         <p>Recipient Email: {props.recipientEmail}</p>
                         <p>Success Message: {props.successMessage}</p>
-                        <p>Node Path: {node.path}</p>
+                        <p>Node Path: {Neos.Node.path(node)}</p>
                     </div>
                 </div>
             </Neos.Fusion:Fragment>

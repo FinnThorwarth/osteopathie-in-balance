@@ -26,7 +26,7 @@ prototype(Thorwarth.BaseSite:Content.Accordion.Item) < prototype(Neos.Neos:Conte
     }
     isOpen = ${q(node).property('isOpen')}
     
-    @context.itemId = ${'accordion-' + node.identifier}
+    @context.itemId = ${'accordion-' + node.aggregateId}
     
     renderer = afx`
         <accordion-item 
