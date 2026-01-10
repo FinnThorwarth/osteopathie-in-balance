@@ -1,7 +1,7 @@
 prototype(Thorwarth.BaseSite:Component.Molecule.NavigationData) < prototype(Neos.Fusion:DataStructure) {
     // Direct access to context variables
     currentNodeIdentifier = ${documentNode ? documentNode.aggregateId : null}
-    currentNodePath = ${documentNode ? Neos.Node.path(documentNode) : null}
+    currentNodePath = ${documentNode && documentNode.name ? '/' + documentNode.name : null}
     currentNodeName = ${documentNode ? documentNode.name : null}
 
     menuItems = Neos.Fusion:Map {
@@ -13,7 +13,7 @@ prototype(Thorwarth.BaseSite:Component.Molecule.NavigationData) < prototype(Neos
                 format = ''
             }
             nodeIdentifier = ${item.aggregateId}
-            nodePath = ${Neos.Node.path(item)}
+            nodePath = ${item.name ? '/' + item.name : null}
             isActive = ${item == documentNode || q(documentNode).parents().filter('[_identifier = "' + item.aggregateId + '"]').count() > 0}
             hasActiveChild = ${q(documentNode).parents().filter('[_identifier = "' + item.aggregateId + '"]').count() > 0}
             children = Neos.Fusion:Map {
