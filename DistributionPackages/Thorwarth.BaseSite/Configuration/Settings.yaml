@@ -1,14 +1,11 @@
 Neos:
   Neos:
-    sites:
-      '*':
-        uriPathSuffix: ''
-    fusion:
-      autoInclude:
-        'Thorwarth.BaseSite': true
     nodeTypes:
       groups:
-        caspary:
+        general:
+          label: 'Allgemein'
+          position: 50
+        text:
           label: 'Text-Module'
           position: 100
         overview:
@@ -17,6 +14,44 @@ Neos:
         media:
           label: 'Medien-Module'
           position: 300
+        structure:
+          label: 'Struktur'
+          position: 350
+        special:
+          label: 'Spezial-Module'
+          position: 400
+    sites:
+      '*':
+        uriPathSuffix: ''
+        contentDimensions:
+          defaultDimensionSpacePoint:
+            language: de
+          resolver:
+            factoryClassName: Neos\Neos\FrontendRouting\DimensionResolution\Resolver\UriPathResolverFactory
+            options:
+              segments:
+                - dimensionIdentifier: 'language'
+                  dimensionValueMapping:
+                    de: ''
+                    en: 'en'
+    fusion:
+      autoInclude:
+        'Thorwarth.BaseSite': true
+  ContentRepositoryRegistry:
+    contentRepositories:
+      default:
+        contentDimensions:
+          language:
+            label: 'Sprache'
+            icon: 'icon-language'
+            defaultValue: 'de'
+            values:
+              de:
+                label: 'Deutsch'
+              en:
+                label: 'English'
+                generalizations:
+                  - de
 #     userInterface:
 #       translation:
 #         autoInclude:
