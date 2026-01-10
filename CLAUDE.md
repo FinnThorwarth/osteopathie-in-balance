@@ -3,7 +3,7 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
-This is a Neos CMS 9.0 project for the Mobility websites (miet-mo.de and taxi-pool.de) built with Vue.js 3, Tailwind CSS, and Vite.
+This is a Neos CMS 9.0 project for the Apfelbluete website built with Vue.js 3, Tailwind CSS, and Vite.
 
 ## Development Commands
 
@@ -40,7 +40,7 @@ make db-shell    # Access database
 
 ### Project Structure
 - **DistributionPackages/** - Contains site-specific packages
-  - **Mobility.Site** - Main site package for mobility websites
+  - **Apfelbluete.Site** - Main site package
   - **Thorwarth.BaseSite** - Base theme and component library with Vue.js integration
 - **Packages/** - Neos packages and libraries (managed by Composer)
 - **Web/** - Public webroot (auto-generated)

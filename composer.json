@@ -30,7 +30,7 @@
         "neos/form-builder": "^3.0.3",
         "sitegeist/archaeopteryx": "^2.0",
         "neos/symfonymailer": "^1.0",
-        "mobility/site": "dev-main"
+        "apfelbluete/site": "dev-main"
     },
     "require-dev": {
         "neos/buildessentials": "~9.0.0",

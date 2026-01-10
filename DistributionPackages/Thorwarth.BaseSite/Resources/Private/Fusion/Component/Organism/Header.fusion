@@ -17,7 +17,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
                     <div class="flex items-center justify-between pb-6">
                         <div class="flex items-center">
                             <a href="/">
-                                <img src={StaticResource.uri('Mobility.Site', 'Public/Images/mobility_logo_red.svg')}
+                                <img src={StaticResource.uri('Apfelbluete.Site', 'Public/Images/mobility_logo_red.svg')}
                                     alt="Fahrzeuge Mieten - Mobility"
                                     class="h-auto h-[50px] xl:h-[70px] px-8" />
                             </a>

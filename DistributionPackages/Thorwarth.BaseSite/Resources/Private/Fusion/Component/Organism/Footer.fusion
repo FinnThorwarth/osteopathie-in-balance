@@ -6,7 +6,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
   <div class="container">
     <div class="grid md:grid-cols-3 md:gap-0 align-bottom">
       <div>
-        <img src={StaticResource.uri('Mobility.Site', 'Public/Images/mobility_logo_claim.svg' )}
+        <img src={StaticResource.uri('Apfelbluete.Site', 'Public/Images/mobility_logo_claim.svg' )}
           alt="Fahrzeuge Mieten - Mobility"
           class="h-auto h-[50px] xl:h-[70px] px-8" />
       </div>

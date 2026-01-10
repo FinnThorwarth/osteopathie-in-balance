@@ -1,6 +1,6 @@
 {
     "description": "Site package based on Thorwarth.BaseSite",
-    "name": "mobility/site",
+    "name": "apfelbluete/site",
     "type": "neos-site",
     "require": {
         "neos/neos": "*",
@@ -8,12 +8,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Mobility\\Site\\": "Classes/"
+            "Apfelbluete\\Site\\": "Classes/"
         }
     },
     "extra": {
         "neos": {
-            "package-key": "Mobility.Site"
+            "package-key": "Apfelbluete.Site"
         }
     },
     "minimum-stability": "dev"
