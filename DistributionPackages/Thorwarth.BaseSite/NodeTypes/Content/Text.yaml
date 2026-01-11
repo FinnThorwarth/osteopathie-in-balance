@@ -64,60 +64,24 @@
                 label: 'Olive Grün'
               'rose':
                 label: 'Rosa'
-    heading1:
+    heading:
       type: string
       ui:
         inlineEditable: true
         inline:
           editorOptions:
-            placeholder: 'Überschrift Spalte 1'
+            placeholder: 'Überschrift'
             formatting:
               h2: true
               h3: true
               h4: true
-    subheading1:
+    subheading:
       type: string
       ui:
         inlineEditable: true
         inline:
           editorOptions:
-            placeholder: 'Untertitel Spalte 1'
-    heading2:
-      type: string
-      ui:
-        inlineEditable: true
-        inline:
-          editorOptions:
-            placeholder: 'Überschrift Spalte 2'
-            formatting:
-              h2: true
-              h3: true
-              h4: true
-    subheading2:
-      type: string
-      ui:
-        inlineEditable: true
-        inline:
-          editorOptions:
-            placeholder: 'Untertitel Spalte 2'
-    heading3:
-      type: string
-      ui:
-        inlineEditable: true
-        inline:
-          editorOptions:
-            placeholder: 'Überschrift Spalte 3'
-            formatting:
-              h2: true
-              h3: true
-              h4: true
-    subheading3:
-      type: string
-      ui:
-        inlineEditable: true
-        inline:
-          editorOptions:
-            placeholder: 'Untertitel Spalte 3'
+            placeholder: 'Untertitel'
     text1:
       type: string
       ui:
