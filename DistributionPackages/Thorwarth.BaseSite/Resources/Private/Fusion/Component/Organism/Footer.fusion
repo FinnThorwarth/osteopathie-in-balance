@@ -5,17 +5,17 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
     email = ${q(site).property('footerEmail') || 'info@hofprojekt-apfelbluete.de'}
 
     renderer = afx`
-        <footer class="apfel-footer bg-apfel-olive-light text-white relative overflow-hidden">
-            <div class="mx-auto px-4 py-12 md:py-16 relative">
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
-                    <!-- Logo Section -->
-                    <div class="flex justify-center md:justify-start">
-                        <img
+        <footer class="apfel-footer bg-apfel-olive-light text-white relative">
+          <div class="px-4 relative">
+               <img
                             src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_Footer.svg')}
                             alt="Apfelblüte e.V."
-                            class="h-auto max-h-[150px]"
+                            class="h-auto max-h-[150px] md:max-h-[250px] lg:max-h-[360px] absolute -translate-y-[50%]"
                         />
-                    </div>
+                        </div>
+<div class="mx-auto  px-4 py-12 md:py-16 relative">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
+                    <div class="flex justify-center md:justify-start"></div>
 
                     <!-- Contact & Links -->
                     <div class="text-center md:text-left space-y-4">
