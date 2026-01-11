@@ -21,13 +21,17 @@ prototype(Thorwarth.BaseSite:Content.Headline) < prototype(Neos.Neos:ContentComp
     }
 
     renderer = afx`
-        <div class={'content-headline mb-8 ' + alignmentClasses[props.alignment]}>
-            <Neos.Fusion:Tag
-                tagName={props.headingSize}
-                attributes.class={headingSizeClasses[props.headingSize]}
-            >
-                {props.title}
-            </Neos.Fusion:Tag>
+        <div class="content-headline py-4">
+            <div class="container mx-auto px-4">
+                <div class={alignmentClasses[props.alignment]}>
+                    <Neos.Fusion:Tag
+                        tagName={props.headingSize}
+                        attributes.class={headingSizeClasses[props.headingSize]}
+                    >
+                        {props.title}
+                    </Neos.Fusion:Tag>
+                </div>
+            </div>
         </div>
     `
 }

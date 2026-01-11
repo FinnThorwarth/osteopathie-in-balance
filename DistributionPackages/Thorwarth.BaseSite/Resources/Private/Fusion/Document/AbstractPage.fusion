@@ -71,10 +71,10 @@ prototype(Thorwarth.BaseSite:Document.AbstractPage) < prototype(Neos.Neos:Page) 
 
       renderer = afx`
             {props.heroImage}
-            <div class="container font-body py-4 md:py-8">
+            <main class="font-body">
               {props.main}
               {props.authorCard}
-            </div>
+            </main>
       `
     }
 

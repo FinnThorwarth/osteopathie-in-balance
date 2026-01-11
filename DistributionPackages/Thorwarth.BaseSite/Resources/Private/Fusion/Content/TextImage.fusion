@@ -44,25 +44,27 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
     }
     
     renderer = afx`
-        <div class="content-text-image mb-12">
-            <div class={'grid gap-8 items-center ' + layoutClasses[props.columnLayout]}>
-                <div @if={!isTextFirst} class={'w-full ' + (imageColSpan[props.columnLayout] || '')}>
-                    <img @if={props.image} 
-                         src={props.imageUri} 
-                         alt={props.alternativeText} 
-                         class="w-full h-auto rounded-lg shadow-lg" />
-                </div>
-                <div class={'prose prose-lg max-w-none ' + (textColSpan[props.columnLayout] || '')}>
-                    <div @if={props.heading} class="mb-4">{props.heading}</div>
-                    <div @if={props.text}>{props.text}</div>
-                </div>
-                <div @if={isTextFirst} class={'w-full ' + (imageColSpan[props.columnLayout] || '')}>
-                    <img @if={props.image} 
-                         src={props.imageUri} 
-                         alt={props.alternativeText} 
-                         class="w-full h-auto rounded-lg shadow-lg" />
+        <section class="content-text-image py-8 md:py-12">
+            <div class="container mx-auto px-4">
+                <div class={'grid gap-8 items-center ' + layoutClasses[props.columnLayout]}>
+                    <div @if={!isTextFirst} class={'w-full ' + (imageColSpan[props.columnLayout] || '')}>
+                        <img @if={props.image}
+                             src={props.imageUri}
+                             alt={props.alternativeText}
+                             class="w-full h-auto rounded-lg shadow-lg" />
+                    </div>
+                    <div class={'prose prose-lg max-w-none ' + (textColSpan[props.columnLayout] || '')}>
+                        <div @if={props.heading} class="mb-4">{props.heading}</div>
+                        <div @if={props.text}>{props.text}</div>
+                    </div>
+                    <div @if={isTextFirst} class={'w-full ' + (imageColSpan[props.columnLayout] || '')}>
+                        <img @if={props.image}
+                             src={props.imageUri}
+                             alt={props.alternativeText}
+                             class="w-full h-auto rounded-lg shadow-lg" />
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     `
 }
