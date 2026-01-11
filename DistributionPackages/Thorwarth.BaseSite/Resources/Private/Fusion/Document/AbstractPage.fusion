@@ -6,8 +6,8 @@ prototype(Thorwarth.BaseSite:Document.AbstractPage) < prototype(Neos.Neos:Page) 
       renderer = afx`
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="apple-mobile-web-app-title" content="Fahrzeuge Mieten - Mobility" />
-        <meta name="google-site-verification" content="5aFqiw7mBARiKWnZTFCJj2c1Njm4ONPHs3q1a9GPisU" />
+        <meta name="apple-mobile-web-app-title" content="Gemeinsam Leben" />
+        <meta name="google-site-verification" content="" />
 
         <link rel="icon" type="image/png" href={StaticResource.uri('Apfelbluete.Site', 'Public/Favicon/favicon-96x96.png')} sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href={StaticResource.uri('Apfelbluete.Site', 'Public/Favicon/favicon.svg')} />
@@ -24,11 +24,11 @@ prototype(Thorwarth.BaseSite:Document.AbstractPage) < prototype(Neos.Neos:Page) 
             content = Neos.Fusion:Case {
                 titleOverwrite {
                     condition = ${q(node).property('titleOverride') ? true : false}
-                    renderer = ${q(node).property('titleOverride') + ' | Fahrzeuge Mieten - Mobility'}
+                    renderer = ${q(node).property('titleOverride') + ' | Gemeinsam Leben'}
                 }
                 default {
                     condition = true
-                    renderer = ${q(node).property('title') + ' | Fahrzeuge Mieten - Mobility'}
+                    renderer = ${q(node).property('title') + ' | Gemeinsam Leben'}
                 }
             }
         }

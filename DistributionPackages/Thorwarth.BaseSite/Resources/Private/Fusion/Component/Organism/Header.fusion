@@ -29,11 +29,11 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
                 </div>
             </nav>
             <!-- Header Illustration Banner -->
-            <div class="w-full bg-apfel-olive-light relative overflow-visible overflow-x-clip">
+            <div class="w-full z-50 relative overflow-visible overflow-x-clip mb-8">
                 <img
                     src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Header_Grafik.svg')}
                     alt=""
-                    class="w-full h-auto translate-y-[15%] sm:translate-y-[20%] md:translate-y-[25%] lg:translate-y-[30%]"
+                    class="w-full h-auto"
                     aria-hidden="true"
                 />
             </div>
