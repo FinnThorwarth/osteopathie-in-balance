@@ -1,0 +1,141 @@
+prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentComponent) {
+    backgroundColor = ${q(node).property('backgroundColor')}
+    anchorId = ${q(node).property('anchorId')}
+    isBackend = ${renderingMode.isEdit}
+
+    # Header
+    heading = Neos.Neos:Editable {
+        property = 'heading'
+    }
+    subheading = Neos.Neos:Editable {
+        property = 'subheading'
+    }
+    introText = Neos.Neos:Editable {
+        property = 'introText'
+    }
+
+    # Column 1
+    image1 = ${q(node).property('image1')}
+    title1 = Neos.Neos:Editable {
+        property = 'title1'
+    }
+    text1 = Neos.Neos:Editable {
+        property = 'text1'
+    }
+
+    # Column 2
+    image2 = ${q(node).property('image2')}
+    title2 = Neos.Neos:Editable {
+        property = 'title2'
+    }
+    text2 = Neos.Neos:Editable {
+        property = 'text2'
+    }
+
+    # Column 3
+    image3 = ${q(node).property('image3')}
+    title3 = Neos.Neos:Editable {
+        property = 'title3'
+    }
+    text3 = Neos.Neos:Editable {
+        property = 'text3'
+    }
+
+    # Image URIs - direkt von Node-Property, nicht von props
+    image1Uri = Neos.Neos:ImageUri {
+        asset = ${q(node).property('image1')}
+        width = 600
+        height = 400
+        allowCropping = true
+    }
+    image2Uri = Neos.Neos:ImageUri {
+        asset = ${q(node).property('image2')}
+        width = 600
+        height = 400
+        allowCropping = true
+    }
+    image3Uri = Neos.Neos:ImageUri {
+        asset = ${q(node).property('image3')}
+        width = 600
+        height = 400
+        allowCropping = true
+    }
+
+    @context {
+        bgClasses = Neos.Fusion:DataStructure {
+            olive = 'bg-apfel-olive'
+            rose = 'bg-apfel-rose'
+        }
+    }
+
+    renderer = afx`
+        <section
+            id={props.anchorId}
+            class={'card-section py-12 md:py-16 ' + (props.backgroundColor ? bgClasses[props.backgroundColor] : 'bg-white')}
+        >
+            <div class="container mx-auto px-4">
+                <header class="mb-10" @if={props.isBackend || q(node).property('heading') || q(node).property('subheading') || q(node).property('introText')}>
+                    <div @if={props.heading} class="mb-2">{props.heading}</div>
+                    <div @if={props.subheading} class="mb-6 font-headline text-2xl text-apfel-olive uppercase">{props.subheading}</div>
+                    <div @if={props.introText} class="prose prose-lg max-w-none mb-8">{props.introText}</div>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <article class="card-item" @if={props.isBackend || props.image1 || q(node).property('title1') || q(node).property('text1')}>
+                        <div @if={props.image1} class="aspect-[3/2] bg-apfel-olive mb-4 overflow-hidden">
+                            <img
+                                src={props.image1Uri}
+                                alt={props.image1.title || ''}
+                                class="w-full h-full object-cover"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div @if={!props.image1 && props.isBackend} class="aspect-[3/2] bg-apfel-olive mb-4 flex items-center justify-center">
+                            <span class="text-white opacity-50">Bild Spalte 1</span>
+                        </div>
+                        <div class="py-4">
+                            <h3 @if={props.title1} class="font-bold text-apfel-text mb-3">{props.title1}</h3>
+                            <div @if={props.text1} class="prose prose-sm max-w-none text-apfel-text">{props.text1}</div>
+                        </div>
+                    </article>
+
+                    <article class="card-item" @if={props.isBackend || props.image2 || q(node).property('title2') || q(node).property('text2')}>
+                        <div @if={props.image2} class="aspect-[3/2] bg-apfel-olive mb-4 overflow-hidden">
+                            <img
+                                src={props.image2Uri}
+                                alt={props.image2.title || ''}
+                                class="w-full h-full object-cover"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div @if={!props.image2 && props.isBackend} class="aspect-[3/2] bg-apfel-olive mb-4 flex items-center justify-center">
+                            <span class="text-white opacity-50">Bild Spalte 2</span>
+                        </div>
+                        <div class="py-4">
+                            <h3 @if={props.title2} class="font-bold text-apfel-text mb-3">{props.title2}</h3>
+                            <div @if={props.text2} class="prose prose-sm max-w-none text-apfel-text">{props.text2}</div>
+                        </div>
+                    </article>
+
+                    <article class="card-item" @if={props.isBackend || props.image3 || q(node).property('title3') || q(node).property('text3')}>
+                        <div @if={props.image3} class="aspect-[3/2] bg-apfel-olive mb-4 overflow-hidden">
+                            <img
+                                src={props.image3Uri}
+                                alt={props.image3.title || ''}
+                                class="w-full h-full object-cover"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div @if={!props.image3 && props.isBackend} class="aspect-[3/2] bg-apfel-olive mb-4 flex items-center justify-center">
+                            <span class="text-white opacity-50">Bild Spalte 3</span>
+                        </div>
+                        <div class="py-4">
+                            <h3 @if={props.title3} class="font-bold text-apfel-text mb-3">{props.title3}</h3>
+                            <div @if={props.text3} class="prose prose-sm max-w-none text-apfel-text">{props.text3}</div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    `
+}

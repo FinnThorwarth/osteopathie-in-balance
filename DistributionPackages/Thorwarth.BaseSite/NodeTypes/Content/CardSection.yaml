@@ -1,0 +1,169 @@
+'Thorwarth.BaseSite:Content.CardSection':
+  superTypes:
+    'Neos.Neos:Content': true
+    'Thorwarth.BaseSite:Mixin.NavigationAnchor': true
+  ui:
+    label: 'Karten-Sektion'
+    icon: 'icon-th-large'
+    position: 66
+    group: 'structure'
+    inspector:
+      groups:
+        options:
+          label: 'Optionen'
+          position: 10
+  properties:
+    backgroundColor:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Hintergrundfarbe'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 10
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              '':
+                label: 'Keine (Weiß)'
+              'olive':
+                label: 'Olive Grün'
+              'rose':
+                label: 'Rosa'
+    # Header
+    heading:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Überschrift'
+            formatting:
+              h2: true
+              h3: true
+    subheading:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Untertitel'
+    introText:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Einleitungstext (optional)'
+            autoparagraph: true
+            formatting:
+              strong: true
+              em: true
+              a: true
+            linking:
+              anchor: true
+              title: true
+              targetBlank: true
+    # Column 1
+    image1:
+      type: 'Neos\Media\Domain\Model\ImageInterface'
+      ui:
+        label: 'Bild Spalte 1'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 20
+    title1:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Titel Spalte 1'
+    text1:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Text Spalte 1'
+            autoparagraph: true
+            formatting:
+              strong: true
+              em: true
+              a: true
+              ul: true
+              ol: true
+            linking:
+              anchor: true
+              title: true
+              targetBlank: true
+    # Column 2
+    image2:
+      type: 'Neos\Media\Domain\Model\ImageInterface'
+      ui:
+        label: 'Bild Spalte 2'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 30
+    title2:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Titel Spalte 2'
+    text2:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Text Spalte 2'
+            autoparagraph: true
+            formatting:
+              strong: true
+              em: true
+              a: true
+              ul: true
+              ol: true
+            linking:
+              anchor: true
+              title: true
+              targetBlank: true
+    # Column 3
+    image3:
+      type: 'Neos\Media\Domain\Model\ImageInterface'
+      ui:
+        label: 'Bild Spalte 3'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 40
+    title3:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Titel Spalte 3'
+    text3:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Text Spalte 3'
+            autoparagraph: true
+            formatting:
+              strong: true
+              em: true
+              a: true
+              ul: true
+              ol: true
+            linking:
+              anchor: true
+              title: true
+              targetBlank: true
