@@ -1,22 +1,34 @@
 prototype(Thorwarth.BaseSite:Content.Text) < prototype(Neos.Neos:ContentComponent) {
     columnLayout = ${q(node).property('columnLayout')}
-    
+    textAlignment = ${q(node).property('textAlignment') || 'left'}
+    backgroundColor = ${q(node).property('backgroundColor')}
+    isBackend = ${renderingMode.isEdit}
+
     heading1 = Neos.Neos:Editable {
         property = 'heading1'
-        @if.hasColumn1 = ${props.columnLayout || this.property}
+    }
+    subheading1 = Neos.Neos:Editable {
+        property = 'subheading1'
     }
     heading2 = Neos.Neos:Editable {
         property = 'heading2'
+        @if.hasColumn2 = ${props.columnLayout == 'two-columns' || props.columnLayout == 'three-columns'}
+    }
+    subheading2 = Neos.Neos:Editable {
+        property = 'subheading2'
         @if.hasColumn2 = ${props.columnLayout == 'two-columns' || props.columnLayout == 'three-columns'}
     }
     heading3 = Neos.Neos:Editable {
         property = 'heading3'
         @if.hasColumn3 = ${props.columnLayout == 'three-columns'}
     }
-    
+    subheading3 = Neos.Neos:Editable {
+        property = 'subheading3'
+        @if.hasColumn3 = ${props.columnLayout == 'three-columns'}
+    }
+
     text1 = Neos.Neos:Editable {
         property = 'text1'
-        @if.hasColumn1 = ${props.columnLayout || this.property}
     }
     text2 = Neos.Neos:Editable {
         property = 'text2'
@@ -26,20 +38,34 @@ prototype(Thorwarth.BaseSite:Content.Text) < prototype(Neos.Neos:ContentComponen
         property = 'text3'
         @if.hasColumn3 = ${props.columnLayout == 'three-columns'}
     }
-    
+
+    @context {
+        alignmentClasses = Neos.Fusion:DataStructure {
+            left = 'text-left'
+            center = 'text-center'
+        }
+        bgClasses = Neos.Fusion:DataStructure {
+            olive = 'bg-apfel-olive'
+            rose = 'bg-apfel-rose'
+        }
+    }
+
     renderer = afx`
-        <div class="content-text mb-12">
+        <div class={'content-text mb-12 py-8 ' + (props.backgroundColor ? bgClasses[props.backgroundColor] + ' px-4 rounded-lg' : '') + ' ' + alignmentClasses[props.textAlignment]}>
             <div class={props.columnLayout ? 'grid gap-8 ' + (props.columnLayout == 'two-columns' ? 'md:grid-cols-2' : (props.columnLayout == 'three-columns' ? 'md:grid-cols-3' : '')) : ''}>
-                <div @if={props.heading1 || props.text1}>
-                    <div @if={props.heading1} class="mb-4">{props.heading1}</div>
+                <div @if={props.isBackend || q(node).property('heading1') || q(node).property('subheading1') || q(node).property('text1')}>
+                    <div @if={props.heading1} class="mb-2">{props.heading1}</div>
+                    <div @if={props.subheading1} class="mb-4 text-lg font-light text-gray-600">{props.subheading1}</div>
                     <div @if={props.text1} class="prose prose-lg max-w-none">{props.text1}</div>
                 </div>
-                <div @if={(props.columnLayout == 'two-columns' || props.columnLayout == 'three-columns') && (props.heading2 || props.text2)}>
-                    <div @if={props.heading2} class="mb-4">{props.heading2}</div>
+                <div @if={(props.columnLayout == 'two-columns' || props.columnLayout == 'three-columns') && (props.isBackend || q(node).property('heading2') || q(node).property('subheading2') || q(node).property('text2'))}>
+                    <div @if={props.heading2} class="mb-2">{props.heading2}</div>
+                    <div @if={props.subheading2} class="mb-4 text-lg font-light text-gray-600">{props.subheading2}</div>
                     <div @if={props.text2} class="prose prose-lg max-w-none">{props.text2}</div>
                 </div>
-                <div @if={props.columnLayout == 'three-columns' && (props.heading3 || props.text3)}>
-                    <div @if={props.heading3} class="mb-4">{props.heading3}</div>
+                <div @if={props.columnLayout == 'three-columns' && (props.isBackend || q(node).property('heading3') || q(node).property('subheading3') || q(node).property('text3'))}>
+                    <div @if={props.heading3} class="mb-2">{props.heading3}</div>
+                    <div @if={props.subheading3} class="mb-4 text-lg font-light text-gray-600">{props.subheading3}</div>
                     <div @if={props.text3} class="prose prose-lg max-w-none">{props.text3}</div>
                 </div>
             </div>

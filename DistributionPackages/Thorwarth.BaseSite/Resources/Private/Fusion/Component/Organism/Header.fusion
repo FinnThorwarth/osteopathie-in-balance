@@ -11,8 +11,8 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
     navigationData = Thorwarth.BaseSite:Component.Molecule.NavigationData
 
     renderer = afx`
-        <header class="apfel-header sticky top-0 right-0 left-0 z-50">
-            <nav class="relative  bg-apfel-olive z-40">
+        <header class="apfel-header">
+            <nav class="sticky top-0 right-0 left-0  bg-apfel-olive  z-50">
                 <div class="mx-auto px-4">
                     <div class="flex items-center justify-between py-4">
                         <div class="flex items-center">
@@ -29,7 +29,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
                 </div>
             </nav>
             <!-- Header Illustration Banner -->
-            <div class="w-full z-50 relative overflow-visible overflow-x-clip mb-8">
+            <div class="w-full z-40 relative overflow-visible overflow-x-clip mb-8">
                 <img
                     src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Header_Grafik.svg')}
                     alt=""

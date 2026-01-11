@@ -30,6 +30,40 @@
                 label: 'Zwei Spalten (50|50)'
               'three-columns':
                 label: 'Drei Spalten (33|33|33)'
+    textAlignment:
+      type: string
+      defaultValue: 'left'
+      ui:
+        label: 'Textausrichtung'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 20
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'left':
+                label: 'Links'
+              'center':
+                label: 'Zentriert'
+    backgroundColor:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Hintergrundfarbe'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 30
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              '':
+                label: 'Keine'
+              'olive':
+                label: 'Olive Grün'
+              'rose':
+                label: 'Rosa'
     heading1:
       type: string
       ui:
@@ -41,6 +75,13 @@
               h2: true
               h3: true
               h4: true
+    subheading1:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Untertitel Spalte 1'
     heading2:
       type: string
       ui:
@@ -52,6 +93,13 @@
               h2: true
               h3: true
               h4: true
+    subheading2:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Untertitel Spalte 2'
     heading3:
       type: string
       ui:
@@ -63,6 +111,13 @@
               h2: true
               h3: true
               h4: true
+    subheading3:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Untertitel Spalte 3'
     text1:
       type: string
       ui:

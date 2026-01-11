@@ -22,7 +22,7 @@ prototype(Thorwarth.BaseSite:Content.ChildPageList) < prototype(Neos.Neos:Conten
                         <li class="border-t last-of-type:border-b first-of-type:border-t-0 border-mobility-red">
                             <a
                                 href={item.url}
-                                class="font-headline uppercase block no-underline not-italic text-mobility-gray hover:text-mobility-red"
+                                class="font-headline uppercase block no-underline not-italic  hover:text-mobility-red"
                             >
                                 {item.title}
                             </a>
