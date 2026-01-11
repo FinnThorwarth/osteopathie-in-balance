@@ -1,0 +1,60 @@
+prototype(Thorwarth.BaseSite:Content.QuoteSection) < prototype(Neos.Neos:ContentComponent) {
+    quoteText = Neos.Neos:Editable {
+        property = 'quoteText'
+    }
+    author = Neos.Neos:Editable {
+        property = 'author'
+    }
+    showDividers = ${q(node).property('showDividers')}
+    quoteColor = ${q(node).property('quoteColor') || 'rose'}
+    anchorId = ${q(node).property('anchorId')}
+
+    @context {
+        quoteColorClasses = Neos.Fusion:DataStructure {
+            rose = 'text-apfel-rose-dark'
+            olive = 'text-apfel-olive'
+            green = 'text-apfel-green'
+        }
+        dividerColorClasses = Neos.Fusion:DataStructure {
+            rose = 'bg-apfel-rose-dark'
+            olive = 'bg-apfel-olive'
+            green = 'bg-apfel-green'
+        }
+    }
+
+    renderer = afx`
+        <section
+            id={props.anchorId}
+            class="quote-section py-12 md:py-16 bg-white"
+        >
+            <div class="container mx-auto px-4 max-w-4xl">
+                <div class="flex items-center justify-center gap-4 mb-8">
+                    <div @if={props.showDividers} class={'flex-1 h-px ' + dividerColorClasses[props.quoteColor] + ' opacity-30'}></div>
+                    <svg class={'w-12 h-12 ' + quoteColorClasses[props.quoteColor]} viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                    <div @if={props.showDividers} class={'flex-1 h-px ' + dividerColorClasses[props.quoteColor] + ' opacity-30'}></div>
+                </div>
+
+                <blockquote class="text-center">
+                    <p class="font-body text-xl md:text-2xl text-apfel-text leading-relaxed italic mb-6">
+                        {props.quoteText}
+                    </p>
+                    <cite @if={props.author} class="font-headline text-lg text-apfel-green not-italic">
+                        {props.author}
+                    </cite>
+                </blockquote>
+            </div>
+        </section>
+    `
+
+    @cache {
+        mode = 'cached'
+        entryIdentifier {
+            node = ${node.aggregateId}
+        }
+        entryTags {
+            node = ${Neos.Caching.nodeTag(node)}
+        }
+    }
+}

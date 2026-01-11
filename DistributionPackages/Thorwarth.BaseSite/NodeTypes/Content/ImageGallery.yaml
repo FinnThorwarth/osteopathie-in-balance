@@ -1,0 +1,83 @@
+'Thorwarth.BaseSite:Content.ImageGallery':
+  superTypes:
+    'Neos.Neos:Content': true
+    'Thorwarth.BaseSite:Mixin.NavigationAnchor': true
+  ui:
+    label: 'Bildergalerie'
+    icon: 'icon-th'
+    position: 55
+    group: 'media'
+    inspector:
+      groups:
+        images:
+          label: 'Bilder'
+          position: 10
+        options:
+          label: 'Optionen'
+          position: 20
+  properties:
+    images:
+      type: 'Neos\Media\Domain\Model\ImageInterface'
+      ui:
+        label: 'Bilder'
+        reloadIfChanged: true
+        inspector:
+          group: 'images'
+          position: 10
+          multiple: true
+    columns:
+      type: integer
+      defaultValue: 4
+      ui:
+        label: 'Spalten'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 10
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              2:
+                label: '2 Spalten'
+              3:
+                label: '3 Spalten'
+              4:
+                label: '4 Spalten'
+    backgroundColor:
+      type: string
+      defaultValue: 'olive'
+      ui:
+        label: 'Hintergrundfarbe'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 20
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'olive':
+                label: 'Olive Grün'
+              'rose':
+                label: 'Rosa'
+              'white':
+                label: 'Weiß'
+    gap:
+      type: string
+      defaultValue: 'small'
+      ui:
+        label: 'Abstand zwischen Bildern'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 30
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'none':
+                label: 'Kein Abstand'
+              'small':
+                label: 'Klein'
+              'medium':
+                label: 'Mittel'
+              'large':
+                label: 'Groß'

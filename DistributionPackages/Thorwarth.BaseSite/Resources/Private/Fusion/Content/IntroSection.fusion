@@ -22,8 +22,11 @@ prototype(Thorwarth.BaseSite:Content.IntroSection) < prototype(Neos.Neos:Content
 
     isBackend = ${renderingMode.isEdit}
 
+    # Navigation anchor support
+    anchorId = ${q(node).property('anchorId')}
+
     renderer = afx`
-        <section class="intro-section pt-4 md:pt-8">
+        <section id={props.anchorId} class="intro-section pt-4 md:pt-8">
                 {props.header}
 
                 <div @if={renderingMode.isEdit || q(node).property('leftColumnText') || q(node).property('rightColumnText')} class={props.columnMode == 'two-columns' ? 'grid md:grid-cols-2 gap-4 mt-4 md:gap-8 lg:gap-12' : 'max-w-4xl'}>

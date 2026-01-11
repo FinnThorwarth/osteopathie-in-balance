@@ -1,6 +1,7 @@
 'Thorwarth.BaseSite:Content.TextModule':
   superTypes:
     'Neos.Neos:Content': true
+    'Thorwarth.BaseSite:Mixin.NavigationAnchor': true
   ui:
     label: 'Text Modul'
     icon: 'icon-align-left'

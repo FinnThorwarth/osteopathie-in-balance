@@ -28,3 +28,4 @@
   constraints:
     nodeTypes:
       'Thorwarth.BaseSite:Document.Homepage': true
+      'Thorwarth.BaseSite:Document.OnepagerHomepage': true

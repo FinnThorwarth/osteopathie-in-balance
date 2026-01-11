@@ -1,6 +1,9 @@
 prototype(Thorwarth.BaseSite:Content.DownloadSection) < prototype(Neos.Neos:ContentCollection) {
+    # Navigation anchor support
+    anchorId = ${q(node).property('anchorId')}
+
     renderer = afx`
-        <section class="download-section py-12">
+        <section id={props.anchorId} class="download-section py-12">
             <div class="container mx-auto px-4">
                 <Neos.Neos:ContentCollection nodePath="." @context.node={node}>
                     <div class="space-y-6">

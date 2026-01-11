@@ -1,17 +1,22 @@
+/* Google Fonts - Amatic SC */
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
 :root {
   --font-size-base: 18px;
 
-  /* Mobility Brand Colors */
-  --mobility-red: #C8102E;
-  --mobility-red-dark: #A00D24;
-  --mobility-red-light: #E31E3A;
-  --mobility-navy: #1E3A5F;
-  --mobility-navy-dark: #162D47;
-  --mobility-blue: #003C71;
-  --mobility-gray: #2B2B2A;
-  --mobility-text: #4A4A49;
-  --mobility-white: #FFFFFF;
-  --mobility-accent: #FFDD00;
+  /* Apfelblüte Brand Colors */
+  --apfel-olive: #AAB082;
+  --apfel-olive-light: #c4c9a8;
+  --apfel-olive-dark: #8a9068;
+  --apfel-rose: #F5E9EC;
+  --apfel-rose-light: #faf4f6;
+  --apfel-rose-dark: #e8d4da;
+  --apfel-green: #3D4A24;
+  --apfel-green-light: #5a6d38;
+  --apfel-green-dark: #2a331a;
+  --apfel-text: #3D4A24;
+  --apfel-white: #FFFFFF;
+  --apfel-bg-light: #F5E9EC;
 }
 
 /* ubuntu-sans-100 - latin */
@@ -209,78 +214,78 @@ main {
 @tailwind components;
 @tailwind utilities;
 
-/* Mobility Component Styles */
+/* Apfelblüte Component Styles */
 @layer components {
-  /* Mobility Button Styles */
-  .btn-mobility-primary {
-    @apply bg-mobility-red hover:bg-mobility-red-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
+  /* Apfelblüte Button Styles */
+  .btn-apfel-primary {
+    @apply bg-apfel-olive hover:bg-apfel-olive-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
   }
 
-  .btn-mobility-secondary {
-    @apply bg-mobility-navy hover:bg-mobility-navy-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
+  .btn-apfel-secondary {
+    @apply bg-apfel-green hover:bg-apfel-green-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
   }
 
-  .btn-mobility-outline {
-    @apply border-2 border-mobility-red text-mobility-red hover:bg-mobility-red hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200;
+  .btn-apfel-outline {
+    @apply border-2 border-apfel-olive text-apfel-green hover:bg-apfel-olive hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200;
   }
 
-  /* Mobility Header */
-  .mobility-header {
-    @apply bg-mobility-red text-white;
+  /* Apfelblüte Header */
+  .apfel-header {
+    @apply text-white;
   }
 
-  /* Mobility Footer */
-  .mobility-footer {
-    @apply bg-mobility-footer text-white;
+  /* Apfelblüte Footer */
+  .apfel-footer {
+    @apply bg-apfel-footer text-white;
   }
 
-  /* Mobility Card */
-  .mobility-card {
+  /* Apfelblüte Card */
+  .apfel-card {
     @apply bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300;
   }
 
-  /* Mobility Section */
-  .mobility-section {
+  /* Apfelblüte Section */
+  .apfel-section {
     @apply py-16 px-4;
   }
 
-  .mobility-section-red {
-    @apply bg-mobility-red text-white py-16 px-4;
+  .apfel-section-olive {
+    @apply bg-apfel-olive text-white py-16 px-4;
   }
 
-  .mobility-section-navy {
-    @apply bg-mobility-navy text-white py-16 px-4;
+  .apfel-section-rose {
+    @apply bg-apfel-rose text-apfel-green py-16 px-4;
   }
 
-  .mobility-section-light {
-    @apply bg-mobility-bg-light py-16 px-4;
+  .apfel-section-light {
+    @apply bg-apfel-bg-light py-16 px-4;
   }
 
-  /* Mobility Heading Styles */
-  .mobility-h1 {
-    @apply font-headline text-4xl md:text-5xl lg:text-6xl font-bold text-mobility-gray leading-tight;
+  /* Apfelblüte Heading Styles */
+  .apfel-h1 {
+    @apply font-headline text-4xl md:text-5xl lg:text-6xl font-bold text-apfel-green leading-tight uppercase;
   }
 
-  .mobility-h2 {
-    @apply font-headline text-3xl md:text-4xl font-semibold text-mobility-gray leading-tight;
+  .apfel-h2 {
+    @apply font-headline text-3xl md:text-4xl font-bold text-apfel-green leading-tight uppercase;
   }
 
-  .mobility-h3 {
-    @apply font-headline text-2xl md:text-3xl font-semibold text-mobility-gray leading-tight;
+  .apfel-h3 {
+    @apply font-headline text-2xl md:text-3xl font-bold text-apfel-green leading-tight uppercase;
   }
 
-  /* Mobility Text Styles */
-  .mobility-text-body {
-    @apply font-body text-base md:text-lg text-mobility-text leading-relaxed;
+  /* Apfelblüte Text Styles */
+  .apfel-text-body {
+    @apply font-body text-base md:text-lg text-apfel-text leading-relaxed;
   }
 
-  /* Mobility Link Styles */
-  .mobility-link {
-    @apply text-mobility-red hover:text-mobility-red-dark underline transition-colors duration-200;
+  /* Apfelblüte Link Styles */
+  .apfel-link {
+    @apply text-apfel-green hover:text-apfel-green-dark underline transition-colors duration-200;
   }
 
-  /* Mobility Container */
-  .mobility-container {
+  /* Apfelblüte Container */
+  .apfel-container {
     @apply container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl;
   }
 }
@@ -309,20 +314,20 @@ main {
 
     /* Headings */
     h2 {
-      @apply text-3xl font-bold mb-4 mt-8 text-mobility-gray !important;
+      @apply font-headline text-3xl font-bold mb-4 mt-8 text-apfel-green uppercase !important;
     }
 
     h3 {
-      @apply text-2xl font-semibold mb-3 mt-6 text-mobility-gray !important;
+      @apply font-headline text-2xl font-bold mb-3 mt-6 text-apfel-green uppercase !important;
     }
 
     h4 {
-      @apply text-xl font-semibold mb-2 mt-4 text-mobility-gray !important;
+      @apply font-headline text-xl font-bold mb-2 mt-4 text-apfel-green !important;
     }
 
     /* Paragraphs */
     p {
-      @apply mb-4 leading-relaxed text-mobility-text !important;
+      @apply mb-4 leading-relaxed text-apfel-text !important;
     }
 
     /* Unordered Lists */
@@ -330,7 +335,7 @@ main {
       @apply list-disc ml-6 mb-4 space-y-1 !important;
 
       li {
-        @apply leading-relaxed text-mobility-text !important;
+        @apply leading-relaxed text-apfel-text !important;
       }
 
       /* Nested lists */
@@ -344,7 +349,7 @@ main {
       @apply list-decimal ml-6 mb-4 space-y-1 !important;
 
       li {
-        @apply leading-relaxed text-mobility-text !important;
+        @apply leading-relaxed text-apfel-text !important;
       }
 
       /* Nested lists */
@@ -355,7 +360,7 @@ main {
 
     /* Links */
     a {
-      @apply text-mobility-red underline hover:text-mobility-red-dark transition-colors !important;
+      @apply text-apfel-green underline hover:text-apfel-green-dark transition-colors !important;
     }
 
     /* Subscript & Superscript */
@@ -388,11 +393,11 @@ main {
     }
 
     ul > li::marker {
-      color: #4A4A49 !important;
+      color: #3D4A24 !important;
     }
 
     ol > li::marker {
-      color: #4A4A49 !important;
+      color: #3D4A24 !important;
     }
   }
 }
@@ -443,7 +448,7 @@ main {
 section strong {
   font-family: "Roboto Slab" !important;
   font-weight: 700 !important;
-  color: var(--mobility-gray) !important;
+  color: var(--apfel-green) !important;
 }
 
 /* Ensure em/italic elements use correct font */

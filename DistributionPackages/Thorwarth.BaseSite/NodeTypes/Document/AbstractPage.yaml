@@ -10,15 +10,28 @@
       constraints:
         nodeTypes:
           "*": false
+          # Sections
           "Thorwarth.BaseSite:Content.IntroSection": true
           "Thorwarth.BaseSite:Content.TeamSection": true
           "Thorwarth.BaseSite:Content.TwoColumnSection": true
           "Thorwarth.BaseSite:Content.TextModule": true
+          "Thorwarth.BaseSite:Content.DownloadSection": true
+          # Text & Headlines
+          "Thorwarth.BaseSite:Content.Text": true
+          "Thorwarth.BaseSite:Content.Headline": true
+          "Thorwarth.BaseSite:Content.Header": true
+          "Thorwarth.BaseSite:Content.SectionHeader": true
+          # Media
           "Thorwarth.BaseSite:Content.ImageSlider": true
           "Thorwarth.BaseSite:Content.FullWidthImage": true
-          "Thorwarth.BaseSite:Content.ChildPageList": true
+          "Thorwarth.BaseSite:Content.Image.Hero": true
+          "Thorwarth.BaseSite:Content.TextImage": true
+          # Interactive
+          "Thorwarth.BaseSite:Content.Accordion": true
+          "Thorwarth.BaseSite:Content.Button": true
           "Thorwarth.BaseSite:Content.ContactForm": true
-          "Thorwarth.BaseSite:Content.DownloadSection": true
+          # Navigation
+          "Thorwarth.BaseSite:Content.ChildPageList": true
 
   constraints:
     nodeTypes:

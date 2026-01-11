@@ -13,8 +13,11 @@ prototype(Thorwarth.BaseSite:Content.TextModule) < prototype(Neos.Neos:ContentCo
         placeholder = 'Inhalt rechte Spalte...'
     }
 
+    # Navigation anchor support
+    anchorId = ${q(node).property('anchorId')}
+
     renderer = afx`
-        <section class={'py-4 lg:py-8'}>
+        <section id={props.anchorId} class={'py-4 lg:py-8'}>
                 <div @if={props.columnLayout == 'single'} class="max-w-none font-light-body">
                     {props.leftColumnContent}
                 </div>

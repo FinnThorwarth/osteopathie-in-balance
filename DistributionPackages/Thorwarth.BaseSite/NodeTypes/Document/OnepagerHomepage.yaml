@@ -1,0 +1,16 @@
+'Thorwarth.BaseSite:Document.OnepagerHomepage':
+  superTypes:
+    'Neos.Neos:Site': true
+    'Thorwarth.BaseSite:Document.AbstractPage': true
+  ui:
+    icon: globe
+    label: 'Onepager Startseite'
+    help:
+      message: 'Eine Onepager-Seite, bei der die Navigation zu Abschnitten auf der gleichen Seite scrollt.'
+  # Keine Unterseiten erlaubt - alles ist auf einer Seite
+  constraints:
+    nodeTypes:
+      '*': false
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'

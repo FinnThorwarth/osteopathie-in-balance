@@ -1,0 +1,70 @@
+'Thorwarth.BaseSite:Content.QuoteSection':
+  superTypes:
+    'Neos.Neos:Content': true
+    'Thorwarth.BaseSite:Mixin.NavigationAnchor': true
+  ui:
+    label: 'Zitat'
+    icon: 'icon-quote-right'
+    position: 60
+    group: 'general'
+    inspector:
+      groups:
+        quote:
+          label: 'Zitat'
+          position: 10
+        options:
+          label: 'Optionen'
+          position: 20
+  properties:
+    quoteText:
+      type: string
+      ui:
+        label: 'Zitat-Text'
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Zitat hier eingeben...'
+        inspector:
+          group: 'quote'
+          position: 10
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+          editorOptions:
+            rows: 4
+    author:
+      type: string
+      ui:
+        label: 'Autor (optional)'
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: '— Autor'
+        inspector:
+          group: 'quote'
+          position: 20
+    showDividers:
+      type: boolean
+      defaultValue: true
+      ui:
+        label: 'Trennlinien anzeigen'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 10
+    quoteColor:
+      type: string
+      defaultValue: 'rose'
+      ui:
+        label: 'Anführungszeichen-Farbe'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 20
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'rose':
+                label: 'Rosa'
+              'olive':
+                label: 'Olive'
+              'green':
+                label: 'Dunkelgrün'

@@ -1,0 +1,51 @@
+'Thorwarth.BaseSite:Mixin.NavigationAnchor':
+  abstract: true
+  ui:
+    inspector:
+      groups:
+        navigation:
+          label: 'Navigation (Onepager)'
+          position: 50
+          icon: 'icon-anchor'
+  properties:
+    showInNavigation:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'In Navigation anzeigen'
+        help:
+          message: 'Zeigt diesen Abschnitt als Navigationspunkt im Onepager-Modus an.'
+        inspector:
+          group: 'navigation'
+          position: 5
+    anchorId:
+      type: string
+      ui:
+        label: 'Anker-ID'
+        help:
+          message: 'Die ID für den Anker-Link (z.B. "ueber-uns" für #ueber-uns). Nur Kleinbuchstaben, Zahlen und Bindestriche.'
+        inspector:
+          group: 'navigation'
+          position: 10
+      validation:
+        'Neos.Neos/Validation/RegularExpressionValidator':
+          regularExpression: '/^[a-z0-9-]*$/'
+    navigationTitle:
+      type: string
+      ui:
+        label: 'Navigation Titel'
+        help:
+          message: 'Der Titel, der in der Navigation angezeigt wird.'
+        inspector:
+          group: 'navigation'
+          position: 20
+    navigationPosition:
+      type: integer
+      defaultValue: 0
+      ui:
+        label: 'Reihenfolge'
+        help:
+          message: 'Bestimmt die Reihenfolge in der Navigation (kleinere Zahlen zuerst).'
+        inspector:
+          group: 'navigation'
+          position: 30

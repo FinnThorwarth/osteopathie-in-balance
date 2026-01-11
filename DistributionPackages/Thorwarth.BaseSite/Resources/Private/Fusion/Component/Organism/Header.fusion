@@ -10,21 +10,33 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
 
     navigationData = Thorwarth.BaseSite:Component.Molecule.NavigationData
 
-
     renderer = afx`
-        <header class="mobility-header sticky top-0 right-0 left-0 z-50 bg-white">
-                <nav class="bg-white relative z-40">
-                    <div class="flex items-center justify-between pb-6">
+        <header class="apfel-header sticky top-0 right-0 left-0 z-50">
+            <nav class="relative  bg-apfel-olive z-40">
+                <div class="mx-auto px-4">
+                    <div class="flex items-center justify-between py-4">
                         <div class="flex items-center">
-                            <a href="/">
-                                <img src={StaticResource.uri('Apfelbluete.Site', 'Public/Images/mobility_logo_red.svg')}
-                                    alt="Fahrzeuge Mieten - Mobility"
-                                    class="h-auto h-[50px] xl:h-[70px] px-8" />
+                            <a href="/" class="flex items-center">
+                                <img
+                                    src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_Header.svg')}
+                                    alt="Apfelblüte e.V."
+                                    class="h-auto w-[300px] max-h-[60px] xl:max-h-[80px]"
+                                />
                             </a>
                         </div>
                         <div id="navigation-vue" data-navigation={props.navigationData || '{"menuItems":[],"currentNodeIdentifier":"debug-no-context"}'}></div>
                     </div>
-                </nav>
+                </div>
+            </nav>
+            <!-- Header Illustration Banner -->
+            <div class="w-full bg-apfel-olive-light relative overflow-visible overflow-x-clip">
+                <img
+                    src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Header_Grafik.svg')}
+                    alt=""
+                    class="w-full h-auto translate-y-[15%] sm:translate-y-[20%] md:translate-y-[25%] lg:translate-y-[30%]"
+                    aria-hidden="true"
+                />
+            </div>
         </header>
     `
 }

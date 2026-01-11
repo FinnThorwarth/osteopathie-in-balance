@@ -6,8 +6,11 @@ prototype(Thorwarth.BaseSite:Component.Content.TeamSection) < prototype(Neos.Fus
         tagName = 'div'
     }
 
+    # Navigation anchor support
+    anchorId = ${q(node).property('anchorId')}
+
     renderer = afx`
-        <section>
+        <section id={props.anchorId}>
             {props.members}
         </section>
     `

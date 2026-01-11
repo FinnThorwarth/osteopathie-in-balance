@@ -3,7 +3,7 @@
     <!-- Desktop Navigation (horizontal bar) - only visible when NOT scrolled -->
     <nav
       v-if="!isScrolled"
-      class="hidden xl:block bg-mobility-red-dark text-white rounded-tl-3xl"
+      class="hidden xl:block bg-apfel-olive-dark text-white rounded-tl-3xl"
     >
       <div class="mx-auto pl-8 pr-0">
         <ul class="flex items-center justify-end space-x-8 text-xl 2xl:text-2xl font-light">
@@ -16,6 +16,7 @@
             <a
               v-if="item.url && item.url !== '#'"
               :href="item.url"
+              @click="handleNavClick"
               class=" hover:opacity-80 transition-opacity"
               :class="{ 'font-semibold': item.isActive }"
             >
@@ -25,10 +26,11 @@
           </li>
 
           <!-- Last two items grouped together with separator -->
-          <li v-if="menuItems.length > 2" class="relative group p-8 flex items-center space-x-3 bg-mobility-red rounded-tl-3xl">
+          <li v-if="menuItems.length > 2" class="relative group p-8 flex items-center space-x-3 bg-apfel-olive rounded-tl-3xl">
             <a
               v-if="menuItems[menuItems.length - 2].url && menuItems[menuItems.length - 2].url !== '#'"
               :href="menuItems[menuItems.length - 2].url"
+              @click="handleNavClick"
               class=" hover:opacity-80 transition-opacity"
               :class="{ 'font-semibold': menuItems[menuItems.length - 2].isActive }"
             >
@@ -41,6 +43,7 @@
             <a
               v-if="menuItems[menuItems.length - 1].url && menuItems[menuItems.length - 1].url !== '#'"
               :href="menuItems[menuItems.length - 1].url"
+              @click="handleNavClick"
               class=" hover:opacity-80 transition-opacity"
               :class="{ 'font-semibold': menuItems[menuItems.length - 1].isActive }"
             >
@@ -62,7 +65,7 @@
     >
       <button
         @click="toggleMenu"
-        class="flex items-center bg-mobility-red p-4 rounded-bl-3xl"
+        class="flex items-center bg-apfel-olive p-4 rounded-bl-3xl"
         :aria-expanded="isMenuOpen"
         aria-label="Menü öffnen/schließen"
       >
@@ -120,7 +123,7 @@
       ></div>
 
       <!-- Slide-in Menu Panel from right -->
-      <div class="absolute right-0 top-0 bottom-0 w-full max-w-md xl:max-w-xl bg-mobility-red rounded-bl-[3rem] shadow-2xl overflow-y-auto">
+      <div class="absolute right-0 top-0 bottom-0 w-full max-w-md xl:max-w-xl bg-apfel-olive rounded-bl-[3rem] shadow-2xl overflow-y-auto">
         <!-- Menu Content -->
         <div class="w-full text-center px-8 py-16 min-h-full flex flex-col justify-start pt-24">
           <nav>
@@ -184,6 +187,9 @@ export default {
       isMenuOpen: false,
       isScrolled: false,
       menuItems: [],
+      isOnepager: false,
+      observer: null,
+      activeSectionId: null,
     };
   },
   created() {
@@ -201,6 +207,10 @@ export default {
           name: items.currentNodeName,
         });
 
+        // Check if this is an onepager site
+        this.isOnepager = items.isOnepager || false;
+        console.log("[Navigation] Is onepager:", this.isOnepager);
+
         // Check if menuItems is an array or needs conversion
         if (
           items.menuItems &&
@@ -212,7 +222,9 @@ export default {
           this.menuItems = items.menuItems || [];
         }
 
-        this.setActiveStatesBasedOnUrl();
+        if (!this.isOnepager) {
+          this.setActiveStatesBasedOnUrl();
+        }
       } catch (e) {
         console.error("[Navigation] Failed to parse navigation items:", e);
         console.error("[Navigation] Navigation data:", this.navigationItems);
@@ -269,9 +281,73 @@ export default {
       this.isMenuOpen = false;
       this.updateBodyScroll();
     },
-    handleNavClick() {
+    handleNavClick(event) {
+      const href = event.target.getAttribute('href');
+
+      // Handle anchor links with smooth scroll
+      if (href && href.startsWith('#')) {
+        event.preventDefault();
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+          // Calculate offset for fixed header
+          const headerOffset = 100;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+
+          // Update active section manually
+          this.activeSectionId = targetId;
+          this.updateActiveStates();
+        }
+      }
+
       // Close menu after navigation
       this.closeMenu();
+    },
+    updateActiveStates() {
+      // Update isActive for all menu items based on activeSectionId
+      this.menuItems.forEach((item) => {
+        item.isActive = item.anchorId === this.activeSectionId;
+      });
+    },
+    setupIntersectionObserver() {
+      if (!this.isOnepager || this.menuItems.length === 0) return;
+
+      // Disconnect existing observer if any
+      if (this.observer) {
+        this.observer.disconnect();
+      }
+
+      const options = {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px', // Trigger when section is in upper part of viewport
+        threshold: 0
+      };
+
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            this.activeSectionId = entry.target.id;
+            this.updateActiveStates();
+          }
+        });
+      }, options);
+
+      // Observe all sections that are in the navigation
+      this.menuItems.forEach((item) => {
+        if (item.anchorId) {
+          const element = document.getElementById(item.anchorId);
+          if (element) {
+            this.observer.observe(element);
+          }
+        }
+      });
     },
     updateBodyScroll() {
       if (this.isMenuOpen) {
@@ -310,6 +386,11 @@ export default {
       }
     };
     document.addEventListener("keydown", this.escapeListener);
+
+    // Setup intersection observer for onepager navigation
+    this.$nextTick(() => {
+      this.setupIntersectionObserver();
+    });
   },
   beforeUnmount() {
     document.body.style.overflow = "";
@@ -324,6 +405,10 @@ export default {
     // Remove escape key listener
     if (this.escapeListener) {
       document.removeEventListener('keydown', this.escapeListener);
+    }
+    // Disconnect intersection observer
+    if (this.observer) {
+      this.observer.disconnect();
     }
   },
 };

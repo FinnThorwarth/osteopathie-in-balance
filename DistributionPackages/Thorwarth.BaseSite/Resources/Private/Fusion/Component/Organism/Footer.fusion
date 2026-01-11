@@ -1,27 +1,66 @@
 prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:Component) {
-  site=${site}
+    site = ${site}
 
-  renderer=afx`
-  <footer class="mobility-footer text-white py-8 md:py-12 mt-20 relative">
-  <div class="container">
-    <div class="grid md:grid-cols-3 md:gap-0 align-bottom">
-      <div>
-        <img src={StaticResource.uri('Apfelbluete.Site', 'Public/Images/mobility_logo_claim.svg' )}
-          alt="Fahrzeuge Mieten - Mobility"
-          class="h-auto h-[50px] xl:h-[70px] px-8" />
-      </div>
-      <div>
-        <p class="text-sm 2xl:text-base font-light max-w-md">
-          {site.footerAddress}
-        </p>
-      </div>
-      <div class="flex align-bottom">
-        <a href="/impressum">Impressum</a>
-        <a href="/datenschutz">Datenschutz</a>
-        <a href="/agb">AGB</a>
-      </div>
-    </div>
-  </div>
-  </footer>
-  `
-  }
+    # Properties from site settings
+    email = ${q(site).property('footerEmail') || 'info@hofprojekt-apfelbluete.de'}
+
+    renderer = afx`
+        <footer class="apfel-footer bg-apfel-olive text-white relative overflow-hidden">
+            <div class="container mx-auto px-4 py-12 md:py-16">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
+                    <!-- Logo Section -->
+                    <div class="flex justify-center md:justify-start">
+                        <img
+                            src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_Footer.svg')}
+                            alt="Apfelblüte e.V."
+                            class="h-auto max-h-[150px]"
+                        />
+                    </div>
+
+                    <!-- Contact & Links -->
+                    <div class="text-center md:text-left space-y-4">
+                        <a href={'mailto:' + props.email} class="font-headline text-xl md:text-2xl text-white hover:text-apfel-rose transition-colors uppercase block">
+                            {props.email}
+                        </a>
+                        <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center md:justify-start">
+                            <a href="#spenden" class="text-white hover:text-apfel-rose transition-colors">
+                                Spenden & Unterstützen &gt;
+                            </a>
+                            <a href="#hofsuche" class="text-white hover:text-apfel-rose transition-colors">
+                                Hofsuche &gt;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Animal Silhouettes (decorative) -->
+                    <div class="hidden lg:flex justify-end items-end opacity-50">
+                        <svg class="w-64 h-24" viewBox="0 0 256 96" fill="currentColor">
+                            <!-- Person with animals silhouette -->
+                            <path d="M20 90 L25 70 L30 90 M25 70 L25 55 L20 45 M25 55 L30 45 M25 55 L25 40 A5 5 0 1 1 25 30" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <!-- Donkey -->
+                            <path d="M60 90 L60 75 L55 75 L55 90 M70 90 L70 75 L75 75 L75 90 M55 75 Q50 70 55 60 L80 60 Q90 65 85 75 L55 75 M55 60 L50 50 L55 55 M80 60 L82 55" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <!-- Cow -->
+                            <path d="M120 90 L120 75 L115 75 L115 90 M135 90 L135 75 L140 75 L140 90 M115 75 Q105 70 110 60 L145 60 Q155 65 150 75 L115 75 M110 60 L105 50 L110 55 M112 55 L108 45 M145 60 L150 55" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <!-- Goat -->
+                            <path d="M180 90 L180 78 L177 78 L177 90 M192 90 L192 78 L195 78 L195 90 M177 78 Q172 75 175 68 L198 68 Q205 72 200 78 L177 78 M175 68 L172 60 L175 63 M198 68 L200 62 M195 65 L200 55" fill="none" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="bg-apfel-olive-dark py-4">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm opacity-75">
+                        <p>&copy; {Date.format(Date.now(), 'Y')} Apfelblüte e.V.</p>
+                        <div class="flex gap-4">
+                            <a href="/impressum" class="hover:text-apfel-rose transition-colors">Impressum</a>
+                            <span>|</span>
+                            <a href="/datenschutz" class="hover:text-apfel-rose transition-colors">Datenschutz</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    `
+}

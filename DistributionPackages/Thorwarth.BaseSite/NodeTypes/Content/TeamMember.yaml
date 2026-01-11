@@ -72,3 +72,18 @@
         label: 'Foto Titel'
         inspector:
           group: 'image'
+    photoStyle:
+      type: string
+      defaultValue: 'square'
+      ui:
+        label: 'Foto-Stil'
+        reloadIfChanged: true
+        inspector:
+          group: 'image'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'square':
+                label: 'Quadratisch'
+              'circular':
+                label: 'Rund'

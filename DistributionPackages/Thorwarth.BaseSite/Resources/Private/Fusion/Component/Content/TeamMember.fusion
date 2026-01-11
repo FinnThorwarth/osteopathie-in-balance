@@ -2,10 +2,11 @@ prototype(Thorwarth.BaseSite:Content.TeamMember) < prototype(Neos.Neos:ContentCo
     image = ${q(node).property('image')}
     imageAlt = ${q(node).property('imageAlt')}
     imageTitle = ${q(node).property('imageTitle')}
+    photoStyle = ${q(node).property('photoStyle') || 'square'}
 
     renderer = afx`
-        <div class="team-member group bg-mobility-bg-light border-t-2 border-mobility-red">
-            <div class="relative aspect-[1/1] overflow-hidden">
+        <div class="team-member group text-center">
+            <div class={'relative overflow-hidden mx-auto mb-4 ' + (props.photoStyle == 'circular' ? 'rounded-full w-48 h-48 md:w-56 md:h-56' : 'aspect-[1/1]')}>
                 <Thorwarth.BaseSite:TeamMemberImage
                     @if.hasImage={props.image}
                     image={props.image}
@@ -13,24 +14,20 @@ prototype(Thorwarth.BaseSite:Content.TeamMember) < prototype(Neos.Neos:ContentCo
                     title={props.imageTitle}
                     class="w-full h-full object-cover object-center"
                 />
-                <div class="flex items-center justify-center w-full h-full" @if.hasNoImage={!props.image}>
-                    <svg class="w-32 h-32 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                <div class="flex items-center justify-center w-full h-full bg-apfel-rose" @if.hasNoImage={!props.image}>
+                    <svg class="w-32 h-32 text-apfel-olive opacity-30" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
                     </svg>
                 </div>
             </div>
 
-            <div class="p-4 pb-8">
-                <h3 class="text-3xl font-medium font-headline uppercase text-mobility-red">
+            <div class="p-4">
+                <h3 class="font-headline text-2xl font-bold uppercase text-apfel-green mb-1">
                     <Neos.Neos:Editable property="name" block={true} />
                 </h3>
 
-                <p class=" text-lg leading-[1.25em]">
+                <p class="font-body text-apfel-text">
                     <Neos.Neos:Editable property="position" block={true} />
-                </p>
-
-                <p class=" text-lg leading-[1.25em]">
-                   Pronomen: <Neos.Neos:Editable property="pronouns" block={false} />
                 </p>
             </div>
         </div>

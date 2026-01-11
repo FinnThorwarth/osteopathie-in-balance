@@ -1,6 +1,7 @@
 'Thorwarth.BaseSite:Content.TwoColumnSection':
   superTypes:
     'Neos.Neos:Content': true
+    'Thorwarth.BaseSite:Mixin.NavigationAnchor': true
   label: "${node.properties.headline ? 'Abschnitt (' + node.properties.headline + ')' : 'Abschnitt'}"
   ui:
     label: 'Abschnitt mit Überschrift'
