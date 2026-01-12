@@ -89,6 +89,13 @@
               h2: true
               h3: true
               h4: true
+    subheading:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Unterüberschrift'
     text:
       type: string
       ui:
