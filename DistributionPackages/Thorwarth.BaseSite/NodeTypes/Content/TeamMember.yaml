@@ -4,9 +4,12 @@
   ui:
     label: 'Teamkachel'
     icon: 'icon-user'
-    group: 'caspary'
+    group: 'structure'
     inspector:
       groups:
+        content:
+          label: 'Inhalt'
+          position: 5
         image:
           label: 'Bild'
           position: 10
@@ -44,6 +47,28 @@
         inline:
           editorOptions:
             placeholder: 'Pronomen'
+    text:
+      type: string
+      ui:
+        label: 'Beschreibung / Bio'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+          editorOptions:
+            rows: 4
+            placeholder: 'Kurzbeschreibung zur Person...'
+    quote:
+      type: string
+      ui:
+        label: 'Zitat'
+        reloadIfChanged: true
+        inspector:
+          group: 'content'
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+          editorOptions:
+            rows: 3
+            placeholder: 'Ein inspirierendes Zitat...'
     image:
       type: 'Neos\Media\Domain\Model\ImageInterface'
       ui:

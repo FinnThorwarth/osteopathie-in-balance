@@ -2,7 +2,9 @@ prototype(Thorwarth.BaseSite:Content.TeamMember) < prototype(Neos.Neos:ContentCo
     image = ${q(node).property('image')}
     imageAlt = ${q(node).property('imageAlt')}
     imageTitle = ${q(node).property('imageTitle')}
-    photoStyle = ${q(node).property('photoStyle') || 'square'}
+    photoStyle = ${q(node).property('photoStyle') || 'circular'}
+    text = ${q(node).property('text')}
+    quote = ${q(node).property('quote')}
 
     renderer = afx`
         <div class="team-member group text-center">
@@ -28,6 +30,14 @@ prototype(Thorwarth.BaseSite:Content.TeamMember) < prototype(Neos.Neos:ContentCo
 
                 <p class="font-body text-apfel-text">
                     <Neos.Neos:Editable property="position" block={true} />
+                </p>
+
+                <p class="font-body text-sm text-apfel-text/70 mt-2 line-clamp-3" @if.hasText={props.text}>
+                    {props.text}
+                </p>
+
+                <p class="font-body italic text-apfel-olive mt-3 text-sm" @if.hasQuote={props.quote}>
+                    "{props.quote}"
                 </p>
             </div>
         </div>

@@ -11,6 +11,7 @@ import Accordion from './components/Accordion.vue'
 import AccordionItem from './components/AccordionItem.vue'
 import ImageSlider from './components/ImageSlider.vue'
 import Search from './components/Search.vue'
+import TeamCarousel from './components/TeamCarousel.vue'
 
 // Function to mount Vue components
 function mountVueComponents() {
@@ -71,10 +72,26 @@ function mountVueComponents() {
 				autoplayDelay: autoplayDelay
 			})
 			element._vueInstance = sliderApp.mount(element)
-			
+
 			// Dispatch event for Neos backend
 			if (isNeosBackend) {
 				document.dispatchEvent(new CustomEvent('vue:mounted', { detail: { component: 'ImageSlider' } }));
+			}
+		}
+	})
+
+	// Mount TeamCarousel components
+	document.querySelectorAll('[data-vue-team-carousel]').forEach(element => {
+		if (!element._vueInstance) {
+			const autoplayDelay = parseInt(element.getAttribute('data-autoplay-delay') || 5000)
+			const teamApp = createApp(TeamCarousel, {
+				autoplayDelay: autoplayDelay
+			})
+			element._vueInstance = teamApp.mount(element)
+
+			// Dispatch event for Neos backend
+			if (isNeosBackend) {
+				document.dispatchEvent(new CustomEvent('vue:mounted', { detail: { component: 'TeamCarousel' } }));
 			}
 		}
 	})
