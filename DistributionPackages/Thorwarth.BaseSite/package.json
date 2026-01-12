@@ -23,6 +23,7 @@
     "vite-plugin-full-reload": "^1.2.0"
   },
   "dependencies": {
+    "glightbox": "^3.3.1",
     "puppeteer": "^24.16.1",
     "vue": "^3.5.17"
   }

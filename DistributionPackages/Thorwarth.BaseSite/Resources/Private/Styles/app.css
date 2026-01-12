@@ -539,3 +539,92 @@ section i {
 .hamburger-svg-line {
   transition: all 0.3s ease-in-out;
 }
+
+/* GLightbox Custom Styles for Apfelbluete */
+.glightbox-container .goverlay {
+  background: rgba(61, 74, 36, 0.95);
+}
+
+.glightbox-container .gclose,
+.glightbox-container .gnext,
+.glightbox-container .gprev {
+  background-color: rgba(170, 176, 130, 0.9);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  transition: background-color 0.3s ease;
+}
+
+.glightbox-container .gclose:hover,
+.glightbox-container .gnext:hover,
+.glightbox-container .gprev:hover {
+  background-color: rgba(170, 176, 130, 1);
+}
+
+.glightbox-container .gclose svg,
+.glightbox-container .gnext svg,
+.glightbox-container .gprev svg {
+  fill: #3D4A24;
+}
+
+.glightbox-container .gslide-media {
+  max-height: 90vh;
+}
+
+.glightbox-container .gslide-description {
+  background: linear-gradient(to top, rgba(61, 74, 36, 0.9), transparent);
+  padding: 2rem 1.5rem 1.5rem;
+}
+
+.glightbox-container .gslide-title {
+  font-family: "Playfair Display", Georgia, serif;
+  color: #F5E9EC;
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+  margin-bottom: 0.5rem;
+}
+
+.glightbox-container .gdesc-inner {
+  font-family: Inter, system-ui, sans-serif;
+  color: rgba(245, 233, 236, 0.85);
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+
+.glightbox-container .gslide-image img {
+  border-radius: 0.25rem;
+}
+
+/* Gallery item hover zoom icon */
+.gallery-item {
+  position: relative;
+}
+
+.gallery-item a::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 48px;
+  height: 48px;
+  background: rgba(170, 176, 130, 0.9) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233D4A24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7'/%3E%3C/svg%3E") center center no-repeat;
+  background-size: 24px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.gallery-item a:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+/* Focus ring for accessibility */
+.gallery-item a:focus-visible {
+  outline: 3px solid #AAB082;
+  outline-offset: 2px;
+}

@@ -23,6 +23,7 @@
           "Thorwarth.BaseSite:Content.SectionHeader": true
           # Media
           "Thorwarth.BaseSite:Content.ImageSlider": true
+          "Thorwarth.BaseSite:Content.ImageGallery": true
           "Thorwarth.BaseSite:Content.FullWidthImage": true
           "Thorwarth.BaseSite:Content.Image.Hero": true
           "Thorwarth.BaseSite:Content.TextImage": true

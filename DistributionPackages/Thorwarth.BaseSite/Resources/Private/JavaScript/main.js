@@ -1,6 +1,10 @@
 import { createApp } from 'vue'
 import '../Styles/app.css'
 
+// Import GLightbox for gallery lightbox functionality
+import GLightbox from 'glightbox'
+import 'glightbox/dist/css/glightbox.min.css'
+
 // Import Vue components
 import Navigation from './components/Navigation.vue'
 import Accordion from './components/Accordion.vue'
@@ -86,12 +90,47 @@ function mountVueComponents() {
 		})
 		searchElement._vueInstance = searchApp.mount(searchElement)
 		console.log('Search Vue component mounted')
-		
+
 		// Dispatch event for Neos backend
 		if (isNeosBackend) {
 			document.dispatchEvent(new CustomEvent('vue:mounted', { detail: { component: 'Search' } }));
 		}
 	}
+
+	// Initialize gallery lightboxes (skip in Neos backend to preserve editing)
+	if (!isNeosBackend) {
+		initializeGalleryLightboxes()
+	}
+}
+
+// Function to initialize GLightbox for gallery components
+function initializeGalleryLightboxes() {
+	document.querySelectorAll('[data-gallery-lightbox]').forEach(galleryElement => {
+		// Skip if already initialized
+		if (galleryElement._glightboxInstance) {
+			galleryElement._glightboxInstance.reload()
+			return
+		}
+
+		const galleryId = galleryElement.getAttribute('data-gallery-lightbox')
+
+		// Initialize GLightbox for this gallery
+		const lightbox = GLightbox({
+			selector: `.glightbox[data-gallery="${galleryId}"]`,
+			touchNavigation: true,
+			loop: true,
+			autoplayVideos: false,
+			closeButton: true,
+			touchFollowAxis: true,
+			keyboardNavigation: true,
+			closeOnOutsideClick: true,
+			openEffect: 'zoom',
+			closeEffect: 'fade'
+		})
+
+		// Store reference for later refresh
+		galleryElement._glightboxInstance = lightbox
+	})
 }
 
 // Function to setup mutation observer for dynamic content

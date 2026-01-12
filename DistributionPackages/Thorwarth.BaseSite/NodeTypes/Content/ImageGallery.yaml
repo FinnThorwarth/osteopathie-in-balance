@@ -17,14 +17,15 @@
           position: 20
   properties:
     images:
-      type: 'Neos\Media\Domain\Model\ImageInterface'
+      type: 'array<Neos\Media\Domain\Model\Asset>'
       ui:
         label: 'Bilder'
         reloadIfChanged: true
         inspector:
           group: 'images'
           position: 10
-          multiple: true
+          editorOptions:
+            accept: 'image/*'
     columns:
       type: integer
       defaultValue: 4
