@@ -8,7 +8,7 @@ prototype(Thorwarth.BaseSite:Content.TeamMember) < prototype(Neos.Neos:ContentCo
 
     renderer = afx`
         <div class="team-member group text-center">
-            <div class={'relative overflow-hidden mx-auto mb-4 ' + (props.photoStyle == 'circular' ? 'rounded-full w-48 h-48 md:w-56 md:h-56' : 'aspect-[1/1]')}>
+            <div class="relative overflow-hidden mx-auto mb-6 rounded-full w-52 h-52 md:w-60 md:h-60 lg:w-64 lg:h-64">
                 <Thorwarth.BaseSite:TeamMemberImage
                     @if.hasImage={props.image}
                     image={props.image}
@@ -16,29 +16,23 @@ prototype(Thorwarth.BaseSite:Content.TeamMember) < prototype(Neos.Neos:ContentCo
                     title={props.imageTitle}
                     class="w-full h-full object-cover object-center"
                 />
-                <div class="flex items-center justify-center w-full h-full bg-apfel-rose" @if.hasNoImage={!props.image}>
-                    <svg class="w-32 h-32 text-apfel-olive opacity-30" fill="currentColor" viewBox="0 0 20 20">
+                <div class="flex items-center justify-center w-full h-full bg-apfel-rose/50" @if.hasNoImage={!props.image}>
+                    <svg class="w-24 h-24 text-apfel-olive opacity-30" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
                     </svg>
                 </div>
             </div>
 
-            <div class="p-4">
-                <h3 class="font-headline text-2xl font-bold uppercase text-apfel-green mb-1">
+            <div class="px-4">
+                <h3 class="font-headline text-xl md:text-2xl font-normal uppercase text-apfel-olive tracking-wider mb-1">
                     <Neos.Neos:Editable property="name" block={true} />
                 </h3>
 
-                <p class="font-body text-apfel-text">
+                <p class="font-body text-apfel-text text-sm">
                     <Neos.Neos:Editable property="position" block={true} />
                 </p>
 
-                <p class="font-body text-sm text-apfel-text/70 mt-2 line-clamp-3" @if.hasText={props.text}>
-                    {props.text}
-                </p>
-
-                <p class="font-body italic text-apfel-olive mt-3 text-sm" @if.hasQuote={props.quote}>
-                    "{props.quote}"
-                </p>
+                <p class="text-apfel-olive/60 mt-1 text-sm tracking-widest">....</p>
             </div>
         </div>
     `
