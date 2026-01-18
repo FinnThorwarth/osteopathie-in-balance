@@ -21,6 +21,7 @@
           "Thorwarth.BaseSite:Content.Headline": true
           "Thorwarth.BaseSite:Content.Header": true
           "Thorwarth.BaseSite:Content.SectionHeader": true
+          "Thorwarth.BaseSite:Content.QuoteSection": true
           # Media
           "Thorwarth.BaseSite:Content.ImageSlider": true
           "Thorwarth.BaseSite:Content.ImageGallery": true

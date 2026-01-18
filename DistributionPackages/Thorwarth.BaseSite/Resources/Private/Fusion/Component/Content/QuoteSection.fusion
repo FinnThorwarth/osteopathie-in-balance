@@ -11,12 +11,12 @@ prototype(Thorwarth.BaseSite:Content.QuoteSection) < prototype(Neos.Neos:Content
 
     @context {
         quoteColorClasses = Neos.Fusion:DataStructure {
-            rose = 'text-apfel-rose-dark'
+            rose = 'text-apfel-rose'
             olive = 'text-apfel-olive'
             green = 'text-apfel-green'
         }
         dividerColorClasses = Neos.Fusion:DataStructure {
-            rose = 'bg-apfel-rose-dark'
+            rose = 'bg-apfel-rose'
             olive = 'bg-apfel-olive'
             green = 'bg-apfel-green'
         }
@@ -27,20 +27,20 @@ prototype(Thorwarth.BaseSite:Content.QuoteSection) < prototype(Neos.Neos:Content
             id={props.anchorId}
             class="quote-section py-12 md:py-16 bg-white"
         >
-            <div class="container mx-auto px-4 max-w-4xl">
+            <div class="container mx-auto px-4 max-w-[1064px]">
                 <div class="flex items-center justify-center gap-4 mb-8">
-                    <div @if={props.showDividers} class={'flex-1 h-px ' + dividerColorClasses[props.quoteColor] + ' opacity-30'}></div>
-                    <svg class={'w-12 h-12 ' + quoteColorClasses[props.quoteColor]} viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    <div @if={props.showDividers} class={'flex-1 h-0.5 ' + dividerColorClasses[props.quoteColor]}></div>
+                    <svg class={'w-[68px] h-[53px] ' + quoteColorClasses[props.quoteColor]} viewBox="0 0 68 53" fill="currentColor">
+                        <path d="M29.7 0v7.8c0 13.5-8.7 22.4-21.6 26.4L0 27C7.4 24.8 12.9 19.1 13.2 13.2H0V0h29.7zm38.3 0v7.8c0 13.5-8.7 22.4-21.6 26.4l-8.1-7.2c7.4-2.2 12.9-7.9 13.2-13.8H38.3V0H68z"/>
                     </svg>
-                    <div @if={props.showDividers} class={'flex-1 h-px ' + dividerColorClasses[props.quoteColor] + ' opacity-30'}></div>
+                    <div @if={props.showDividers} class={'flex-1 h-0.5 ' + dividerColorClasses[props.quoteColor]}></div>
                 </div>
 
                 <blockquote class="text-center">
-                    <p class="font-body text-xl md:text-2xl text-apfel-text leading-relaxed italic mb-6">
+                    <p class="font-body text-[25px] leading-[40px] text-apfel-text mb-4">
                         {props.quoteText}
                     </p>
-                    <cite @if={props.author} class="font-headline text-lg text-apfel-green not-italic">
+                    <cite @if={props.author} class="font-headline text-2xl text-apfel-green not-italic">
                         {props.author}
                     </cite>
                 </blockquote>
@@ -51,7 +51,7 @@ prototype(Thorwarth.BaseSite:Content.QuoteSection) < prototype(Neos.Neos:Content
     @cache {
         mode = 'cached'
         entryIdentifier {
-            node = ${node.aggregateId}
+            node = ${Neos.Caching.entryIdentifierForNode(node)}
         }
         entryTags {
             node = ${Neos.Caching.nodeTag(node)}

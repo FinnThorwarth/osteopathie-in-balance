@@ -5,7 +5,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
     email = ${q(site).property('footerEmail') || 'info@hofprojekt-apfelbluete.de'}
 
     renderer = afx`
-        <footer class="apfel-footer bg-apfel-olive-light text-white relative">
+        <footer class="apfel-footer bg-apfel-olive-light relative text-apfel-green">
           <div class="px-4 relative">
                <img
                             src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_Footer.svg')}
@@ -19,14 +19,14 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
 
                     <!-- Contact & Links -->
                     <div class="text-center md:text-left space-y-4">
-                        <a href={'mailto:' + props.email} class="font-headline text-xl md:text-2xl text-white hover:text-apfel-rose transition-colors uppercase block">
+                        <a href={'mailto:' + props.email} class="font-headline text-xl md:text-2xl lg:text-4xl hover:text-apfel-rose transition-colors uppercase block">
                             {props.email}
                         </a>
-                        <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center md:justify-start">
-                            <a href="#spenden" class="text-white hover:text-apfel-rose transition-colors">
-                                Spenden & Unterstützen &gt;
-                            </a>
-                            <a href="#hofsuche" class="text-white hover:text-apfel-rose transition-colors">
+                        <div class="">
+                            <a href="#spenden" class="hover:text-apfel-rose transition-colors lg:text-2xl text-bold">
+                                Spenden & Fördern &gt;
+                            </a><br />
+                            <a href="#hofsuche" class="hover:text-apfel-rose transition-colors lg:text-2xl text-bold">
                                 Hofsuche &gt;
                             </a>
                         </div>
@@ -46,7 +46,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
             <!-- Bottom Bar -->
             <div class="bg-apfel-olive py-4">
                 <div class="container mx-auto px-4">
-                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm opacity-75">
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-xl">
                         <p>&copy; {Date.format(Date.now(), 'Y')} Apfelblüte e.V.</p>
                         <div class="flex gap-4">
                             <a href="/impressum" class="hover:text-apfel-rose transition-colors">Impressum</a>
