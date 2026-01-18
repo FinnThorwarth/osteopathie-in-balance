@@ -19,7 +19,7 @@
               class="uppercase transition-all px-6 py-3 rounded-full"
               :class="item.isActive
                 ? 'bg-apfel-rose text-apfel-green font-semibold'
-                : 'hover:bg-apfel-rose hover:text-apfel-green'"
+                : 'hover:bg-apfel-white hover:text-apfel-green'"
             >
               {{ item.title }}
             </a>
@@ -116,7 +116,7 @@
                   class="inline-block text-3xl md:text-4xl uppercase transition-all px-6 py-3 rounded-full"
                   :class="item.isActive
                     ? 'bg-apfel-rose text-apfel-green font-semibold'
-                    : 'text-white font-semibold hover:bg-apfel-rose hover:text-apfel-green'"
+                    : 'text-white font-semibold hover:bg-apfel-white hover:text-apfel-green'"
                 >
                   {{ item.title }}
                 </a>
@@ -155,6 +155,8 @@ export default {
       isOnepager: false,
       observer: null,
       activeSectionId: null,
+      isScrolling: false,
+      scrollTimeout: null,
     };
   },
   computed: {},
@@ -257,6 +259,14 @@ export default {
         const targetElement = document.getElementById(targetId);
 
         if (targetElement) {
+          // Disable intersection observer during scroll
+          this.isScrolling = true;
+
+          // Clear any existing timeout
+          if (this.scrollTimeout) {
+            clearTimeout(this.scrollTimeout);
+          }
+
           // Calculate offset for fixed header
           const headerOffset = 100;
           const elementPosition = targetElement.getBoundingClientRect().top;
@@ -270,6 +280,11 @@ export default {
           // Update active section manually
           this.activeSectionId = targetId;
           this.updateActiveStates();
+
+          // Re-enable intersection observer after scroll completes
+          this.scrollTimeout = setTimeout(() => {
+            this.isScrolling = false;
+          }, 800);
         }
       }
 
@@ -297,6 +312,9 @@ export default {
       };
 
       this.observer = new IntersectionObserver((entries) => {
+        // Skip updates during programmatic scrolling
+        if (this.isScrolling) return;
+
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             this.activeSectionId = entry.target.id;
@@ -371,6 +389,10 @@ export default {
     // Remove escape key listener
     if (this.escapeListener) {
       document.removeEventListener('keydown', this.escapeListener);
+    }
+    // Clear scroll timeout
+    if (this.scrollTimeout) {
+      clearTimeout(this.scrollTimeout);
     }
     // Disconnect intersection observer
     if (this.observer) {
