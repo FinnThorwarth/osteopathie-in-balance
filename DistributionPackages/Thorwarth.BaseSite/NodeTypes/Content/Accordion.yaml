@@ -2,6 +2,7 @@
   superTypes:
     'Neos.Neos:Content': true
     'Neos.Neos:ContentCollection': true
+    'Thorwarth.BaseSite:Mixin.NavigationAnchor': true
   ui:
     label: 'Accordion'
     icon: 'icon-folder-open'

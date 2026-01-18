@@ -24,8 +24,8 @@ prototype(Thorwarth.BaseSite:Component.Molecule.NavigationData) < prototype(Neos
                     hasActiveChild = false
                     children = ${[]}
                 }
-                // Sort by navigation position
-                @process.sort = ${Array.sort(value, 'position')}
+                // Convert to indexed array (sorting handled by position property in query)
+                @process.toArray = ${Array.values(value)}
             }
         }
 

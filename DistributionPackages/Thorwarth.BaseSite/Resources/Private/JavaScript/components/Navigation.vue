@@ -7,9 +7,9 @@
     >
       <div class="mx-auto pl-8 pr-0">
         <ul class="flex items-center justify-end space-x-8 text-xl 2xl:text-2xl font-light">
-          <!-- Main menu items (all except last two) -->
+          <!-- Main menu items (all except last two, or all if 2 or fewer items) -->
           <li
-            v-for="item in menuItems.slice(0, -2)"
+            v-for="item in menuItems.length > 2 ? menuItems.slice(0, -2) : menuItems"
             :key="item.title"
             class="relative group py-8"
           >
@@ -127,10 +127,10 @@
         <!-- Menu Content -->
         <div class="w-full text-center px-8 py-16 min-h-full flex flex-col justify-start pt-24">
           <nav>
-            <!-- Main menu items (white text, larger) -->
+            <!-- Main menu items (white text, larger) - all items if 2 or fewer -->
             <ul class="space-y-6 mb-12">
               <li
-                v-for="item in menuItems.slice(0, -2)"
+                v-for="item in menuItems.length > 2 ? menuItems.slice(0, -2) : menuItems"
                 :key="item.title"
               >
                 <a
