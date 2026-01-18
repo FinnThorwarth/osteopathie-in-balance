@@ -1,8 +1,7 @@
 <template>
   <div class="navigation-wrapper font-headline">
-    <!-- Desktop Navigation (horizontal bar) - only visible when NOT scrolled -->
+    <!-- Desktop Navigation (horizontal bar) - always visible on desktop -->
     <nav
-      v-if="!isScrolled"
       class="hidden xl:block text-white rounded-tl-3xl"
     >
       <div class="mx-auto pl-8 pr-6">
@@ -36,13 +35,9 @@
       </div>
     </nav>
 
-    <!-- Compact Navigation Button (always visible on mobile, only when scrolled on desktop) -->
+    <!-- Compact Navigation Button (only visible on mobile/tablet, hidden on desktop) -->
     <div
-      class="fixed top-0 right-0 z-50 transition-transform duration-300"
-      :class="[
-        isScrolled ? 'xl:block' : 'xl:hidden',
-        'block'
-      ]"
+      class="fixed top-0 right-0 z-50 transition-transform duration-300 block xl:hidden"
     >
       <button
         @click="toggleMenu"
