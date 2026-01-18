@@ -3,7 +3,7 @@
 
   /* Apfelblüte Brand Colors */
   --apfel-olive: #aab082;
-  --apfel-olive-light: #C4C6B3;
+  --apfel-olive-light: #c4c6b3;
   --apfel-olive-dark: #8a9068;
   --apfel-rose: #f5e9ec;
   --apfel-rose-light: #faf4f6;
@@ -34,6 +34,7 @@
 }
 
 /* playfair-display-regular - latin */
+/*
 @font-face {
   font-display: swap;
   font-family: "Playfair Display";
@@ -41,7 +42,9 @@
   font-weight: 400;
   src: url("../Fonts/playfair-display-v40-latin-regular.woff2") format("woff2");
 }
+  */
 /* playfair-display-700 - latin */
+/*
 @font-face {
   font-display: swap;
   font-family: "Playfair Display";
@@ -49,7 +52,9 @@
   font-weight: 700;
   src: url("../Fonts/playfair-display-v40-latin-700.woff2") format("woff2");
 }
+  */
 /* playfair-display-800 - latin */
+/*
 @font-face {
   font-display: swap;
   font-family: "Playfair Display";
@@ -57,7 +62,7 @@
   font-weight: 800;
   src: url("../Fonts/playfair-display-v40-latin-800.woff2") format("woff2");
 }
-
+*/
 /* inter-200 - latin */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -255,9 +260,20 @@ main {
   }
 
   /* Script Font für Akzent-Wörter in Headlines (via em/italic Tag) */
-  h1 em, h1 i, h2 em, h2 i, h3 em, h3 i,
-  .apfel-h1 em, .apfel-h1 i, .apfel-h2 em, .apfel-h2 i, .apfel-h3 em, .apfel-h3 i,
-  .content-headline em, .content-headline i {
+  h1 em,
+  h1 i,
+  h2 em,
+  h2 i,
+  h3 em,
+  h3 i,
+  .apfel-h1 em,
+  .apfel-h1 i,
+  .apfel-h2 em,
+  .apfel-h2 i,
+  .apfel-h3 em,
+  .apfel-h3 i,
+  .content-headline em,
+  .content-headline i {
     font-family: "Amatic SC", cursive !important;
     font-style: normal !important;
     font-weight: 700;
@@ -305,20 +321,27 @@ main {
     }
 
     /* Headings - basierend auf XD Specs */
+    h1 {
+      @apply font-headline text-4xl md:text-[6rem] font-normal mb-2 mt-4 text-apfel-dark-grey uppercase tracking-[0.035em] !important;
+    }
+
     h2 {
-      @apply font-headline text-4xl md:text-[3.125rem] font-normal mb-4 mt-8 text-apfel-green uppercase tracking-[0.035em] !important;
+      @apply font-headline text-4xl md:text-[3.125rem] font-normal mb-4 mt-4 text-apfel-dark-grey uppercase tracking-[0.035em] !important;
     }
 
     h3 {
-      @apply font-script text-3xl md:text-[2.9375rem] font-bold mb-3 mt-6 text-apfel-green uppercase tracking-[0.06em] !important;
+      @apply font-script text-3xl md:text-[2.9375rem] font-bold mb-3 mt-6 text-apfel-dark-grey uppercase tracking-[0.06em] !important;
     }
 
     h4 {
-      @apply font-headline text-xl font-normal mb-2 mt-4 text-apfel-green !important;
+      @apply font-headline text-xl font-normal mb-2 mt-4 text-apfel-dark-grey !important;
     }
 
     /* Script Font für em/italic in Headlines */
-    h2 em, h2 i, h4 em, h4 i {
+    h2 em,
+    h2 i,
+    h4 em,
+    h4 i {
       font-family: "Amatic SC", cursive !important;
       font-style: normal !important;
       font-weight: 700;
@@ -564,7 +587,7 @@ section i {
 .glightbox-container .gclose svg,
 .glightbox-container .gnext svg,
 .glightbox-container .gprev svg {
-  fill: #3D4A24;
+  fill: #3d4a24;
 }
 
 .glightbox-container .gslide-media {
@@ -577,8 +600,8 @@ section i {
 }
 
 .glightbox-container .gslide-title {
-  font-family: "Playfair Display", Georgia, serif;
-  color: #F5E9EC;
+  font-family: "Amatic SC", Georgia, serif;
+  color: #f5e9ec;
   font-size: 1.25rem;
   font-weight: 400;
   text-transform: uppercase;
@@ -603,14 +626,16 @@ section i {
 }
 
 .gallery-item a::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
   width: 48px;
   height: 48px;
-  background: rgba(170, 176, 130, 0.9) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233D4A24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7'/%3E%3C/svg%3E") center center no-repeat;
+  background: rgba(170, 176, 130, 0.9)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233D4A24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7'/%3E%3C/svg%3E")
+    center center no-repeat;
   background-size: 24px;
   border-radius: 50%;
   opacity: 0;
@@ -625,6 +650,6 @@ section i {
 
 /* Focus ring for accessibility */
 .gallery-item a:focus-visible {
-  outline: 3px solid #AAB082;
+  outline: 3px solid #aab082;
   outline-offset: 2px;
 }

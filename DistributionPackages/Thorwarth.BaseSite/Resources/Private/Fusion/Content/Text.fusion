@@ -5,6 +5,11 @@ prototype(Thorwarth.BaseSite:Content.Text) < prototype(Neos.Neos:ContentComponen
     isBackend = ${renderingMode.isEdit}
     anchorId = ${q(node).property('anchorId')}
 
+    # Semantische Überschriften: Erstes Element h1/h2, alle anderen h2/h3
+    isMainHeading = ${q(node).property('isMainHeading')}
+    headingLevel = ${this.isMainHeading ? 'h1' : 'h2'}
+    subheadingLevel = ${this.isMainHeading ? 'h2' : 'h3'}
+
     heading = Neos.Neos:Editable {
         property = 'heading'
     }
@@ -39,8 +44,8 @@ prototype(Thorwarth.BaseSite:Content.Text) < prototype(Neos.Neos:ContentComponen
         <section id={props.anchorId} class={'content-text py-8 md:py-12 ' + (props.backgroundColor ? bgClasses[props.backgroundColor] : '')}>
             <div class="container mx-auto px-4">
                 <div class={alignmentClasses[props.textAlignment]}>
-                    <div @if={props.heading} class="mb-2">{props.heading}</div>
-                    <div @if={props.subheading} class="mb-6 text-lg font-light text-gray-600">{props.subheading}</div>
+                    <Neos.Fusion:Tag tagName={props.headingLevel} @if={props.heading} attributes.class="mb-2 text-3xl md:text-6xl uppercase font-bold leading-tight">{props.heading}</Neos.Fusion:Tag>
+                    <Neos.Fusion:Tag tagName={props.subheadingLevel} @if={props.subheading} attributes.class="mb-6 text-lg text-gray-600">{props.subheading}</Neos.Fusion:Tag>
                 </div>
                 <div class={props.columnLayout ? 'grid gap-8 ' + (props.columnLayout == 'two-columns' ? 'md:grid-cols-2' : (props.columnLayout == 'three-columns' ? 'md:grid-cols-3' : '')) : ''}>
                     <div class={'prose prose-lg max-w-none ' + alignmentClasses[props.textAlignment]} @if={props.isBackend || q(node).property('text1')}>

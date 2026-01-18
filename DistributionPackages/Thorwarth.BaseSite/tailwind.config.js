@@ -10,6 +10,7 @@ export default {
 		extend: {
 			colors: {
 				// Apfelblüte Brand Colors
+				'apfel-dark-grey': '#3C3C3B',
 				'apfel-olive': '#AAB082',
 				'apfel-olive-light': '#C4C6B3',
 				'apfel-olive-dark': '#8a9068',
@@ -65,13 +66,13 @@ export default {
 				},
 			},
 			fontFamily: {
-				'headline': ['"Playfair Display"', 'Georgia', 'serif'],
+				'headline': ['"Amatic SC"', 'Georgia', 'serif'],
 				'script': ['"Amatic SC"', 'cursive', 'sans-serif'],
 				'body': ['Inter', 'system-ui', 'sans-serif'],
 				'light': ['Inter', 'system-ui', 'sans-serif'],
 				'light-body': ['Inter', 'system-ui', 'sans-serif'],
 				'sans': ['Inter', 'system-ui', 'sans-serif'],
-				'serif': ['"Playfair Display"', 'Georgia', 'serif'],
+				'serif': ['"Amatic SC"', 'Georgia', 'serif'],
 				'mono': ['ui-monospace', 'SFMono-Regular'],
 			},
 			fontSize: {

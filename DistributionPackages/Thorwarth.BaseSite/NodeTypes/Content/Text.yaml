@@ -13,6 +13,15 @@
           label: 'Optionen'
           position: 10
   properties:
+    isMainHeading:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Haupt-Überschrift (h1/h2)'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 5
     columnLayout:
       type: string
       defaultValue: ''
@@ -73,6 +82,7 @@
           editorOptions:
             placeholder: 'Überschrift'
             formatting:
+              h1: true
               h2: true
               h3: true
               h4: true
