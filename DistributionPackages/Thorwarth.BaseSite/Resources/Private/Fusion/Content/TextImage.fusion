@@ -50,7 +50,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
     }
 
     renderer = afx`
-        <section id={props.anchorId} class="content-text-image py-8 md:py-12">
+        <section id={props.anchorId} class="content-text-image content-text py-8 md:py-12">
             <div class="container mx-auto px-4">
                 <div class={'grid gap-8 items-start ' + layoutClasses[props.columnLayout]}>
                     <div @if={!props.isTextFirst} class={'w-full ' + (imageColSpan[props.columnLayout] || '')}>
@@ -60,8 +60,8 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                              class="w-full h-auto rounded-sm shadow-lg" />
                     </div>
                     <div class={'prose prose-lg max-w-none ' + (textColSpan[props.columnLayout] || '')}>
-                        <h2 @if={props.heading} class="mb-2 font-headline text-3xl md:text-4xl font-medium uppercase leading-tight text-apfel-olive">{props.heading}</h2>
-                        <h3 @if={props.subheading} class="mb-6 text-lg font-light text-gray-600">{props.subheading}</h3>
+                        <h2 @if={props.heading} class="">{props.heading}</h2>
+                        <h3 @if={props.subheading} class="">{props.subheading}</h3>
                         <div @if={props.text}>{props.text}</div>
                     </div>
                     <div @if={props.isTextFirst} class={'w-full ' + (imageColSpan[props.columnLayout] || '')}>

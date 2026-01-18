@@ -322,19 +322,19 @@ main {
 
     /* Headings - basierend auf XD Specs */
     h1 {
-      @apply font-headline text-4xl md:text-[6rem] font-normal mb-2 mt-4 text-apfel-dark-grey uppercase tracking-[0.035em] !important;
+      @apply font-headline text-4xl md:text-[6rem] font-bold mb-4 text-apfel-dark-grey uppercase tracking-[0.035em] !important;
     }
 
     h2 {
-      @apply font-headline text-4xl md:text-[3.125rem] font-normal mb-4 mt-4 text-apfel-dark-grey uppercase tracking-[0.035em] !important;
+      @apply font-headline text-4xl md:text-[3.125rem] font-bold mb-4 text-apfel-dark-grey uppercase tracking-[0.035em] !important;
     }
 
     h3 {
-      @apply font-script text-3xl md:text-[2.9375rem] font-bold mb-3 mt-6 text-apfel-dark-grey uppercase tracking-[0.06em] !important;
+      @apply font-script text-3xl md:text-[2.9375rem] font-normal mb-4 text-apfel-dark-grey uppercase tracking-[0.06em] !important;
     }
 
     h4 {
-      @apply font-headline text-xl font-normal mb-2 mt-4 text-apfel-dark-grey !important;
+      @apply font-headline text-xl font-normal mb-4 text-apfel-dark-grey !important;
     }
 
     /* Script Font für em/italic in Headlines */
