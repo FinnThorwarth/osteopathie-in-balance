@@ -50,7 +50,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
     }
 
     renderer = afx`
-        <section id={props.anchorId} class="content-text-image content-text py-8 md:py-12">
+        <section id={props.anchorId} class="content-text-image content-text my-16 lg:my-32">
             <div class="container mx-auto px-4">
                 <div class={'grid gap-8 items-start ' + layoutClasses[props.columnLayout]}>
                     <div @if={!props.isTextFirst} class={'w-full ' + (imageColSpan[props.columnLayout] || '')}>

@@ -7,7 +7,7 @@ prototype(Thorwarth.BaseSite:Content.TeamMember) < prototype(Neos.Neos:ContentCo
     quote = ${q(node).property('quote')}
 
     renderer = afx`
-        <div class="team-member group text-center">
+        <div class="team-member content-text group text-center">
             <div class="relative overflow-hidden mx-auto mb-6 rounded-full w-52 h-52 md:w-60 md:h-60 lg:w-64 lg:h-64">
                 <Thorwarth.BaseSite:TeamMemberImage
                     @if.hasImage={props.image}
@@ -24,15 +24,17 @@ prototype(Thorwarth.BaseSite:Content.TeamMember) < prototype(Neos.Neos:ContentCo
             </div>
 
             <div class="px-4">
-                <h3 class="font-headline text-xl md:text-2xl font-normal uppercase text-apfel-olive tracking-wider mb-1">
+                <h3 class="font-headline text-xl md:text-2xl font-bold uppercase tracking-wider mb-1">
                     <Neos.Neos:Editable property="name" block={true} />
                 </h3>
 
-                <p class="font-body text-apfel-text text-sm">
+                <p class="font-body text-apfel-text text-bold">
                     <Neos.Neos:Editable property="position" block={true} />
                 </p>
 
-                <p class="text-apfel-olive/60 mt-1 text-sm tracking-widest">....</p>
+                <p class="tracking-widest">
+                   <Neos.Neos:Editable property="text" block={true} />
+                </p>
             </div>
         </div>
     `

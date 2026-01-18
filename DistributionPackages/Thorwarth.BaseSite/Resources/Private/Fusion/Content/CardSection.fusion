@@ -71,7 +71,7 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
     renderer = afx`
         <section
             id={props.anchorId}
-            class={'card-section content-text py-12 md:py-16 ' + (props.backgroundColor ? bgClasses[props.backgroundColor] : 'bg-white')}
+            class={'card-section content-text py-16 lg:py-32 ' + (props.backgroundColor ? bgClasses[props.backgroundColor] : 'bg-white')}
         >
             <div class="container mx-auto px-4">
                 <header class="mb-10" @if={props.isBackend || q(node).property('heading') || q(node).property('subheading') || q(node).property('introText')}>
@@ -94,7 +94,7 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
                             <span class="text-white opacity-50">Bild Spalte 1</span>
                         </div>
                         <div class="py-4">
-                            <h3 @if={props.title1} class="font-bold text-apfel-text mb-3">{props.title1}</h3>
+                            <h4 @if={props.title1} class="font-bold text-apfel-text text-xl mb-3">{props.title1}</h4>
                             <div @if={props.text1} class="prose prose-sm max-w-none text-apfel-text">{props.text1}</div>
                         </div>
                     </article>
@@ -112,7 +112,7 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
                             <span class="text-white opacity-50">Bild Spalte 2</span>
                         </div>
                         <div class="py-4">
-                            <h3 @if={props.title2} class="font-bold text-apfel-text mb-3">{props.title2}</h3>
+                            <h4 @if={props.title2} class="font-bold text-apfel-text text-xl mb-3">{props.title2}</h4>
                             <div @if={props.text2} class="prose prose-sm max-w-none text-apfel-text">{props.text2}</div>
                         </div>
                     </article>
@@ -130,7 +130,7 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
                             <span class="text-white opacity-50">Bild Spalte 3</span>
                         </div>
                         <div class="py-4">
-                            <h3 @if={props.title3} class="font-bold text-apfel-text mb-3">{props.title3}</h3>
+                            <h4 @if={props.title3} class="font-bold text-apfel-text text-xl mb-3">{props.title3}</h4>
                             <div @if={props.text3} class="prose prose-sm max-w-none text-apfel-text">{props.text3}</div>
                         </div>
                     </article>
