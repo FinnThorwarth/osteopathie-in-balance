@@ -14,7 +14,7 @@ export default {
 				'apfel-olive': '#AAB082',
 				'apfel-olive-light': '#C4C6B3',
 				'apfel-olive-dark': '#8a9068',
-				'apfel-rose': '#F5E9EC',
+				'apfel-rose': '#E9CED4',
 				'apfel-rose-light': '#faf4f6',
 				'apfel-rose-dark': '#e8d4da',
 				'apfel-green': '#3D4A24',
