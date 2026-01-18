@@ -38,37 +38,16 @@
         inline:
           editorOptions:
             placeholder: 'Position / Rolle'
-    pronouns:
-      type: string
-      ui:
-        label: 'Pronomen'
-        reloadIfChanged: true
-        inlineEditable: true
-        inline:
-          editorOptions:
-            placeholder: 'Pronomen'
     text:
       type: string
       ui:
         label: 'Beschreibung / Bio'
         reloadIfChanged: true
-        inspector:
-          group: 'content'
-          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+        inlineEditable: true
+        inline:
           editorOptions:
-            rows: 4
             placeholder: 'Kurzbeschreibung zur Person...'
-    quote:
-      type: string
-      ui:
-        label: 'Zitat'
-        reloadIfChanged: true
-        inspector:
-          group: 'content'
-          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
-          editorOptions:
-            rows: 3
-            placeholder: 'Ein inspirierendes Zitat...'
+
     image:
       type: 'Neos\Media\Domain\Model\ImageInterface'
       ui:
@@ -97,18 +76,3 @@
         label: 'Foto Titel'
         inspector:
           group: 'image'
-    photoStyle:
-      type: string
-      defaultValue: 'square'
-      ui:
-        label: 'Foto-Stil'
-        reloadIfChanged: true
-        inspector:
-          group: 'image'
-          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
-          editorOptions:
-            values:
-              'square':
-                label: 'Quadratisch'
-              'circular':
-                label: 'Rund'

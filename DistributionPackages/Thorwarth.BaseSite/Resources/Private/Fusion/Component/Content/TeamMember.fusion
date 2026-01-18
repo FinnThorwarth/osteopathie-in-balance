@@ -4,7 +4,6 @@ prototype(Thorwarth.BaseSite:Content.TeamMember) < prototype(Neos.Neos:ContentCo
     imageTitle = ${q(node).property('imageTitle')}
     photoStyle = ${q(node).property('photoStyle') || 'circular'}
     text = ${q(node).property('text')}
-    quote = ${q(node).property('quote')}
 
     renderer = afx`
         <div class="team-member content-text group text-center">
