@@ -2,7 +2,7 @@
   <div class="navigation-wrapper font-headline">
     <!-- Desktop Navigation (horizontal bar) - always visible on desktop -->
     <nav
-      class="hidden xl:block text-white rounded-tl-3xl"
+      class="hidden xl:block text-white"
     >
       <div class="mx-auto pl-8 pr-6">
         <ul class="flex items-center justify-end space-x-12 text-2xl 2xl:text-6xl">
