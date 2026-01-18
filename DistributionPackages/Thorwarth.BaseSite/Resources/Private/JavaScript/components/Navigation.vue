@@ -6,10 +6,10 @@
       class="hidden xl:block bg-apfel-olive-dark text-white rounded-tl-3xl"
     >
       <div class="mx-auto pl-8 pr-0">
-        <ul class="flex items-center justify-end space-x-8 text-xl 2xl:text-2xl font-light">
-          <!-- Main menu items (all except last two, or all if 2 or fewer items) -->
+        <ul class="flex items-center justify-end space-x-12 text-2xl 2xl:text-3xl font-light">
+          <!-- Regular menu items (not the CTA item) - italic on hover/active -->
           <li
-            v-for="item in menuItems.length > 2 ? menuItems.slice(0, -2) : menuItems"
+            v-for="item in regularMenuItems"
             :key="item.title"
             class="relative group py-8"
           >
@@ -17,39 +17,28 @@
               v-if="item.url && item.url !== '#'"
               :href="item.url"
               @click="handleNavClick"
-              class=" hover:opacity-80 transition-opacity"
-              :class="{ 'font-semibold': item.isActive }"
+              class="uppercase hover:italic transition-all"
+              :class="{ 'italic font-semibold': item.isActive }"
             >
               {{ item.title }}
             </a>
-            <span v-else class="">{{ item.title }}</span>
+            <span v-else class="uppercase hover:italic" :class="{ 'italic': item.isActive }">{{ item.title }}</span>
           </li>
 
-          <!-- Last two items grouped together with separator -->
-          <li v-if="menuItems.length > 2" class="relative group p-8 flex items-center space-x-3 bg-apfel-olive rounded-tl-3xl">
+          <!-- CTA button (Spenden item) - pink pill styling -->
+          <li v-if="ctaMenuItem" class="relative group py-4 pr-6">
             <a
-              v-if="menuItems[menuItems.length - 2].url && menuItems[menuItems.length - 2].url !== '#'"
-              :href="menuItems[menuItems.length - 2].url"
+              v-if="ctaMenuItem.url && ctaMenuItem.url !== '#'"
+              :href="ctaMenuItem.url"
               @click="handleNavClick"
-              class=" hover:opacity-80 transition-opacity"
-              :class="{ 'font-semibold': menuItems[menuItems.length - 2].isActive }"
+              class="uppercase bg-apfel-rose text-apfel-green rounded-full px-10 py-4 hover:opacity-80 transition-opacity font-bold text-2xl 2xl:text-3xl tracking-wide"
+              :class="{ 'font-extrabold': ctaMenuItem.isActive }"
             >
-              {{ menuItems[menuItems.length - 2].title }}
+              {{ ctaMenuItem.title }}
             </a>
-            <span v-else class="">{{ menuItems[menuItems.length - 2].title }}</span>
-
-            <span class="text-white">|</span>
-
-            <a
-              v-if="menuItems[menuItems.length - 1].url && menuItems[menuItems.length - 1].url !== '#'"
-              :href="menuItems[menuItems.length - 1].url"
-              @click="handleNavClick"
-              class=" hover:opacity-80 transition-opacity"
-              :class="{ 'font-semibold': menuItems[menuItems.length - 1].isActive }"
-            >
-              {{ menuItems[menuItems.length - 1].title }}
-            </a>
-            <span v-else class="">{{ menuItems[menuItems.length - 1].title }}</span>
+            <span v-else class="uppercase bg-apfel-rose text-apfel-green rounded-full px-10 py-4 font-bold text-2xl 2xl:text-3xl tracking-wide">
+              {{ ctaMenuItem.title }}
+            </span>
           </li>
         </ul>
       </div>
@@ -127,45 +116,40 @@
         <!-- Menu Content -->
         <div class="w-full text-center px-8 py-16 min-h-full flex flex-col justify-start pt-24">
           <nav>
-            <!-- Main menu items (white text, larger) - all items if 2 or fewer -->
+            <!-- Main menu items (white text, larger) - regular items -->
             <ul class="space-y-6 mb-12">
               <li
-                v-for="item in menuItems.length > 2 ? menuItems.slice(0, -2) : menuItems"
+                v-for="item in regularMenuItems"
                 :key="item.title"
               >
                 <a
                   v-if="item.url && item.url !== '#'"
                   :href="item.url"
                   @click="handleNavClick"
-                  class="text-white text-3xl md:text-4xl font-semibold hover:opacity-80 transition-opacity"
+                  class="text-white text-3xl md:text-4xl font-semibold uppercase hover:opacity-80 transition-opacity"
                 >
                   {{ item.title }}
                 </a>
-                <span v-else class="text-white text-3xl md:text-4xl font-semibold">
+                <span v-else class="text-white text-3xl md:text-4xl font-semibold uppercase">
                   {{ item.title }}
                 </span>
               </li>
             </ul>
 
-            <!-- Secondary menu items (darker/subdued, smaller) -->
-            <ul class="space-y-4" v-if="menuItems.length > 2">
-              <li
-                v-for="item in menuItems.slice(-2)"
-                :key="item.title"
+            <!-- CTA button (Spenden item) - pink pill styling -->
+            <div v-if="ctaMenuItem" class="mt-8">
+              <a
+                v-if="ctaMenuItem.url && ctaMenuItem.url !== '#'"
+                :href="ctaMenuItem.url"
+                @click="handleNavClick"
+                class="inline-block uppercase bg-apfel-rose text-apfel-green rounded-full px-8 py-4 text-2xl md:text-3xl font-medium hover:opacity-80 transition-opacity"
               >
-                <a
-                  v-if="item.url && item.url !== '#'"
-                  :href="item.url"
-                  @click="handleNavClick"
-                  class="text-white text-2xl md:text-3xl font-light opacity-70 hover:opacity-100 transition-opacity"
-                >
-                  {{ item.title }}
-                </a>
-                <span v-else class="text-white text-2xl md:text-3xl font-light opacity-70">
-                  {{ item.title }}
-                </span>
-              </li>
-            </ul>
+                {{ ctaMenuItem.title }}
+              </a>
+              <span v-else class="inline-block uppercase bg-apfel-rose text-apfel-green rounded-full px-8 py-4 text-2xl md:text-3xl font-medium">
+                {{ ctaMenuItem.title }}
+              </span>
+            </div>
           </nav>
         </div>
       </div>
@@ -191,6 +175,20 @@ export default {
       observer: null,
       activeSectionId: null,
     };
+  },
+  computed: {
+    // Find the CTA item (contains "Spenden" in title)
+    ctaMenuItem() {
+      return this.menuItems.find(item =>
+        item.title && item.title.toLowerCase().includes('spenden')
+      ) || null;
+    },
+    // All menu items except the CTA item
+    regularMenuItems() {
+      return this.menuItems.filter(item =>
+        !item.title || !item.title.toLowerCase().includes('spenden')
+      );
+    },
   },
   created() {
     console.log("[Navigation] Component created");

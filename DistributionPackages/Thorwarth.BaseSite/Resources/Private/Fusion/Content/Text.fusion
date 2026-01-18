@@ -3,6 +3,7 @@ prototype(Thorwarth.BaseSite:Content.Text) < prototype(Neos.Neos:ContentComponen
     textAlignment = ${q(node).property('textAlignment') || 'left'}
     backgroundColor = ${q(node).property('backgroundColor')}
     isBackend = ${renderingMode.isEdit}
+    anchorId = ${q(node).property('anchorId')}
 
     heading = Neos.Neos:Editable {
         property = 'heading'
@@ -35,7 +36,7 @@ prototype(Thorwarth.BaseSite:Content.Text) < prototype(Neos.Neos:ContentComponen
     }
 
     renderer = afx`
-        <section class={'content-text py-8 md:py-12 ' + (props.backgroundColor ? bgClasses[props.backgroundColor] : '')}>
+        <section id={props.anchorId} class={'content-text py-8 md:py-12 ' + (props.backgroundColor ? bgClasses[props.backgroundColor] : '')}>
             <div class="container mx-auto px-4">
                 <div class={alignmentClasses[props.textAlignment]}>
                     <div @if={props.heading} class="mb-2">{props.heading}</div>
