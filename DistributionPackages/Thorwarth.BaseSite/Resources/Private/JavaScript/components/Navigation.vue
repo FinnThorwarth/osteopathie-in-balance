@@ -37,7 +37,7 @@
 
     <!-- Compact Navigation Button (only visible on mobile/tablet, hidden on desktop) -->
     <div
-      class="fixed top-0 right-0 z-50 transition-transform duration-300 block xl:hidden"
+      class="z-50 transition-transform duration-300 block xl:hidden"
     >
       <button
         @click="toggleMenu"
@@ -99,7 +99,17 @@
       ></div>
 
       <!-- Slide-in Menu Panel from right -->
-      <div class="absolute right-0 top-0 bottom-0 w-full max-w-md xl:max-w-xl bg-apfel-olive rounded-bl-[3rem] shadow-2xl overflow-y-auto">
+      <div class="absolute right-0 top-0 bottom-0 w-full max-w-md xl:max-w-xl bg-apfel-olive shadow-2xl overflow-y-auto">
+        <!-- Close Button -->
+        <button
+          @click="closeMenu"
+          class="absolute top-0 right-0 p-4 text-white"
+          aria-label="Menü schließen"
+        >
+          <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 6l12 12M6 18L18 6" />
+          </svg>
+        </button>
         <!-- Menu Content -->
         <div class="w-full text-center px-8 py-16 min-h-full flex flex-col justify-start pt-24">
           <nav>

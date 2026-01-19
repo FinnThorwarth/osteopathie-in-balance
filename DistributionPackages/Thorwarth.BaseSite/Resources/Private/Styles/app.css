@@ -326,11 +326,11 @@ main {
     }
 
     h2 {
-      @apply font-headline text-4xl md:text-[3.125rem] font-bold mb-4 text-apfel-dark-grey uppercase tracking-[0.035em];
+      @apply font-headline text-2xl md:text-[3.125rem] font-bold mb-4 text-apfel-dark-grey uppercase tracking-[0.035em];
     }
 
     h3 {
-      @apply font-script text-3xl md:text-[2.9375rem] font-normal mb-4 text-apfel-dark-grey uppercase tracking-[0.06em];
+      @apply font-script text-2xl md:text-[2.9375rem] font-normal mb-4 text-apfel-dark-grey uppercase tracking-[0.06em];
     }
 
     h4 {

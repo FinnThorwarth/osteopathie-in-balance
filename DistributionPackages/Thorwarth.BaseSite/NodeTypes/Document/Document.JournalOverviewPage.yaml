@@ -1,5 +1,6 @@
 'Thorwarth.BaseSite:Document.JournalOverviewPage':
   superTypes:
+    'Thorwarth.BaseSite:Constraint.Document.Restricted': true # Nicht auswählbar
     'Thorwarth.BaseSite:Document.AbstractPage': true
   ui:
     label: 'Journal-Übersicht'

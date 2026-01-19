@@ -33,7 +33,7 @@ prototype(Thorwarth.BaseSite:Content.ImageGallery) < prototype(Neos.Neos:Content
             class={'image-gallery py-8 md:py-12 ' + bgClasses[props.backgroundColor]}
             data-gallery-lightbox={props.galleryId}
         >
-            <div @if={props.images && Array.length(props.images) > 0} class={'container mx-auto py-32 px-4 grid ' + columnClasses[props.columns] + ' ' + gapClasses[props.gap]}>
+            <div @if={props.images && Array.length(props.images) > 0} class={'container mx-auton py-8 md:py-16 lg:py-32 px-4 grid ' + columnClasses[props.columns] + ' ' + gapClasses[props.gap]}>
                 <Neos.Fusion:Loop items={props.images} itemName="asset" @context.galleryId={props.galleryId}>
                     <Thorwarth.BaseSite:Content.ImageGallery.Item asset={asset} galleryId={galleryId} />
                 </Neos.Fusion:Loop>

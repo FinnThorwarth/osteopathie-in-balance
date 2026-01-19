@@ -1,16 +1,23 @@
 prototype(Thorwarth.BaseSite:Component.Molecule.NavigationData) < prototype(Neos.Fusion:DataStructure) {
-    // Detect if site is an OnepagerHomepage
-    isOnepager = ${q(site).is('[instanceof Thorwarth.BaseSite:Document.OnepagerHomepage]')}
+    // Is the site an OnepagerHomepage type?
+    siteIsOnepager = ${q(site).is('[instanceof Thorwarth.BaseSite:Document.OnepagerHomepage]')}
+
+    // Is the current document the homepage itself?
+    isOnHomepage = ${documentNode == site}
+
+    // Only use onepager behavior (intersection observer) when actually on the homepage
+    isOnepager = ${this.siteIsOnepager && this.isOnHomepage}
 
     // Direct access to context variables
     currentNodeIdentifier = ${documentNode ? documentNode.aggregateId : null}
     currentNodePath = ${documentNode && documentNode.name ? '/' + documentNode.name : null}
     currentNodeName = ${documentNode ? documentNode.name : null}
 
-    // Navigation items - different source based on site type
+    // Navigation items - different source based on site type and current page
     menuItems = Neos.Fusion:Case {
-        onepager {
-            condition = ${q(site).is('[instanceof Thorwarth.BaseSite:Document.OnepagerHomepage]')}
+        // Case 1: On homepage of a onepager site - use anchor links (#section)
+        onepagerHome {
+            condition = ${q(site).is('[instanceof Thorwarth.BaseSite:Document.OnepagerHomepage]') && documentNode == site}
             renderer = Neos.Fusion:Map {
                 // Get all content nodes from the main content collection that have showInNavigation enabled
                 items = ${q(site).find('[instanceof Neos.Neos:Content][showInNavigation = true]').get()}
@@ -29,6 +36,28 @@ prototype(Thorwarth.BaseSite:Component.Molecule.NavigationData) < prototype(Neos
             }
         }
 
+        // Case 2: On a subpage of a onepager site - use full URLs with anchors (/#section)
+        onepagerSubpage {
+            condition = ${q(site).is('[instanceof Thorwarth.BaseSite:Document.OnepagerHomepage]') && documentNode != site}
+            renderer = Neos.Fusion:Map {
+                // Get the same content nodes from the homepage
+                items = ${q(site).find('[instanceof Neos.Neos:Content][showInNavigation = true]').get()}
+                itemRenderer = Neos.Fusion:DataStructure {
+                    title = ${q(item).property('navigationTitle') || q(item).property('headline') || 'Abschnitt'}
+                    // Use full URL with anchor for navigation back to homepage sections
+                    url = ${'/#' + q(item).property('anchorId')}
+                    nodeIdentifier = ${item.aggregateId}
+                    anchorId = ${q(item).property('anchorId')}
+                    position = ${q(item).property('navigationPosition') || 0}
+                    isActive = false
+                    hasActiveChild = false
+                    children = ${[]}
+                }
+                @process.toArray = ${Array.values(value)}
+            }
+        }
+
+        // Case 3: Normal multi-page site - regular page links
         default {
             condition = true
             renderer = Neos.Fusion:Map {

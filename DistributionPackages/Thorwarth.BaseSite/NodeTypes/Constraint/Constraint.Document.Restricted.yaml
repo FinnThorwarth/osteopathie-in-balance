@@ -1,0 +1,4 @@
+'Thorwarth.BaseSite:Constraint.Document.Restricted':
+  abstract: true
+  # Marker mixin - NodeTypes with this superType won't appear in the creation dialog
+  # Usage: Add 'Thorwarth.BaseSite:Constraint.Document.Restricted': true to superTypes

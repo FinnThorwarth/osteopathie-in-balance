@@ -1,5 +1,6 @@
 'Thorwarth.BaseSite:Document.SearchPage':
   superTypes:
+    'Thorwarth.BaseSite:Constraint.Document.Restricted': true # Nicht auswählbar
     'Neos.Neos:Document': true
     'Thorwarth.BaseSite:Document.AbstractPage': true
   ui:

@@ -1,5 +1,6 @@
 'Thorwarth.BaseSite:Document.JournalPage':
   superTypes:
+    'Thorwarth.BaseSite:Constraint.Document.Restricted': true # Nicht auswählbar
     'Thorwarth.BaseSite:Document.AbstractPage': true
   constraints:
     nodeTypes:

@@ -1,5 +1,6 @@
 'Thorwarth.BaseSite:Document.AuthorsContainer':
   superTypes:
+    'Thorwarth.BaseSite:Constraint.Document.Restricted': true # Nicht auswählbar
     'Neos.Neos:Document': true
     'Neos.Seo:NoindexMixin': true  # Nicht von Suchmaschinen indexieren
   ui:

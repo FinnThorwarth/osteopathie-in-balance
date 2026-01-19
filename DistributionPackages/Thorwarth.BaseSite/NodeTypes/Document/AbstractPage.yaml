@@ -2,8 +2,8 @@
   abstract: true
   superTypes:
     "Neos.Neos:Document": true
-    "Thorwarth.BaseSite:Mixin.Image": true
-    "Thorwarth.BaseSite:Mixin.AuthorReference": true
+   # "Thorwarth.BaseSite:Mixin.Image": true
+   # "Thorwarth.BaseSite:Mixin.AuthorReference": true
   childNodes:
     main:
       type: "Neos.Neos:ContentCollection"
@@ -15,12 +15,12 @@
           "Thorwarth.BaseSite:Content.TeamSection": true
           "Thorwarth.BaseSite:Content.TwoColumnSection": true
           "Thorwarth.BaseSite:Content.TextModule": true
-          "Thorwarth.BaseSite:Content.DownloadSection": true
+          # "Thorwarth.BaseSite:Content.DownloadSection": true
           # Text & Headlines
           "Thorwarth.BaseSite:Content.Text": true
-          "Thorwarth.BaseSite:Content.Headline": true
+          # "Thorwarth.BaseSite:Content.Headline": true
           "Thorwarth.BaseSite:Content.Header": true
-          "Thorwarth.BaseSite:Content.SectionHeader": true
+          # "Thorwarth.BaseSite:Content.SectionHeader": true
           "Thorwarth.BaseSite:Content.QuoteSection": true
           # Media
           "Thorwarth.BaseSite:Content.ImageSlider": true
@@ -29,13 +29,13 @@
           "Thorwarth.BaseSite:Content.Image.Hero": true
           "Thorwarth.BaseSite:Content.TextImage": true
           # Interactive
-          "Thorwarth.BaseSite:Content.Accordion": true
-          "Thorwarth.BaseSite:Content.Button": true
-          "Thorwarth.BaseSite:Content.ContactForm": true
+          # "Thorwarth.BaseSite:Content.Accordion": true
+          # "Thorwarth.BaseSite:Content.Button": true
+          # "Thorwarth.BaseSite:Content.ContactForm": true
           # Cards
           "Thorwarth.BaseSite:Content.CardSection": true
           # Navigation
-          "Thorwarth.BaseSite:Content.ChildPageList": true
+          # "Thorwarth.BaseSite:Content.ChildPageList": true
 
   constraints:
     nodeTypes:
