@@ -2,7 +2,7 @@ prototype(Thorwarth.BaseSite:Component.Content.TeamSection) < prototype(Neos.Fus
 
     members = Neos.Neos:ContentCollection {
         nodePath = 'members'
-        attributes.class = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 max-w-5xl my-16 lg:my-32 mx-auto'
+        attributes.class = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 max-w-5xl py-16 lg:py-32 mx-auto'
         tagName = 'div'
     }
 

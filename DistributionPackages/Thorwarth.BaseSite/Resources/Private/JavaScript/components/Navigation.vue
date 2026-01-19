@@ -41,52 +41,16 @@
     >
       <button
         @click="toggleMenu"
-        class="flex items-center bg-apfel-olive p-4 rounded-bl-3xl"
+        class="flex items-center justify-end bg-apfel-olive p-4 rounded-bl-3xl"
         :aria-expanded="isMenuOpen"
         aria-label="Menü öffnen/schließen"
       >
-        <!-- Animated SVG Hamburger/X Icon with MENÜ Text -->
-        <svg class="h-8" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 246.6 56.7">
-          <defs>
-            <clipPath id="clippath">
-              <rect class="menu-icon0" x="103.7" y="1.7" width="137.6" height="44.6"/>
-            </clipPath>
-          </defs>
-
-          <!-- Animated Hamburger/X Lines -->
-          <!-- Top line -->
-          <rect
-            class="menu-icon3 hamburger-svg-line"
-            :x="isMenuOpen ? '15' : '6'"
-            :y="isMenuOpen ? '23' : '2.8'"
-            :width="isMenuOpen ? '60' : '79.4'"
-            :height="isMenuOpen ? '10' : '11.3'"
-            :transform="isMenuOpen ? 'rotate(45 45 28.35)' : ''"
-          />
-          <!-- Middle line -->
-          <rect
-            class="menu-icon4 hamburger-svg-line"
-            x="6"
-            y="22.7"
-            width="79.4"
-            height="11.3"
-            :style="isMenuOpen ? 'opacity: 0;' : 'opacity: 1;'"
-          />
-          <!-- Bottom line -->
-          <rect
-            class="menu-icon1 hamburger-svg-line"
-            :x="isMenuOpen ? '15' : '6'"
-            :y="isMenuOpen ? '23' : '42.5'"
-            :width="isMenuOpen ? '60' : '79.4'"
-            :height="isMenuOpen ? '10' : '11.3'"
-            :transform="isMenuOpen ? 'rotate(-45 45 28.35)' : ''"
-          />
-
-          <!-- MENÜ Text -->
-          <g class="menu-icon5">
-            <path class="menu-icon2" d="M227.6,46.3c9,0,13.7-5.3,13.7-14.7V11.4h-5.5v19.9c0,6.9-2.5,9.9-8.2,9.9s-8.2-3-8.2-9.8V11.4h-5.5v20.3c0,9.6,4.4,14.6,13.7,14.6M232.5,7.7c1.7,0,3-1.3,3-3s-1.3-3-3-3-3,1.3-3,3,1.2,3,3,3M222.8,7.7c1.7,0,3-1.3,3-3s-1.3-3-3-3-3,1.3-3,3,1.2,3,3,3M181.5,45.3v-15.4c0-3.3,0-6.1-.2-9h0c2.3,2.9,4.3,5.4,6.3,7.7l14.7,17.2h3.1V11.4h-5.5v14.5c0,3.4,0,6,.2,8.9h-.1c-2.2-2.9-4.2-5.3-6.2-7.8l-13.3-15.7h-4.5v34h5.5ZM167.3,30.2v-4.5h-13.9v-9.5h15.2l-.6-4.9h-20.2v34h20.2l.6-4.9h-15.2v-10.2h13.9ZM109.1,45.3v-16.6c0-3.4,0-6.9,0-10.3h.1c1.3,2.6,2.6,5.2,4,7.9l7.8,15.4h.9l7.9-15.4,4-7.9h.1c0,3.4,0,6.9,0,10.3v16.6h5.4V11.4h-7.1l-10.6,21.2h-.1l-10.6-21.2h-7.1v34h5.4Z"/>
-          </g>
-        </svg>
+        <img
+          :src="farmIcon"
+          alt=""
+          class="w-8 h-8 mr-2"
+        />
+        <span class="text-3xl text-white">Menü</span>
       </button>
     </div>
 
@@ -149,6 +113,8 @@
 </template>
 
 <script>
+import farmIcon from '../../../Public/Images/farm.svg';
+
 export default {
   name: "Navigation",
   props: {
@@ -167,6 +133,7 @@ export default {
       activeSectionId: null,
       isScrolling: false,
       scrollTimeout: null,
+      farmIcon,
     };
   },
   computed: {},
@@ -262,13 +229,27 @@ export default {
     handleNavClick(event) {
       const href = event.target.getAttribute('href');
 
-      // Handle anchor links with smooth scroll
+      // Determine if this is an anchor link we should smooth scroll to
+      let targetId = null;
+
       if (href && href.startsWith('#')) {
-        event.preventDefault();
-        const targetId = href.substring(1);
+        // Direct anchor link (#section)
+        targetId = href.substring(1);
+      } else if (href && href.startsWith('/#')) {
+        // Homepage anchor link (/#section) - only smooth scroll if we're on the homepage
+        const isOnHomepage = window.location.pathname === '/' || window.location.pathname === '';
+        if (isOnHomepage) {
+          targetId = href.substring(2);
+        }
+      }
+
+      // Handle smooth scroll if we have a target
+      if (targetId) {
         const targetElement = document.getElementById(targetId);
 
         if (targetElement) {
+          event.preventDefault();
+
           // Disable intersection observer during scroll
           this.isScrolling = true;
 
