@@ -33,7 +33,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
                 <img
                     src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Header_Grafik.svg')}
                     alt=""
-                    class="w-full h-auto"
+                    class="w-[101%] relative left-[-1px] right-[-1px] h-auto"
                     aria-hidden="true"
                 />
             </div>

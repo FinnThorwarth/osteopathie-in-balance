@@ -35,7 +35,7 @@ prototype(Thorwarth.BaseSite:Content.Text) < prototype(Neos.Neos:ContentComponen
             center = 'text-center'
         }
         bgClasses = Neos.Fusion:DataStructure {
-            olive = 'bg-apfel-olive'
+            olive = 'bg-apfel-olive-light'
             rose = 'bg-apfel-rose'
         }
     }

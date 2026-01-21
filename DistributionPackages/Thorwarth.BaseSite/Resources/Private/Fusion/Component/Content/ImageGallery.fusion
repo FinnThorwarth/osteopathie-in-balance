@@ -15,7 +15,7 @@ prototype(Thorwarth.BaseSite:Content.ImageGallery) < prototype(Neos.Neos:Content
             4 = 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'
         }
         bgClasses = Neos.Fusion:DataStructure {
-            olive = 'bg-apfel-olive'
+            olive = 'bg-apfel-olive-light'
             rose = 'bg-apfel-rose'
             white = 'bg-white'
         }

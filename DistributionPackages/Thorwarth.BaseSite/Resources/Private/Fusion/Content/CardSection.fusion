@@ -63,7 +63,7 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
 
     @context {
         bgClasses = Neos.Fusion:DataStructure {
-            olive = 'bg-apfel-olive'
+            olive = 'bg-apfel-olive-light'
             rose = 'bg-apfel-rose'
         }
     }
@@ -82,7 +82,7 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <article class="card-item" @if={props.isBackend || props.image1 || q(node).property('title1') || q(node).property('text1')}>
-                        <div @if={props.image1} class="aspect-[3/2] bg-apfel-olive mb-4 overflow-hidden">
+                        <div @if={props.image1} class="aspect-[3/2] bg-apfel-olive-light mb-4 overflow-hidden">
                             <img
                                 src={props.image1Uri}
                                 alt={props.image1.title || ''}
@@ -90,7 +90,7 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
                                 loading="lazy"
                             />
                         </div>
-                        <div @if={!props.image1 && props.isBackend} class="aspect-[3/2] bg-apfel-olive mb-4 flex items-center justify-center">
+                        <div @if={!props.image1 && props.isBackend} class="aspect-[3/2] bg-apfel-olive-light mb-4 flex items-center justify-center">
                             <span class="text-white opacity-50">Bild Spalte 1</span>
                         </div>
                         <div class="py-4">
@@ -100,7 +100,7 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
                     </article>
 
                     <article class="card-item" @if={props.isBackend || props.image2 || q(node).property('title2') || q(node).property('text2')}>
-                        <div @if={props.image2} class="aspect-[3/2] bg-apfel-olive mb-4 overflow-hidden">
+                        <div @if={props.image2} class="aspect-[3/2] bg-apfel-olive-light mb-4 overflow-hidden">
                             <img
                                 src={props.image2Uri}
                                 alt={props.image2.title || ''}
@@ -108,7 +108,7 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
                                 loading="lazy"
                             />
                         </div>
-                        <div @if={!props.image2 && props.isBackend} class="aspect-[3/2] bg-apfel-olive mb-4 flex items-center justify-center">
+                        <div @if={!props.image2 && props.isBackend} class="aspect-[3/2] bg-apfel-olive-light mb-4 flex items-center justify-center">
                             <span class="text-white opacity-50">Bild Spalte 2</span>
                         </div>
                         <div class="py-4">
@@ -118,7 +118,7 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
                     </article>
 
                     <article class="card-item" @if={props.isBackend || props.image3 || q(node).property('title3') || q(node).property('text3')}>
-                        <div @if={props.image3} class="aspect-[3/2] bg-apfel-olive mb-4 overflow-hidden">
+                        <div @if={props.image3} class="aspect-[3/2] bg-apfel-olive-light mb-4 overflow-hidden">
                             <img
                                 src={props.image3Uri}
                                 alt={props.image3.title || ''}
@@ -126,7 +126,7 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
                                 loading="lazy"
                             />
                         </div>
-                        <div @if={!props.image3 && props.isBackend} class="aspect-[3/2] bg-apfel-olive mb-4 flex items-center justify-center">
+                        <div @if={!props.image3 && props.isBackend} class="aspect-[3/2] bg-apfel-olive-light mb-4 flex items-center justify-center">
                             <span class="text-white opacity-50">Bild Spalte 3</span>
                         </div>
                         <div class="py-4">
