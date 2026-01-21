@@ -34,7 +34,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
                          <img
                             src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Footer_Grafik.svg')}
                             alt=""
-                            class="h-auto max-h-[150px] md:max-h-[100px] lg:max-h-[150px] absolute bottom-[-20px] md:bottom-[-10px] lg:bottom-[-20px] max-w-[80%]"
+                            class="h-auto max-h-[150px] md:max-h-[100px] lg:max-h-[150px] absolute bottom-[-10px] lg:bottom-[-20px] max-w-[80%]"
                         />
                     </div>
                 </div>
