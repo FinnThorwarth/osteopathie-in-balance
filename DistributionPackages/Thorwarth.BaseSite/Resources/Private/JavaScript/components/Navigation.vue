@@ -152,9 +152,10 @@ export default {
           name: items.currentNodeName,
         });
 
-        // Check if this is an onepager site
-        this.isOnepager = items.isOnepager || false;
-        console.log("[Navigation] Is onepager:", this.isOnepager);
+        // Check if this is an onepager site - use siteIsOnepager from Fusion
+        // Only enable onepager behavior when on the homepage
+        const isOnHomepage = window.location.pathname === '/' || window.location.pathname === '';
+        this.isOnepager = (items.siteIsOnepager || false) && isOnHomepage;
 
         // Check if menuItems is an array or needs conversion
         if (
