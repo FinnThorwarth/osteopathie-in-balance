@@ -188,7 +188,7 @@ main {
     font-weight: 300;
   }
   a {
-    font-family: "Roboto Serif";
+    font-family: "Inter";
     text-decoration: underline;
     font-style: italic;
     font-weight: 300;
@@ -311,7 +311,7 @@ main {
     /* Italic */
     em,
     i {
-      font-family: "Roboto Serif";
+      font-family: "Inter";
       @apply italic !important;
     }
 
@@ -486,7 +486,7 @@ section strong {
 .prose i,
 section em,
 section i {
-  font-family: "Roboto Serif" !important;
+  font-family: "Inter" !important;
   font-style: italic !important;
 }
 

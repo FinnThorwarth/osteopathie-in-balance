@@ -19,14 +19,14 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
 
                     <!-- Contact & Links -->
                     <div class="text-center md:text-left space-y-4">
-                        <a href={'mailto:' + props.email} class="font-headline text-xl md:text-2xl lg:text-4xl hover:text-apfel-rose transition-colors uppercase block">
+                        <a href={'mailto:' + props.email} class="font-headline text-xl md:text-2xl lg:text-4xl hover:text-apfel-white transition-colors uppercase block">
                             {props.email}
                         </a>
                         <div class="">
-                            <a href="#spenden" class="hover:text-apfel-rose transition-colors lg:text-2xl text-bold">
+                            <a href="#spenden" class="hover:text-apfel-white transition-colors lg:text-2xl text-bold">
                                 Spenden & Fördern &gt;
                             </a><br />
-                            <a href="#hofsuche" class="hover:text-apfel-rose transition-colors lg:text-2xl text-bold">
+                            <a href="#hofsuche" class="hover:text-apfel-white transition-colors lg:text-2xl text-bold">
                                 Hofsuche &gt;
                             </a>
                         </div>
@@ -49,9 +49,9 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
                     <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-xl">
                         <p>&copy; {Date.format(Date.now(), 'Y')} Apfelblüte e.V.</p>
                         <div class="flex gap-4">
-                            <a href="/impressum" class="hover:text-apfel-rose transition-colors">Impressum</a>
+                            <a href="/impressum" class="hover:text-apfel-white transition-colors">Impressum</a>
                             <span>|</span>
-                            <a href="/datenschutz" class="hover:text-apfel-rose transition-colors">Datenschutz</a>
+                            <a href="/datenschutz" class="hover:text-apfel-white transition-colors">Datenschutz</a>
                         </div>
                     </div>
                 </div>
