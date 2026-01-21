@@ -5,7 +5,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
     email = ${q(site).property('footerEmail') || 'info@hofprojekt-apfelbluete.de'}
 
     renderer = afx`
-        <footer class="apfel-footer bg-apfel-olive-light relative text-apfel-green">
+        <footer class="apfel-footer bg-apfel-olive-light relative text-apfel-green mt-16 md:mt-8 lg:mt-4">
           <div class="px-4 relative">
                <img
                             src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_Footer.svg')}
