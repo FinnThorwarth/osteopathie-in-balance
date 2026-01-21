@@ -25,9 +25,6 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
                         <div class="">
                             <a href="#spenden" class="hover:text-apfel-white transition-colors lg:text-2xl text-bold">
                                 Spenden & Fördern &gt;
-                            </a><br />
-                            <a href="#hofsuche" class="hover:text-apfel-white transition-colors lg:text-2xl text-bold">
-                                Hofsuche &gt;
                             </a>
                         </div>
                     </div>
