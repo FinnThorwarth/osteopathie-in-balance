@@ -4,8 +4,8 @@
     <nav
       class="hidden xl:block text-white"
     >
-      <div class="mx-auto pl-8 pr-6">
-        <ul class="flex items-center justify-end space-x-12 text-2xl 2xl:text-6xl">
+      <div class="mx-auto pl-8">
+        <ul class="flex items-center justify-end space-x-12 text-2xl md:text-4xl 2xl:text-6xl">
           <!-- All menu items - pink pill styling on hover/active -->
           <li
             v-for="item in menuItems"
