@@ -11,6 +11,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
     navigationData = Thorwarth.BaseSite:Component.Molecule.NavigationData
 
     renderer = afx`
+        <Thorwarth.BaseSite:Component.Organism.ContactTopbar />
         <nav class="sticky top-0 left-0 right-0 bg-apfel-olive z-50">
             <div class="mx-auto px-4">
                 <div class="flex items-center justify-between py-4">

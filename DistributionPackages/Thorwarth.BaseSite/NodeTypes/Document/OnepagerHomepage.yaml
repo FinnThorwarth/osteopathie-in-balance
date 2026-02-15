@@ -7,6 +7,26 @@
     label: 'Onepager Startseite'
     help:
       message: 'Eine Onepager-Seite, bei der die Navigation zu Abschnitten auf der gleichen Seite scrollt.'
+    inspector:
+      groups:
+        contact:
+          label: 'Kontaktdaten'
+          position: 200
+  properties:
+    footerEmail:
+      type: string
+      ui:
+        label: 'E-Mail-Adresse'
+        inspector:
+          group: 'contact'
+          position: 10
+    sitePhone:
+      type: string
+      ui:
+        label: 'Telefonnummer'
+        inspector:
+          group: 'contact'
+          position: 20
   # Keine Unterseiten erlaubt - alles ist auf einer Seite
   constraints:
     nodeTypes:
