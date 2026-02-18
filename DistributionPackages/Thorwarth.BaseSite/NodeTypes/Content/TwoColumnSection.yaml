@@ -6,7 +6,7 @@
   ui:
     label: 'Abschnitt mit Überschrift'
     icon: 'icon-columns'
-    group: 'caspary'
+    group: 'smartgrund'
     inspector:
       groups:
         content:

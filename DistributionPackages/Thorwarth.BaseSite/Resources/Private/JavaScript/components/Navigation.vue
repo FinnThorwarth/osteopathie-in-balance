@@ -1,12 +1,12 @@
 <template>
-  <div class="navigation-wrapper font-headline">
+  <div class="navigation-wrapper font-sans">
     <!-- Desktop Navigation (horizontal bar) - always visible on desktop -->
     <nav
       class="hidden xl:block text-white"
     >
       <div class="mx-auto pl-8">
         <ul class="flex items-center justify-end space-x-12 text-2xl md:text-4xl 2xl:text-6xl">
-          <!-- All menu items - pink pill styling on hover/active -->
+          <!-- All menu items -->
           <li
             v-for="item in menuItems"
             :key="item.title"
@@ -16,17 +16,17 @@
               v-if="item.url && item.url !== '#'"
               :href="item.url"
               @click="handleNavClick"
-              class="uppercase transition-all px-6 py-3 rounded-full"
+              class="transition-all px-6 py-3 rounded-full"
               :class="item.isActive
-                ? 'bg-apfel-rose text-apfel-green font-semibold'
-                : 'hover:bg-apfel-white hover:text-apfel-green'"
+                ? 'bg-smart-teal text-white font-semibold'
+                : 'hover:bg-smart-white hover:text-smart-navy'"
             >
               {{ item.title }}
             </a>
             <span
               v-else
-              class="uppercase px-6 py-3 rounded-full"
-              :class="item.isActive ? 'bg-apfel-rose text-apfel-green font-semibold' : ''"
+              class="px-6 py-3 rounded-full"
+              :class="item.isActive ? 'bg-smart-teal text-white font-semibold' : ''"
             >
               {{ item.title }}
             </span>
@@ -41,15 +41,15 @@
     >
       <button
         @click="toggleMenu"
-        class="flex items-center justify-end bg-apfel-olive p-4 rounded-bl-3xl"
+        class="flex items-center justify-end bg-smart-navy p-4 rounded-bl-3xl"
         :aria-expanded="isMenuOpen"
         aria-label="Menü öffnen/schließen"
       >
-        <img
-          :src="farmIcon"
-          alt=""
-          class="w-8 h-8 mr-2"
-        />
+        <svg class="w-8 h-8 mr-2 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
         <span class="text-3xl text-white">Menü</span>
       </button>
     </div>
@@ -63,7 +63,7 @@
       ></div>
 
       <!-- Slide-in Menu Panel from right -->
-      <div class="absolute right-0 top-0 bottom-0 w-full max-w-md xl:max-w-xl bg-apfel-olive shadow-2xl overflow-y-auto">
+      <div class="absolute right-0 top-0 bottom-0 w-full max-w-md xl:max-w-xl bg-smart-navy shadow-2xl overflow-y-auto">
         <!-- Close Button -->
         <button
           @click="closeMenu"
@@ -77,7 +77,7 @@
         <!-- Menu Content -->
         <div class="w-full text-center px-8 py-16 min-h-full flex flex-col justify-start pt-24">
           <nav>
-            <!-- All menu items - pink pill styling on active -->
+            <!-- All menu items -->
             <ul class="space-y-6">
               <li
                 v-for="item in menuItems"
@@ -87,18 +87,18 @@
                   v-if="item.url && item.url !== '#'"
                   :href="item.url"
                   @click="handleNavClick"
-                  class="inline-block text-3xl md:text-4xl uppercase transition-all px-6 py-3 rounded-full"
+                  class="inline-block text-3xl md:text-4xl transition-all px-6 py-3 rounded-full"
                   :class="item.isActive
-                    ? 'bg-apfel-rose text-apfel-green font-semibold'
-                    : 'text-white font-semibold hover:bg-apfel-white hover:text-apfel-green'"
+                    ? 'bg-smart-teal text-white font-semibold'
+                    : 'text-white font-semibold hover:bg-smart-white hover:text-smart-navy'"
                 >
                   {{ item.title }}
                 </a>
                 <span
                   v-else
-                  class="inline-block text-3xl md:text-4xl uppercase px-6 py-3 rounded-full"
+                  class="inline-block text-3xl md:text-4xl px-6 py-3 rounded-full"
                   :class="item.isActive
-                    ? 'bg-apfel-rose text-apfel-green font-semibold'
+                    ? 'bg-smart-teal text-white font-semibold'
                     : 'text-white font-semibold'"
                 >
                   {{ item.title }}
@@ -113,8 +113,6 @@
 </template>
 
 <script>
-import farmIcon from '../../../Public/Images/farm.svg';
-
 export default {
   name: "Navigation",
   props: {
@@ -133,7 +131,6 @@ export default {
       activeSectionId: null,
       isScrolling: false,
       scrollTimeout: null,
-      farmIcon,
     };
   },
   computed: {},

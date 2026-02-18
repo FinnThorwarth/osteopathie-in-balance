@@ -11,14 +11,14 @@ prototype(Thorwarth.BaseSite:Content.QuoteSection) < prototype(Neos.Neos:Content
 
     @context {
         quoteColorClasses = Neos.Fusion:DataStructure {
-            rose = 'text-apfel-rose'
-            olive = 'text-apfel-olive'
-            green = 'text-apfel-green'
+            rose = 'text-smart-gray'
+            olive = 'text-smart-teal'
+            green = 'text-smart-navy'
         }
         dividerColorClasses = Neos.Fusion:DataStructure {
-            rose = 'bg-apfel-rose'
-            olive = 'bg-apfel-olive'
-            green = 'bg-apfel-green'
+            rose = 'bg-smart-gray'
+            olive = 'bg-smart-teal'
+            green = 'bg-smart-navy'
         }
     }
 
@@ -37,10 +37,10 @@ prototype(Thorwarth.BaseSite:Content.QuoteSection) < prototype(Neos.Neos:Content
                 </div>
 
                 <blockquote class="text-center">
-                    <p class="font-body text-[25px] leading-[40px] text-apfel-text mb-4">
+                    <p class="font-body text-[25px] leading-[40px] text-smart-text mb-4">
                         {props.quoteText}
                     </p>
-                    <cite @if={props.author} class="font-headline text-2xl text-apfel-green not-italic">
+                    <cite @if={props.author} class="font-sans text-2xl text-smart-navy not-italic">
                         {props.author}
                     </cite>
                 </blockquote>

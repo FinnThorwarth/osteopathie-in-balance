@@ -9,7 +9,7 @@ prototype(Thorwarth.BaseSite:Content.Accordion) < prototype(Neos.Neos:ContentCom
     
     renderer = afx`
         <div class="accordion-wrapper">
-            <h2 @if={props.heading} class="mb-6 font-headline text-3xl md:text-4xl font-medium uppercase leading-tight text-apfel-olive">{props.heading}</h2>
+            <h2 @if={props.heading} class="mb-6 font-sans text-3xl md:text-4xl font-medium leading-tight text-smart-teal">{props.heading}</h2>
             <div data-vue-accordion>
                 <accordion>
                     {props.items}

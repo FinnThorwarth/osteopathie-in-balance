@@ -16,23 +16,23 @@ prototype(Thorwarth.BaseSite:Content.SectionHeader) < prototype(Neos.Neos:Conten
 
     renderer = afx`
         <div @if={props.backend} class="mb-2">
-            <div class={props.halfWidth ? 'lg:w-1/2 font-headline' : '' + 'font-headline'}>
+            <div class={props.halfWidth ? 'lg:w-1/2 font-sans' : '' + 'font-sans'}>
                <div class="flex flex-row gap-2">
-               <span class="inline-block text-mobility-red">
+               <span class="inline-block text-smart-teal">
                 <span @if={q(node).property('sectionTitle')} class=" font-light">\</span></span>
-                <h2 class="text-3xl md:text-4xl font-medium uppercase leading-[1.25em] text-mobility-red inline-block hyphens-auto">{props.sectionTitle}</h2>
+                <h2 class="text-3xl md:text-4xl font-medium leading-[1.25em] text-smart-teal inline-block hyphens-auto">{props.sectionTitle}</h2>
                 </div>
-                <h3 class="hyphens-auto text-xl md:text-2xl text-mobility-navy leading-[1.25em] ">
+                <h3 class="hyphens-auto text-xl md:text-2xl text-smart-navy leading-[1.25em] ">
                     {props.subtitle}
                 </h3>
             </div>
         </div>
         <div @if={!props.backend} class="mb-2">
-            <div class={props.halfWidth ? 'lg:w-1/2 font-headline' : '' + 'font-headline'}>
+            <div class={props.halfWidth ? 'lg:w-1/2 font-sans' : '' + 'font-sans'}>
               <div class="flex flex-row gap-2">
-                <span class="text-3xl md:text-4xl inline-block text-mobility-red pr-1"><span @if={q(node).property('sectionTitle')} class=" font-light">\</span></span> <h2 class="text-3xl md:text-4xl font-medium uppercase leading-[1.25em] text-mobility-red inline-block hyphens-auto">{props.sectionTitle}</h2>
+                <span class="text-3xl md:text-4xl inline-block text-smart-teal pr-1"><span @if={q(node).property('sectionTitle')} class=" font-light">\</span></span> <h2 class="text-3xl md:text-4xl font-medium leading-[1.25em] text-smart-teal inline-block hyphens-auto">{props.sectionTitle}</h2>
                 </div>
-                <h3 @if={props.subtitle} class="hyphens-auto text-xl md:text-2xl text-mobility-navy leading-[1.25em]">
+                <h3 @if={props.subtitle} class="hyphens-auto text-xl md:text-2xl text-smart-navy leading-[1.25em]">
                     {props.subtitle}
                 </h3>
             </div>

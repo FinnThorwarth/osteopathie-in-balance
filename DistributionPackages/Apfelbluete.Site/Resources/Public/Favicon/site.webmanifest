@@ -1,6 +1,6 @@
 {
-  "name": "Apfelblüte e.V.",
-  "short_name": "Apfelblüte",
+  "name": "SmartGrund GmbH",
+  "short_name": "SmartGrund",
   "icons": [
     {
       "src": "/Public/Favicon/web-app-manifest-192x192.png",
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
+  "theme_color": "#1B3A4B",
   "background_color": "#ffffff",
   "display": "standalone"
 }

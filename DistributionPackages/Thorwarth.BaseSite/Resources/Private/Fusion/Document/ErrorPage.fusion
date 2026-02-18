@@ -1,7 +1,7 @@
 prototype(Thorwarth.BaseSite:Document.ErrorPage) < prototype(Thorwarth.BaseSite:Document.AbstractPage) {
   body = Thorwarth.BaseSite:Component.Template.Default {
     @process.addBodyClass = Neos.Fusion:Augmenter {
-      class = 'font-headline bg-white '
+      class = 'font-sans bg-white '
     }
 
     menu = Neos.Neos:Menu
@@ -41,7 +41,7 @@ prototype(Thorwarth.BaseSite:Document.ErrorPage) < prototype(Thorwarth.BaseSite:
               <!-- Search Section -->
               <div @if={props.showSearch} class="mb-12">
                 <div class="bg-white rounded-lg shadow-lg p-8">
-                  <h2 class="mobility-h2 mb-4 text-center">
+                  <h2 class="smart-h2 mb-4 text-center">
                     Suchen Sie nach einer bestimmten Seite?
                   </h2>
                   <div class="max-w-md mx-auto">
@@ -50,11 +50,11 @@ prototype(Thorwarth.BaseSite:Document.ErrorPage) < prototype(Thorwarth.BaseSite:
                         type="text"
                         name="q"
                         placeholder="Suchbegriff eingeben..."
-                        class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mobility-red focus:border-transparent"
+                        class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-smart-teal focus:border-transparent"
                       />
                       <button
                         type="submit"
-                        class="btn-mobility-primary"
+                        class="btn-smart-primary"
                       >
                         Suchen
                       </button>
@@ -66,19 +66,19 @@ prototype(Thorwarth.BaseSite:Document.ErrorPage) < prototype(Thorwarth.BaseSite:
               <!-- Navigation Section -->
               <div @if={props.showNavigation} class="mb-12">
                 <div class="bg-white rounded-lg shadow-lg p-8">
-                  <h2 class="mobility-h2 mb-6 text-center">
+                  <h2 class="smart-h2 mb-6 text-center">
                     Häufig besuchte Seiten
                   </h2>
                   <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <a href="/" class="block p-4 border border-gray-200 rounded-lg hover:border-mobility-red hover:shadow-md transition-all">
+                    <a href="/" class="block p-4 border border-gray-200 rounded-lg hover:border-smart-teal hover:shadow-md transition-all">
                       <h3 class="font-semibold  mb-2">Startseite</h3>
                       <p class="text-gray-600 text-sm">Zurück zur Hauptseite</p>
                     </a>
-                    <a href="/leistungen" class="block p-4 border border-gray-200 rounded-lg hover:border-mobility-red hover:shadow-md transition-all">
+                    <a href="/leistungen" class="block p-4 border border-gray-200 rounded-lg hover:border-smart-teal hover:shadow-md transition-all">
                       <h3 class="font-semibold  mb-2">Leistungen</h3>
                       <p class="text-gray-600 text-sm">Unsere Bestattungsleistungen</p>
                     </a>
-                    <a href="/kontakt" class="block p-4 border border-gray-200 rounded-lg hover:border-mobility-red hover:shadow-md transition-all">
+                    <a href="/kontakt" class="block p-4 border border-gray-200 rounded-lg hover:border-smart-teal hover:shadow-md transition-all">
                       <h3 class="font-semibold  mb-2">Kontakt</h3>
                       <p class="text-gray-600 text-sm">Kontaktieren Sie uns</p>
                     </a>

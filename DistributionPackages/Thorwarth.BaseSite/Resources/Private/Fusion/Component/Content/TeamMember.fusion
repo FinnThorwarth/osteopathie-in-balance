@@ -15,19 +15,19 @@ prototype(Thorwarth.BaseSite:Content.TeamMember) < prototype(Neos.Neos:ContentCo
                     title={props.imageTitle}
                     class="w-full h-full object-cover object-center"
                 />
-                <div class="flex items-center justify-center w-full h-full bg-apfel-rose/50" @if.hasNoImage={!props.image}>
-                    <svg class="w-24 h-24 text-apfel-olive opacity-30" fill="currentColor" viewBox="0 0 20 20">
+                <div class="flex items-center justify-center w-full h-full bg-smart-gray/50" @if.hasNoImage={!props.image}>
+                    <svg class="w-24 h-24 text-smart-teal opacity-30" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
                     </svg>
                 </div>
             </div>
 
             <div class="px-4">
-                <h3 class="font-headline text-xl md:text-2xl font-bold uppercase tracking-wider mb-1">
+                <h3 class="font-sans text-xl md:text-2xl font-bold tracking-wider mb-1">
                     <Neos.Neos:Editable property="name" block={true} />
                 </h3>
 
-                <p class="font-body text-apfel-text text-bold">
+                <p class="font-body text-smart-text text-bold">
                     <Neos.Neos:Editable property="position" block={true} />
                 </p>
 

@@ -12,14 +12,14 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
 
     renderer = afx`
         <Thorwarth.BaseSite:Component.Organism.ContactTopbar />
-        <nav class="sticky top-0 left-0 right-0 bg-apfel-olive z-50">
+        <nav class="sticky top-0 left-0 right-0 bg-smart-navy z-50">
             <div class="mx-auto px-4">
                 <div class="flex items-center justify-between py-4">
                     <div class="flex items-center">
                         <a href="/" class="flex items-center">
                             <img
                                 src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_Header.svg')}
-                                alt="Apfelblüte e.V."
+                                alt="SmartGrund GmbH"
                                 class="h-auto w-[150px] md:w-[200px] lg:w-[300px] max-h-[60px] xl:max-h-[80px]"
                             />
                         </a>
@@ -28,16 +28,5 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
                 </div>
             </div>
         </nav>
-        <!-- Header Illustration Banner -->
-        <header class="apfel-header">
-            <div class="w-full z-40 relative mb-8">
-                <img
-                    src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Header_Grafik.svg')}
-                    alt=""
-                    class="w-full relative h-auto"
-                    aria-hidden="true"
-                />
-            </div>
-        </header>
     `
 }

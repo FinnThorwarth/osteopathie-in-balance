@@ -19,8 +19,8 @@
   ui:
     inspector:
       groups:
-        caspary:
-          label: 'Caspary Module'
+        smartgrund:
+          label: 'SmartGrund Module'
           position: 5
 
 # Site root constraints

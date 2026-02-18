@@ -7,7 +7,7 @@
         :key="index"
         type="button"
         class="team-member-card group focus:outline-none rounded-lg transition-all duration-300"
-        :class="{ 'ring-2 ring-apfel-green ring-offset-2': activeIndex === index }"
+        :class="{ 'ring-2 ring-smart-teal ring-offset-2': activeIndex === index }"
         @click="selectMember(index)"
         @mouseenter="pauseAndSelect(index)"
         @mouseleave="resumeAutoplay"
@@ -26,20 +26,20 @@
           />
           <div
             v-else
-            class="flex items-center justify-center w-full h-full bg-apfel-rose"
+            class="flex items-center justify-center w-full h-full bg-smart-gray"
           >
-            <svg class="w-16 h-16 md:w-24 md:h-24 text-apfel-olive opacity-30" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="w-16 h-16 md:w-24 md:h-24 text-smart-teal opacity-30" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
             </svg>
           </div>
         </div>
         <!-- Name and Position below image -->
         <div class="mt-3 text-center">
-          <h3 class="font-headline text-lg md:text-xl font-bold uppercase transition-colors duration-300"
-              :class="activeIndex === index ? 'text-apfel-green' : 'text-apfel-text/70'">
+          <h3 class="font-sans text-lg md:text-xl font-bold transition-colors duration-300"
+              :class="activeIndex === index ? 'text-smart-navy' : 'text-smart-text/70'">
             {{ member.name }}
           </h3>
-          <p v-if="member.position" class="text-sm text-apfel-text/60">
+          <p v-if="member.position" class="text-sm text-smart-text/60">
             {{ member.position }}
           </p>
         </div>
@@ -53,16 +53,16 @@
     >
       <!-- Decorative line with quotation mark -->
       <div class="flex items-center justify-center mb-6">
-        <div class="flex-1 h-px bg-apfel-text/20"></div>
-        <div class="mx-4 text-5xl md:text-6xl text-apfel-rose font-serif leading-none select-none">"</div>
-        <div class="flex-1 h-px bg-apfel-text/20"></div>
+        <div class="flex-1 h-px bg-smart-text/20"></div>
+        <div class="mx-4 text-5xl md:text-6xl text-smart-teal font-sans leading-none select-none">"</div>
+        <div class="flex-1 h-px bg-smart-text/20"></div>
       </div>
 
       <!-- Quote content with fade transition -->
       <transition name="fade" mode="out-in">
         <div :key="activeIndex" class="text-center">
           <blockquote>
-            <p class="font-body text-lg md:text-xl text-apfel-text max-w-3xl mx-auto">
+            <p class="font-body text-lg md:text-xl text-smart-text max-w-3xl mx-auto">
               {{ activeMember.quote }}
             </p>
           </blockquote>
@@ -76,7 +76,7 @@
           :key="'dot-' + index"
           type="button"
           class="h-2 rounded-full transition-all duration-300"
-          :class="activeIndex === index ? 'bg-apfel-green w-6' : 'bg-apfel-olive/30 w-2 hover:bg-apfel-olive/50'"
+          :class="activeIndex === index ? 'bg-smart-teal w-6' : 'bg-smart-teal/30 w-2 hover:bg-smart-teal/50'"
           @click="selectMember(index)"
           :aria-label="'Zu ' + member.name + ' wechseln'"
         ></button>

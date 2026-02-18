@@ -63,8 +63,8 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
 
     @context {
         bgClasses = Neos.Fusion:DataStructure {
-            olive = 'bg-apfel-olive-light'
-            rose = 'bg-apfel-rose'
+            olive = 'bg-smart-teal-light'
+            rose = 'bg-smart-gray'
         }
     }
 
@@ -82,7 +82,7 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <article class="card-item" @if={props.isBackend || props.image1 || q(node).property('title1') || q(node).property('text1')}>
-                        <div @if={props.image1} class="aspect-[3/2] bg-apfel-olive-light mb-4 overflow-hidden">
+                        <div @if={props.image1} class="aspect-[3/2] bg-smart-teal-light mb-4 overflow-hidden">
                             <img
                                 src={props.image1Uri}
                                 alt={props.image1.title || ''}
@@ -90,17 +90,17 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
                                 loading="lazy"
                             />
                         </div>
-                        <div @if={!props.image1 && props.isBackend} class="aspect-[3/2] bg-apfel-olive-light mb-4 flex items-center justify-center">
+                        <div @if={!props.image1 && props.isBackend} class="aspect-[3/2] bg-smart-teal-light mb-4 flex items-center justify-center">
                             <span class="text-white opacity-50">Bild Spalte 1</span>
                         </div>
                         <div class="py-4">
-                            <h4 @if={props.title1} class="font-bold text-apfel-text text-xl mb-3">{props.title1}</h4>
-                            <div @if={props.text1} class="prose prose-sm max-w-none text-apfel-text">{props.text1}</div>
+                            <h4 @if={props.title1} class="font-bold text-smart-text text-xl mb-3">{props.title1}</h4>
+                            <div @if={props.text1} class="prose prose-sm max-w-none text-smart-text">{props.text1}</div>
                         </div>
                     </article>
 
                     <article class="card-item" @if={props.isBackend || props.image2 || q(node).property('title2') || q(node).property('text2')}>
-                        <div @if={props.image2} class="aspect-[3/2] bg-apfel-olive-light mb-4 overflow-hidden">
+                        <div @if={props.image2} class="aspect-[3/2] bg-smart-teal-light mb-4 overflow-hidden">
                             <img
                                 src={props.image2Uri}
                                 alt={props.image2.title || ''}
@@ -108,17 +108,17 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
                                 loading="lazy"
                             />
                         </div>
-                        <div @if={!props.image2 && props.isBackend} class="aspect-[3/2] bg-apfel-olive-light mb-4 flex items-center justify-center">
+                        <div @if={!props.image2 && props.isBackend} class="aspect-[3/2] bg-smart-teal-light mb-4 flex items-center justify-center">
                             <span class="text-white opacity-50">Bild Spalte 2</span>
                         </div>
                         <div class="py-4">
-                            <h4 @if={props.title2} class="font-bold text-apfel-text text-xl mb-3">{props.title2}</h4>
-                            <div @if={props.text2} class="prose prose-sm max-w-none text-apfel-text">{props.text2}</div>
+                            <h4 @if={props.title2} class="font-bold text-smart-text text-xl mb-3">{props.title2}</h4>
+                            <div @if={props.text2} class="prose prose-sm max-w-none text-smart-text">{props.text2}</div>
                         </div>
                     </article>
 
                     <article class="card-item" @if={props.isBackend || props.image3 || q(node).property('title3') || q(node).property('text3')}>
-                        <div @if={props.image3} class="aspect-[3/2] bg-apfel-olive-light mb-4 overflow-hidden">
+                        <div @if={props.image3} class="aspect-[3/2] bg-smart-teal-light mb-4 overflow-hidden">
                             <img
                                 src={props.image3Uri}
                                 alt={props.image3.title || ''}
@@ -126,12 +126,12 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
                                 loading="lazy"
                             />
                         </div>
-                        <div @if={!props.image3 && props.isBackend} class="aspect-[3/2] bg-apfel-olive-light mb-4 flex items-center justify-center">
+                        <div @if={!props.image3 && props.isBackend} class="aspect-[3/2] bg-smart-teal-light mb-4 flex items-center justify-center">
                             <span class="text-white opacity-50">Bild Spalte 3</span>
                         </div>
                         <div class="py-4">
-                            <h4 @if={props.title3} class="font-bold text-apfel-text text-xl mb-3">{props.title3}</h4>
-                            <div @if={props.text3} class="prose prose-sm max-w-none text-apfel-text">{props.text3}</div>
+                            <h4 @if={props.title3} class="font-bold text-smart-text text-xl mb-3">{props.title3}</h4>
+                            <div @if={props.text3} class="prose prose-sm max-w-none text-smart-text">{props.text3}</div>
                         </div>
                     </article>
                 </div>

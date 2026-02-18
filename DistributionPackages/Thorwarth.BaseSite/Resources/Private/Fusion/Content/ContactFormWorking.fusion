@@ -44,7 +44,7 @@ prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentC
                     </div>
 
                     <div class="form-actions mt-4">
-                        <Neos.Fusion.Form:Button attributes.class="px-6 py-2 bg-mobility-navy text-white rounded hover:bg-mobility-navy-dark">
+                        <Neos.Fusion.Form:Button attributes.class="px-6 py-2 bg-smart-navy text-white rounded hover:bg-smart-navy-dark">
                             Nachricht senden
                         </Neos.Fusion.Form:Button>
                     </div>
@@ -56,10 +56,10 @@ prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentC
             email {
                 type = 'Neos.Fusion.Form.Runtime:Email'
                 options {
-                    senderAddress = 'noreply@caspary-bestattungen.de'
+                    senderAddress = 'noreply@smartgrund.de'
                     senderName = 'Kontaktformular'
-                    recipientAddress = 'info@caspary-bestattungen.de'
-                    recipientName = 'Caspary Bestattungen'
+                    recipientAddress = 'info@smartgrund.de'
+                    recipientName = 'SmartGrund GmbH'
                     subject = 'Neue Kontaktanfrage'
                     text = ${'Name: ' + data.name + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + data.email + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + data.nachricht}
                 }

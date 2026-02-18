@@ -8,7 +8,7 @@ prototype(Thorwarth.BaseSite:Component.Content.ServiceGrid) < prototype(Neos.Fus
     }
 
     renderer = afx`
-        <section class={'py-16 ' + (props.backgroundColor == 'gray' ? 'bg-mobility-bg-light' : 'bg-white')}>
+        <section class={'py-16 ' + (props.backgroundColor == 'gray' ? 'bg-smart-gray-light' : 'bg-white')}>
             <div class="container mx-auto px-4">
                 <div class="text-center mb-12" @if.hasHeader={props.headline || props.subheadline}>
                     <h2 class="text-3xl md:text-4xl font-bold text-primary-800 mb-4" @if.hasHeadline={props.headline}>

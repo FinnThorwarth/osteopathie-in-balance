@@ -35,8 +35,8 @@ prototype(Thorwarth.BaseSite:Content.Text) < prototype(Neos.Neos:ContentComponen
             center = 'text-center'
         }
         bgClasses = Neos.Fusion:DataStructure {
-            olive = 'bg-apfel-olive-light'
-            rose = 'bg-apfel-rose'
+            olive = 'bg-smart-teal-light'
+            rose = 'bg-smart-gray'
         }
     }
 
@@ -44,7 +44,7 @@ prototype(Thorwarth.BaseSite:Content.Text) < prototype(Neos.Neos:ContentComponen
         <section id={props.anchorId} class={'content-text py-8 md:py-16 lg:py-32 ' + (props.backgroundColor ? bgClasses[props.backgroundColor] : '')}>
             <div class="container mx-auto px-4">
                 <div class={alignmentClasses[props.textAlignment]}>
-                    <Neos.Fusion:Tag tagName={props.headingLevel} @if={props.heading} attributes.class="mb-2 text-3xl md:text-6xl uppercase font-bold leading-tight">{props.heading}</Neos.Fusion:Tag>
+                    <Neos.Fusion:Tag tagName={props.headingLevel} @if={props.heading} attributes.class="mb-2 text-3xl md:text-6xl font-bold leading-tight">{props.heading}</Neos.Fusion:Tag>
                     <Neos.Fusion:Tag tagName={props.subheadingLevel} @if={props.subheading} attributes.class="mb-6 text-lg text-gray-600">{props.subheading}</Neos.Fusion:Tag>
                 </div>
                 <div class={props.columnLayout ? 'grid gap-8 ' + (props.columnLayout == 'two-columns' ? 'md:grid-cols-2' : (props.columnLayout == 'three-columns' ? 'md:grid-cols-3' : '')) : ''}>

@@ -246,4 +246,4 @@ window.addEventListener('load', () => {
 })
 
 // General JavaScript functionality
-console.log('Caspary Site frontend loaded')
+console.log('SmartGrund frontend loaded')

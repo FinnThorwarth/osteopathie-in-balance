@@ -1,171 +1,124 @@
 :root {
   --font-size-base: 18px;
 
-  /* Apfelblüte Brand Colors */
-  --apfel-olive: #aab082;
-  --apfel-olive-light: #c4c6b3;
-  --apfel-olive-dark: #8a9068;
-  --apfel-rose: #f5e9ec;
-  --apfel-rose-light: #faf4f6;
-  --apfel-rose-dark: #e8d4da;
-  --apfel-green: #3d4a24;
-  --apfel-green-light: #5a6d38;
-  --apfel-green-dark: #2a331a;
-  --apfel-text: #3d4a24;
-  --apfel-white: #ffffff;
-  --apfel-bg-light: #f5e9ec;
+  /* SmartGrund Brand Colors */
+  --smart-navy: #1B3A4B;
+  --smart-navy-light: #2A5065;
+  --smart-navy-dark: #122A36;
+  --smart-teal: #2AAFB5;
+  --smart-teal-light: #5FC8CC;
+  --smart-teal-dark: #1E8A8F;
+  --smart-gray: #F0F2F4;
+  --smart-gray-light: #F7F8FA;
+  --smart-gray-dark: #E0E3E7;
+  --smart-text: #333333;
+  --smart-text-light: #555555;
+  --smart-white: #FFFFFF;
 }
 
-/* amatic-sc-regular - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: "Amatic SC";
-  font-style: normal;
-  font-weight: 400;
-  src: url("../Fonts/amatic-sc-v28-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-/* amatic-sc-700 - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: "Amatic SC";
-  font-style: normal;
-  font-weight: 700;
-  src: url("../Fonts/amatic-sc-v28-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
-/* playfair-display-regular - latin */
-/*
-@font-face {
-  font-display: swap;
-  font-family: "Playfair Display";
-  font-style: normal;
-  font-weight: 400;
-  src: url("../Fonts/playfair-display-v40-latin-regular.woff2") format("woff2");
-}
-  */
-/* playfair-display-700 - latin */
-/*
-@font-face {
-  font-display: swap;
-  font-family: "Playfair Display";
-  font-style: normal;
-  font-weight: 700;
-  src: url("../Fonts/playfair-display-v40-latin-700.woff2") format("woff2");
-}
-  */
-/* playfair-display-800 - latin */
-/*
-@font-face {
-  font-display: swap;
-  font-family: "Playfair Display";
-  font-style: normal;
-  font-weight: 800;
-  src: url("../Fonts/playfair-display-v40-latin-800.woff2") format("woff2");
-}
-*/
 /* inter-200 - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: "Inter";
   font-style: normal;
   font-weight: 200;
-  src: url("../Fonts/inter-v20-latin-200.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../Fonts/inter-v20-latin-200.woff2") format("woff2");
 }
 /* inter-200italic - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: "Inter";
   font-style: italic;
   font-weight: 200;
-  src: url("../Fonts/inter-v20-latin-200italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../Fonts/inter-v20-latin-200italic.woff2") format("woff2");
 }
 /* inter-300 - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: "Inter";
   font-style: normal;
   font-weight: 300;
-  src: url("../Fonts/inter-v20-latin-300.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../Fonts/inter-v20-latin-300.woff2") format("woff2");
 }
 /* inter-300italic - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: "Inter";
   font-style: italic;
   font-weight: 300;
-  src: url("../Fonts/inter-v20-latin-300italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../Fonts/inter-v20-latin-300italic.woff2") format("woff2");
 }
 /* inter-regular - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
-  src: url("../Fonts/inter-v20-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../Fonts/inter-v20-latin-regular.woff2") format("woff2");
 }
 /* inter-italic - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: "Inter";
   font-style: italic;
   font-weight: 400;
-  src: url("../Fonts/inter-v20-latin-italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../Fonts/inter-v20-latin-italic.woff2") format("woff2");
 }
 /* inter-500 - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
-  src: url("../Fonts/inter-v20-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../Fonts/inter-v20-latin-500.woff2") format("woff2");
 }
 /* inter-500italic - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: "Inter";
   font-style: italic;
   font-weight: 500;
-  src: url("../Fonts/inter-v20-latin-500italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../Fonts/inter-v20-latin-500italic.woff2") format("woff2");
 }
 /* inter-600 - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: "Inter";
   font-style: normal;
   font-weight: 600;
-  src: url("../Fonts/inter-v20-latin-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../Fonts/inter-v20-latin-600.woff2") format("woff2");
 }
 /* inter-600italic - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: "Inter";
   font-style: italic;
   font-weight: 600;
-  src: url("../Fonts/inter-v20-latin-600italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../Fonts/inter-v20-latin-600italic.woff2") format("woff2");
 }
 /* inter-700 - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  src: url("../Fonts/inter-v20-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../Fonts/inter-v20-latin-700.woff2") format("woff2");
 }
 /* inter-700italic - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: "Inter";
   font-style: italic;
   font-weight: 700;
-  src: url("../Fonts/inter-v20-latin-700italic.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../Fonts/inter-v20-latin-700italic.woff2") format("woff2");
 }
 /* inter-800 - latin */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: "Inter";
   font-style: normal;
   font-weight: 800;
-  src: url("../Fonts/inter-v20-latin-800.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../Fonts/inter-v20-latin-800.woff2") format("woff2");
 }
 
 .menu-wrapper {
@@ -199,98 +152,99 @@ main {
 @tailwind components;
 @tailwind utilities;
 
-/* Apfelblüte Component Styles */
+/* SmartGrund Component Styles */
 @layer components {
-  /* Apfelblüte Button Styles */
-  .btn-apfel-primary {
-    @apply bg-apfel-olive hover:bg-apfel-olive-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
+  /* SmartGrund Button Styles */
+  .btn-smart-primary {
+    @apply bg-smart-teal hover:bg-smart-teal-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
   }
 
-  .btn-apfel-secondary {
-    @apply bg-apfel-green hover:bg-apfel-green-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
+  .btn-smart-secondary {
+    @apply bg-smart-navy hover:bg-smart-navy-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
   }
 
-  .btn-apfel-outline {
-    @apply border-2 border-apfel-olive text-apfel-green hover:bg-apfel-olive hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200;
+  .btn-smart-outline {
+    @apply border-2 border-smart-teal text-smart-navy hover:bg-smart-teal hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200;
   }
 
-  /* Apfelblüte Header */
-  .apfel-header {
+  /* SmartGrund Header */
+  .smart-header {
     @apply text-white;
   }
 
-  /* Apfelblüte Footer */
-  .apfel-footer {
+  /* SmartGrund Footer */
+  .smart-footer {
     @apply text-white;
   }
 
-  /* Apfelblüte Card */
-  .apfel-card {
+  /* SmartGrund Card */
+  .smart-card {
     @apply bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300;
   }
 
-  /* Apfelblüte Section */
-  .apfel-section {
+  /* SmartGrund Section */
+  .smart-section {
     @apply py-16 px-4;
   }
 
-  .apfel-section-olive {
-    @apply bg-apfel-olive text-white py-16 px-4;
+  .smart-section-navy {
+    @apply bg-smart-navy text-white py-16 px-4;
   }
 
-  .apfel-section-rose {
-    @apply bg-apfel-rose text-apfel-green py-16 px-4;
+  .smart-section-gray {
+    @apply bg-smart-gray text-smart-text py-16 px-4;
   }
 
-  .apfel-section-light {
-    @apply bg-apfel-bg-light py-16 px-4;
+  .smart-section-light {
+    @apply bg-smart-gray-light py-16 px-4;
   }
 
-  /* Apfelblüte Heading Styles - basierend auf XD Specs */
-  .apfel-h1 {
-    @apply font-headline text-5xl md:text-6xl lg:text-[4.375rem] font-normal text-apfel-green leading-tight uppercase tracking-[0.035em];
+  /* SmartGrund Heading Styles */
+  .smart-h1 {
+    @apply font-sans text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-smart-navy leading-tight;
   }
 
-  .apfel-h2 {
-    @apply font-headline text-3xl md:text-4xl lg:text-[3.125rem] font-normal text-apfel-green leading-tight uppercase tracking-[0.035em];
+  .smart-h2 {
+    @apply font-sans text-2xl md:text-3xl lg:text-[2rem] font-bold text-smart-navy leading-tight;
   }
 
-  .apfel-h3 {
-    @apply font-script text-2xl md:text-3xl lg:text-[2.9375rem] font-bold text-apfel-green leading-tight uppercase tracking-[0.06em];
+  .smart-h3 {
+    @apply font-sans text-xl md:text-2xl lg:text-[1.5rem] font-semibold text-smart-navy leading-tight;
   }
 
-  /* Script Font für Akzent-Wörter in Headlines (via em/italic Tag) */
+  /* Accent styling for em/italic in headlines */
   h1 em,
   h1 i,
   h2 em,
   h2 i,
   h3 em,
   h3 i,
-  .apfel-h1 em,
-  .apfel-h1 i,
-  .apfel-h2 em,
-  .apfel-h2 i,
-  .apfel-h3 em,
-  .apfel-h3 i,
+  .smart-h1 em,
+  .smart-h1 i,
+  .smart-h2 em,
+  .smart-h2 i,
+  .smart-h3 em,
+  .smart-h3 i,
   .content-headline em,
   .content-headline i {
-    font-family: "Amatic SC", cursive !important;
-    font-style: normal !important;
+    font-family: "Inter", system-ui, sans-serif !important;
+    font-style: italic !important;
     font-weight: 700;
+    color: var(--smart-teal);
   }
 
-  /* Apfelblüte Text Styles */
-  .apfel-text-body {
-    @apply font-body text-base md:text-lg text-apfel-text leading-relaxed;
+  /* SmartGrund Text Styles */
+  .smart-text-body {
+    @apply font-body text-base md:text-lg text-smart-text leading-relaxed;
   }
 
-  /* Apfelblüte Link Styles */
-  .apfel-link {
-    @apply text-apfel-green hover:text-apfel-green-dark underline transition-colors duration-200;
+  /* SmartGrund Link Styles */
+  .smart-link {
+    @apply text-smart-teal-dark hover:text-smart-navy underline transition-colors duration-200;
   }
 
-  /* Apfelblüte Container */
-  .apfel-container {
+  /* SmartGrund Container */
+  .smart-container {
     @apply container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl;
   }
 }
@@ -320,36 +274,37 @@ main {
       @apply underline decoration-2 underline-offset-2 !important;
     }
 
-    /* Headings - basierend auf XD Specs */
+    /* Headings */
     h1 {
-      @apply font-headline text-4xl md:text-[6rem] font-bold mb-4 text-apfel-dark-grey uppercase tracking-[0.035em];
+      @apply font-sans text-4xl md:text-5xl font-bold mb-4 text-smart-navy;
     }
 
     h2 {
-      @apply font-headline text-2xl md:text-[3.125rem] font-bold mb-4 text-apfel-dark-grey uppercase tracking-[0.035em];
+      @apply font-sans text-2xl md:text-3xl font-bold mb-4 text-smart-navy;
     }
 
     h3 {
-      @apply font-script text-2xl md:text-[2.9375rem] font-normal mb-4 text-apfel-dark-grey uppercase tracking-[0.06em];
+      @apply font-sans text-xl md:text-2xl font-semibold mb-4 text-smart-navy;
     }
 
     h4 {
-      @apply font-body text-xl font-bold mb-4 text-apfel-dark-grey;
+      @apply font-body text-xl font-bold mb-4 text-smart-navy;
     }
 
-    /* Script Font für em/italic in Headlines */
+    /* Accent styling for em/italic in Headlines */
     h2 em,
     h2 i,
     h4 em,
     h4 i {
-      font-family: "Amatic SC", cursive !important;
-      font-style: normal !important;
+      font-family: "Inter", system-ui, sans-serif !important;
+      font-style: italic !important;
       font-weight: 700;
+      color: var(--smart-teal);
     }
 
     /* Paragraphs */
     p {
-      @apply mb-4 leading-relaxed text-apfel-text !important;
+      @apply mb-4 leading-relaxed text-smart-text !important;
     }
 
     /* Unordered Lists */
@@ -357,7 +312,7 @@ main {
       @apply list-disc ml-6 mb-4 space-y-1 !important;
 
       li {
-        @apply leading-relaxed text-apfel-text !important;
+        @apply leading-relaxed text-smart-text !important;
       }
 
       /* Nested lists */
@@ -371,7 +326,7 @@ main {
       @apply list-decimal ml-6 mb-4 space-y-1 !important;
 
       li {
-        @apply leading-relaxed text-apfel-text !important;
+        @apply leading-relaxed text-smart-text !important;
       }
 
       /* Nested lists */
@@ -382,7 +337,7 @@ main {
 
     /* Links */
     a {
-      @apply text-apfel-green underline hover:text-apfel-green-dark transition-colors !important;
+      @apply text-smart-teal-dark underline hover:text-smart-navy transition-colors !important;
     }
 
     /* Subscript & Superscript */
@@ -417,11 +372,11 @@ main {
     }
 
     ul > li::marker {
-      color: #3d4a24 !important;
+      color: #1B3A4B !important;
     }
 
     ol > li::marker {
-      color: #3d4a24 !important;
+      color: #1B3A4B !important;
     }
   }
 }
@@ -472,7 +427,7 @@ main {
 section strong {
   font-family: "Inter" !important;
   font-weight: 700 !important;
-  color: var(--apfel-green) !important;
+  color: var(--smart-navy) !important;
 }
 
 /* Ensure em/italic elements use correct font */
@@ -563,15 +518,15 @@ section i {
   transition: all 0.3s ease-in-out;
 }
 
-/* GLightbox Custom Styles for Apfelbluete */
+/* GLightbox Custom Styles for SmartGrund */
 .glightbox-container .goverlay {
-  background: rgba(61, 74, 36, 0.95);
+  background: rgba(27, 58, 75, 0.95);
 }
 
 .glightbox-container .gclose,
 .glightbox-container .gnext,
 .glightbox-container .gprev {
-  background-color: rgba(170, 176, 130, 0.9);
+  background-color: rgba(42, 175, 181, 0.9);
   border-radius: 50%;
   width: 44px;
   height: 44px;
@@ -581,13 +536,13 @@ section i {
 .glightbox-container .gclose:hover,
 .glightbox-container .gnext:hover,
 .glightbox-container .gprev:hover {
-  background-color: rgba(170, 176, 130, 1);
+  background-color: rgba(42, 175, 181, 1);
 }
 
 .glightbox-container .gclose svg,
 .glightbox-container .gnext svg,
 .glightbox-container .gprev svg {
-  fill: #3d4a24;
+  fill: #FFFFFF;
 }
 
 .glightbox-container .gslide-media {
@@ -595,23 +550,21 @@ section i {
 }
 
 .glightbox-container .gslide-description {
-  background: linear-gradient(to top, rgba(61, 74, 36, 0.9), transparent);
+  background: linear-gradient(to top, rgba(27, 58, 75, 0.9), transparent);
   padding: 2rem 1.5rem 1.5rem;
 }
 
 .glightbox-container .gslide-title {
-  font-family: "Amatic SC", Georgia, serif;
-  color: #f5e9ec;
+  font-family: "Inter", system-ui, sans-serif;
+  color: #FFFFFF;
   font-size: 1.25rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.035em;
+  font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
 .glightbox-container .gdesc-inner {
   font-family: Inter, system-ui, sans-serif;
-  color: rgba(245, 233, 236, 0.85);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 0.875rem;
   font-weight: 300;
 }
@@ -633,8 +586,8 @@ section i {
   transform: translate(-50%, -50%) scale(0);
   width: 48px;
   height: 48px;
-  background: rgba(170, 176, 130, 0.9)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233D4A24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7'/%3E%3C/svg%3E")
+  background: rgba(42, 175, 181, 0.9)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23FFFFFF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7'/%3E%3C/svg%3E")
     center center no-repeat;
   background-size: 24px;
   border-radius: 50%;
@@ -650,6 +603,6 @@ section i {
 
 /* Focus ring for accessibility */
 .gallery-item a:focus-visible {
-  outline: 3px solid #aab082;
+  outline: 3px solid #2AAFB5;
   outline-offset: 2px;
 }

@@ -33,13 +33,13 @@ prototype(Thorwarth.BaseSite:Component.Meta.AuthorMetaTags) < prototype(Neos.Fus
                         "name": props.authorName
                     } : {
                         "@type": "Organization",
-                        "name": "Caspary Bestattungen"
+                        "name": "SmartGrund GmbH"
                     },
                     "datePublished": props.publicationDateFormatted,
                     "dateModified": props.modificationDateFormatted,
                     "publisher": {
                         "@type": "Organization",
-                        "name": "Caspary Bestattungen",
+                        "name": "SmartGrund GmbH",
                         "logo": {
                             "@type": "ImageObject",
                             "url": StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/logo.svg')
@@ -65,7 +65,7 @@ prototype(Thorwarth.BaseSite:Component.Meta.AuthorMetaTags) < prototype(Neos.Fus
                     },
                     "publisher": {
                         "@type": "Organization",
-                        "name": "Caspary Bestattungen"
+                        "name": "SmartGrund GmbH"
                     },
                     "image": props.imageUrl ? props.imageUrl : null
                 })}
