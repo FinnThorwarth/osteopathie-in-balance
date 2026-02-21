@@ -3,7 +3,7 @@ FROM php:8.3-cli
 RUN apt-get update \
     # install GraphicsMagick
 	&& apt-get install -y \
-		libgraphicsmagick1-dev graphicsmagick zlib1g-dev libicu-dev gcc g++ --no-install-recommends \
+		libgraphicsmagick1-dev graphicsmagick zlib1g-dev libicu-dev gcc g++ git unzip --no-install-recommends \
 	&& pecl -vvv install gmagick-beta && docker-php-ext-enable gmagick \
     # pdo_mysql
     && docker-php-ext-install pdo_mysql \
@@ -15,12 +15,15 @@ RUN apt-get update \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
 WORKDIR /app
 EXPOSE 8081
 
 # copy everything in the project into the container. This is what
 # makes this image so fast!
 COPY . /app
+RUN composer install
 
 # start the dev server
 CMD [ "./flow", "server:run", "--host", "0.0.0.0" ]

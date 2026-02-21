@@ -40,7 +40,7 @@ make db-shell    # Access database
 
 ### Project Structure
 - **DistributionPackages/** - Contains site-specific packages
-  - **Apfelbluete.Site** - Main site package
+  - **Smartgrund.Site** - Main site package
   - **Thorwarth.BaseSite** - Base theme and component library with Vue.js integration
 - **Packages/** - Neos packages and libraries (managed by Composer)
 - **Web/** - Public webroot (auto-generated)

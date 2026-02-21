@@ -9,11 +9,11 @@ prototype(Thorwarth.BaseSite:Document.AbstractPage) < prototype(Neos.Neos:Page) 
         <meta name="apple-mobile-web-app-title" content="SmartGrund GmbH - Ihre Immobilie. Unsere smarte Lösung." />
         <meta name="google-site-verification" content="" />
 
-        <link rel="icon" type="image/png" href={StaticResource.uri('Apfelbluete.Site', 'Public/Favicon/favicon-96x96.png')} sizes="96x96" />
-        <link rel="icon" type="image/svg+xml" href={StaticResource.uri('Apfelbluete.Site', 'Public/Favicon/favicon.svg')} />
-        <link rel="shortcut icon" href={StaticResource.uri('Apfelbluete.Site', 'Public/Favicon/favicon.ico')} />
-        <link rel="apple-touch-icon" sizes="180x180" href={StaticResource.uri('Apfelbluete.Site', 'Public/Favicon/apple-touch-icon.png')} />
-        <link rel="manifest" href={StaticResource.uri('Apfelbluete.Site', 'Public/Favicon/site.webmanifest')} />
+        <link rel="icon" type="image/png" href={StaticResource.uri('Smartgrund.Site', 'Public/Favicon/favicon-96x96.png')} sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href={StaticResource.uri('Smartgrund.Site', 'Public/Favicon/favicon.svg')} />
+        <link rel="shortcut icon" href={StaticResource.uri('Smartgrund.Site', 'Public/Favicon/favicon.ico')} />
+        <link rel="apple-touch-icon" sizes="180x180" href={StaticResource.uri('Smartgrund.Site', 'Public/Favicon/apple-touch-icon.png')} />
+        <link rel="manifest" href={StaticResource.uri('Smartgrund.Site', 'Public/Favicon/site.webmanifest')} />
       `
     }
 

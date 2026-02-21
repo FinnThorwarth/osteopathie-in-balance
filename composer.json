@@ -30,7 +30,8 @@
         "neos/form-builder": "^3.0.3",
         "sitegeist/archaeopteryx": "^2.0",
         "neos/symfonymailer": "^1.0",
-        "apfelbluete/site": "dev-main"
+        "sitegeist/chantalle": "^2.0",
+        "smartgrund/site": "dev-main"
     },
     "require-dev": {
         "neos/buildessentials": "~9.1.0",

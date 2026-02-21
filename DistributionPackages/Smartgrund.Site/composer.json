@@ -1,6 +1,6 @@
 {
     "description": "Site package based on Thorwarth.BaseSite",
-    "name": "apfelbluete/site",
+    "name": "smartgrund/site",
     "type": "neos-site",
     "require": {
         "neos/neos": "*",
@@ -8,12 +8,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Apfelbluete\\Site\\": "Classes/"
+            "Smartgrund\\Site\\": "Classes/"
         }
     },
     "extra": {
         "neos": {
-            "package-key": "Apfelbluete.Site"
+            "package-key": "Smartgrund.Site"
         },
         "applied-flow-migrations": [
             "TYPO3.Form-20160601101500",

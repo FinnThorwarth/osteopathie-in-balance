@@ -4,36 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d20125e959f9cdd04d1e5ad6f2421ba",
+    "content-hash": "95fdb0b012bf2db1ad6a4517bfdc155a",
     "packages": [
-        {
-            "name": "apfelbluete/site",
-            "version": "dev-main",
-            "dist": {
-                "type": "path",
-                "url": "./DistributionPackages/Apfelbluete.Site",
-                "reference": "12ded84bbf32946c1fbe236e5f9eb3fb5b9b95de"
-            },
-            "require": {
-                "neos/neos": "*",
-                "thorwarth/basesite": "@dev"
-            },
-            "type": "neos-site",
-            "extra": {
-                "neos": {
-                    "package-key": "Apfelbluete.Site"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Apfelbluete\\Site\\": "Classes/"
-                }
-            },
-            "description": "Site package based on Thorwarth.BaseSite",
-            "transport-options": {
-                "relative": true
-            }
-        },
         {
             "name": "behat/transliterator",
             "version": "v1.5.0",
@@ -7316,6 +7288,100 @@
             "time": "2025-05-28T13:35:51+00:00"
         },
         {
+            "name": "sitegeist/chantalle",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sitegeist/Sitegeist.Chantalle.git",
+                "reference": "924652ee44f98a847c83da5ce2d985349cfe000d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sitegeist/Sitegeist.Chantalle/zipball/924652ee44f98a847c83da5ce2d985349cfe000d",
+                "reference": "924652ee44f98a847c83da5ce2d985349cfe000d",
+                "shasum": ""
+            },
+            "require": {
+                "neos/flow": "^9.0"
+            },
+            "type": "neos-package",
+            "extra": {
+                "neos": {
+                    "package-key": "Sitegeist.Chantalle"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sitegeist\\Chantalle\\": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "Adopt packages into the local distribution package folder and adjust the names",
+            "support": {
+                "issues": "https://github.com/sitegeist/Sitegeist.Chantalle/issues",
+                "source": "https://github.com/sitegeist/Sitegeist.Chantalle/tree/v2.0.0"
+            },
+            "time": "2025-08-05T11:56:33+00:00"
+        },
+        {
+            "name": "smartgrund/site",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./DistributionPackages/Smartgrund.Site",
+                "reference": "824a37afbdb6d28e907474111e6cb68cfd306ddc"
+            },
+            "require": {
+                "neos/neos": "*",
+                "thorwarth/basesite": "@dev"
+            },
+            "type": "neos-site",
+            "extra": {
+                "neos": {
+                    "package-key": "Smartgrund.Site"
+                },
+                "applied-flow-migrations": [
+                    "TYPO3.Form-20160601101500",
+                    "Neos.Form-20161124205254",
+                    "Neos.Party-20161124225257",
+                    "Neos.Kickstart-20161124230102",
+                    "Neos.Imagine-20161124231742",
+                    "Neos.Kickstarter-20161125110814",
+                    "Neos.Seo-20170127154600",
+                    "Neos.Flow-20180415105700",
+                    "Neos.Neos-20180907103800",
+                    "Neos.Neos.Ui-20190319094900",
+                    "Neos.Flow-20190425144900",
+                    "Neos.Flow-20190515215000",
+                    "Neos.Flow-20200813181400",
+                    "Neos.Flow-20201003165200",
+                    "Neos.Flow-20201109224100",
+                    "Neos.Flow-20201205172733",
+                    "Neos.Flow-20201207104500",
+                    "Neos.Neos-20220318111600",
+                    "Neos.Flow-20220318174300",
+                    "Neos.Fusion-20220326120900",
+                    "Neos.Neos-20230801154834",
+                    "Neos.Workspace.Ui-20240603134000",
+                    "Neos.Neos-20251005080230",
+                    "Neos.Fusion-20251006080506",
+                    "Neos.Neos-20251109115127"
+                ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "Smartgrund\\Site\\": "Classes/"
+                }
+            },
+            "description": "Site package based on Thorwarth.BaseSite",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
             "name": "symfony/console",
             "version": "v6.4.31",
             "source": {
@@ -9348,7 +9414,7 @@
             "dist": {
                 "type": "path",
                 "url": "./DistributionPackages/Thorwarth.BaseSite",
-                "reference": "4e67ee474d0fc4645ccd887634ab05693317721f"
+                "reference": "a2ba1bc06a4f944366fbe7ba36e3793e60cd3ade"
             },
             "require": {
                 "neos/neos": "*"
@@ -9357,7 +9423,34 @@
             "extra": {
                 "neos": {
                     "package-key": "Thorwarth.BaseSite"
-                }
+                },
+                "applied-flow-migrations": [
+                    "TYPO3.Form-20160601101500",
+                    "Neos.Form-20161124205254",
+                    "Neos.Party-20161124225257",
+                    "Neos.Kickstart-20161124230102",
+                    "Neos.Imagine-20161124231742",
+                    "Neos.Kickstarter-20161125110814",
+                    "Neos.Seo-20170127154600",
+                    "Neos.Flow-20180415105700",
+                    "Neos.Neos-20180907103800",
+                    "Neos.Neos.Ui-20190319094900",
+                    "Neos.Flow-20190425144900",
+                    "Neos.Flow-20190515215000",
+                    "Neos.Flow-20200813181400",
+                    "Neos.Flow-20201003165200",
+                    "Neos.Flow-20201109224100",
+                    "Neos.Flow-20201205172733",
+                    "Neos.Flow-20201207104500",
+                    "Neos.Neos-20220318111600",
+                    "Neos.Flow-20220318174300",
+                    "Neos.Fusion-20220326120900",
+                    "Neos.Neos-20230801154834",
+                    "Neos.Workspace.Ui-20240603134000",
+                    "Neos.Neos-20251005080230",
+                    "Neos.Fusion-20251006080506",
+                    "Neos.Neos-20251109115127"
+                ]
             },
             "autoload": {
                 "psr-4": {
@@ -11771,7 +11864,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "apfelbluete/site": 20
+        "smartgrund/site": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
