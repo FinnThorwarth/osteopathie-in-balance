@@ -3,7 +3,7 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
-This is a Neos CMS 9.0 project for the Apfelbluete website built with Vue.js 3, Tailwind CSS, and Vite.
+This is a Neos CMS 9.0 project for the Smartgrund website built with Vue.js 3, Tailwind CSS, and Vite.
 
 ## Development Commands
 

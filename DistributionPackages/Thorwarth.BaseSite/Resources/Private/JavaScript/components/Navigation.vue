@@ -2,37 +2,35 @@
   <div class="navigation-wrapper font-sans">
     <!-- Desktop Navigation (horizontal bar) - always visible on desktop -->
     <nav
-      class="hidden xl:block text-white"
+      class="hidden xl:flex items-stretch text-smart-navy"
     >
-      <div class="mx-auto pl-8">
-        <ul class="flex items-center justify-end space-x-12 text-2xl md:text-4xl 2xl:text-6xl">
-          <!-- All menu items -->
-          <li
-            v-for="item in menuItems"
-            :key="item.title"
-            class="relative group py-4"
+      <ul class="flex items-stretch">
+        <!-- All menu items -->
+        <li
+          v-for="item in menuItems"
+          :key="item.title"
+          class="relative group flex items-stretch"
+        >
+          <a
+            v-if="item.url && item.url !== '#'"
+            :href="item.url"
+            @click="handleNavClick"
+            class="flex items-center px-8 py-4 text-lg transition-colors"
+            :class="item.isActive
+              ? 'text-smart-teal font-semibold border-b-2 border-smart-teal'
+              : 'hover:text-smart-teal'"
           >
-            <a
-              v-if="item.url && item.url !== '#'"
-              :href="item.url"
-              @click="handleNavClick"
-              class="transition-all px-6 py-3 rounded-full"
-              :class="item.isActive
-                ? 'bg-smart-teal text-white font-semibold'
-                : 'hover:bg-smart-white hover:text-smart-navy'"
-            >
-              {{ item.title }}
-            </a>
-            <span
-              v-else
-              class="px-6 py-3 rounded-full"
-              :class="item.isActive ? 'bg-smart-teal text-white font-semibold' : ''"
-            >
-              {{ item.title }}
-            </span>
-          </li>
-        </ul>
-      </div>
+            {{ item.title }}
+          </a>
+          <span
+            v-else
+            class="flex items-center px-8 py-4 text-lg"
+            :class="item.isActive ? 'text-smart-teal font-semibold border-b-2 border-smart-teal' : ''"
+          >
+            {{ item.title }}
+          </span>
+        </li>
+      </ul>
     </nav>
 
     <!-- Compact Navigation Button (only visible on mobile/tablet, hidden on desktop) -->
@@ -41,16 +39,15 @@
     >
       <button
         @click="toggleMenu"
-        class="flex items-center justify-end bg-smart-navy p-4 rounded-bl-3xl"
+        class="flex items-center justify-end px-6 py-4 text-smart-navy"
         :aria-expanded="isMenuOpen"
         aria-label="Menü öffnen/schließen"
       >
-        <svg class="w-8 h-8 mr-2 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="6" x2="21" y2="6" />
           <line x1="3" y1="12" x2="21" y2="12" />
           <line x1="3" y1="18" x2="21" y2="18" />
         </svg>
-        <span class="text-3xl text-white">Menü</span>
       </button>
     </div>
 

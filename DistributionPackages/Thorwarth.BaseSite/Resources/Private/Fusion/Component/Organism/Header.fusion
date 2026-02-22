@@ -9,24 +9,34 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
     }
 
     navigationData = Thorwarth.BaseSite:Component.Molecule.NavigationData
+    portalUrl = ${q(site).property('portalUrl') || 'https://portal.smartgrund.de'}
 
     renderer = afx`
-        <Thorwarth.BaseSite:Component.Organism.ContactTopbar />
-        <nav class="sticky top-0 left-0 right-0 bg-smart-navy z-50">
-            <div class="mx-auto px-4">
-                <div class="flex items-center justify-between py-4">
-                    <div class="flex items-center">
-                        <a href="/" class="flex items-center">
-                            <img
-                                src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_Header.svg')}
-                                alt="SmartGrund GmbH"
-                                class="h-auto w-[150px] md:w-[200px] lg:w-[300px] max-h-[60px] xl:max-h-[80px]"
-                            />
-                        </a>
-                    </div>
+        <header>
+            <div class="sticky top-0 left-0 right-0 bg-white z-50 shadow-sm">
+                <div class="flex items-stretch justify-end">
                     <div id="navigation-vue" data-navigation={props.navigationData || '{"menuItems":[],"currentNodeIdentifier":"debug-no-context"}'}></div>
+                    <a
+                        href={props.portalUrl}
+                        target="_blank"
+                        rel="noopener"
+                        class="bg-smart-teal text-white px-8 py-4 text-lg font-sans inline-flex items-center whitespace-nowrap"
+                    >
+                        <strong class="font-bold">Mein</strong>SmartGrund
+                    </a>
                 </div>
             </div>
-        </nav>
+            <div class="bg-smart-gray py-16 lg:py-24">
+                <div class="mx-auto px-4 flex justify-center">
+                    <a href="/" class="block">
+                        <img
+                            src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_Header.svg')}
+                            alt="SmartGrund GmbH"
+                            class="h-auto w-[220px] md:w-[380px] lg:w-[480px]"
+                        />
+                    </a>
+                </div>
+            </div>
+        </header>
     `
 }

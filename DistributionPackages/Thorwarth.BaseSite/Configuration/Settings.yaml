@@ -20,6 +20,8 @@ Neos:
         special:
           label: 'Spezial-Module'
           position: 400
+    userInterface:
+      defaultLanguage: de
     sites:
       '*':
         uriPathSuffix: ''
