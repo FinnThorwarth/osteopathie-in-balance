@@ -164,6 +164,20 @@
   transform: translateY(213px);
 }
 
+/* Nav-Logo Scroll Animation */
+.nav-logo-wrap {
+  opacity: 0;
+  transform: translateX(-16px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+#site-header.header-scrolled .nav-logo-wrap {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
 /* Grayscale filter for contrast mode */
 .grayscale-mode {
   filter: grayscale(1) contrast(1.25) !important;
@@ -660,6 +674,35 @@ section i {
   outline-offset: 2px;
 }
 
+/* FAQ Component */
+.content-faq details > summary {
+  list-style: none;
+}
+
+.content-faq details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.content-faq .faq-chevron {
+  transition: transform 0.3s ease;
+}
+
+.content-faq details[open] .faq-summary {
+  background-color: rgba(46, 138, 135, 0.05);
+}
+
+.content-faq details[open] .faq-question {
+  color: var(--smart-teal);
+}
+
+.content-faq details[open] .faq-chevron {
+  transform: rotate(180deg);
+}
+
+.content-faq .faq-answer {
+  overflow: hidden;
+}
+
 /* TextImage Dark Background Mode */
 .text-image--dark {
   background-color: var(--smart-navy);
@@ -689,12 +732,11 @@ section i {
     list-style: none !important;
     margin-left: 0 !important;
     padding-left: 0 !important;
+  }
 
-    /* Reset Tailwind space-y utility overrides on siblings */
-    & > :not([hidden]) ~ :not([hidden]) {
-      margin-top: 0 !important;
-      margin-bottom: 0 !important;
-    }
+  /* Reset Tailwind space-y utility overrides on siblings */
+  ul > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0 !important;
   }
 
   ul li {

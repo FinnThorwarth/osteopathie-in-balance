@@ -4,6 +4,7 @@
 include: Text.fusion
 include: TextImage.fusion
 include: Accordion.fusion
+include: FAQ.fusion
 include: Button.fusion
 include: ImageSlider.fusion
 include: Headline.fusion

@@ -29,6 +29,7 @@
           "Thorwarth.BaseSite:Content.Image.Hero": true
           "Thorwarth.BaseSite:Content.TextImage": true
           # Interactive
+          "Thorwarth.BaseSite:Content.FAQ": true
           # "Thorwarth.BaseSite:Content.Accordion": true
           # "Thorwarth.BaseSite:Content.Button": true
           # "Thorwarth.BaseSite:Content.ContactForm": true

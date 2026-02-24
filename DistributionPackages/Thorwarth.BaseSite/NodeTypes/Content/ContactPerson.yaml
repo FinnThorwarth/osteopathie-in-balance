@@ -1,0 +1,78 @@
+'Thorwarth.BaseSite:Content.ContactPerson':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'Ansprechpartner'
+    icon: 'icon-user'
+    group: 'structure'
+    inspector:
+      groups:
+        content:
+          label: 'Inhalt'
+          position: 5
+        image:
+          label: 'Bild'
+          position: 10
+  options:
+    fusion:
+      prototypeGenerator: null
+  search:
+    searchNodeType: false
+  label: "${node.properties.name ? 'Ansprechpartner (' + node.properties.name + ')' : 'Ansprechpartner'}"
+  properties:
+    label:
+      type: string
+      defaultValue: 'Ihr Ansprechpartner'
+      ui:
+        label: 'Beschriftung'
+        reloadIfChanged: true
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Ihr Ansprechpartner'
+    name:
+      type: string
+      ui:
+        label: 'Name'
+        reloadIfChanged: true
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Name der Person'
+    text:
+      type: string
+      ui:
+        label: 'Beschreibung'
+        reloadIfChanged: true
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Kurzbeschreibung...'
+    image:
+      type: 'Neos\Media\Domain\Model\ImageInterface'
+      ui:
+        label: 'Foto'
+        reloadIfChanged: true
+        inspector:
+          group: 'image'
+          editorOptions:
+            features:
+              crop: true
+            crop:
+              aspectRatio:
+                forceCrop: true
+                locked:
+                  width: 1
+                  height: 1
+    imageAlt:
+      type: string
+      ui:
+        label: 'Foto Alternativtext'
+        inspector:
+          group: 'image'
+    imageTitle:
+      type: string
+      ui:
+        label: 'Foto Titel'
+        inspector:
+          group: 'image'

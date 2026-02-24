@@ -114,10 +114,66 @@ function mountVueComponents() {
 		}
 	}
 
+	// Initialize FAQ animations
+	initFaqAnimations()
+
 	// Initialize gallery lightboxes (skip in Neos backend to preserve editing)
 	if (!isNeosBackend) {
 		initializeGalleryLightboxes()
 	}
+}
+
+// Function to initialize FAQ smooth open/close animations
+function initFaqAnimations() {
+	document.querySelectorAll('.content-faq details').forEach(details => {
+		if (details._faqInitialized) return
+		details._faqInitialized = true
+
+		const summary = details.querySelector('summary')
+		const content = details.querySelector('.faq-answer')
+
+		if (!summary || !content) return
+
+		summary.addEventListener('click', (e) => {
+			e.preventDefault()
+
+			if (details.open) {
+				// Animate closing
+				const startHeight = content.offsetHeight
+				content.style.height = startHeight + 'px'
+				content.style.overflow = 'hidden'
+
+				requestAnimationFrame(() => {
+					content.style.transition = 'height 0.3s ease'
+					content.style.height = '0px'
+
+					content.addEventListener('transitionend', () => {
+						details.removeAttribute('open')
+						content.style.height = ''
+						content.style.overflow = ''
+						content.style.transition = ''
+					}, { once: true })
+				})
+			} else {
+				// Animate opening
+				details.setAttribute('open', '')
+				const endHeight = content.offsetHeight
+				content.style.height = '0px'
+				content.style.overflow = 'hidden'
+
+				requestAnimationFrame(() => {
+					content.style.transition = 'height 0.3s ease'
+					content.style.height = endHeight + 'px'
+
+					content.addEventListener('transitionend', () => {
+						content.style.height = ''
+						content.style.overflow = ''
+						content.style.transition = ''
+					}, { once: true })
+				})
+			}
+		})
+	})
 }
 
 // Function to initialize GLightbox for gallery components
@@ -227,6 +283,19 @@ document.addEventListener('DOMContentLoaded', () => {
 	setTimeout(() => {
 		mountVueComponents()
 	}, 500)
+
+	// Header logo scroll animation
+	const siteHeader = document.getElementById('site-header')
+	const heroSection = document.getElementById('hero-section')
+	if (siteHeader && heroSection) {
+		const logoObserver = new IntersectionObserver(
+			([entry]) => {
+				siteHeader.classList.toggle('header-scrolled', !entry.isIntersecting)
+			},
+			{ threshold: 0, rootMargin: '-120px 0px 0px 0px' }
+		)
+		logoObserver.observe(heroSection)
+	}
 
 	// Add smooth scrolling for anchor links
 	document.querySelectorAll('a[href^="#"]').forEach(anchor => {

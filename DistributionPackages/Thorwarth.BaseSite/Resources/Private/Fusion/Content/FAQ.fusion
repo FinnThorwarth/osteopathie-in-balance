@@ -1,0 +1,50 @@
+prototype(Thorwarth.BaseSite:Content.FAQ) < prototype(Neos.Neos:ContentComponent) {
+    heading = Neos.Neos:Editable {
+        property = 'heading'
+    }
+
+    items = Neos.Neos:ContentCollection {
+        nodePath = '.'
+    }
+
+    renderer = afx`
+        <section class="content-faq py-8 md:py-16 lg:py-32">
+            <div class="smart-container">
+                <h2 @if={props.heading} class="mb-8 font-sans text-3xl md:text-4xl font-medium leading-tight text-smart-teal">{props.heading}</h2>
+                <div itemscope itemtype="https://schema.org/FAQPage">
+                    {props.items}
+                </div>
+            </div>
+        </section>
+    `
+}
+
+prototype(Thorwarth.BaseSite:Content.FAQ.Item) < prototype(Neos.Neos:ContentComponent) {
+    question = Neos.Neos:Editable {
+        property = 'question'
+    }
+    answer = Neos.Neos:Editable {
+        property = 'answer'
+    }
+    isOpen = ${q(node).property('isOpen')}
+
+    renderer = afx`
+        <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" class="faq-item border-b border-gray-200 last:border-b-0">
+            <details open={props.isOpen}>
+                <summary class="faq-summary flex items-center justify-between py-5 cursor-pointer select-none">
+                    <span itemprop="name" class="faq-question font-medium text-smart-navy text-lg md:text-xl pr-8">{props.question}</span>
+                    <span class="faq-chevron flex-shrink-0 text-smart-teal" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </span>
+                </summary>
+                <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                    <div itemprop="text" class="faq-answer rich-text-content pb-6 leading-relaxed text-smart-text">
+                        {props.answer}
+                    </div>
+                </div>
+            </details>
+        </div>
+    `
+}

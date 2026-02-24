@@ -75,7 +75,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
     }
 
     renderer = afx`
-        <section id={props.anchorId} class={'content-text-image content-text' + (props.darkBackground ? ' text-image--dark' : '')}>
+        <section id={props.anchorId} class={'content-text-image content-text' + (props.imageBleedEdge ? ' relative overflow-hidden' : '') + (props.darkBackground ? ' text-image--dark' : '')}>
 
             <div @if={!props.imageBleedEdge} class="py-8 md:py-16 lg:py-32">
                 <div class="container mx-auto px-4">
@@ -101,7 +101,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                 </div>
             </div>
 
-            <div @if={props.imageBleedEdge} class="relative overflow-hidden pb-16 md:pb-20 lg:pb-24">
+            <div @if={props.imageBleedEdge} class="pb-16 md:pb-20 lg:pb-24">
                 <img @if={props.image && !props.isTextFirst}
                      src={props.imageUri}
                      alt={props.alternativeText}
@@ -117,24 +117,24 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                         <div @if={props.isTextFirst} class={imageColSpan[props.columnLayout] || 'col-span-1'}></div>
                     </div>
                 </div>
-                <div @if={!props.isTextFirst}
-                     class={'hidden md:block absolute top-0 bottom-16 md:bottom-20 lg:bottom-24 left-0 ' + (imageBleedWidth[props.columnLayout] || 'w-1/2')}>
-                    <img @if={props.image}
-                         src={props.imageBleedUri}
-                         alt={props.alternativeText}
-                         class="w-full h-full object-cover object-left" />
-                </div>
-                <div @if={props.isTextFirst}
-                     class={'hidden md:block absolute top-0 bottom-16 md:bottom-20 lg:bottom-24 right-0 ' + (imageBleedWidth[props.columnLayout] || 'w-1/2')}>
-                    <img @if={props.image}
-                         src={props.imageBleedUri}
-                         alt={props.alternativeText}
-                         class="w-full h-full object-cover object-right" />
-                </div>
                 <img @if={props.image && props.isTextFirst}
                      src={props.imageUri}
                      alt={props.alternativeText}
                      class="md:hidden w-full h-auto" />
+            </div>
+            <div @if={props.imageBleedEdge && !props.isTextFirst}
+                 class={'hidden md:block absolute top-0 bottom-16 md:bottom-20 lg:bottom-24 left-0 ' + (imageBleedWidth[props.columnLayout] || 'w-1/2')}>
+                <img @if={props.image}
+                     src={props.imageBleedUri}
+                     alt={props.alternativeText}
+                     class="w-full h-full object-cover object-left" />
+            </div>
+            <div @if={props.imageBleedEdge && props.isTextFirst}
+                 class={'hidden md:block absolute top-0 bottom-16 md:bottom-20 lg:bottom-24 right-0 ' + (imageBleedWidth[props.columnLayout] || 'w-1/2')}>
+                <img @if={props.image}
+                     src={props.imageBleedUri}
+                     alt={props.alternativeText}
+                     class="w-full h-full object-cover object-right" />
             </div>
 
         </section>

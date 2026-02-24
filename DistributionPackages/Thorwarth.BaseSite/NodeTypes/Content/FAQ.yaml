@@ -1,0 +1,71 @@
+'Thorwarth.BaseSite:Content.FAQ':
+  superTypes:
+    'Neos.Neos:Content': true
+    'Neos.Neos:ContentCollection': true
+    'Thorwarth.BaseSite:Mixin.NavigationAnchor': true
+  ui:
+    label: 'FAQ'
+    icon: 'icon-question-circle'
+    group: 'structure'
+    position: 35
+    inspector:
+      groups:
+        options:
+          label: 'Optionen'
+          position: 10
+  properties:
+    heading:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'FAQ Überschrift (optional)'
+  constraints:
+    nodeTypes:
+      '*': false
+      'Thorwarth.BaseSite:Content.FAQ.Item': true
+
+'Thorwarth.BaseSite:Content.FAQ.Item':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'FAQ Frage'
+    icon: 'icon-comment'
+    position: 10
+    inspector:
+      groups:
+        general:
+          label: 'Allgemein'
+          position: 10
+  properties:
+    question:
+      type: string
+      ui:
+        inlineEditable: true
+        reloadIfChanged: true
+        inline:
+          editorOptions:
+            placeholder: 'Frage eingeben...'
+    answer:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Antwort eingeben...'
+            autoparagraph: true
+            formatting:
+              strong: true
+              em: true
+              a: true
+              ul: true
+              ol: true
+    isOpen:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Standardmäßig geöffnet'
+        inspector:
+          group: 'general'
+          position: 10

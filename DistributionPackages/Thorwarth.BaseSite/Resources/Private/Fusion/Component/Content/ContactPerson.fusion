@@ -1,0 +1,39 @@
+prototype(Thorwarth.BaseSite:Content.ContactPerson) < prototype(Neos.Neos:ContentComponent) {
+    label = ${q(node).property('label') || 'Ihr Ansprechpartner'}
+    name = ${q(node).property('name')}
+    text = ${q(node).property('text')}
+    image = ${q(node).property('image')}
+    imageAlt = ${q(node).property('imageAlt')}
+    imageTitle = ${q(node).property('imageTitle')}
+
+    renderer = afx`
+        <div class="contact-person flex flex-col sm:flex-row items-center gap-8 py-12 px-4 max-w-4xl mx-auto">
+            <div class="relative overflow-hidden flex-shrink-0 rounded-full w-40 h-40">
+                <Thorwarth.BaseSite:TeamMemberImage
+                    @if.hasImage={props.image}
+                    image={props.image}
+                    alternativeText={props.imageAlt || props.name}
+                    title={props.imageTitle}
+                    class="w-full h-full object-cover object-center"
+                />
+                <div class="flex items-center justify-center w-full h-full bg-smart-gray/50" @if.hasNoImage={!props.image}>
+                    <svg class="w-16 h-16 text-smart-teal opacity-30" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-sans text-xl font-bold text-smart-navy tracking-wider mb-1">
+                    <Neos.Neos:Editable property="label" block={false} />
+                </h3>
+                <p class="text-smart-teal font-sans text-xl font-semibold mb-4">
+                    <Neos.Neos:Editable property="name" block={false} />
+                </p>
+                <p class="text-smart-text font-body">
+                    <Neos.Neos:Editable property="text" block={false} />
+                </p>
+            </div>
+        </div>
+    `
+}
