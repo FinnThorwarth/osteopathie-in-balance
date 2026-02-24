@@ -75,7 +75,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
     }
 
     renderer = afx`
-        <section id={props.anchorId} class={'content-text-image content-text' + (props.imageBleedEdge ? ' relative overflow-hidden' : '') + (props.darkBackground ? ' text-image--dark' : '')}>
+        <section id={props.anchorId} class={'content-text-image content-text' + (props.imageBleedEdge ? ' w-full relative overflow-hidden' : '') + (props.darkBackground ? ' text-image--dark' : '')}>
 
             <div @if={!props.imageBleedEdge} class="py-8 md:py-16 lg:py-32">
                 <div class="container mx-auto px-4">

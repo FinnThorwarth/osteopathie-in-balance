@@ -723,6 +723,13 @@ section i {
   outline-offset: 2px;
 }
 
+/* Form input focus indicator */
+.form-control:focus {
+  outline: none;
+  border-color: #2E8A87;
+  box-shadow: 0 0 0 3px rgba(46, 138, 135, 0.25);
+}
+
 /* FAQ Component */
 .content-faq details > summary {
   list-style: none;
@@ -761,7 +768,7 @@ section i {
   }
 
   h3, h4, h5 {
-    color: var(--smart-teal);
+    color: var(--smart-teal) !important;
   }
 
   p {
@@ -774,6 +781,26 @@ section i {
 
   a {
     color: var(--smart-teal) !important;
+  }
+
+  /* Form elements in dark mode */
+  label {
+    color: #ffffff !important;
+  }
+
+  .form-control {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    color: #ffffff !important;
+  }
+
+  .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.45) !important;
+  }
+
+  select.form-control option {
+    background-color: var(--smart-navy);
+    color: #ffffff;
   }
 
   /* Custom list icon */

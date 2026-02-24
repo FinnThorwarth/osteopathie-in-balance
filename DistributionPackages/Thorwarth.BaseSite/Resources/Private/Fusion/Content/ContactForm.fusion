@@ -9,10 +9,20 @@ prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentC
         }
     }
     
-    renderer = Neos.Fusion.Form:Runtime.RuntimeForm {
+    renderer = Neos.Fusion:Join {
+        outer.@position = 'start'
+        outer = ${q(node).property('darkBackground') ? '<section class="content-contact-form py-8 md:py-16 lg:py-32 text-image--dark"><div class="container mx-auto px-4">' : '<section class="content-contact-form py-8 md:py-16 lg:py-32"><div class="container mx-auto px-4">'}
+
+        form = Neos.Fusion.Form:Runtime.RuntimeForm {
         namespace = 'contact'
-        
+
         process {
+            schema {
+                name = Neos.Fusion.Form:Runtime.Schema
+                telefon = Neos.Fusion.Form:Runtime.Schema
+                email = Neos.Fusion.Form:Runtime.Schema
+                nachricht = Neos.Fusion.Form:Runtime.Schema
+            }
             content = afx`
                 <div class="contact-form">
                     <div class="mb-4">
@@ -54,7 +64,7 @@ prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentC
                     </div>
 
                     <div class="form-actions mt-4">
-                        <Neos.Fusion.Form:Button attributes.class="px-6 py-2 bg-smart-navy text-white rounded hover:bg-smart-navy-dark">
+                        <Neos.Fusion.Form:Button attributes.class={q(node).property('darkBackground') ? 'btn-smart-primary' : 'px-6 py-2 bg-smart-navy text-white rounded hover:bg-smart-navy-dark'}>
                             Nachricht senden
                         </Neos.Fusion.Form:Button>
                     </div>
@@ -66,23 +76,53 @@ prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentC
             email {
                 type = 'Neos.Fusion.Form.Runtime:Email'
                 options {
-                    senderAddress = ${formRuntime.formState.formValues.email || 'noreply@smartgrund.de'}
-                    senderName = ${formRuntime.formState.formValues.name || 'Kontaktformular'}
+                    senderAddress = ${data.email || 'noreply@smartgrund.de'}
+                    senderName = ${data.name || 'Kontaktformular'}
                     recipientAddress = 'info@smartgrund.de'
                     recipientName = 'SmartGrund GmbH'
-                    subject = ${'Neue Kontaktanfrage von ' + (formRuntime.formState.formValues.name || 'Unbekannt')}
-                    text = ${'Name: ' + (formRuntime.formState.formValues.name || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (formRuntime.formState.formValues.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (formRuntime.formState.formValues.email || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + (formRuntime.formState.formValues.nachricht || 'Keine Nachricht')}
+                    subject = ${'Neue Kontaktanfrage von ' + (data.name || 'Unbekannt')}
+                    text = ${'Name: ' + (data.name || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (data.email || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + (data.nachricht || 'Keine Nachricht')}
                     html = afx`
                         <html>
                             <body>
                                 <h2>Neue Kontaktanfrage</h2>
-                                <p><strong>Name:</strong> {formRuntime.formState.formValues.name || 'Nicht angegeben'}</p>
-                                <p><strong>Telefon:</strong> {formRuntime.formState.formValues.telefon || 'Nicht angegeben'}</p>
-                                <p><strong>E-Mail:</strong> {formRuntime.formState.formValues.email || 'Nicht angegeben'}</p>
+                                <p><strong>Name:</strong> {data.name || 'Nicht angegeben'}</p>
+                                <p><strong>Telefon:</strong> {data.telefon || 'Nicht angegeben'}</p>
+                                <p><strong>E-Mail:</strong> {data.email || 'Nicht angegeben'}</p>
                                 <p><strong>Nachricht:</strong></p>
-                                <p>{formRuntime.formState.formValues.nachricht || 'Keine Nachricht'}</p>
+                                <p>{data.nachricht || 'Keine Nachricht'}</p>
                                 <hr />
                                 <p><small>Diese Nachricht wurde über das Kontaktformular der Website gesendet.</small></p>
+                            </body>
+                        </html>
+                    `
+                }
+            }
+
+            confirmationEmail {
+                type = 'Neos.Fusion.Form.Runtime:Email'
+                options {
+                    senderAddress = 'noreply@smartgrund.de'
+                    senderName = 'SmartGrund GmbH'
+                    recipientAddress = ${data.email}
+                    recipientName = ${data.name || ''}
+                    subject = 'Ihre Kontaktanfrage bei SmartGrund'
+                    text = ${'Guten Tag ' + (data.name || '') + ',' + String.chr(10) + String.chr(10) + 'vielen Dank für Ihre Nachricht. Wir haben Ihre Anfrage erhalten und werden uns schnellstmöglich bei Ihnen melden.' + String.chr(10) + String.chr(10) + 'Ihre übermittelten Informationen:' + String.chr(10) + 'Name: ' + (data.name || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (data.email || 'Nicht angegeben') + String.chr(10) + 'Nachricht: ' + (data.nachricht || 'Keine Nachricht') + String.chr(10) + String.chr(10) + 'Mit freundlichen Grüßen' + String.chr(10) + 'Ihr SmartGrund-Team'}
+                    html = afx`
+                        <html>
+                            <body>
+                                <p>Guten Tag {data.name || ''},</p>
+                                <p>vielen Dank für Ihre Nachricht. Wir haben Ihre Anfrage erhalten und werden uns schnellstmöglich bei Ihnen melden.</p>
+                                <hr />
+                                <p><strong>Ihre übermittelten Informationen:</strong></p>
+                                <table style="border-collapse: collapse;">
+                                    <tr><td style="padding: 2px 12px 2px 0;"><strong>Name:</strong></td><td>{data.name || 'Nicht angegeben'}</td></tr>
+                                    <tr><td style="padding: 2px 12px 2px 0;"><strong>Telefon:</strong></td><td>{data.telefon || 'Nicht angegeben'}</td></tr>
+                                    <tr><td style="padding: 2px 12px 2px 0;"><strong>E-Mail:</strong></td><td>{data.email || 'Nicht angegeben'}</td></tr>
+                                    <tr><td style="padding: 2px 12px 2px 0; vertical-align: top;"><strong>Nachricht:</strong></td><td>{data.nachricht || 'Keine Nachricht'}</td></tr>
+                                </table>
+                                <hr />
+                                <p>Mit freundlichen Grüßen<br />Ihr SmartGrund-Team</p>
                             </body>
                         </html>
                     `
@@ -97,5 +137,9 @@ prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentC
                 }
             }
         }
+        }
+
+        outerEnd.@position = 'end'
+        outerEnd = '</div></section>'
     }
 }

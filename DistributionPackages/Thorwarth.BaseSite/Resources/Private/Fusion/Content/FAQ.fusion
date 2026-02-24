@@ -24,7 +24,7 @@ prototype(Thorwarth.BaseSite:Content.FAQ) < prototype(Neos.Neos:ContentComponent
 
     renderer = afx`
         <section class="content-faq py-8 md:py-16 lg:py-32">
-            <div class="smart-container">
+            <div class="container mx-auto px-4">
                 <Neos.Fusion:Tag tagName={props.headingLevel} @if={q(node).property('heading') || renderingMode.isEdit} attributes.class={props.headingClass}>{props.headingContent}</Neos.Fusion:Tag>
                 <div itemscope itemtype="https://schema.org/FAQPage">
                     {props.items}
