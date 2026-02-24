@@ -1,7 +1,7 @@
 [
     {
         "name": "SmartGrund",
-        "nodeName": "apfelbluete",
+        "nodeName": "smartgrund",
         "siteResourcesPackageKey": "Smartgrund.Site",
         "online": true,
         "domains": []

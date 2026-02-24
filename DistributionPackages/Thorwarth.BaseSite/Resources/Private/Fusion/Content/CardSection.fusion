@@ -60,8 +60,8 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
         >
             <div class="container mx-auto px-4">
                 <header class="mb-10" @if={props.isBackend || q(node).property('heading') || q(node).property('subheading') || q(node).property('introText')}>
-                    <h2 @if={props.heading} class="">{props.heading}</h2>
-                    <h3 @if={props.subheading} class="">{props.subheading}</h3>
+                    <h2 @if={props.heading} class="font-sans text-2xl md:text-3xl lg:text-[3rem] font-light mb-2 text-smart-teal">{props.heading}</h2>
+                    <h3 @if={props.subheading} class="font-sans text-xl md:text-2xl font-normal mb-4 text-smart-navy">{props.subheading}</h3>
                     <div @if={props.introText} class="prose prose-lg max-w-none mb-8">{props.introText}</div>
                 </header>
 

@@ -48,8 +48,10 @@
           editorOptions:
             placeholder: 'Überschrift'
             formatting:
+              h1: true
               h2: true
               h3: true
+              h4: true
     subheading:
       type: string
       ui:

@@ -75,7 +75,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
     }
 
     renderer = afx`
-        <section id={props.anchorId} class={'content-text-image content-text' + (props.imageBleedEdge ? ' w-full relative overflow-hidden' : '') + (props.darkBackground ? ' text-image--dark' : '')}>
+        <section id={props.anchorId} class={'content-text-image content-text' + (props.imageBleedEdge ? ' w-screen relative overflow-hidden' : '') + (props.darkBackground ? ' text-image--dark' : '')}>
 
             <div @if={!props.imageBleedEdge} class="py-8 md:py-16 lg:py-32">
                 <div class="container mx-auto px-4">
@@ -127,14 +127,14 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                 <img @if={props.image}
                      src={props.imageBleedUri}
                      alt={props.alternativeText}
-                     class="w-full h-full object-cover object-left" />
+                     class="w-full h-full object-cover object-center" />
             </div>
             <div @if={props.imageBleedEdge && props.isTextFirst}
                  class={'hidden md:block absolute top-0 bottom-16 md:bottom-20 lg:bottom-24 right-0 ' + (imageBleedWidth[props.columnLayout] || 'w-1/2')}>
                 <img @if={props.image}
                      src={props.imageBleedUri}
                      alt={props.alternativeText}
-                     class="w-full h-full object-cover object-right" />
+                     class="w-full h-full object-cover object-center" />
             </div>
 
         </section>
