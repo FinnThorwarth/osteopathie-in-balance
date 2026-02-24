@@ -1,8 +1,8 @@
 [
     {
-        "name": "SmartGrund GmbH",
-        "nodeName": "smartgrund",
-        "siteResourcesPackageKey": "Thorwarth.BaseSite",
+        "name": "SmartGrund",
+        "nodeName": "apfelbluete",
+        "siteResourcesPackageKey": "Smartgrund.Site",
         "online": true,
         "domains": []
     }

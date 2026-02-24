@@ -44,41 +44,13 @@
                 label: '3 Spalten'
               4:
                 label: '4 Spalten'
-    backgroundColor:
-      type: string
-      defaultValue: 'olive'
+    darkBackground:
+      type: boolean
+      defaultValue: false
       ui:
-        label: 'Hintergrundfarbe'
+        label: 'Dunkler Hintergrund'
         reloadIfChanged: true
         inspector:
           group: 'options'
           position: 20
-          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
-          editorOptions:
-            values:
-              'olive':
-                label: 'Olive Grün'
-              'rose':
-                label: 'Rosa'
-              'white':
-                label: 'Weiß'
-    gap:
-      type: string
-      defaultValue: 'small'
-      ui:
-        label: 'Abstand zwischen Bildern'
-        reloadIfChanged: true
-        inspector:
-          group: 'options'
-          position: 30
-          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
-          editorOptions:
-            values:
-              'none':
-                label: 'Kein Abstand'
-              'small':
-                label: 'Klein'
-              'medium':
-                label: 'Mittel'
-              'large':
-                label: 'Groß'
+          editor: 'Neos.Neos/Inspector/Editors/BooleanEditor'

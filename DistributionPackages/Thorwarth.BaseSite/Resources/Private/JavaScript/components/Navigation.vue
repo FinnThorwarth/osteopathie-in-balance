@@ -15,17 +15,17 @@
             v-if="item.url && item.url !== '#'"
             :href="item.url"
             @click="handleNavClick"
-            class="flex items-center px-8 py-4 text-4xl transition-colors"
+            class="flex items-center px-8 py-4 text-4xl font-light transition-colors"
             :class="item.isActive
-              ? 'text-smart-teal font-semibold border-b-2 border-smart-teal'
+              ? 'text-smart-teal border-b-2 border-smart-teal'
               : 'hover:text-smart-teal'"
           >
             {{ item.title }}
           </a>
           <span
             v-else
-            class="flex items-center px-8 py-4 text-4xl"
-            :class="item.isActive ? 'text-smart-teal font-semibold border-b-2 border-smart-teal' : ''"
+            class="flex items-center px-8 py-4 text-4xl font-light"
+            :class="item.isActive ? 'text-smart-teal border-b-2 border-smart-teal' : ''"
           >
             {{ item.title }}
           </span>
@@ -86,8 +86,8 @@
                   @click="handleNavClick"
                   class="inline-block text-2xl md:text-3xl transition-all px-6 py-3 rounded-full"
                   :class="item.isActive
-                    ? 'bg-smart-teal text-white font-semibold'
-                    : 'text-white font-semibold hover:bg-smart-white hover:text-smart-navy'"
+                    ? 'bg-smart-teal text-white font-normal'
+                    : 'text-white font-normal hover:bg-smart-white hover:text-smart-navy'"
                 >
                   {{ item.title }}
                 </a>
@@ -95,8 +95,8 @@
                   v-else
                   class="inline-block text-2xl md:text-3xl px-6 py-3 rounded-full"
                   :class="item.isActive
-                    ? 'bg-smart-teal text-white font-semibold'
-                    : 'text-white font-semibold'"
+                    ? 'bg-smart-teal text-white font-normal'
+                    : 'text-white font-normal'"
                 >
                   {{ item.title }}
                 </span>

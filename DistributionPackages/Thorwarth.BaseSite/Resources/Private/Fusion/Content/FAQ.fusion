@@ -1,9 +1,21 @@
 prototype(Thorwarth.BaseSite:Content.FAQ) < prototype(Neos.Neos:ContentComponent) {
     isMainHeading = ${q(node).property('isMainHeading')}
     headingLevel = ${this.isMainHeading ? 'h1' : 'h2'}
+    headingClass = ${this.isMainHeading ? 'mb-8 font-headline text-4xl md:text-5xl lg:text-[3.4375rem] font-normal text-smart-navy leading-tight' : 'mb-8 font-sans text-3xl md:text-4xl font-medium leading-tight text-smart-teal'}
 
-    heading = Neos.Neos:Editable {
-        property = 'heading'
+    # Im Backend: Neos.Neos:Editable für Inline-Editing
+    # Im Frontend: String.stripTags() verhindert verschachtelte h1/h2-Tags durch gespeicherte Formatierung
+    headingContent = Neos.Fusion:Case {
+        isBackend {
+            condition = ${renderingMode.isEdit}
+            renderer = Neos.Neos:Editable {
+                property = 'heading'
+            }
+        }
+        default {
+            condition = true
+            renderer = ${String.stripTags(q(node).property('heading'))}
+        }
     }
 
     items = Neos.Neos:ContentCollection {
@@ -13,7 +25,7 @@ prototype(Thorwarth.BaseSite:Content.FAQ) < prototype(Neos.Neos:ContentComponent
     renderer = afx`
         <section class="content-faq py-8 md:py-16 lg:py-32">
             <div class="smart-container">
-                <Neos.Fusion:Tag tagName={props.headingLevel} @if={props.heading} attributes.class="mb-8 font-sans text-3xl md:text-4xl font-medium leading-tight text-smart-teal">{props.heading}</Neos.Fusion:Tag>
+                <Neos.Fusion:Tag tagName={props.headingLevel} @if={q(node).property('heading') || renderingMode.isEdit} attributes.class={props.headingClass}>{props.headingContent}</Neos.Fusion:Tag>
                 <div itemscope itemtype="https://schema.org/FAQPage">
                     {props.items}
                 </div>
