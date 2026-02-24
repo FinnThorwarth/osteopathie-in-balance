@@ -1,4 +1,5 @@
 'Thorwarth.BaseSite:Document.JournalOverviewPage':
+  abstract: true
   superTypes:
     'Thorwarth.BaseSite:Constraint.Document.Restricted': true # Nicht auswählbar
     'Thorwarth.BaseSite:Document.AbstractPage': true

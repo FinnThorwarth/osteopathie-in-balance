@@ -27,9 +27,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
 
                     <!-- Contact & Links -->
                     <div class="text-center md:text-left space-y-4">
-                        <a href={'mailto:' + props.email} class="font-sans text-xl md:text-2xl lg:text-3xl hover:text-smart-teal-light transition-colors block">
-                            {props.email}
-                        </a>
+
                     </div>
 
                     <!-- Social Media Icons -->

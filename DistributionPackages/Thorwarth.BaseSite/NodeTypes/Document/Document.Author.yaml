@@ -96,14 +96,6 @@
           group: 'author'
           position: 20
 
-    pronouns:
-      type: string
-      ui:
-        label: 'Pronomen'
-        inspector:
-          group: 'author'
-          position: 25
-
     bio:
       type: string
       ui:

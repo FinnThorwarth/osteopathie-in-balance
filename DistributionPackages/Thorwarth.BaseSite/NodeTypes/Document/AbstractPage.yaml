@@ -11,6 +11,7 @@
         nodeTypes:
           "*": false
           # Sections
+          "Thorwarth.BaseSite:Content.ContactPerson": true
           "Thorwarth.BaseSite:Content.IntroSection": true
           "Thorwarth.BaseSite:Content.TeamSection": true
           "Thorwarth.BaseSite:Content.TwoColumnSection": true

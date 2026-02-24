@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation-wrapper font-sans">
+  <div class="navigation-wrapper font-expanded">
     <!-- Desktop Navigation (horizontal bar) - always visible on desktop -->
     <nav
       class="hidden xl:flex items-stretch text-smart-navy"
@@ -15,7 +15,7 @@
             v-if="item.url && item.url !== '#'"
             :href="item.url"
             @click="handleNavClick"
-            class="flex items-center px-8 py-4 text-lg transition-colors"
+            class="flex items-center px-8 py-4 text-4xl transition-colors"
             :class="item.isActive
               ? 'text-smart-teal font-semibold border-b-2 border-smart-teal'
               : 'hover:text-smart-teal'"
@@ -24,7 +24,7 @@
           </a>
           <span
             v-else
-            class="flex items-center px-8 py-4 text-lg"
+            class="flex items-center px-8 py-4 text-4xl"
             :class="item.isActive ? 'text-smart-teal font-semibold border-b-2 border-smart-teal' : ''"
           >
             {{ item.title }}
@@ -84,7 +84,7 @@
                   v-if="item.url && item.url !== '#'"
                   :href="item.url"
                   @click="handleNavClick"
-                  class="inline-block text-3xl md:text-4xl transition-all px-6 py-3 rounded-full"
+                  class="inline-block text-2xl md:text-3xl transition-all px-6 py-3 rounded-full"
                   :class="item.isActive
                     ? 'bg-smart-teal text-white font-semibold'
                     : 'text-white font-semibold hover:bg-smart-white hover:text-smart-navy'"
@@ -93,7 +93,7 @@
                 </a>
                 <span
                   v-else
-                  class="inline-block text-3xl md:text-4xl px-6 py-3 rounded-full"
+                  class="inline-block text-2xl md:text-3xl px-6 py-3 rounded-full"
                   :class="item.isActive
                     ? 'bg-smart-teal text-white font-semibold'
                     : 'text-white font-semibold'"

@@ -62,6 +62,7 @@ export default {
 			},
 			fontFamily: {
 				'headline': ['Zalando Sans SemiExpanded', 'system-ui', 'sans-serif'],
+				'expanded': ['Zalando Sans Expanded', 'system-ui', 'sans-serif'],
 				'script': ['Roboto', 'system-ui', 'sans-serif'],
 				'body': ['Roboto', 'system-ui', 'sans-serif'],
 				'light': ['Roboto', 'system-ui', 'sans-serif'],
