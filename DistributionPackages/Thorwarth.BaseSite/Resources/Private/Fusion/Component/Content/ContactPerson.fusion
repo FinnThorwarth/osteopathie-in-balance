@@ -8,7 +8,7 @@ prototype(Thorwarth.BaseSite:Content.ContactPerson) < prototype(Neos.Neos:Conten
 
     renderer = afx`
         <div class="contact-person flex flex-col sm:flex-row items-center gap-8 py-12 px-4 max-w-4xl mx-auto">
-            <div class="relative overflow-hidden flex-shrink-0 rounded-full w-40 h-40">
+            <div class="relative overflow-hidden flex-shrink-0 rounded-full w-52 h-52">
                 <Thorwarth.BaseSite:TeamMemberImage
                     @if.hasImage={props.image}
                     image={props.image}
@@ -24,10 +24,10 @@ prototype(Thorwarth.BaseSite:Content.ContactPerson) < prototype(Neos.Neos:Conten
             </div>
 
             <div>
-                <h3 class="font-sans text-xl font-bold text-smart-navy tracking-wider mb-1">
+                <h3 class="font-headline font-normal text-2xl md:text-4xl lg:text-[3.4375rem] text-smart-navy mb-1">
                     <Neos.Neos:Editable property="label" block={false} />
                 </h3>
-                <p class="text-smart-teal font-sans text-xl font-semibold mb-4">
+                <p class="text-smart-teal font-sans font-light text-xl md:text-3xl lg:text-[2.9375rem] mb-4">
                     <Neos.Neos:Editable property="name" block={false} />
                 </p>
                 <p class="text-smart-text font-body">
