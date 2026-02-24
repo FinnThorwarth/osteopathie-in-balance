@@ -1,5 +1,5 @@
 :root {
-  --font-size-base: 18px;
+  --font-size-base: 20px;
 
   /* SmartGrund Brand Colors */
   --smart-navy: #122945;
@@ -180,16 +180,25 @@ main {
     font-weight: 300;
   }
   a {
-    font-family: "Inter";
-    text-decoration: underline;
-    font-style: italic;
-    font-weight: 300;
+    font-family: 'Roboto', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 1.25rem;
+    font-style: normal;
+    color: #2E8A87;
+    text-decoration: none;
   }
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Roboto', system-ui, sans-serif;
+    font-size: 1.25rem; /* 20px */
+  }
+}
 
 /* SmartGrund Component Styles */
 @layer components {
@@ -240,7 +249,7 @@ main {
 
   /* SmartGrund Heading Styles */
   .smart-h1 {
-    @apply font-sans text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-smart-navy leading-tight;
+    @apply font-headline text-4xl md:text-5xl lg:text-[3.4375rem] font-bold text-smart-navy leading-tight;
   }
 
   .smart-h2 {
@@ -315,15 +324,15 @@ main {
 
     /* Headings */
     h1 {
-      @apply font-sans text-4xl md:text-5xl font-bold mb-4 text-smart-navy;
+      @apply font-headline text-4xl md:text-5xl lg:text-[3.4375rem] font-normal text-smart-navy;
     }
 
     h2 {
-      @apply font-sans text-2xl md:text-3xl font-bold mb-4 text-smart-navy;
+      @apply font-sans text-2xl md:text-3xl lg:text-[3rem] font-light mb-2 text-smart-teal;
     }
 
     h3 {
-      @apply font-sans text-xl md:text-2xl font-semibold mb-4 text-smart-navy;
+      @apply font-sans text-xl md:text-2xl font-normal mb-4 text-smart-navy;
     }
 
     h4 {
@@ -376,7 +385,12 @@ main {
 
     /* Links */
     a {
-      @apply text-smart-teal-dark underline hover:text-smart-navy transition-colors !important;
+      font-family: 'Roboto', system-ui, sans-serif !important;
+      font-weight: 500 !important;
+      font-size: 1.25rem !important;
+      font-style: normal !important;
+      color: #2E8A87 !important;
+      text-decoration: none !important;
     }
 
     /* Subscript & Superscript */
@@ -644,4 +658,62 @@ section i {
 .gallery-item a:focus-visible {
   outline: 3px solid #2AAFB5;
   outline-offset: 2px;
+}
+
+/* TextImage Dark Background Mode */
+.text-image--dark {
+  background-color: var(--smart-navy);
+
+  h1, h2 {
+    color: #ffffff;
+  }
+
+  h3, h4, h5 {
+    color: var(--smart-teal);
+  }
+
+  p {
+    color: #ffffff !important;
+  }
+
+  strong, b {
+    color: #ffffff !important;
+  }
+
+  a {
+    color: var(--smart-teal) !important;
+  }
+
+  /* Custom list icon */
+  ul {
+    list-style: none !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+
+    /* Reset Tailwind space-y utility overrides on siblings */
+    & > :not([hidden]) ~ :not([hidden]) {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+  }
+
+  ul li {
+    position: relative;
+    padding-left: 2rem !important;
+    margin-bottom: 1rem !important;
+    color: #ffffff !important;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.1em;
+      width: 16px;
+      height: 1.4em;
+      background-image: url('../Images/Icon-Liste.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: left top;
+    }
+  }
 }

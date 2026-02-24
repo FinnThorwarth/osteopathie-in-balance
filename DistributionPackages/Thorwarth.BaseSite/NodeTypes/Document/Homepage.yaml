@@ -4,27 +4,29 @@
     'Thorwarth.BaseSite:Document.AbstractPage': true
   ui:
     icon: globe
-    label: 'Startseite'
+    label: 'Onepager Startseite'
+    help:
+      message: 'Eine Onepager-Seite, bei der die Navigation zu Abschnitten auf der gleichen Seite scrollt.'
     inspector:
       groups:
         contact:
           label: 'Kontaktdaten'
           position: 200
   properties:
-    footerEmail:
+    instagramUrl:
       type: string
       ui:
-        label: 'E-Mail-Adresse'
+        label: 'Instagram URL'
         inspector:
           group: 'contact'
-          position: 10
-    sitePhone:
+          position: 30
+    linkedinUrl:
       type: string
       ui:
-        label: 'Telefonnummer'
+        label: 'LinkedIn URL'
         inspector:
           group: 'contact'
-          position: 20
+          position: 40
   # Erlaubte Unterseiten der Homepage
   constraints:
     nodeTypes:

@@ -41,6 +41,8 @@
           editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
           editorOptions:
             values:
+              'h1':
+                label: 'H1 - Seitenüberschrift'
               'h2':
                 label: 'H2 - Hauptüberschrift'
               'h3':

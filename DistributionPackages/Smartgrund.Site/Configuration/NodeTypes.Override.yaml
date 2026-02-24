@@ -1,2 +1,21 @@
 'Thorwarth.BaseSite:Document.OnepagerHomepage':
   abstract: true
+
+'Thorwarth.BaseSite:Mixin.NavigationAnchor':
+  properties:
+    showInNavigation:
+      ui:
+        inspector:
+          hidden: true
+    anchorId:
+      ui:
+        inspector:
+          hidden: true
+    navigationTitle:
+      ui:
+        inspector:
+          hidden: true
+    navigationPosition:
+      ui:
+        inspector:
+          hidden: true

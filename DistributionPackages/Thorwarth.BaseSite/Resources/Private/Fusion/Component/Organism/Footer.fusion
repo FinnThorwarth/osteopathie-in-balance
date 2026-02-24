@@ -3,6 +3,8 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
 
     # Properties from site settings
     email = ${q(site).property('footerEmail') || 'info@smartgrund.de'}
+    instagramUrl = ${q(site).property('instagramUrl')}
+    linkedinUrl = ${q(site).property('linkedinUrl')}
 
     renderer = afx`
         <footer class="smart-footer bg-smart-navy relative text-white overflow-hidden mt-16">
@@ -19,7 +21,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
                                      <img
                             src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_Footer.svg')}
                             alt="SmartGrund GmbH"
-                            class="h-auto h-[150px] my-2 md:h-[200px] md:my-4 lg:h-[225px] lg:my-8 xl:h-[250px] xl:my-12"
+                            class="h-auto h-[150px] my-2 md:h-[175px] md:my-4 lg:h-[200px] lg:my-8 xl:h-[225px] xl:my-12"
                         />
                     </div>
 
@@ -32,14 +34,14 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
 
                     <!-- Social Media Icons -->
                     <div class="flex justify-center md:justify-end gap-4 mt-8 md:mt-0">
-                        <a href="#" class="hover:text-smart-teal-light transition-colors" aria-label="Instagram">
+                        <a @if={props.instagramUrl} href={props.instagramUrl} target="_blank" rel="noopener noreferrer" class="hover:text-smart-teal-light transition-colors" aria-label="Instagram">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                             </svg>
                         </a>
-                        <a href="#" class="hover:text-smart-teal-light transition-colors" aria-label="LinkedIn">
+                        <a @if={props.linkedinUrl} href={props.linkedinUrl} target="_blank" rel="noopener noreferrer" class="hover:text-smart-teal-light transition-colors" aria-label="LinkedIn">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
                                 <rect width="4" height="12" x="2" y="9"/>

@@ -12,7 +12,8 @@ prototype(Thorwarth.BaseSite:Content.Headline) < prototype(Neos.Neos:ContentComp
             'right' = 'text-right'
         }
         headingSizeClasses = Neos.Fusion:Map {
-            'h2' = 'font-sans text-4xl md:text-5xl font-normal text-smart-navy hyphens-auto'
+            'h1' = 'font-sans text-5xl md:text-[3.5rem] font-light text-smart-teal hyphens-auto'
+            'h2' = 'font-sans text-4xl md:text-[2.9375rem] font-light text-smart-teal hyphens-auto'
             'h3' = 'font-sans text-3xl md:text-[2.9375rem] font-bold text-smart-navy hyphens-auto'
             'h4' = 'font-sans text-2xl md:text-3xl font-normal text-smart-navy hyphens-auto'
             'h5' = 'font-sans text-xl md:text-2xl font-normal text-smart-navy hyphens-auto'

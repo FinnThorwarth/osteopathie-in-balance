@@ -55,6 +55,15 @@
         inspector:
           group: 'image'
           position: 22
+    imageBleedEdge:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Bild bis zum Rand'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 12
     columnLayout:
       type: string
       defaultValue: 'image-text-50-50'
@@ -79,6 +88,36 @@
                 label: 'Text/Bild (66/33)'
               'text-image-33-66':
                 label: 'Text/Bild (33/66)'
+    darkBackground:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Dunkler Hintergrund'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 3
+          editor: 'Neos.Neos/Inspector/Editors/BooleanEditor'
+    headingSize:
+      type: string
+      defaultValue: 'h2'
+      ui:
+        label: 'Überschriftengröße'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 5
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'h1':
+                label: 'H1 - Seitenüberschrift'
+              'h2':
+                label: 'H2 - Hauptüberschrift'
+              'h3':
+                label: 'H3 - Unterüberschrift'
+              'h4':
+                label: 'H4 - Abschnittsüberschrift'
     heading:
       type: string
       ui:

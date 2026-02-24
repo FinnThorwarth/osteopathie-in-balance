@@ -22,6 +22,16 @@
         inspector:
           group: 'options'
           position: 5
+    darkBackground:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Dunkler Hintergrund'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 6
+          editor: 'Neos.Neos/Inspector/Editors/BooleanEditor'
     columnLayout:
       type: string
       defaultValue: ''
@@ -56,24 +66,6 @@
                 label: 'Links'
               'center':
                 label: 'Zentriert'
-    backgroundColor:
-      type: string
-      defaultValue: ''
-      ui:
-        label: 'Hintergrundfarbe'
-        reloadIfChanged: true
-        inspector:
-          group: 'options'
-          position: 30
-          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
-          editorOptions:
-            values:
-              '':
-                label: 'Keine'
-              'olive':
-                label: 'Olive Grün'
-              'rose':
-                label: 'Rosa'
     heading:
       type: string
       ui:
@@ -93,6 +85,26 @@
         inline:
           editorOptions:
             placeholder: 'Untertitel'
+    textIntro:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Einleitungstext (volle Breite, vor den Spalten)'
+            autoparagraph: true
+            formatting:
+              p: true
+              strong: true
+              em: true
+              a: true
+              ul: true
+              ol: true
+            linking:
+              anchor: true
+              title: true
+              relNofollow: true
+              targetBlank: true
     text1:
       type: string
       ui:

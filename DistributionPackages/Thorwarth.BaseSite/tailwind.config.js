@@ -111,6 +111,8 @@ export default {
 				DEFAULT: {
 					css: {
 						color: theme('colors.smart-text'),
+						fontSize: '1.25rem',
+						fontFamily: theme('fontFamily.sans'),
 						fontWeight: '400',
 						strong: {
 							color: theme('colors.smart-navy'),
@@ -121,7 +123,10 @@ export default {
 						},
 						a: {
 							color: theme('colors.smart-teal'),
-							textDecoration: 'underline',
+							fontFamily: theme('fontFamily.sans'),
+							fontWeight: '500',
+							fontSize: '1.25rem',
+							textDecoration: 'none',
 							'&:hover': {
 								color: theme('colors.smart-teal-dark'),
 							},
@@ -130,15 +135,15 @@ export default {
 							color: theme('colors.smart-navy'),
 							fontFamily: theme('fontFamily.headline'),
 							fontWeight: '700',
-							fontSize: '2.75rem',
+							fontSize: '3.4375rem',
 							marginTop: '0',
 							marginBottom: '1.5rem',
 						},
 						h2: {
-							color: theme('colors.smart-navy'),
-							fontFamily: theme('fontFamily.headline'),
-							fontWeight: '700',
-							fontSize: '2rem',
+							color: theme('colors.smart-teal'),
+							fontFamily: theme('fontFamily.sans'),
+							fontWeight: '300',
+							fontSize: '2.9375rem',
 							marginTop: '2rem',
 							marginBottom: '1rem',
 						},

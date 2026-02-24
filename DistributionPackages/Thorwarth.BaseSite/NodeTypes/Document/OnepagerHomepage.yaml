@@ -27,6 +27,20 @@
         inspector:
           group: 'contact'
           position: 20
+    instagramUrl:
+      type: string
+      ui:
+        label: 'Instagram URL'
+        inspector:
+          group: 'contact'
+          position: 30
+    linkedinUrl:
+      type: string
+      ui:
+        label: 'LinkedIn URL'
+        inspector:
+          group: 'contact'
+          position: 40
   # Keine Unterseiten erlaubt - alles ist auf einer Seite
   constraints:
     nodeTypes:
