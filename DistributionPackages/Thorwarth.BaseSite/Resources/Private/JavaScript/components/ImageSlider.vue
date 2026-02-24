@@ -2,7 +2,7 @@
   <div class="image-slider-component">
     <div class="relative">
       <div class="overflow-hidden rounded-lg">
-        <div 
+        <div
           class="flex transition-transform duration-500 ease-in-out"
           :style="{ transform: `translateX(-${currentSlide * slideWidth}%)` }"
         >
@@ -24,7 +24,7 @@
           </div>
         </div>
       </div>
-      
+
       <button
         v-if="showNavigation"
         type="button"
@@ -37,7 +37,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
       </button>
-      
+
       <button
         v-if="showNavigation"
         type="button"
@@ -50,8 +50,8 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </button>
-      
-      <div 
+
+      <div
         v-if="showDots"
         class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10"
       >
@@ -87,12 +87,16 @@ export default {
     autoplayDelay: {
       type: Number,
       default: 3000
+    },
+    initialImages: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
     return {
       currentSlide: 0,
-      images: [],
+      images: this.initialImages,
       autoplayInterval: null
     }
   },
@@ -135,38 +139,12 @@ export default {
     }
   },
   mounted() {
-    this.extractImages()
     this.startAutoplay()
-    
-    const observer = new MutationObserver(() => {
-      this.extractImages()
-    })
-    
-    observer.observe(this.$el.parentElement, {
-      childList: true,
-      subtree: true
-    })
-    
-    this.$once('hook:beforeDestroy', () => {
-      observer.disconnect()
-      this.stopAutoplay()
-    })
   },
   beforeUnmount() {
     this.stopAutoplay()
   },
   methods: {
-    extractImages() {
-      const imageElements = this.$el.parentElement.querySelectorAll('.slider-item img')
-      this.images = Array.from(imageElements).map(img => ({
-        src: img.getAttribute('src'),
-        alt: img.getAttribute('alt'),
-        title: img.getAttribute('title')
-      }))
-      
-      const itemElements = this.$el.parentElement.querySelectorAll('.slider-item')
-      itemElements.forEach(item => item.style.display = 'none')
-    },
     nextSlide() {
       if (this.canGoNext) {
         this.currentSlide = Math.min(this.currentSlide + this.slidesPerView, this.maxSlide)

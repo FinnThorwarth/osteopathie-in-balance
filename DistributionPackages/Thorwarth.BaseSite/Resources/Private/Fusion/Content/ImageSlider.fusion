@@ -1,20 +1,11 @@
 prototype(Thorwarth.BaseSite:Content.ImageSlider) < prototype(Neos.Neos:ContentComponent) {
-    heading = Neos.Neos:Editable {
-        property = 'heading'
-    }
     images = ${q(node).property('images')}
     slidesPerView = ${q(node).property('slidesPerView')}
-    aspectRatio = ${q(node).property('aspectRatio')}
+    aspectRatio = ${q(node).property('aspectRatio') || '21-9'}
     autoplay = ${q(node).property('autoplay')}
     autoplayDelay = ${q(node).property('autoplayDelay')}
 
     @context {
-        aspectRatioClasses = Neos.Fusion:Map {
-            '16-9' = 'aspect-w-16 aspect-h-9'
-            '4-3' = 'aspect-w-4 aspect-h-3'
-            '1-1' = 'aspect-w-1 aspect-h-1'
-            '3-4' = 'aspect-w-3 aspect-h-4'
-        }
         slideWidth = Neos.Fusion:Map {
             1 = 'w-full'
             2 = 'w-1/2'
@@ -23,19 +14,8 @@ prototype(Thorwarth.BaseSite:Content.ImageSlider) < prototype(Neos.Neos:ContentC
         }
     }
 
-    sliderItems = Neos.Fusion:Loop {
-        items = ${props.images}
-        itemName = 'asset'
-        itemRenderer = Thorwarth.BaseSite:Content.ImageSlider.SliderItem {
-            asset = ${asset}
-            aspectRatio = ${props.aspectRatio}
-            slidesPerView = ${props.slidesPerView}
-        }
-    }
-
     renderer = afx`
         <div class="image-slider-wrapper my-8">
-            <div @if={props.heading} class="mb-6">{props.heading}</div>
             <div @if={props.images && Array.length(props.images) > 0}
                 data-vue-slider="true"
                 data-slides-per-view={props.slidesPerView}
@@ -45,39 +25,12 @@ prototype(Thorwarth.BaseSite:Content.ImageSlider) < prototype(Neos.Neos:ContentC
                 class="vue-image-slider relative overflow-hidden"
             >
                 <div class="flex transition-transform duration-300 ease-in-out">
-                    {props.sliderItems}
-                </div>
-
-                <button @if={false}
-                    class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-colors z-10"
-                    data-slider-prev="true"
-                    aria-label="Vorheriges Bild"
-                >
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
-
-                <button @if={false}
-                    class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-colors z-10"
-                    data-slider-next="true"
-                    aria-label="Nächstes Bild"
-                >
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
-
-                <div @if={false}
-                    class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2"
-                    data-slider-dots="true"
-                >
-                    <Neos.Fusion:Loop items={props.images} itemName="asset" iterationName="iteration">
-                        <button
-                            class="w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors"
-                            data-dot-index={iteration.index}
-                            aria-label={'Zu Bild ' + (iteration.index + 1) + ' springen'}
-                        ></button>
+                    <Neos.Fusion:Loop items={props.images} itemName="asset">
+                        <Thorwarth.BaseSite:Content.ImageSlider.SliderItem
+                            asset={asset}
+                            aspectRatio={props.aspectRatio}
+                            slidesPerView={props.slidesPerView}
+                        />
                     </Neos.Fusion:Loop>
                 </div>
             </div>
@@ -104,23 +57,26 @@ prototype(Thorwarth.BaseSite:Content.ImageSlider) < prototype(Neos.Neos:ContentC
 
 prototype(Thorwarth.BaseSite:Content.ImageSlider.SliderItem) < prototype(Neos.Fusion:Component) {
     asset = null
-    aspectRatio = '16-9'
+    aspectRatio = '21-9'
     slidesPerView = 3
 
+    @context.currentAsset = ${this.asset}
+
     imageUri = Neos.Neos:ImageUri {
-        asset = ${props.asset}
+        asset = ${currentAsset}
         width = 1200
-        height = ${props.aspectRatio == '16-9' ? 675 : (props.aspectRatio == '4-3' ? 900 : (props.aspectRatio == '1-1' ? 1200 : 1600))}
+        height = ${props.aspectRatio == '21-9' ? 514 : (props.aspectRatio == '16-9' ? 675 : 900)}
         allowCropping = true
         allowUpScaling = false
     }
 
     @context {
-        aspectRatioClasses = Neos.Fusion:Map {
-            '16-9' = 'aspect-w-16 aspect-h-9'
-            '4-3' = 'aspect-w-4 aspect-h-3'
-            '1-1' = 'aspect-w-1 aspect-h-1'
-            '3-4' = 'aspect-w-3 aspect-h-4'
+        aspectRatioClass = Neos.Fusion:Match {
+            @subject = ${props.aspectRatio}
+            '21-9' = 'aspect-[21/9]'
+            '16-9' = 'aspect-[16/9]'
+            '4-3' = 'aspect-[4/3]'
+            @default = 'aspect-[21/9]'
         }
         slideWidth = Neos.Fusion:Map {
             1 = 'w-full'
@@ -132,11 +88,11 @@ prototype(Thorwarth.BaseSite:Content.ImageSlider.SliderItem) < prototype(Neos.Fu
 
     renderer = afx`
         <div class={'slider-item flex-shrink-0 px-2 ' + slideWidth[props.slidesPerView]}>
-            <div class={'relative overflow-hidden rounded-lg ' + aspectRatioClasses[props.aspectRatio]}>
+            <div class={'relative overflow-hidden rounded-lg ' + aspectRatioClass}>
                 <img
                     src={props.imageUri}
-                    alt={props.asset.title || props.asset.resource.filename}
-                    title={props.asset.title}
+                    alt={currentAsset.title || currentAsset.resource.filename}
+                    title={currentAsset.title}
                     class="absolute inset-0 w-full h-full object-cover"
                     loading="lazy"
                 />

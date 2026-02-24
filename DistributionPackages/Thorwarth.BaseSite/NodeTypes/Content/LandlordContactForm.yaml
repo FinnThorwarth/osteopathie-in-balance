@@ -1,0 +1,33 @@
+'Thorwarth.BaseSite:Content.LandlordContactForm':
+  superTypes:
+    'Neos.Neos:Content': true
+    'Thorwarth.BaseSite:Mixin.NavigationAnchor': true
+  ui:
+    label: 'Vermieter-Kontaktformular'
+    icon: 'icon-home'
+    group: 'general'
+    inspector:
+      groups:
+        settings:
+          label: 'Einstellungen'
+          position: 10
+  properties:
+    recipientEmail:
+      type: string
+      defaultValue: 'info@smartgrund.de'
+      ui:
+        label: 'Empfänger E-Mail'
+        reloadIfChanged: false
+        inspector:
+          group: 'settings'
+        validation:
+          'Neos.Neos/Validation/EmailAddressValidator': true
+    successMessage:
+      type: string
+      defaultValue: 'Vielen Dank für Ihre Anfrage. Wir melden uns schnellstmöglich bei Ihnen.'
+      ui:
+        label: 'Erfolgsmeldung'
+        reloadIfChanged: false
+        inspector:
+          group: 'settings'
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'

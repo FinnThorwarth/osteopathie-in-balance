@@ -46,7 +46,7 @@ prototype(Thorwarth.BaseSite:Content.FAQ.Item) < prototype(Neos.Neos:ContentComp
     renderer = afx`
         <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" class="faq-item border-b border-gray-200 last:border-b-0">
             <details open={props.isOpen}>
-                <summary class="faq-summary flex items-center justify-between py-5 cursor-pointer select-none">
+                <summary class="faq-summary flex items-center justify-between p-4 cursor-pointer select-none">
                     <span itemprop="name" class="faq-question font-medium text-smart-navy text-lg md:text-xl pr-8">{props.question}</span>
                     <span class="faq-chevron flex-shrink-0 text-smart-teal" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -55,7 +55,7 @@ prototype(Thorwarth.BaseSite:Content.FAQ.Item) < prototype(Neos.Neos:ContentComp
                     </span>
                 </summary>
                 <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-                    <div itemprop="text" class="faq-answer rich-text-content pb-6 leading-relaxed text-smart-text">
+                    <div itemprop="text" class="faq-answer rich-text-content p-4 leading-relaxed text-smart-text">
                         {props.answer}
                     </div>
                 </div>

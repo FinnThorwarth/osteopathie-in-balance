@@ -23,6 +23,22 @@
           group: 'options'
           position: 10
           editor: 'Neos.Neos/Inspector/Editors/BooleanEditor'
+    backgroundColor:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Hintergrundfarbe'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 11
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              '':
+                label: 'Kein Hintergrund'
+              'gray':
+                label: 'Grau (#7A8594)'
     # Header
     heading:
       type: string

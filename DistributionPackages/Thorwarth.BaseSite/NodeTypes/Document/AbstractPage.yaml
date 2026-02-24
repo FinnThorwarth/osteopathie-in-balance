@@ -34,6 +34,7 @@
           # "Thorwarth.BaseSite:Content.Accordion": true
           # "Thorwarth.BaseSite:Content.Button": true
           # "Thorwarth.BaseSite:Content.ContactForm": true
+          "Thorwarth.BaseSite:Content.LandlordContactForm": true
           # Cards
           "Thorwarth.BaseSite:Content.CardSection": true
           # Navigation

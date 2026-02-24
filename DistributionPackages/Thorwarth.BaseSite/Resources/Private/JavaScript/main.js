@@ -65,11 +65,21 @@ function mountVueComponents() {
 			const aspectRatio = element.getAttribute('data-aspect-ratio') || '16-9'
 			const autoplay = element.getAttribute('data-autoplay') === 'true'
 			const autoplayDelay = parseInt(element.getAttribute('data-autoplay-delay') || 3000)
+
+			// Extract images before Vue mounts and replaces the server-rendered HTML
+			const imageElements = element.querySelectorAll('.slider-item img')
+			const initialImages = Array.from(imageElements).map(img => ({
+				src: img.getAttribute('src'),
+				alt: img.getAttribute('alt') || '',
+				title: img.getAttribute('title') || ''
+			}))
+
 			const sliderApp = createApp(ImageSlider, {
 				slidesPerView: parseInt(slidesPerView),
 				aspectRatio: aspectRatio,
 				autoplay: autoplay,
-				autoplayDelay: autoplayDelay
+				autoplayDelay: autoplayDelay,
+				initialImages: initialImages
 			})
 			element._vueInstance = sliderApp.mount(element)
 

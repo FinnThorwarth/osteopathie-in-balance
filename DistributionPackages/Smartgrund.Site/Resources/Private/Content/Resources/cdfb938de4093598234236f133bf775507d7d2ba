@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="416" height="300" viewBox="0 0 416 300">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rechteck_3365" data-name="Rechteck 3365" width="201.23" height="189.679" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <rect id="Rechteck_3361" data-name="Rechteck 3361" width="110.851" height="100.372" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-4">
+      <rect id="Rechteck_3362" data-name="Rechteck 3362" width="132.046" height="161.553" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-5">
+      <path id="Pfad_8750" data-name="Pfad 8750" d="M2.121,97.248a80.735,80.735,0,0,0,132.048,62.373l-14.06-14.06A60.989,60.989,0,1,1,105.992,40.8L118.9,24.988a80.04,80.04,0,0,0-36-8.517A80.87,80.87,0,0,0,2.121,97.248" transform="translate(-2.121 -16.471)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Gruppe_8805" data-name="Gruppe 8805" transform="translate(-284 -2877)">
+    <rect id="Rechteck_3264" data-name="Rechteck 3264" width="416" height="300" transform="translate(284 2877)" fill="#2e8a87"/>
+    <g id="Gruppe_8804" data-name="Gruppe 8804" transform="translate(398.27 2932.161)">
+      <g id="Gruppe_8803" data-name="Gruppe 8803" clip-path="url(#clip-path)">
+        <path id="Pfad_8746" data-name="Pfad 8746" d="M23.751,57.172H53.186L88.8,97.622l-27.288.422Z" transform="translate(16.805 40.451)" fill="#fff"/>
+        <g id="Gruppe_8796" data-name="Gruppe 8796" transform="translate(0 0)">
+          <g id="Gruppe_8795" data-name="Gruppe 8795" clip-path="url(#clip-path)">
+            <g id="Gruppe_8791" data-name="Gruppe 8791" transform="translate(90.379 37.699)" opacity="0.6">
+              <g id="Gruppe_8790" data-name="Gruppe 8790">
+                <g id="Gruppe_8789" data-name="Gruppe 8789" clip-path="url(#clip-path-3)">
+                  <path id="Pfad_8747" data-name="Pfad 8747" d="M163.781,22.859l-95.7,99.591L52.929,107.558,134.9,22.078Z" transform="translate(-52.929 -22.078)" fill="#fff"/>
+                </g>
+              </g>
+            </g>
+            <g id="Gruppe_8794" data-name="Gruppe 8794" transform="translate(3.622 28.126)" opacity="0.6">
+              <g id="Gruppe_8793" data-name="Gruppe 8793">
+                <g id="Gruppe_8792" data-name="Gruppe 8792" clip-path="url(#clip-path-4)">
+                  <path id="Pfad_8748" data-name="Pfad 8748" d="M120.108,145.56A60.989,60.989,0,1,1,105.992,40.8L118.9,24.989A80.03,80.03,0,0,0,82.9,16.472,80.776,80.776,0,1,0,134.168,159.62Z" transform="translate(-2.121 -16.472)" fill="#fff"/>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g id="Gruppe_8799" data-name="Gruppe 8799" transform="translate(3.622 28.125)">
+          <g id="Gruppe_8798" data-name="Gruppe 8798" clip-path="url(#clip-path-5)">
+            <path id="Pfad_8749" data-name="Pfad 8749" d="M93.382,156.515,0,52.063,116.6,0l16.657,147.728Z" transform="translate(-3.622 -28.125)" fill="#fff"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

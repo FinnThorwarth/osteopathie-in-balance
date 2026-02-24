@@ -1,0 +1,169 @@
+prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:ContentComponent) {
+    @cache {
+        mode = 'uncached'
+        context {
+            1 = 'node'
+            2 = 'documentNode'
+            3 = 'site'
+            4 = 'request'
+        }
+    }
+
+    props {
+        recipientEmail = ${q(node).property('recipientEmail') || 'info@smartgrund.de'}
+        successMessage = ${q(node).property('successMessage') || 'Vielen Dank für Ihre Anfrage. Wir melden uns schnellstmöglich bei Ihnen.'}
+    }
+
+    renderer = Neos.Fusion:Join {
+        outer.@position = 'start'
+        outer = '<section class="content-landlord-contact-form py-8 md:py-16 lg:py-32"><div class="container mx-auto px-4">'
+
+        form = Neos.Fusion.Form:Runtime.RuntimeForm {
+            namespace = 'vermieter'
+
+        process {
+            footer = ''
+            content = afx`
+                <div class="landlord-contact-form">
+                    <h3 class="text-xl font-semibold text-smart-navy mb-6">Ihre Kontaktdaten</h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <Neos.Fusion.Form:FieldContainer field.name="vorname" label="Vorname *">
+                            <Neos.Fusion.Form:Input
+                                attributes.required={true}
+                                attributes.placeholder="Ihr Vorname"
+                                attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded" />
+                        </Neos.Fusion.Form:FieldContainer>
+
+                        <Neos.Fusion.Form:FieldContainer field.name="nachname" label="Nachname *">
+                            <Neos.Fusion.Form:Input
+                                attributes.required={true}
+                                attributes.placeholder="Ihr Nachname"
+                                attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded" />
+                        </Neos.Fusion.Form:FieldContainer>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <Neos.Fusion.Form:FieldContainer field.name="telefon" label="Telefon">
+                            <Neos.Fusion.Form:Input
+                                attributes.type="tel"
+                                attributes.placeholder="Ihre Telefonnummer"
+                                attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded" />
+                        </Neos.Fusion.Form:FieldContainer>
+
+                        <Neos.Fusion.Form:FieldContainer field.name="email" label="E-Mail *">
+                            <Neos.Fusion.Form:Input
+                                attributes.type="email"
+                                attributes.required={true}
+                                attributes.placeholder="Ihre E-Mail-Adresse"
+                                attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded" />
+                        </Neos.Fusion.Form:FieldContainer>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-smart-navy mb-6 mt-8">Angaben zur Immobilie</h3>
+
+                    <div class="mb-4">
+                        <Neos.Fusion.Form:FieldContainer field.name="immobilienAdresse" label="Straße & Hausnummer *">
+                            <Neos.Fusion.Form:Input
+                                attributes.required={true}
+                                attributes.placeholder="Straße und Hausnummer"
+                                attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded" />
+                        </Neos.Fusion.Form:FieldContainer>
+                    </div>
+
+                    <div class="mb-4">
+                        <Neos.Fusion.Form:FieldContainer field.name="immobilienPlzOrt" label="PLZ und Ort *">
+                            <Neos.Fusion.Form:Input
+                                attributes.required={true}
+                                attributes.placeholder="PLZ und Ort"
+                                attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded" />
+                        </Neos.Fusion.Form:FieldContainer>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <Neos.Fusion.Form:FieldContainer field.name="immobilienArt" label="Art der Immobilie">
+                            <Neos.Fusion.Form:Select
+                                attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded">
+                                <option value="">Bitte wählen</option>
+                                <option value="wohnhaus">Wohnhaus</option>
+                                <option value="mehrfamilienhaus">Mehrfamilienhaus</option>
+                                <option value="gewerbeimmobilie">Gewerbeimmobilie</option>
+                                <option value="gemischt">Gemischt genutzt</option>
+                            </Neos.Fusion.Form:Select>
+                        </Neos.Fusion.Form:FieldContainer>
+
+                        <Neos.Fusion.Form:FieldContainer field.name="anzahlEinheiten" label="Anzahl der Wohneinheiten">
+                            <Neos.Fusion.Form:Input
+                                attributes.type="number"
+                                attributes.min="1"
+                                attributes.placeholder="z.B. 4"
+                                attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded" />
+                        </Neos.Fusion.Form:FieldContainer>
+                    </div>
+
+                    <div class="mb-4">
+                        <Neos.Fusion.Form:FieldContainer field.name="nachricht" label="Nachricht / Anmerkungen">
+                            <Neos.Fusion.Form:Textarea
+                                attributes.placeholder="Weitere Informationen zu Ihrer Immobilie"
+                                attributes.rows="5"
+                                attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded" />
+                        </Neos.Fusion.Form:FieldContainer>
+                    </div>
+
+                    <div class="form-actions mt-4">
+                        <Neos.Fusion.Form:Button attributes.class="px-6 py-2 bg-smart-navy text-white rounded hover:bg-smart-navy-dark">
+                            Anfrage senden
+                        </Neos.Fusion.Form:Button>
+                    </div>
+                </div>
+            `
+        }
+
+        action {
+            email {
+                type = 'Neos.Fusion.Form.Runtime:Email'
+                options {
+                    senderAddress = ${formRuntime.formState.formValues.email || 'noreply@smartgrund.de'}
+                    senderName = ${(formRuntime.formState.formValues.vorname || '') + ' ' + (formRuntime.formState.formValues.nachname || 'Vermieter-Anfrage')}
+                    recipientAddress = ${q(node).property('recipientEmail') || 'info@smartgrund.de'}
+                    recipientName = 'SmartGrund GmbH'
+                    subject = ${'Neue Vermieter-Anfrage von ' + (formRuntime.formState.formValues.vorname || '') + ' ' + (formRuntime.formState.formValues.nachname || 'Unbekannt')}
+                    text = ${'Vorname: ' + (formRuntime.formState.formValues.vorname || 'Nicht angegeben') + String.chr(10) + 'Nachname: ' + (formRuntime.formState.formValues.nachname || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (formRuntime.formState.formValues.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (formRuntime.formState.formValues.email || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Immobilie:' + String.chr(10) + 'Adresse: ' + (formRuntime.formState.formValues.immobilienAdresse || 'Nicht angegeben') + String.chr(10) + 'PLZ/Ort: ' + (formRuntime.formState.formValues.immobilienPlzOrt || 'Nicht angegeben') + String.chr(10) + 'Art: ' + (formRuntime.formState.formValues.immobilienArt || 'Nicht angegeben') + String.chr(10) + 'Anzahl Einheiten: ' + (formRuntime.formState.formValues.anzahlEinheiten || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + (formRuntime.formState.formValues.nachricht || 'Keine Nachricht')}
+                    html = afx`
+                        <html>
+                            <body>
+                                <h2>Neue Vermieter-Anfrage</h2>
+                                <h3>Kontaktdaten</h3>
+                                <p><strong>Vorname:</strong> {formRuntime.formState.formValues.vorname || 'Nicht angegeben'}</p>
+                                <p><strong>Nachname:</strong> {formRuntime.formState.formValues.nachname || 'Nicht angegeben'}</p>
+                                <p><strong>Telefon:</strong> {formRuntime.formState.formValues.telefon || 'Nicht angegeben'}</p>
+                                <p><strong>E-Mail:</strong> {formRuntime.formState.formValues.email || 'Nicht angegeben'}</p>
+                                <h3>Angaben zur Immobilie</h3>
+                                <p><strong>Adresse:</strong> {formRuntime.formState.formValues.immobilienAdresse || 'Nicht angegeben'}</p>
+                                <p><strong>PLZ / Ort:</strong> {formRuntime.formState.formValues.immobilienPlzOrt || 'Nicht angegeben'}</p>
+                                <p><strong>Art der Immobilie:</strong> {formRuntime.formState.formValues.immobilienArt || 'Nicht angegeben'}</p>
+                                <p><strong>Anzahl Wohneinheiten:</strong> {formRuntime.formState.formValues.anzahlEinheiten || 'Nicht angegeben'}</p>
+                                <h3>Nachricht</h3>
+                                <p>{formRuntime.formState.formValues.nachricht || 'Keine Nachricht'}</p>
+                                <hr />
+                                <p><small>Diese Anfrage wurde über das Vermieter-Kontaktformular der Website gesendet.</small></p>
+                            </body>
+                        </html>
+                    `
+                }
+            }
+
+            message {
+                type = 'Neos.Fusion.Form.Runtime:Message'
+                options {
+                    message = ${q(node).property('successMessage') || 'Vielen Dank für Ihre Anfrage. Wir melden uns schnellstmöglich bei Ihnen.'}
+                    severity = 'success'
+                }
+            }
+        }
+        }
+
+        outerEnd.@position = 'end'
+        outerEnd = '</div></section>'
+    }
+}
