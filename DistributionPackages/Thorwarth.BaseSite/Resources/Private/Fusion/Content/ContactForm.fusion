@@ -76,8 +76,9 @@ prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentC
             email {
                 type = 'Neos.Fusion.Form.Runtime:Email'
                 options {
-                    senderAddress = ${data.email || 'noreply@smartgrund.de'}
+                    senderAddress = 'info@smartgrund.de'
                     senderName = ${data.name || 'Kontaktformular'}
+                    replyToAddress = ${data.email}
                     recipientAddress = 'info@smartgrund.de'
                     recipientName = 'SmartGrund GmbH'
                     subject = ${'Neue Kontaktanfrage von ' + (data.name || 'Unbekannt')}
@@ -102,7 +103,7 @@ prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentC
             confirmationEmail {
                 type = 'Neos.Fusion.Form.Runtime:Email'
                 options {
-                    senderAddress = 'noreply@smartgrund.de'
+                    senderAddress = 'info@smartgrund.de'
                     senderName = 'SmartGrund GmbH'
                     recipientAddress = ${data.email}
                     recipientName = ${data.name || ''}

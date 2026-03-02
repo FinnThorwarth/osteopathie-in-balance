@@ -31,6 +31,7 @@ prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:
                 immobilienAdresse = Neos.Fusion.Form:Runtime.Schema
                 immobilienPlzOrt = Neos.Fusion.Form:Runtime.Schema
                 immobilienArt = Neos.Fusion.Form:Runtime.Schema
+                verwaltungsart = Neos.Fusion.Form:Runtime.Schema
                 anzahlEinheiten = Neos.Fusion.Form:Runtime.Schema
                 nachricht = Neos.Fusion.Form:Runtime.Schema
             }
@@ -96,13 +97,26 @@ prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:
                             <Neos.Fusion.Form:Select
                                 attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded">
                                 <option value="">Bitte wählen</option>
-                                <option value="wohnhaus">Wohnhaus</option>
+                                <option value="einfamilienhaus">Einfamilienhaus / Zweifamilienhaus</option>
                                 <option value="mehrfamilienhaus">Mehrfamilienhaus</option>
+                                <option value="gemischt">Wohn- und Geschäftshaus (gemischt genutzt)</option>
                                 <option value="gewerbeimmobilie">Gewerbeimmobilie</option>
-                                <option value="gemischt">Gemischt genutzt</option>
                             </Neos.Fusion.Form:Select>
                         </Neos.Fusion.Form:FieldContainer>
 
+                        <Neos.Fusion.Form:FieldContainer field.name="verwaltungsart" label="Verwaltungsart *">
+                            <Neos.Fusion.Form:Select
+                                attributes.required={true}
+                                attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded">
+                                <option value="">Bitte wählen</option>
+                                <option value="weg">WEG (Eigentümergemeinschaft)</option>
+                                <option value="mietobjekt">Mietobjekt (Einzeleigentümer)</option>
+                                <option value="sondereigentum">Sondereigentumsverwaltung (einzelne Einheit)</option>
+                            </Neos.Fusion.Form:Select>
+                        </Neos.Fusion.Form:FieldContainer>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <Neos.Fusion.Form:FieldContainer field.name="anzahlEinheiten" label="Anzahl der Wohneinheiten">
                             <Neos.Fusion.Form:Input
                                 attributes.type="number"
@@ -134,12 +148,13 @@ prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:
             email {
                 type = 'Neos.Fusion.Form.Runtime:Email'
                 options {
-                    senderAddress = ${data.email || 'noreply@smartgrund.de'}
+                    senderAddress = 'info@smartgrund.de'
                     senderName = ${(data.vorname || '') + ' ' + (data.nachname || 'Vermieter-Anfrage')}
+                    replyToAddress = ${data.email}
                     recipientAddress = ${q(node).property('recipientEmail') || 'info@smartgrund.de'}
                     recipientName = 'SmartGrund GmbH'
                     subject = ${'Neue Vermieter-Anfrage von ' + (data.vorname || '') + ' ' + (data.nachname || 'Unbekannt')}
-                    text = ${'Vorname: ' + (data.vorname || 'Nicht angegeben') + String.chr(10) + 'Nachname: ' + (data.nachname || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (data.email || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Immobilie:' + String.chr(10) + 'Adresse: ' + (data.immobilienAdresse || 'Nicht angegeben') + String.chr(10) + 'PLZ/Ort: ' + (data.immobilienPlzOrt || 'Nicht angegeben') + String.chr(10) + 'Art: ' + (data.immobilienArt || 'Nicht angegeben') + String.chr(10) + 'Anzahl Einheiten: ' + (data.anzahlEinheiten || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + (data.nachricht || 'Keine Nachricht')}
+                    text = ${'Vorname: ' + (data.vorname || 'Nicht angegeben') + String.chr(10) + 'Nachname: ' + (data.nachname || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (data.email || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Immobilie:' + String.chr(10) + 'Adresse: ' + (data.immobilienAdresse || 'Nicht angegeben') + String.chr(10) + 'PLZ/Ort: ' + (data.immobilienPlzOrt || 'Nicht angegeben') + String.chr(10) + 'Art: ' + (data.immobilienArt || 'Nicht angegeben') + String.chr(10) + 'Verwaltungsart: ' + (data.verwaltungsart || 'Nicht angegeben') + String.chr(10) + 'Anzahl Einheiten: ' + (data.anzahlEinheiten || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + (data.nachricht || 'Keine Nachricht')}
                     html = afx`
                         <html>
                             <body>
@@ -153,6 +168,7 @@ prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:
                                 <p><strong>Adresse:</strong> {data.immobilienAdresse || 'Nicht angegeben'}</p>
                                 <p><strong>PLZ / Ort:</strong> {data.immobilienPlzOrt || 'Nicht angegeben'}</p>
                                 <p><strong>Art der Immobilie:</strong> {data.immobilienArt || 'Nicht angegeben'}</p>
+                                <p><strong>Verwaltungsart:</strong> {data.verwaltungsart || 'Nicht angegeben'}</p>
                                 <p><strong>Anzahl Wohneinheiten:</strong> {data.anzahlEinheiten || 'Nicht angegeben'}</p>
                                 <h3>Nachricht</h3>
                                 <p>{data.nachricht || 'Keine Nachricht'}</p>
@@ -167,12 +183,12 @@ prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:
             confirmationEmail {
                 type = 'Neos.Fusion.Form.Runtime:Email'
                 options {
-                    senderAddress = 'noreply@smartgrund.de'
+                    senderAddress = 'info@smartgrund.de'
                     senderName = 'SmartGrund GmbH'
                     recipientAddress = ${data.email}
                     recipientName = ${(data.vorname || '') + ' ' + (data.nachname || '')}
                     subject = 'Ihre Vermieter-Anfrage bei SmartGrund'
-                    text = ${'Guten Tag ' + (data.vorname || '') + ' ' + (data.nachname || '') + ',' + String.chr(10) + String.chr(10) + 'vielen Dank für Ihre Anfrage. Wir haben Ihre Angaben erhalten und werden uns schnellstmöglich bei Ihnen melden.' + String.chr(10) + String.chr(10) + 'Ihre übermittelten Informationen:' + String.chr(10) + 'Vorname: ' + (data.vorname || 'Nicht angegeben') + String.chr(10) + 'Nachname: ' + (data.nachname || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (data.email || 'Nicht angegeben') + String.chr(10) + 'Adresse: ' + (data.immobilienAdresse || 'Nicht angegeben') + String.chr(10) + 'PLZ / Ort: ' + (data.immobilienPlzOrt || 'Nicht angegeben') + String.chr(10) + 'Art der Immobilie: ' + (data.immobilienArt || 'Nicht angegeben') + String.chr(10) + 'Anzahl Wohneinheiten: ' + (data.anzahlEinheiten || 'Nicht angegeben') + String.chr(10) + 'Nachricht: ' + (data.nachricht || 'Keine Nachricht') + String.chr(10) + String.chr(10) + 'Mit freundlichen Grüßen' + String.chr(10) + 'Ihr SmartGrund-Team'}
+                    text = ${'Guten Tag ' + (data.vorname || '') + ' ' + (data.nachname || '') + ',' + String.chr(10) + String.chr(10) + 'vielen Dank für Ihre Anfrage. Wir haben Ihre Angaben erhalten und werden uns schnellstmöglich bei Ihnen melden.' + String.chr(10) + String.chr(10) + 'Ihre übermittelten Informationen:' + String.chr(10) + 'Vorname: ' + (data.vorname || 'Nicht angegeben') + String.chr(10) + 'Nachname: ' + (data.nachname || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (data.email || 'Nicht angegeben') + String.chr(10) + 'Adresse: ' + (data.immobilienAdresse || 'Nicht angegeben') + String.chr(10) + 'PLZ / Ort: ' + (data.immobilienPlzOrt || 'Nicht angegeben') + String.chr(10) + 'Art der Immobilie: ' + (data.immobilienArt || 'Nicht angegeben') + String.chr(10) + 'Verwaltungsart: ' + (data.verwaltungsart || 'Nicht angegeben') + String.chr(10) + 'Anzahl Wohneinheiten: ' + (data.anzahlEinheiten || 'Nicht angegeben') + String.chr(10) + 'Nachricht: ' + (data.nachricht || 'Keine Nachricht') + String.chr(10) + String.chr(10) + 'Mit freundlichen Grüßen' + String.chr(10) + 'Ihr SmartGrund-Team'}
                     html = afx`
                         <html>
                             <body>
@@ -188,6 +204,7 @@ prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:
                                     <tr><td style="padding: 2px 12px 2px 0;"><strong>Adresse:</strong></td><td>{data.immobilienAdresse || 'Nicht angegeben'}</td></tr>
                                     <tr><td style="padding: 2px 12px 2px 0;"><strong>PLZ / Ort:</strong></td><td>{data.immobilienPlzOrt || 'Nicht angegeben'}</td></tr>
                                     <tr><td style="padding: 2px 12px 2px 0;"><strong>Art der Immobilie:</strong></td><td>{data.immobilienArt || 'Nicht angegeben'}</td></tr>
+                                    <tr><td style="padding: 2px 12px 2px 0;"><strong>Verwaltungsart:</strong></td><td>{data.verwaltungsart || 'Nicht angegeben'}</td></tr>
                                     <tr><td style="padding: 2px 12px 2px 0;"><strong>Anzahl Wohneinheiten:</strong></td><td>{data.anzahlEinheiten || 'Nicht angegeben'}</td></tr>
                                     <tr><td style="padding: 2px 12px 2px 0; vertical-align: top;"><strong>Nachricht:</strong></td><td>{data.nachricht || 'Keine Nachricht'}</td></tr>
                                 </table>
