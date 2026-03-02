@@ -27,7 +27,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
                             href={props.portalUrl}
                             target="_blank"
                             rel="noopener"
-                            class="order-1 md:order-2 bg-smart-teal text-white px-2 md:px-8 py-4 text-2xl md:text-3xl xl:text-4xl font-expanded inline-flex items-center whitespace-nowrap"
+                            class="order-1 md:order-2 bg-smart-teal text-white px-2 md:px-8 py-4 text-base md:text-2xl xl:text-4xl font-expanded inline-flex items-center whitespace-nowrap"
                         >
                             <strong class="font-normal">Mein</strong><span class="font-extralight">SmartGrund</span>
                         </a>

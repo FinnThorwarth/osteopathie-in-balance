@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation-wrapper font-expanded">
+  <div class="navigation-wrapper font-expanded h-full">
     <!-- Desktop Navigation (horizontal bar) - always visible on desktop -->
     <nav
       class="hidden xl:flex items-stretch text-smart-navy"
@@ -35,7 +35,7 @@
 
     <!-- Compact Navigation Button (only visible on mobile/tablet, hidden on desktop) -->
     <div
-      class="z-50 transition-transform duration-300 block xl:hidden"
+      class="z-50 transition-transform duration-300 flex h-full xl:hidden"
     >
       <button
         @click="toggleMenu"
@@ -84,7 +84,7 @@
                   v-if="item.url && item.url !== '#'"
                   :href="item.url"
                   @click="handleNavClick"
-                  class="inline-block text-2xl md:text-3xl transition-all px-6 py-3 rounded-full"
+                  class="inline-block text-2xl md:text-3xl transition-all px-6 py-3"
                   :class="item.isActive
                     ? 'bg-smart-teal text-white font-normal'
                     : 'text-white font-normal hover:bg-smart-white hover:text-smart-navy'"
@@ -93,7 +93,7 @@
                 </a>
                 <span
                   v-else
-                  class="inline-block text-2xl md:text-3xl px-6 py-3 rounded-full"
+                  class="inline-block text-2xl md:text-3xl px-6 py-3"
                   :class="item.isActive
                     ? 'bg-smart-teal text-white font-normal'
                     : 'text-white font-normal'"
