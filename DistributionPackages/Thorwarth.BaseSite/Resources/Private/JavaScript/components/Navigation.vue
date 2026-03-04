@@ -15,7 +15,7 @@
             v-if="item.url && item.url !== '#'"
             :href="item.url"
             @click="handleNavClick"
-            class="flex items-center px-8 py-4 text-4xl font-light transition-colors"
+            class="flex items-center px-8 py-4 text-2xl 2xl:text4xl font-light transition-colors"
             :class="item.isActive
               ? 'text-smart-teal border-b-2 border-smart-teal'
               : 'hover:text-smart-teal'"
@@ -24,7 +24,7 @@
           </a>
           <span
             v-else
-            class="flex items-center px-8 py-4 text-4xl font-light"
+            class="flex items-center px-8 py-4 text-2xl 2xl:text4xl font-light"
             :class="item.isActive ? 'text-smart-teal border-b-2 border-smart-teal' : ''"
           >
             {{ item.title }}
