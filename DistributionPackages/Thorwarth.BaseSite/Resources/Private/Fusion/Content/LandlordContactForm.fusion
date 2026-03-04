@@ -148,7 +148,7 @@ prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:
             email {
                 type = 'Neos.Fusion.Form.Runtime:Email'
                 options {
-                    senderAddress = 'info@smartgrund.de'
+                    senderAddress = ${Configuration.setting('Thorwarth.BaseSite.mail.senderAddress')}
                     senderName = ${(data.vorname || '') + ' ' + (data.nachname || 'Vermieter-Anfrage')}
                     replyToAddress = ${data.email}
                     recipientAddress = ${q(node).property('recipientEmail') || 'info@smartgrund.de'}
@@ -211,8 +211,8 @@ prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:
             confirmationEmail {
                 type = 'Neos.Fusion.Form.Runtime:Email'
                 options {
-                    senderAddress = 'info@smartgrund.de'
-                    senderName = 'SmartGrund GmbH'
+                    senderAddress = ${Configuration.setting('Thorwarth.BaseSite.mail.senderAddress')}
+                    senderName = ${Configuration.setting('Thorwarth.BaseSite.mail.senderName')}
                     recipientAddress = ${data.email}
                     recipientName = ${(data.vorname || '') + ' ' + (data.nachname || '')}
                     subject = 'Ihre Vermieter-Anfrage bei SmartGrund'

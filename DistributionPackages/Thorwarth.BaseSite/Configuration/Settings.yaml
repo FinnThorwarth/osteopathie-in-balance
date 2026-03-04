@@ -61,3 +61,9 @@ Neos:
   Fusion:
     defaultContext:
       Caspary.Image: 'Thorwarth\BaseSite\Eel\Helper\ImageHelper'
+
+Thorwarth:
+  BaseSite:
+    mail:
+      senderAddress: 'info@smartgrund.de'
+      senderName: 'SmartGrund GmbH'
