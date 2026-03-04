@@ -74,7 +74,21 @@
           editorOptions:
             placeholder: ''
 
-    # Override default to show author card by default on journal pages
+    # Override author properties to appear in Blog-Einstellungen group
+    author:
+      ui:
+        inspector:
+          group: 'journal'
+          position: 40
+    authorName:
+      ui:
+        inspector:
+          group: 'journal'
+          position: 50
     showAuthorCard:
       type: boolean
       defaultValue: true
+      ui:
+        inspector:
+          group: 'journal'
+          position: 60
