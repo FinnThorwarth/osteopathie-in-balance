@@ -97,10 +97,10 @@ prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:
                             <Neos.Fusion.Form:Select
                                 attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded">
                                 <option value="">Bitte wählen</option>
-                                <option value="einfamilienhaus">Einfamilienhaus / Zweifamilienhaus</option>
-                                <option value="mehrfamilienhaus">Mehrfamilienhaus</option>
-                                <option value="gemischt">Wohn- und Geschäftshaus (gemischt genutzt)</option>
-                                <option value="gewerbeimmobilie">Gewerbeimmobilie</option>
+                                <option value="Einfamilienhaus / Zweifamilienhaus">Einfamilienhaus / Zweifamilienhaus</option>
+                                <option value="Mehrfamilienhaus">Mehrfamilienhaus</option>
+                                <option value="Wohn- und Geschäftshaus (gemischt genutzt)">Wohn- und Geschäftshaus (gemischt genutzt)</option>
+                                <option value="Gewerbeimmobilie">Gewerbeimmobilie</option>
                             </Neos.Fusion.Form:Select>
                         </Neos.Fusion.Form:FieldContainer>
 
@@ -109,9 +109,9 @@ prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:
                                 attributes.required={true}
                                 attributes.class="form-control w-full px-3 py-2 border border-gray-300 rounded">
                                 <option value="">Bitte wählen</option>
-                                <option value="weg">WEG (Eigentümergemeinschaft)</option>
-                                <option value="mietobjekt">Mietobjekt (Einzeleigentümer)</option>
-                                <option value="sondereigentum">Sondereigentumsverwaltung (einzelne Einheit)</option>
+                                <option value="WEG (Eigentümergemeinschaft)">WEG (Eigentümergemeinschaft)</option>
+                                <option value="Mietobjekt (Einzeleigentümer)">Mietobjekt (Einzeleigentümer)</option>
+                                <option value="Sondereigentumsverwaltung (einzelne Einheit)">Sondereigentumsverwaltung (einzelne Einheit)</option>
                             </Neos.Fusion.Form:Select>
                         </Neos.Fusion.Form:FieldContainer>
                     </div>
@@ -155,28 +155,56 @@ prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:
                     recipientName = 'SmartGrund GmbH'
                     subject = ${'Neue Vermieter-Anfrage von ' + (data.vorname || '') + ' ' + (data.nachname || 'Unbekannt')}
                     text = ${'Vorname: ' + (data.vorname || 'Nicht angegeben') + String.chr(10) + 'Nachname: ' + (data.nachname || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (data.email || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Immobilie:' + String.chr(10) + 'Adresse: ' + (data.immobilienAdresse || 'Nicht angegeben') + String.chr(10) + 'PLZ/Ort: ' + (data.immobilienPlzOrt || 'Nicht angegeben') + String.chr(10) + 'Art: ' + (data.immobilienArt || 'Nicht angegeben') + String.chr(10) + 'Verwaltungsart: ' + (data.verwaltungsart || 'Nicht angegeben') + String.chr(10) + 'Anzahl Einheiten: ' + (data.anzahlEinheiten || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + (data.nachricht || 'Keine Nachricht')}
-                    html = afx`
-                        <html>
-                            <body>
-                                <h2>Neue Vermieter-Anfrage</h2>
-                                <h3>Kontaktdaten</h3>
-                                <p><strong>Vorname:</strong> {data.vorname || 'Nicht angegeben'}</p>
-                                <p><strong>Nachname:</strong> {data.nachname || 'Nicht angegeben'}</p>
-                                <p><strong>Telefon:</strong> {data.telefon || 'Nicht angegeben'}</p>
-                                <p><strong>E-Mail:</strong> {data.email || 'Nicht angegeben'}</p>
-                                <h3>Angaben zur Immobilie</h3>
-                                <p><strong>Adresse:</strong> {data.immobilienAdresse || 'Nicht angegeben'}</p>
-                                <p><strong>PLZ / Ort:</strong> {data.immobilienPlzOrt || 'Nicht angegeben'}</p>
-                                <p><strong>Art der Immobilie:</strong> {data.immobilienArt || 'Nicht angegeben'}</p>
-                                <p><strong>Verwaltungsart:</strong> {data.verwaltungsart || 'Nicht angegeben'}</p>
-                                <p><strong>Anzahl Wohneinheiten:</strong> {data.anzahlEinheiten || 'Nicht angegeben'}</p>
-                                <h3>Nachricht</h3>
-                                <p>{data.nachricht || 'Keine Nachricht'}</p>
-                                <hr />
-                                <p><small>Diese Anfrage wurde über das Vermieter-Kontaktformular der Website gesendet.</small></p>
-                            </body>
-                        </html>
-                    `
+                    html = Thorwarth.BaseSite:Email.BrandedWrapper {
+                        title = 'Neue Vermieter-Anfrage'
+                        content = afx`
+                            <p style="margin: 0 0 12px 0; font-size: 15px; color: #122945; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">Kontaktdaten</p>
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: 1px solid #D5D3D3; margin-bottom: 24px;">
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif; width: 180px;">Vorname</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.vorname || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">Nachname</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.nachname || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">Telefon</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.telefon || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">E-Mail</td>
+                                    <td style="padding: 10px 16px; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.email || 'Nicht angegeben'}</td>
+                                </tr>
+                            </table>
+                            <p style="margin: 0 0 12px 0; font-size: 15px; color: #122945; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">Angaben zur Immobilie</p>
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: 1px solid #D5D3D3; margin-bottom: 24px;">
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif; width: 180px;">Adresse</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.immobilienAdresse || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">PLZ / Ort</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.immobilienPlzOrt || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">Art der Immobilie</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.immobilienArt || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">Verwaltungsart</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.verwaltungsart || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">Anzahl Wohneinheiten</td>
+                                    <td style="padding: 10px 16px; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.anzahlEinheiten || 'Nicht angegeben'}</td>
+                                </tr>
+                            </table>
+                            <p style="margin: 0 0 12px 0; font-size: 15px; color: #122945; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">Nachricht</p>
+                            <p style="margin: 0 0 20px 0; font-size: 14px; color: #3C3C3B; font-family: Arial, Helvetica, sans-serif;">{data.nachricht || 'Keine Nachricht'}</p>
+                            <p style="margin: 0; font-size: 13px; color: #909090; font-family: Arial, Helvetica, sans-serif;">Diese Anfrage wurde über das Vermieter-Kontaktformular der Website gesendet.</p>
+                        `
+                    }
                 }
             }
 
@@ -189,30 +217,57 @@ prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:
                     recipientName = ${(data.vorname || '') + ' ' + (data.nachname || '')}
                     subject = 'Ihre Vermieter-Anfrage bei SmartGrund'
                     text = ${'Guten Tag ' + (data.vorname || '') + ' ' + (data.nachname || '') + ',' + String.chr(10) + String.chr(10) + 'vielen Dank für Ihre Anfrage. Wir haben Ihre Angaben erhalten und werden uns schnellstmöglich bei Ihnen melden.' + String.chr(10) + String.chr(10) + 'Ihre übermittelten Informationen:' + String.chr(10) + 'Vorname: ' + (data.vorname || 'Nicht angegeben') + String.chr(10) + 'Nachname: ' + (data.nachname || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (data.email || 'Nicht angegeben') + String.chr(10) + 'Adresse: ' + (data.immobilienAdresse || 'Nicht angegeben') + String.chr(10) + 'PLZ / Ort: ' + (data.immobilienPlzOrt || 'Nicht angegeben') + String.chr(10) + 'Art der Immobilie: ' + (data.immobilienArt || 'Nicht angegeben') + String.chr(10) + 'Verwaltungsart: ' + (data.verwaltungsart || 'Nicht angegeben') + String.chr(10) + 'Anzahl Wohneinheiten: ' + (data.anzahlEinheiten || 'Nicht angegeben') + String.chr(10) + 'Nachricht: ' + (data.nachricht || 'Keine Nachricht') + String.chr(10) + String.chr(10) + 'Mit freundlichen Grüßen' + String.chr(10) + 'Ihr SmartGrund-Team'}
-                    html = afx`
-                        <html>
-                            <body>
-                                <p>Guten Tag {data.vorname || ''} {data.nachname || ''},</p>
-                                <p>vielen Dank für Ihre Anfrage. Wir haben Ihre Angaben erhalten und werden uns schnellstmöglich bei Ihnen melden.</p>
-                                <hr />
-                                <p><strong>Ihre übermittelten Informationen:</strong></p>
-                                <table style="border-collapse: collapse;">
-                                    <tr><td style="padding: 2px 12px 2px 0;"><strong>Vorname:</strong></td><td>{data.vorname || 'Nicht angegeben'}</td></tr>
-                                    <tr><td style="padding: 2px 12px 2px 0;"><strong>Nachname:</strong></td><td>{data.nachname || 'Nicht angegeben'}</td></tr>
-                                    <tr><td style="padding: 2px 12px 2px 0;"><strong>Telefon:</strong></td><td>{data.telefon || 'Nicht angegeben'}</td></tr>
-                                    <tr><td style="padding: 2px 12px 2px 0;"><strong>E-Mail:</strong></td><td>{data.email || 'Nicht angegeben'}</td></tr>
-                                    <tr><td style="padding: 2px 12px 2px 0;"><strong>Adresse:</strong></td><td>{data.immobilienAdresse || 'Nicht angegeben'}</td></tr>
-                                    <tr><td style="padding: 2px 12px 2px 0;"><strong>PLZ / Ort:</strong></td><td>{data.immobilienPlzOrt || 'Nicht angegeben'}</td></tr>
-                                    <tr><td style="padding: 2px 12px 2px 0;"><strong>Art der Immobilie:</strong></td><td>{data.immobilienArt || 'Nicht angegeben'}</td></tr>
-                                    <tr><td style="padding: 2px 12px 2px 0;"><strong>Verwaltungsart:</strong></td><td>{data.verwaltungsart || 'Nicht angegeben'}</td></tr>
-                                    <tr><td style="padding: 2px 12px 2px 0;"><strong>Anzahl Wohneinheiten:</strong></td><td>{data.anzahlEinheiten || 'Nicht angegeben'}</td></tr>
-                                    <tr><td style="padding: 2px 12px 2px 0; vertical-align: top;"><strong>Nachricht:</strong></td><td>{data.nachricht || 'Keine Nachricht'}</td></tr>
-                                </table>
-                                <hr />
-                                <p>Mit freundlichen Grüßen<br />Ihr SmartGrund-Team</p>
-                            </body>
-                        </html>
-                    `
+                    html = Thorwarth.BaseSite:Email.BrandedWrapper {
+                        title = 'Ihre Vermieter-Anfrage bei SmartGrund'
+                        content = afx`
+                            <p style="margin: 0 0 16px 0; font-size: 16px; color: #3C3C3B; font-family: Arial, Helvetica, sans-serif;">Guten Tag {data.vorname || ''} {data.nachname || ''},</p>
+                            <p style="margin: 0 0 24px 0; font-size: 16px; color: #3C3C3B; font-family: Arial, Helvetica, sans-serif;">vielen Dank für Ihre Anfrage. Wir haben Ihre Angaben erhalten und werden uns schnellstmöglich bei Ihnen melden.</p>
+                            <p style="margin: 0 0 12px 0; font-size: 14px; color: #122945; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">Ihre übermittelten Informationen:</p>
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: 1px solid #D5D3D3; margin-bottom: 24px;">
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif; width: 180px;">Vorname</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.vorname || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">Nachname</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.nachname || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">Telefon</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.telefon || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">E-Mail</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.email || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">Adresse</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.immobilienAdresse || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">PLZ / Ort</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.immobilienPlzOrt || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">Art der Immobilie</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.immobilienArt || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">Verwaltungsart</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.verwaltungsart || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">Anzahl Wohneinheiten</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.anzahlEinheiten || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif; vertical-align: top;">Nachricht</td>
+                                    <td style="padding: 10px 16px; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.nachricht || 'Keine Nachricht'}</td>
+                                </tr>
+                            </table>
+                            <p style="margin: 0; font-size: 16px; color: #3C3C3B; font-family: Arial, Helvetica, sans-serif;">Mit freundlichen Grüßen<br />Ihr SmartGrund-Team</p>
+                        `
+                    }
                 }
             }
 

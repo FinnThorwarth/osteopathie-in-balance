@@ -1,24 +1,4 @@
 prototype(Thorwarth.BaseSite:Document.JournalPage) < prototype(Thorwarth.BaseSite:Document.AbstractPage) {
-    head {
-           # Add custom CSS variables for journal pages
-    journalStyles = Neos.Fusion:Component {
-        footerBackground = ${q(documentNode).property('footerBackground') || '#6B9F8C'}
-        headingColor = ${q(documentNode).property('headingColor') || '#6B9F8C'}
-        borderColor = ${q(documentNode).property('borderColor') || '#6B9F8C'}
-
-        renderer = afx`
-            <style>
-                {':root {' +
-                 '--journal-footer-bg: ' + props.footerBackground + ';' +
-                 '--journal-heading-color: ' + props.headingColor + ';' +
-                 '--journal-border-color: ' + props.borderColor + ';' +
-                 '--smart-teal: #E30613;' +
-                 '}'}
-            </style>
-        `
-    }
-    }
-
     # Add publication date and categories display to the content
     body.content {
         articleMeta = Neos.Fusion:Component {
@@ -72,6 +52,4 @@ prototype(Thorwarth.BaseSite:Document.JournalPage) < prototype(Thorwarth.BaseSit
         `
     }
 
-    # Override footer styling for journal pages
-    body.@process.addJournalFooterClass = ${value + '<script>document.addEventListener("DOMContentLoaded", function() { var footer = document.querySelector("footer"); if (footer) { footer.style.backgroundColor = "var(--journal-footer-bg)"; } });</script>'}
 }

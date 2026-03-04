@@ -1,12 +1,12 @@
 'Thorwarth.BaseSite:Document.JournalPage':
   superTypes:
-    'Thorwarth.BaseSite:Constraint.Document.Restricted': true # Nicht auswählbar
     'Thorwarth.BaseSite:Document.AbstractPage': true
+    'Thorwarth.BaseSite:Mixin.AuthorReference': true
   constraints:
     nodeTypes:
       '*': false
   ui:
-    label: 'Journal-Artikel'
+    label: 'Blog-Artikel'
     icon: 'icon-newspaper'
     group: 'general'
     position: 200
@@ -15,7 +15,7 @@
     inspector:
       groups:
         journal:
-          label: 'Journal-Einstellungen'
+          label: 'Blog-Einstellungen'
           position: 5
           icon: 'icon-newspaper'
   properties:
@@ -72,7 +72,7 @@
           group: 'journal'
           position: 30
           editorOptions:
-            placeholder: 'z.B. Ratgeber, Vorsorge, Trauer'
+            placeholder: ''
 
     # Override default to show author card by default on journal pages
     showAuthorCard:

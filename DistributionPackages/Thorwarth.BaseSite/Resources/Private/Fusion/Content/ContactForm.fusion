@@ -83,20 +83,30 @@ prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentC
                     recipientName = 'SmartGrund GmbH'
                     subject = ${'Neue Kontaktanfrage von ' + (data.name || 'Unbekannt')}
                     text = ${'Name: ' + (data.name || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (data.email || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + (data.nachricht || 'Keine Nachricht')}
-                    html = afx`
-                        <html>
-                            <body>
-                                <h2>Neue Kontaktanfrage</h2>
-                                <p><strong>Name:</strong> {data.name || 'Nicht angegeben'}</p>
-                                <p><strong>Telefon:</strong> {data.telefon || 'Nicht angegeben'}</p>
-                                <p><strong>E-Mail:</strong> {data.email || 'Nicht angegeben'}</p>
-                                <p><strong>Nachricht:</strong></p>
-                                <p>{data.nachricht || 'Keine Nachricht'}</p>
-                                <hr />
-                                <p><small>Diese Nachricht wurde über das Kontaktformular der Website gesendet.</small></p>
-                            </body>
-                        </html>
-                    `
+                    html = Thorwarth.BaseSite:Email.BrandedWrapper {
+                        title = 'Neue Kontaktanfrage'
+                        content = afx`
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: 1px solid #D5D3D3; margin-bottom: 20px;">
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif; width: 140px;">Name</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.name || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">Telefon</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.telefon || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">E-Mail</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.email || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif; vertical-align: top;">Nachricht</td>
+                                    <td style="padding: 10px 16px; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.nachricht || 'Keine Nachricht'}</td>
+                                </tr>
+                            </table>
+                            <p style="margin: 0; font-size: 13px; color: #909090; font-family: Arial, Helvetica, sans-serif;">Diese Nachricht wurde über das Kontaktformular der Website gesendet.</p>
+                        `
+                    }
                 }
             }
 
@@ -109,24 +119,33 @@ prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentC
                     recipientName = ${data.name || ''}
                     subject = 'Ihre Kontaktanfrage bei SmartGrund'
                     text = ${'Guten Tag ' + (data.name || '') + ',' + String.chr(10) + String.chr(10) + 'vielen Dank für Ihre Nachricht. Wir haben Ihre Anfrage erhalten und werden uns schnellstmöglich bei Ihnen melden.' + String.chr(10) + String.chr(10) + 'Ihre übermittelten Informationen:' + String.chr(10) + 'Name: ' + (data.name || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (data.email || 'Nicht angegeben') + String.chr(10) + 'Nachricht: ' + (data.nachricht || 'Keine Nachricht') + String.chr(10) + String.chr(10) + 'Mit freundlichen Grüßen' + String.chr(10) + 'Ihr SmartGrund-Team'}
-                    html = afx`
-                        <html>
-                            <body>
-                                <p>Guten Tag {data.name || ''},</p>
-                                <p>vielen Dank für Ihre Nachricht. Wir haben Ihre Anfrage erhalten und werden uns schnellstmöglich bei Ihnen melden.</p>
-                                <hr />
-                                <p><strong>Ihre übermittelten Informationen:</strong></p>
-                                <table style="border-collapse: collapse;">
-                                    <tr><td style="padding: 2px 12px 2px 0;"><strong>Name:</strong></td><td>{data.name || 'Nicht angegeben'}</td></tr>
-                                    <tr><td style="padding: 2px 12px 2px 0;"><strong>Telefon:</strong></td><td>{data.telefon || 'Nicht angegeben'}</td></tr>
-                                    <tr><td style="padding: 2px 12px 2px 0;"><strong>E-Mail:</strong></td><td>{data.email || 'Nicht angegeben'}</td></tr>
-                                    <tr><td style="padding: 2px 12px 2px 0; vertical-align: top;"><strong>Nachricht:</strong></td><td>{data.nachricht || 'Keine Nachricht'}</td></tr>
-                                </table>
-                                <hr />
-                                <p>Mit freundlichen Grüßen<br />Ihr SmartGrund-Team</p>
-                            </body>
-                        </html>
-                    `
+                    html = Thorwarth.BaseSite:Email.BrandedWrapper {
+                        title = 'Ihre Kontaktanfrage bei SmartGrund'
+                        content = afx`
+                            <p style="margin: 0 0 16px 0; font-size: 16px; color: #3C3C3B; font-family: Arial, Helvetica, sans-serif;">Guten Tag {data.name || ''},</p>
+                            <p style="margin: 0 0 24px 0; font-size: 16px; color: #3C3C3B; font-family: Arial, Helvetica, sans-serif;">vielen Dank für Ihre Nachricht. Wir haben Ihre Anfrage erhalten und werden uns schnellstmöglich bei Ihnen melden.</p>
+                            <p style="margin: 0 0 12px 0; font-size: 14px; color: #122945; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">Ihre übermittelten Informationen:</p>
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: 1px solid #D5D3D3; margin-bottom: 24px;">
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif; width: 140px;">Name</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.name || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">Telefon</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.telefon || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; border-bottom: 1px solid #D5D3D3; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">E-Mail</td>
+                                    <td style="padding: 10px 16px; border-bottom: 1px solid #D5D3D3; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.email || 'Nicht angegeben'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 16px; background: #F5F5F5; color: #122945; font-weight: 600; font-size: 14px; font-family: Arial, Helvetica, sans-serif; vertical-align: top;">Nachricht</td>
+                                    <td style="padding: 10px 16px; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.nachricht || 'Keine Nachricht'}</td>
+                                </tr>
+                            </table>
+                            <p style="margin: 0; font-size: 16px; color: #3C3C3B; font-family: Arial, Helvetica, sans-serif;">Mit freundlichen Grüßen<br />Ihr SmartGrund-Team</p>
+                        `
+                    }
                 }
             }
 

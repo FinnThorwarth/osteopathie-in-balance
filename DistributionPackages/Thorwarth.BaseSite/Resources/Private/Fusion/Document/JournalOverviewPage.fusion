@@ -2,29 +2,11 @@ prototype(Thorwarth.BaseSite:Document.JournalOverviewPage) < prototype(Thorwarth
     @cache {
         mode = 'cached'
         entryIdentifier {
-            documentNode = ${documentNode.aggregateId}
+            documentNode = ${documentNode.aggregateId.value}
         }
         entryTags {
             1 = ${Neos.Caching.nodeTag(documentNode)}
             2 = ${Neos.Caching.descendantOfTag(documentNode)}
-        }
-    }
-
-    head {
-        journalStyles = Neos.Fusion:Tag {
-            tagName = 'style'
-            content = Neos.Fusion:Value {
-                footerBackground = ${q(documentNode).property('footerBackground') || '#6B9F8C'}
-                headingColor = ${q(documentNode).property('headingColor') || '#6B9F8C'}
-                borderColor = ${q(documentNode).property('borderColor') || '#6B9F8C'}
-
-                value = ${':root { --journal-footer-bg: ' + this.footerBackground + '; --journal-heading-color: ' + this.headingColor + '; --journal-border-color: ' + this.borderColor + '; --smart-teal: #E30613; }'}
-            }
-        }
-
-        journalFooterScript = Neos.Fusion:Tag {
-            tagName = 'script'
-            content = 'document.addEventListener("DOMContentLoaded", function() { var footer = document.querySelector("footer"); if (footer) { footer.style.backgroundColor = "var(--journal-footer-bg)"; } });'
         }
     }
 
