@@ -7,6 +7,7 @@ namespace Smartgrund\Site\Aspect;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Aop\JoinPointInterface;
 use Neos\SymfonyMailer\Exception\InvalidMailerConfigurationException;
+use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\Mailer\Bridge\MicrosoftGraph\Transport\MicrosoftGraphTransportFactory;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\Transport;
@@ -32,8 +33,9 @@ class MailerAspect
             );
         }
 
+        $httpClient = HttpClient::create();
         $factories = iterator_to_array(Transport::getDefaultFactories());
-        array_unshift($factories, new MicrosoftGraphTransportFactory());
+        array_unshift($factories, new MicrosoftGraphTransportFactory(client: $httpClient));
         $transport = (new Transport($factories))->fromString($this->mailerConfiguration['dsn']);
 
         return new Mailer($transport);
