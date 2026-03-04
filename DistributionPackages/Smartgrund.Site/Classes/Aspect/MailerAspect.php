@@ -2,21 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Smartgrund\Site\Service;
+namespace Smartgrund\Site\Aspect;
 
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Aop\JoinPointInterface;
 use Neos\SymfonyMailer\Exception\InvalidMailerConfigurationException;
-use Neos\SymfonyMailer\Service\MailerService;
 use Symfony\Component\Mailer\Bridge\MicrosoftGraph\Transport\MicrosoftGraphTransportFactory;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\Transport;
-use Symfony\Component\Mailer\Transport\TransportInterface;
 
-#[Flow\Scope("singleton")]
-class MicrosoftGraphMailerService extends MailerService
+#[Flow\Aspect]
+class MailerAspect
 {
-    public function getMailer(?TransportInterface $transport = null): Mailer
+    #[Flow\InjectConfiguration(path: "mailer", package: "Neos.SymfonyMailer")]
+    protected array $mailerConfiguration;
+
+    #[Flow\Around("method(Neos\SymfonyMailer\Service\MailerService->getMailer())")]
+    public function addMicrosoftGraphTransport(JoinPointInterface $joinPoint): Mailer
     {
+        $transport = $joinPoint->getMethodArgument('transport');
         if ($transport !== null) {
             return new Mailer($transport);
         }

@@ -1,2 +1,0 @@
-Neos\SymfonyMailer\Service\MailerService:
-  className: Smartgrund\Site\Service\MicrosoftGraphMailerService
