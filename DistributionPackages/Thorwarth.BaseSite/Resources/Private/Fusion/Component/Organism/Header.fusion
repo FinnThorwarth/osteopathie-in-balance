@@ -9,16 +9,16 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
     }
 
     navigationData = Thorwarth.BaseSite:Component.Molecule.NavigationData
-    portalUrl = ${q(site).property('portalUrl') || 'https://mein.smartgrund.de/'}
+    portalUrl = ${q(site).property('portalUrl') || 'https://mein.osteopathie-in-balance.de/'}
 
     renderer = afx`
         <header id="site-header" class="pt-16">
             <div class="fixed top-0 left-0 right-0 w-full bg-white z-50 shadow-sm">
                 <div class="flex items-stretch justify-between">
-                    <a href="/" class="nav-logo-wrap flex items-center px-4 py-2" aria-label="SmartGrund – Startseite">
+                    <a href="/" class="nav-logo-wrap flex items-center px-4 py-2" aria-label="Osteopathie in Balance – Startseite">
                         <img
                             src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_Header.svg')}
-                            alt="SmartGrund GmbH"
+                            alt="Osteopathie in Balance"
                             class="h-9 w-auto"
                         />
                     </a>
@@ -29,7 +29,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
                             rel="noopener"
                             class="order-1 md:order-2 bg-smart-teal text-white px-2 md:px-8 py-4 text-base md:text-2xl xl:text-4xl font-expanded inline-flex items-center whitespace-nowrap"
                         >
-                            <strong class="font-normal">Mein</strong><span class="font-extralight">SmartGrund</span>
+                            <strong class="font-normal">Mein</strong><span class="font-extralight">Osteopathie in Balance</span>
                         </a>
                         <div id="navigation-vue" class="order-2 md:order-1 md:mr-4" data-navigation={props.navigationData || '{"menuItems":[],"currentNodeIdentifier":"debug-no-context"}'}></div>
                     </div>
@@ -41,7 +41,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
                     <a href="/" class="block">
                         <img
                             src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_Header.svg')}
-                            alt="SmartGrund GmbH"
+                            alt="Osteopathie in Balance"
                             class="h-auto w-[220px] md:w-[380px] lg:w-[500px] xl:w-[1000px]"
                         />
                     </a>

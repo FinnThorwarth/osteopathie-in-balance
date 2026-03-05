@@ -32,8 +32,8 @@ prototype(Thorwarth.BaseSite:Component.ContactForm) < prototype(Neos.Fusion:Comp
                 options {
                     senderAddress = ${data.email}
                     senderName = ${data.name}
-                    recipientAddress = 'info@smartgrund.de'
-                    recipientName = 'SmartGrund GmbH'
+                    recipientAddress = 'info@osteopathie-in-balance.de'
+                    recipientName = 'Osteopathie in Balance'
                     subject = ${'Neue Kontaktanfrage von ' + data.name}
                     text = Neos.Fusion:Join {
                         glue = ${String.chr(10)}

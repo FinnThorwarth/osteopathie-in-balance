@@ -9,7 +9,7 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				// SmartGrund Brand Colors
+				// Osteopathie in Balance Brand Colors
 				'smart-navy': '#122945',
 				'smart-teal': '#2E8A87',
 				'smart-teal-dark': '#1B5352',
@@ -20,7 +20,7 @@ export default {
 				'smart-text': '#3C3C3B',
 				'smart-text-light': '#5F5F5F',
 				'smart-white': '#FFFFFF',
-				// SmartGrund Primary Color Palette (Teal)
+				// Osteopathie in Balance Primary Color Palette (Teal)
 				primary: {
 					50: '#e8f4f4',
 					100: '#c5e4e3',
@@ -33,7 +33,7 @@ export default {
 					800: '#0d2d2c',
 					900: '#061918',
 				},
-				// SmartGrund Secondary Color Palette (Gray)
+				// Osteopathie in Balance Secondary Color Palette (Gray)
 				secondary: {
 					50: '#F5F5F5',
 					100: '#D5D3D3',
@@ -46,7 +46,7 @@ export default {
 					800: '#0a0a09',
 					900: '#000000',
 				},
-				// SmartGrund Accent Color Palette (Navy)
+				// Osteopathie in Balance Accent Color Palette (Navy)
 				accent: {
 					50: '#e8edf3',
 					100: '#c5d1df',

@@ -56,10 +56,10 @@ prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentC
             email {
                 type = 'Neos.Fusion.Form.Runtime:Email'
                 options {
-                    senderAddress = 'noreply@smartgrund.de'
+                    senderAddress = 'noreply@osteopathie-in-balance.de'
                     senderName = 'Kontaktformular'
-                    recipientAddress = 'info@smartgrund.de'
-                    recipientName = 'SmartGrund GmbH'
+                    recipientAddress = 'info@osteopathie-in-balance.de'
+                    recipientName = 'Osteopathie in Balance'
                     subject = 'Neue Kontaktanfrage'
                     text = ${'Name: ' + data.name + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + data.email + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + data.nachricht}
                 }

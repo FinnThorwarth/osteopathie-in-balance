@@ -1,6 +1,6 @@
 {
     "description": "Site package based on Thorwarth.BaseSite",
-    "name": "smartgrund/site",
+    "name": "osteopathieinbalance/site",
     "type": "neos-site",
     "require": {
         "neos/neos": "*",
@@ -8,12 +8,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Smartgrund\\Site\\": "Classes/"
+            "OsteopathieInBalance\\Site\\": "Classes/"
         }
     },
     "extra": {
         "neos": {
-            "package-key": "Smartgrund.Site"
+            "package-key": "OsteopathieInBalance.Site"
         },
         "applied-flow-migrations": [
             "TYPO3.Form-20160601101500",

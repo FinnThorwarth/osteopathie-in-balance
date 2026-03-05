@@ -10,7 +10,7 @@ prototype(Thorwarth.BaseSite:Email.BrandedWrapper) < prototype(Neos.Fusion:Compo
                             <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; width: 100%; background-color: #FFFFFF;">
                                 <tr>
                                     <td style="padding: 30px 40px; text-align: center; background-color: #FFFFFF;">
-                                        <img src="https://www.smartgrund.de/_Resources/Static/Packages/Thorwarth.BaseSite/Images/Logo_Header.svg" alt="SmartGrund GmbH" width="200" style="display: block; margin: 0 auto; max-width: 200px; height: auto;" />
+                                        <img src="https://www.osteopathie-in-balance.de/_Resources/Static/Packages/Thorwarth.BaseSite/Images/Logo_Header.svg" alt="Osteopathie in Balance" width="200" style="display: block; margin: 0 auto; max-width: 200px; height: auto;" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -37,9 +37,9 @@ prototype(Thorwarth.BaseSite:Email.BrandedWrapper) < prototype(Neos.Fusion:Compo
                                 </tr>
                                 <tr>
                                     <td style="padding: 20px 40px 30px 40px; text-align: center;">
-                                        <p style="margin: 0 0 4px 0; font-size: 13px; color: #909090; font-family: Arial, Helvetica, sans-serif;">SmartGrund GmbH</p>
+                                        <p style="margin: 0 0 4px 0; font-size: 13px; color: #909090; font-family: Arial, Helvetica, sans-serif;">Osteopathie in Balance</p>
                                         <p style="margin: 0; font-size: 13px; color: #909090; font-family: Arial, Helvetica, sans-serif;">
-                                            <a href="https://www.smartgrund.de" style="color: #2E8A87; text-decoration: none;">www.smartgrund.de</a>
+                                            <a href="https://www.osteopathie-in-balance.de" style="color: #2E8A87; text-decoration: none;">www.osteopathie-in-balance.de</a>
                                         </p>
                                     </td>
                                 </tr>

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Smartgrund\Site\Aspect;
+namespace OsteopathieInBalance\Site\Aspect;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Aop\JoinPointInterface;

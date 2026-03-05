@@ -1,7 +1,7 @@
 prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentComponent) {
     # Get properties from node or use defaults
     @context {
-        recipientEmailAddress = ${q(node).property('recipientEmail') || 'info@smartgrund.de'}
+        recipientEmailAddress = ${q(node).property('recipientEmail') || 'info@osteopathie-in-balance.de'}
         successMessageText = ${q(node).property('successMessage') || 'Vielen Dank für Ihre Nachricht. Wir werden uns schnellstmöglich bei Ihnen melden.'}
     }
 
@@ -63,10 +63,10 @@ prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentC
             email {
                 type = 'Neos.Fusion.Form.Runtime:Email'
                 options {
-                    senderAddress = ${data.email || 'noreply@smartgrund.de'}
+                    senderAddress = ${data.email || 'noreply@osteopathie-in-balance.de'}
                     senderName = ${data.name || 'Website Kontaktformular'}
                     recipientAddress = ${recipientEmailAddress}
-                    recipientName = 'SmartGrund GmbH'
+                    recipientName = 'Osteopathie in Balance'
                     subject = ${'Neue Kontaktanfrage von ' + (data.name || 'Unbekannt')}
                     text = ${'Name: ' + (data.name || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (data.email || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + (data.nachricht || 'Keine Nachricht')}
                     html = afx`

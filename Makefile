@@ -11,9 +11,9 @@ setup:
 	docker compose exec neos ./flow doctrine:migrate
 	docker compose exec neos ./flow cr:setup
 	docker compose exec neos ./flow site:pruneAll --force
-	docker compose exec neos ./flow site:importAll --package-key Smartgrund.Site
+	docker compose exec neos ./flow site:importAll --package-key OsteopathieInBalance.Site
 	docker compose exec neos ./flow resource:publish
-	docker compose exec neos ./flow user:create --roles Administrator --username admin --password admin --first-name Admin --last-name Smartgrund
+	docker compose exec neos ./flow user:create --roles Administrator --username admin --password admin --first-name Admin --last-name Admin
 
 # Start containers
 up:

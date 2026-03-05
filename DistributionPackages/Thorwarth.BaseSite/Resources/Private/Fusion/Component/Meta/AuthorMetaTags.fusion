@@ -33,13 +33,13 @@ prototype(Thorwarth.BaseSite:Component.Meta.AuthorMetaTags) < prototype(Neos.Fus
                         "name": props.authorName
                     } : {
                         "@type": "Organization",
-                        "name": "SmartGrund GmbH"
+                        "name": "Osteopathie in Balance"
                     },
                     "datePublished": props.publicationDateFormatted,
                     "dateModified": props.modificationDateFormatted,
                     "publisher": {
                         "@type": "Organization",
-                        "name": "SmartGrund GmbH",
+                        "name": "Osteopathie in Balance",
                         "logo": {
                             "@type": "ImageObject",
                             "url": StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/logo.svg')
@@ -65,7 +65,7 @@ prototype(Thorwarth.BaseSite:Component.Meta.AuthorMetaTags) < prototype(Neos.Fus
                     },
                     "publisher": {
                         "@type": "Organization",
-                        "name": "SmartGrund GmbH"
+                        "name": "Osteopathie in Balance"
                     },
                     "image": props.imageUrl ? props.imageUrl : null
                 })}

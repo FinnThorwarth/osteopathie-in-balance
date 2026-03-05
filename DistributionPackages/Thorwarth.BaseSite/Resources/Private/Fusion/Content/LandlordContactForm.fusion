@@ -10,7 +10,7 @@ prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:
     }
 
     props {
-        recipientEmail = ${q(node).property('recipientEmail') || 'info@smartgrund.de'}
+        recipientEmail = ${q(node).property('recipientEmail') || 'info@osteopathie-in-balance.de'}
         successMessage = ${q(node).property('successMessage') || 'Vielen Dank für Ihre Anfrage. Wir melden uns schnellstmöglich bei Ihnen.'}
     }
 
@@ -151,8 +151,8 @@ prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:
                     senderAddress = ${Configuration.setting('Thorwarth.BaseSite.mail.senderAddress')}
                     senderName = ${(data.vorname || '') + ' ' + (data.nachname || 'Vermieter-Anfrage')}
                     replyToAddress = ${data.email}
-                    recipientAddress = ${q(node).property('recipientEmail') || 'info@smartgrund.de'}
-                    recipientName = 'SmartGrund GmbH'
+                    recipientAddress = ${q(node).property('recipientEmail') || 'info@osteopathie-in-balance.de'}
+                    recipientName = 'Osteopathie in Balance'
                     subject = ${'Neue Vermieter-Anfrage von ' + (data.vorname || '') + ' ' + (data.nachname || 'Unbekannt')}
                     text = ${'Vorname: ' + (data.vorname || 'Nicht angegeben') + String.chr(10) + 'Nachname: ' + (data.nachname || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (data.email || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Immobilie:' + String.chr(10) + 'Adresse: ' + (data.immobilienAdresse || 'Nicht angegeben') + String.chr(10) + 'PLZ/Ort: ' + (data.immobilienPlzOrt || 'Nicht angegeben') + String.chr(10) + 'Art: ' + (data.immobilienArt || 'Nicht angegeben') + String.chr(10) + 'Verwaltungsart: ' + (data.verwaltungsart || 'Nicht angegeben') + String.chr(10) + 'Anzahl Einheiten: ' + (data.anzahlEinheiten || 'Nicht angegeben') + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + (data.nachricht || 'Keine Nachricht')}
                     html = Thorwarth.BaseSite:Email.BrandedWrapper {
@@ -215,10 +215,10 @@ prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:
                     senderName = ${Configuration.setting('Thorwarth.BaseSite.mail.senderName')}
                     recipientAddress = ${data.email}
                     recipientName = ${(data.vorname || '') + ' ' + (data.nachname || '')}
-                    subject = 'Ihre Vermieter-Anfrage bei SmartGrund'
-                    text = ${'Guten Tag ' + (data.vorname || '') + ' ' + (data.nachname || '') + ',' + String.chr(10) + String.chr(10) + 'vielen Dank für Ihre Anfrage. Wir haben Ihre Angaben erhalten und werden uns schnellstmöglich bei Ihnen melden.' + String.chr(10) + String.chr(10) + 'Ihre übermittelten Informationen:' + String.chr(10) + 'Vorname: ' + (data.vorname || 'Nicht angegeben') + String.chr(10) + 'Nachname: ' + (data.nachname || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (data.email || 'Nicht angegeben') + String.chr(10) + 'Adresse: ' + (data.immobilienAdresse || 'Nicht angegeben') + String.chr(10) + 'PLZ / Ort: ' + (data.immobilienPlzOrt || 'Nicht angegeben') + String.chr(10) + 'Art der Immobilie: ' + (data.immobilienArt || 'Nicht angegeben') + String.chr(10) + 'Verwaltungsart: ' + (data.verwaltungsart || 'Nicht angegeben') + String.chr(10) + 'Anzahl Wohneinheiten: ' + (data.anzahlEinheiten || 'Nicht angegeben') + String.chr(10) + 'Nachricht: ' + (data.nachricht || 'Keine Nachricht') + String.chr(10) + String.chr(10) + 'Mit freundlichen Grüßen' + String.chr(10) + 'Ihr SmartGrund-Team'}
+                    subject = 'Ihre Vermieter-Anfrage bei Osteopathie in Balance'
+                    text = ${'Guten Tag ' + (data.vorname || '') + ' ' + (data.nachname || '') + ',' + String.chr(10) + String.chr(10) + 'vielen Dank für Ihre Anfrage. Wir haben Ihre Angaben erhalten und werden uns schnellstmöglich bei Ihnen melden.' + String.chr(10) + String.chr(10) + 'Ihre übermittelten Informationen:' + String.chr(10) + 'Vorname: ' + (data.vorname || 'Nicht angegeben') + String.chr(10) + 'Nachname: ' + (data.nachname || 'Nicht angegeben') + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + (data.email || 'Nicht angegeben') + String.chr(10) + 'Adresse: ' + (data.immobilienAdresse || 'Nicht angegeben') + String.chr(10) + 'PLZ / Ort: ' + (data.immobilienPlzOrt || 'Nicht angegeben') + String.chr(10) + 'Art der Immobilie: ' + (data.immobilienArt || 'Nicht angegeben') + String.chr(10) + 'Verwaltungsart: ' + (data.verwaltungsart || 'Nicht angegeben') + String.chr(10) + 'Anzahl Wohneinheiten: ' + (data.anzahlEinheiten || 'Nicht angegeben') + String.chr(10) + 'Nachricht: ' + (data.nachricht || 'Keine Nachricht') + String.chr(10) + String.chr(10) + 'Mit freundlichen Grüßen' + String.chr(10) + 'Ihr Osteopathie in Balance Team'}
                     html = Thorwarth.BaseSite:Email.BrandedWrapper {
-                        title = 'Ihre Vermieter-Anfrage bei SmartGrund'
+                        title = 'Ihre Vermieter-Anfrage bei Osteopathie in Balance'
                         content = afx`
                             <p style="margin: 0 0 16px 0; font-size: 16px; color: #3C3C3B; font-family: Arial, Helvetica, sans-serif;">Guten Tag {data.vorname || ''} {data.nachname || ''},</p>
                             <p style="margin: 0 0 24px 0; font-size: 16px; color: #3C3C3B; font-family: Arial, Helvetica, sans-serif;">vielen Dank für Ihre Anfrage. Wir haben Ihre Angaben erhalten und werden uns schnellstmöglich bei Ihnen melden.</p>
@@ -265,7 +265,7 @@ prototype(Thorwarth.BaseSite:Content.LandlordContactForm) < prototype(Neos.Neos:
                                     <td style="padding: 10px 16px; color: #3C3C3B; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">{data.nachricht || 'Keine Nachricht'}</td>
                                 </tr>
                             </table>
-                            <p style="margin: 0; font-size: 16px; color: #3C3C3B; font-family: Arial, Helvetica, sans-serif;">Mit freundlichen Grüßen<br />Ihr SmartGrund-Team</p>
+                            <p style="margin: 0; font-size: 16px; color: #3C3C3B; font-family: Arial, Helvetica, sans-serif;">Mit freundlichen Grüßen<br />Ihr Osteopathie in Balance Team</p>
                         `
                     }
                 }

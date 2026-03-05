@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Smartgrund\Site\Domain\Repository;
+namespace OsteopathieInBalance\Site\Domain\Repository;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Persistence\Repository;

@@ -5,7 +5,7 @@ body {
 :root {
   --font-size-base: 20px;
 
-  /* SmartGrund Brand Colors */
+  /* Osteopathie in Balance Brand Colors */
   --smart-navy: #122945;
   --smart-teal: #2E8A87;
   --smart-teal-dark: #1B5352;
@@ -267,9 +267,9 @@ main {
   }
 }
 
-/* SmartGrund Component Styles */
+/* Osteopathie in Balance Component Styles */
 @layer components {
-  /* SmartGrund Button Styles */
+  /* Osteopathie in Balance Button Styles */
   .btn-smart-primary {
     @apply bg-smart-teal hover:bg-smart-teal-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
   }
@@ -282,22 +282,22 @@ main {
     @apply border-2 border-smart-teal text-smart-navy hover:bg-smart-teal hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200;
   }
 
-  /* SmartGrund Header */
+  /* Osteopathie in Balance Header */
   .smart-header {
     @apply text-white;
   }
 
-  /* SmartGrund Footer */
+  /* Osteopathie in Balance Footer */
   .smart-footer {
     @apply text-white;
   }
 
-  /* SmartGrund Card */
+  /* Osteopathie in Balance Card */
   .smart-card {
     @apply bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300;
   }
 
-  /* SmartGrund Section */
+  /* Osteopathie in Balance Section */
   .smart-section {
     @apply py-16 px-4;
   }
@@ -314,7 +314,7 @@ main {
     @apply bg-smart-gray py-16 px-4;
   }
 
-  /* SmartGrund Heading Styles */
+  /* Osteopathie in Balance Heading Styles */
   .smart-h1 {
     @apply font-headline text-4xl md:text-5xl lg:text-[3.4375rem] font-bold text-smart-navy leading-tight;
   }
@@ -348,17 +348,17 @@ main {
     color: var(--smart-teal);
   }
 
-  /* SmartGrund Text Styles */
+  /* Osteopathie in Balance Text Styles */
   .smart-text-body {
     @apply font-body text-base md:text-lg text-smart-text leading-relaxed;
   }
 
-  /* SmartGrund Link Styles */
+  /* Osteopathie in Balance Link Styles */
   .smart-link {
     @apply text-smart-teal hover:text-smart-teal-dark underline transition-colors duration-200;
   }
 
-  /* SmartGrund Container */
+  /* Osteopathie in Balance Container */
   .smart-container {
     @apply container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl;
   }
@@ -638,7 +638,7 @@ section i {
   transition: all 0.3s ease-in-out;
 }
 
-/* GLightbox Custom Styles for SmartGrund */
+/* GLightbox Custom Styles for Osteopathie in Balance */
 .glightbox-container .goverlay {
   background: rgba(27, 58, 75, 0.95);
 }

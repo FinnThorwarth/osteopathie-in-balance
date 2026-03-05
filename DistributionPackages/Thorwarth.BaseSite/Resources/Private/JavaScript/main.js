@@ -325,4 +325,4 @@ window.addEventListener('load', () => {
 })
 
 // General JavaScript functionality
-console.log('SmartGrund frontend loaded')
+console.log('Osteopathie in Balance frontend loaded')

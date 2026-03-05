@@ -19,8 +19,8 @@
   ui:
     inspector:
       groups:
-        smartgrund:
-          label: 'SmartGrund Module'
+        osteopathieinbalance:
+          label: 'Osteopathie in Balance Module'
           position: 5
 
 # Site root constraints

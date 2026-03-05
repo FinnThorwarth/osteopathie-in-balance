@@ -6,7 +6,7 @@
   ui:
     label: 'Abschnitt mit Überschrift'
     icon: 'icon-columns'
-    group: 'smartgrund'
+    group: 'osteopathieinbalance'
     inspector:
       groups:
         content:

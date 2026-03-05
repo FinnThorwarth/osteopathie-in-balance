@@ -65,5 +65,5 @@ Neos:
 Thorwarth:
   BaseSite:
     mail:
-      senderAddress: 'info@smartgrund.de'
-      senderName: 'SmartGrund GmbH'
+      senderAddress: 'info@osteopathie-in-balance.de'
+      senderName: 'Osteopathie in Balance'

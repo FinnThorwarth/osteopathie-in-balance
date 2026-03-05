@@ -1,7 +1,7 @@
 {
   "name": "thorwarth-basesite",
   "version": "1.0.0",
-  "description": "Frontend build for SmartGrund GmbH Neos CMS site",
+  "description": "Frontend build for Osteopathie in Balance Neos CMS site",
   "private": true,
   "type": "module",
   "scripts": {

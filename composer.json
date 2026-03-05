@@ -31,7 +31,7 @@
         "sitegeist/archaeopteryx": "^2.0",
         "neos/symfonymailer": "^1.0",
         "sitegeist/chantalle": "^2.0",
-        "smartgrund/site": "dev-main",
+        "osteopathieinbalance/site": "dev-main",
         "symfony/microsoft-graph-mailer": "^7.4"
     },
     "require-dev": {

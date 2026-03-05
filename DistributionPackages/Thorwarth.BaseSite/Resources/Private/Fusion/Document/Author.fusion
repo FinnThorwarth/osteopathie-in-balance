@@ -33,7 +33,7 @@ prototype(Thorwarth.BaseSite:Document.Author) < prototype(Thorwarth.BaseSite:Doc
     "sameAs": Array.filter([props.linkedin, props.twitter, props.facebook], Boolean),
     "worksFor": {
     "@type": "Organization",
-    "name": "SmartGrund GmbH"
+    "name": "Osteopathie in Balance"
     }
     })}
     </script>

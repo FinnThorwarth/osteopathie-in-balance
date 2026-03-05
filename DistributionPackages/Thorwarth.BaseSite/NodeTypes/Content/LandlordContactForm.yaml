@@ -24,7 +24,7 @@
           editor: 'Neos.Neos/Inspector/Editors/BooleanEditor'
     recipientEmail:
       type: string
-      defaultValue: 'info@smartgrund.de'
+      defaultValue: 'info@osteopathie-in-balance.de'
       ui:
         label: 'Empfänger E-Mail'
         reloadIfChanged: false
