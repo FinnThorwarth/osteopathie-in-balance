@@ -11,7 +11,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
     navigationData = Thorwarth.BaseSite:Component.Molecule.NavigationData
 
     renderer = afx`
-        <header id="site-header" class="pt-14 md:pt-16">
+        <header id="site-header" class="">
             <div class="fixed top-0 left-0 right-0 w-full bg-smart-warm-bg z-50 shadow-sm">
                 <div class="flex items-center justify-between px-2 md:px-4">
                     <div id="navigation-vue" data-navigation={props.navigationData || '{"menuItems":[],"currentNodeIdentifier":"debug-no-context"}'}></div>
@@ -22,15 +22,9 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
                             class="h-9 w-auto"
                         />
                     </a>
-                    <a
-                        href="#jetzt-buchen"
-                        class="border-2 border-smart-navy text-smart-navy rounded-full px-4 md:px-6 py-1.5 md:py-2 text-sm md:text-base font-semibold hover:bg-smart-teal hover:text-white hover:border-smart-teal transition-colors whitespace-nowrap"
-                    >
-                        Jetzt buchen
-                    </a>
                 </div>
             </div>
-            <div id="hero-section" class="bg-smart-warm-bg py-12 lg:py-20">
+            <div id="hero-section" class="bg-smart-warm-bg">
               <div class="container mx-auto px-4">
                 <div class="flex items-center justify-center gap-8 md:gap-12">
                     <a href="/" class="block">
