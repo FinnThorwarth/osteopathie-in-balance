@@ -6,6 +6,9 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
     headingSize = ${q(node).property('headingSize') || 'h2'}
     imageBleedEdge = ${q(node).property('imageBleedEdge')}
     darkBackground = ${q(node).property('darkBackground')}
+    backgroundColor = ${q(node).property('backgroundColor')}
+    circularImage = ${q(node).property('circularImage')}
+    showDecorativeCircles = ${q(node).property('showDecorativeCircles')}
 
     heading = Neos.Neos:Editable {
         property = 'heading'
@@ -38,6 +41,11 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
     isTextFirst = ${String.startsWith(q(node).property('columnLayout') || '', 'text-image')}
 
     @context {
+        bgClasses = Neos.Fusion:DataStructure {
+            cream = 'bg-smart-cream'
+            teal-light = 'bg-smart-teal-light'
+            gray = 'bg-smart-gray'
+        }
         subheadingSize = Neos.Fusion:DataStructure {
             h1 = 'h2'
             h2 = 'h3'
@@ -75,7 +83,10 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
     }
 
     renderer = afx`
-        <section id={props.anchorId} class={'content-text-image content-text' + (props.imageBleedEdge ? ' w-screen relative overflow-hidden' : '') + (props.darkBackground ? ' text-image--dark' : '')}>
+        <section id={props.anchorId} class={'content-text-image content-text' + (props.imageBleedEdge ? ' w-screen relative overflow-hidden' : '') + (props.darkBackground ? ' text-image--dark' : (props.backgroundColor ? ' ' + bgClasses[props.backgroundColor] : '')) + (props.showDecorativeCircles ? ' smart-section-decorated' : '')}>
+
+            <div @if={props.showDecorativeCircles && !props.imageBleedEdge} class="deco-circle deco-circle--teal deco-circle--lg -top-24 -right-24"></div>
+            <div @if={props.showDecorativeCircles && !props.imageBleedEdge} class="deco-circle deco-circle--navy deco-circle--md -bottom-16 -left-16"></div>
 
             <div @if={!props.imageBleedEdge} class="py-8 md:py-16 lg:py-32">
                 <div class="container mx-auto px-4">
@@ -84,7 +95,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                             <img @if={props.image}
                                  src={props.imageUri}
                                  alt={props.alternativeText}
-                                 class="w-full h-auto rounded-sm" />
+                                 class={'w-full h-auto ' + (props.circularImage ? 'rounded-full aspect-square object-cover' : 'rounded-sm')} />
                         </div>
                         <div class={'max-w-none ' + (textColSpan[props.columnLayout] || '')}>
                             <Neos.Fusion:Tag @if={props.heading} tagName={props.headingSize}>{props.heading}</Neos.Fusion:Tag>
@@ -95,7 +106,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                             <img @if={props.image}
                                  src={props.imageUri}
                                  alt={props.alternativeText}
-                                 class="w-full h-auto rounded-lg" />
+                                 class={'w-full h-auto ' + (props.circularImage ? 'rounded-full aspect-square object-cover' : 'rounded-lg')} />
                         </div>
                     </div>
                 </div>

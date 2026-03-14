@@ -43,6 +43,9 @@ prototype(Thorwarth.BaseSite:Content.Text) < prototype(Neos.Neos:ContentComponen
         bgClasses = Neos.Fusion:DataStructure {
             olive = 'bg-smart-teal-light'
             rose = 'bg-smart-gray'
+            cream = 'bg-smart-cream'
+            teal-light = 'bg-smart-teal-light'
+            gray = 'bg-smart-gray'
         }
     }
 

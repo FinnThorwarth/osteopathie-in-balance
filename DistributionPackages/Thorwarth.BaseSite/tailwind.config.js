@@ -20,6 +20,9 @@ export default {
 				'smart-text': '#3C3C3B',
 				'smart-text-light': '#5F5F5F',
 				'smart-white': '#FFFFFF',
+				'smart-cream': '#FAF8F5',
+				'smart-cream-dark': '#F0EBE3',
+				'smart-teal-light': '#E8F4F4',
 				// Osteopathie in Balance Primary Color Palette (Teal)
 				primary: {
 					50: '#e8f4f4',
@@ -88,6 +91,8 @@ export default {
 				'18': '4.5rem',
 				'88': '22rem',
 				'128': '32rem',
+				'160': '40rem',
+				'200': '50rem',
 			},
 			borderRadius: {
 				'sm': '0.125rem',

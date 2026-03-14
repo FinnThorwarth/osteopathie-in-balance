@@ -39,6 +39,10 @@
                 label: 'Kein Hintergrund'
               'gray':
                 label: 'Grau (#7A8594)'
+              'cream':
+                label: 'Creme / Warm'
+              'teal-light':
+                label: 'Helles Teal'
     # Header
     heading:
       type: string

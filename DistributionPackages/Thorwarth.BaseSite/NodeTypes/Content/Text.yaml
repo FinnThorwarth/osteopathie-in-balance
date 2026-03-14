@@ -32,6 +32,26 @@
           group: 'options'
           position: 6
           editor: 'Neos.Neos/Inspector/Editors/BooleanEditor'
+    backgroundColor:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Hintergrundfarbe'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 7
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              '':
+                label: 'Kein Hintergrund'
+              'cream':
+                label: 'Creme / Warm'
+              'teal-light':
+                label: 'Helles Teal'
+              'gray':
+                label: 'Grau'
     columnLayout:
       type: string
       defaultValue: ''

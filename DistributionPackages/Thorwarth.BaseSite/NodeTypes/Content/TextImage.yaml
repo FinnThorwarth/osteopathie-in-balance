@@ -98,6 +98,26 @@
           group: 'options'
           position: 3
           editor: 'Neos.Neos/Inspector/Editors/BooleanEditor'
+    backgroundColor:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Hintergrundfarbe'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 4
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              '':
+                label: 'Kein Hintergrund'
+              'cream':
+                label: 'Creme / Warm'
+              'teal-light':
+                label: 'Helles Teal'
+              'gray':
+                label: 'Grau'
     headingSize:
       type: string
       defaultValue: 'h2'
@@ -150,3 +170,21 @@
               a: true
               ul: true
               ol: true
+    circularImage:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Rundes Bild'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 13
+    showDecorativeCircles:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Dekorative Kreise anzeigen'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 14

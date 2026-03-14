@@ -1,0 +1,98 @@
+'Thorwarth.BaseSite:Content.ProcessSection':
+  superTypes:
+    'Neos.Neos:Content': true
+    'Thorwarth.BaseSite:Mixin.NavigationAnchor': true
+  ui:
+    label: 'Behandlungsablauf'
+    icon: 'icon-list-ol'
+    position: 67
+    group: 'structure'
+    inspector:
+      groups:
+        options:
+          label: 'Optionen'
+          position: 10
+  properties:
+    heading:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Ueberschrift'
+            formatting:
+              h2: true
+              h3: true
+    subheading:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Unterueberschrift'
+    badge1Label:
+      type: string
+      defaultValue: 'Ersttermin'
+      ui:
+        label: 'Badge 1 Label'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 20
+    badge1Text:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Beschreibung Ersttermin'
+            autoparagraph: true
+            formatting:
+              strong: true
+              em: true
+              a: true
+              ul: true
+              ol: true
+    badge2Label:
+      type: string
+      defaultValue: 'Folgetermin'
+      ui:
+        label: 'Badge 2 Label'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 30
+    badge2Text:
+      type: string
+      ui:
+        inlineEditable: true
+        inline:
+          editorOptions:
+            placeholder: 'Beschreibung Folgetermin'
+            autoparagraph: true
+            formatting:
+              strong: true
+              em: true
+              a: true
+              ul: true
+              ol: true
+    backgroundColor:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Hintergrundfarbe'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 5
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              '':
+                label: 'Kein Hintergrund'
+              'cream':
+                label: 'Creme / Warm'
+              'teal-light':
+                label: 'Helles Teal'
+              'gray':
+                label: 'Grau'

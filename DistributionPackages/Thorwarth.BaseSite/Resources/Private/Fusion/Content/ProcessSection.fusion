@@ -1,0 +1,58 @@
+prototype(Thorwarth.BaseSite:Content.ProcessSection) < prototype(Neos.Neos:ContentComponent) {
+    backgroundColor = ${q(node).property('backgroundColor')}
+    anchorId = ${q(node).property('anchorId')}
+    badge1Label = ${q(node).property('badge1Label') || 'Ersttermin'}
+    badge2Label = ${q(node).property('badge2Label') || 'Folgetermin'}
+    isBackend = ${renderingMode.isEdit}
+
+    heading = Neos.Neos:Editable {
+        property = 'heading'
+    }
+    subheading = Neos.Neos:Editable {
+        property = 'subheading'
+    }
+    badge1Text = Neos.Neos:Editable {
+        property = 'badge1Text'
+    }
+    badge2Text = Neos.Neos:Editable {
+        property = 'badge2Text'
+    }
+
+    @context {
+        bgClasses = Neos.Fusion:DataStructure {
+            cream = 'bg-smart-cream'
+            teal-light = 'bg-smart-teal-light'
+            gray = 'bg-smart-gray'
+        }
+    }
+
+    renderer = afx`
+        <section
+            id={props.anchorId}
+            class={'content-text py-8 md:py-16 lg:py-32 ' + (props.backgroundColor ? bgClasses[props.backgroundColor] : '')}
+        >
+            <div class="container mx-auto px-4">
+                <div class="mb-10">
+                    <h2 @if={props.heading} class="font-sans text-2xl md:text-3xl lg:text-[3rem] font-light mb-2 text-smart-teal">{props.heading}</h2>
+                    <h3 @if={props.subheading} class="font-sans text-xl md:text-2xl font-normal mb-4 text-smart-navy">{props.subheading}</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                    <div @if={props.isBackend || q(node).property('badge1Text')}>
+                        <span class="smart-badge smart-badge--teal mb-4">{props.badge1Label}</span>
+                        <div class="mt-4 content-text">
+                            {props.badge1Text}
+                        </div>
+                    </div>
+
+                    <div @if={props.isBackend || q(node).property('badge2Text')}>
+                        <span class="smart-badge smart-badge--teal mb-4">{props.badge2Label}</span>
+                        <div class="mt-4 content-text">
+                            {props.badge2Text}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `
+}

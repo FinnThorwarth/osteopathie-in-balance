@@ -6,6 +6,8 @@ prototype(Thorwarth.BaseSite:Content.CardSection) < prototype(Neos.Neos:ContentC
     @context {
         bgClasses = Neos.Fusion:DataStructure {
             gray = 'bg-smart-blue-gray/10'
+            cream = 'bg-smart-cream'
+            teal-light = 'bg-smart-teal-light'
         }
     }
     isBackend = ${renderingMode.isEdit}

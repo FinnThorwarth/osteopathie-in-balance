@@ -16,6 +16,9 @@ body {
   --smart-text: #3C3C3B;
   --smart-text-light: #5F5F5F;
   --smart-white: #FFFFFF;
+  --smart-cream: #FAF8F5;
+  --smart-cream-dark: #F0EBE3;
+  --smart-teal-light: #E8F4F4;
 }
 
 /* zalando-sans-semiexpanded-200 - latin */
@@ -361,6 +364,79 @@ main {
   /* Osteopathie in Balance Container */
   .smart-container {
     @apply container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl;
+  }
+
+  /* Dekorative Kreis-Elemente */
+  .deco-circle {
+    @apply absolute rounded-full border-2 pointer-events-none;
+  }
+  .deco-circle--teal { @apply border-smart-teal/30; }
+  .deco-circle--navy { @apply border-smart-navy/20; }
+  .deco-circle--sm { @apply w-48 h-48 md:w-64 md:h-64; }
+  .deco-circle--md { @apply w-64 h-64 md:w-96 md:h-96; }
+  .deco-circle--lg { @apply w-96 h-96 md:w-[32rem] md:h-[32rem]; }
+  .deco-circle--xl { @apply w-[32rem] h-[32rem] md:w-[40rem] md:h-[40rem]; }
+
+  /* Rundes Bild mit optionalem Ring */
+  .smart-image-circle {
+    @apply rounded-full overflow-hidden object-cover object-center;
+  }
+  .smart-image-circle--bordered {
+    @apply rounded-full overflow-hidden ring-4 ring-smart-teal/30 ring-offset-4 ring-offset-white;
+  }
+
+  /* Badge/Pill-Komponente */
+  .smart-badge {
+    @apply inline-block px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide;
+  }
+  .smart-badge--teal { @apply bg-smart-teal text-white; }
+  .smart-badge--navy { @apply bg-smart-navy text-white; }
+  .smart-badge--outline { @apply bg-transparent border-2 border-smart-teal text-smart-teal; }
+  .smart-badge--light { @apply bg-primary-50 text-smart-teal-dark; }
+
+  /* Neue Sektions-Hintergruende */
+  .smart-section-cream {
+    @apply bg-smart-cream text-smart-text py-16 px-4;
+  }
+  .smart-section-teal-light {
+    @apply bg-smart-teal-light text-smart-text py-16 px-4;
+  }
+
+  /* Prozess-/Schritt-Layout */
+  .smart-process-step {
+    @apply relative pl-12 pb-8;
+  }
+  .smart-process-step::before {
+    content: attr(data-step);
+    @apply absolute left-0 top-0 -translate-x-1/2 w-8 h-8 rounded-full bg-smart-teal text-white text-sm font-bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .smart-process-step:not(:last-child)::after {
+    content: '';
+    @apply absolute left-0 top-8 bottom-0 -translate-x-1/2 border-l-2 border-smart-teal/30;
+  }
+
+  /* Feature-/Icon-Karte */
+  .smart-card--feature {
+    @apply bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow duration-300;
+  }
+  .smart-card__icon {
+    @apply w-14 h-14 mx-auto mb-4 flex items-center justify-center rounded-full bg-primary-50 text-smart-teal;
+  }
+
+  /* Dekorierter Sektions-Container */
+  .smart-section-decorated {
+    @apply relative overflow-hidden;
+  }
+
+  /* Trennlinien */
+  .smart-divider {
+    @apply border-t border-smart-gray-medium/50 my-8;
+  }
+  .smart-divider--teal {
+    @apply border-t-2 border-smart-teal/20 my-8;
   }
 }
 
