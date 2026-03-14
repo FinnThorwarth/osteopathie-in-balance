@@ -1,20 +1,20 @@
 <svg id="Gruppe_8682" data-name="Gruppe 8682" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16.441" height="41.263" viewBox="0 0 16.441 41.263">
   <defs>
     <clipPath id="clip-path">
-      <rect id="Rechteck_3318" data-name="Rechteck 3318" width="16.441" height="41.263" fill="#2e8a87"/>
+      <rect id="Rechteck_3318" data-name="Rechteck 3318" width="16.441" height="41.263" fill="#084996"/>
     </clipPath>
     <clipPath id="clip-path-3">
-      <rect id="Rechteck_3316" data-name="Rechteck 3316" width="16.441" height="26.164" fill="#2e8a87"/>
+      <rect id="Rechteck_3316" data-name="Rechteck 3316" width="16.441" height="26.164" fill="#084996"/>
     </clipPath>
   </defs>
   <g id="Gruppe_8676" data-name="Gruppe 8676" clip-path="url(#clip-path)">
-    <path id="Pfad_8690" data-name="Pfad 8690" d="M0,14.324v11.84L16.441,10.977,16.271,0Z" transform="translate(0 15.099)" fill="#2e8a87"/>
+    <path id="Pfad_8690" data-name="Pfad 8690" d="M0,14.324v11.84L16.441,10.977,16.271,0Z" transform="translate(0 15.099)" fill="#084996"/>
     <g id="Gruppe_8675" data-name="Gruppe 8675" transform="translate(0 0)">
       <g id="Gruppe_8674" data-name="Gruppe 8674" clip-path="url(#clip-path)">
         <g id="Gruppe_8673" data-name="Gruppe 8673" transform="translate(0 0)" opacity="0.6">
           <g id="Gruppe_8672" data-name="Gruppe 8672">
             <g id="Gruppe_8671" data-name="Gruppe 8671" clip-path="url(#clip-path-3)">
-              <path id="Pfad_8691" data-name="Pfad 8691" d="M0,0V11.84L16.271,26.164l.17-10.977Z" transform="translate(0 0)" fill="#2e8a87"/>
+              <path id="Pfad_8691" data-name="Pfad 8691" d="M0,0V11.84L16.271,26.164l.17-10.977Z" transform="translate(0 0)" fill="#084996"/>
             </g>
           </g>
         </g>

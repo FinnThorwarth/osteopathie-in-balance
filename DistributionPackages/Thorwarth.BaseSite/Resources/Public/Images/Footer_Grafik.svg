@@ -4,10 +4,10 @@
       <rect x="-110" y="81" width="974.736" height="401.773" fill="none"/>
     </clipPath>
     <clipPath id="clip-path-2">
-      <path id="Pfad_8685" data-name="Pfad 8685" d="M0,590.976H889.378V-74.834H0Z" transform="translate(0 74.834)" fill="#2e8a87"/>
+      <path id="Pfad_8685" data-name="Pfad 8685" d="M0,590.976H889.378V-74.834H0Z" transform="translate(0 74.834)" fill="#084996"/>
     </clipPath>
     <clipPath id="clip-path-3">
-      <rect id="Rechteck_3314" data-name="Rechteck 3314" width="1589.641" height="2861.859" fill="#2e8a87"/>
+      <rect id="Rechteck_3314" data-name="Rechteck 3314" width="1589.641" height="2861.859" fill="#084996"/>
     </clipPath>
   </defs>
   <g id="Bildlaufgruppe_3" data-name="Bildlaufgruppe 3" transform="translate(110 -81)" opacity="0.206" clip-path="url(#clip-path)" style="mix-blend-mode: normal;isolation: isolate">
@@ -16,12 +16,12 @@
         <g id="Gruppe_8662" data-name="Gruppe 8662" transform="translate(-147.902 -311.4)" opacity="0.9">
           <g id="Gruppe_8661" data-name="Gruppe 8661">
             <g id="Gruppe_8660" data-name="Gruppe 8660" clip-path="url(#clip-path-3)">
-              <path id="Pfad_8682" data-name="Pfad 8682" d="M245.548-38.337H83.613v341.09H245.548Z" transform="translate(791.732 674.457)" fill="#2e8a87"/>
+              <path id="Pfad_8682" data-name="Pfad 8682" d="M245.548-38.337H83.613v341.09H245.548Z" transform="translate(791.732 674.457)" fill="#084996"/>
               <g id="Gruppe_8658" data-name="Gruppe 8658" transform="translate(623.089 318.943)">
-                <path id="Pfad_8683" data-name="Pfad 8683" d="M96.652,0l-109.2,111.668,304.991,311.9,109.2-111.677Z" transform="translate(12.552)" fill="#2e8a87"/>
+                <path id="Pfad_8683" data-name="Pfad 8683" d="M96.652,0l-109.2,111.668,304.991,311.9,109.2-111.677Z" transform="translate(12.552)" fill="#084996"/>
               </g>
               <g id="Gruppe_8659" data-name="Gruppe 8659" transform="translate(147.899 311.4)">
-                <path id="Pfad_8684" data-name="Pfad 8684" d="M519.226,3.656,257.588-.463-67.431,357.576H214.644Z" transform="translate(67.431 0.463)" fill="#2e8a87"/>
+                <path id="Pfad_8684" data-name="Pfad 8684" d="M519.226,3.656,257.588-.463-67.431,357.576H214.644Z" transform="translate(67.431 0.463)" fill="#084996"/>
               </g>
             </g>
           </g>

@@ -118,6 +118,14 @@
                 label: 'Helles Teal'
               'gray':
                 label: 'Grau'
+              'blue-light':
+                label: 'Hellblau'
+              'beige':
+                label: 'Beige / Warm'
+              'rose-light':
+                label: 'Rosé / Zart'
+              'peach':
+                label: 'Pfirsich / Hell'
     headingSize:
       type: string
       defaultValue: 'h2'

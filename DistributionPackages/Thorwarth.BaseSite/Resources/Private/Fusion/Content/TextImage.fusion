@@ -45,6 +45,10 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
             cream = 'bg-smart-cream'
             teal-light = 'bg-smart-teal-light'
             gray = 'bg-smart-gray'
+            blue-light = 'bg-smart-blue-light'
+            beige = 'bg-smart-beige'
+            rose-light = 'bg-smart-rose-light'
+            peach = 'bg-smart-peach'
         }
         subheadingSize = Neos.Fusion:DataStructure {
             h1 = 'h2'

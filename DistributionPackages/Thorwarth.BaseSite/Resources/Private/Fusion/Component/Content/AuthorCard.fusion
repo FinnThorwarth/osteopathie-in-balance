@@ -60,7 +60,7 @@ prototype(Thorwarth.BaseSite:Component.Content.AuthorCard) < prototype(Neos.Fusi
                         </div>
                   </div>
 </div>
-                  <div @if={props.linkedin || props.twitter || props.facebook} class="border-t border-smart-gray-medium mt-2">
+                  <div @if={props.linkedin || props.twitter || props.facebook} class="border-t border-gray-300 mt-2">
                      <div class="pb-4 md:pb-2 px-2 py-2">
                      <p class="text-xl font-sans">Erfahren Sie gern noch mehr von mir</p><p>/</p>
                      <div class="flex gap-3">

@@ -1,37 +1,54 @@
 <template>
   <div class="navigation-wrapper font-expanded h-full">
-    <!-- Desktop Navigation (horizontal bar) - always visible on desktop -->
-    <nav
-      class="hidden xl:flex items-stretch text-smart-navy"
-    >
-      <ul class="flex items-stretch">
-        <!-- All menu items -->
-        <li
-          v-for="item in menuItems"
-          :key="item.title"
-          class="relative group flex items-stretch"
-        >
-          <a
-            v-if="item.url && item.url !== '#'"
-            :href="item.url"
-            @click="handleNavClick"
-            class="flex items-center px-8 py-4 text-2xl 2xl:text4xl font-light transition-colors"
-            :class="item.isActive
-              ? 'text-smart-teal border-b-2 border-smart-teal'
-              : 'hover:text-smart-teal'"
+    <!-- Desktop Navigation teleported to hero section -->
+    <Teleport to="#desktop-nav-target" v-if="desktopNavTargetExists">
+      <nav class="flex justify-center text-smart-navy">
+        <ul class="flex items-center flex-wrap justify-center">
+          <li
+            v-for="item in menuItems"
+            :key="item.title"
+            class="relative group"
           >
-            {{ item.title }}
-          </a>
-          <span
-            v-else
-            class="flex items-center px-8 py-4 text-2xl 2xl:text4xl font-light"
-            :class="item.isActive ? 'text-smart-teal border-b-2 border-smart-teal' : ''"
-          >
-            {{ item.title }}
-          </span>
-        </li>
-      </ul>
-    </nav>
+            <a
+              v-if="item.url && item.url !== '#'"
+              :href="item.url"
+              @click="handleNavClick"
+              class="flex items-center px-5 py-2 text-lg font-light transition-colors"
+              :class="item.isActive || item.hasActiveChild
+                ? 'text-smart-teal'
+                : 'hover:text-smart-teal'"
+            >
+              {{ item.title }}
+            </a>
+            <span
+              v-else
+              class="flex items-center px-5 py-2 text-lg font-light"
+              :class="item.isActive || item.hasActiveChild ? 'text-smart-teal' : ''"
+            >
+              {{ item.title }}
+            </span>
+            <!-- Hover Dropdown for children -->
+            <div
+              v-if="item.children && item.children.length > 0"
+              class="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+            >
+              <div class="bg-white rounded-lg shadow-lg py-2 min-w-[220px]">
+                <a
+                  v-for="child in item.children"
+                  :key="child.title"
+                  :href="child.url"
+                  @click="handleNavClick"
+                  class="block px-5 py-2 text-base text-smart-text hover:bg-smart-teal/10 hover:text-smart-teal transition-colors"
+                  :class="child.isActive ? 'text-smart-teal font-medium' : ''"
+                >
+                  {{ child.title }}
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </Teleport>
 
     <!-- Compact Navigation Button (only visible on mobile/tablet, hidden on desktop) -->
     <div
@@ -87,7 +104,7 @@
                   class="inline-block text-2xl md:text-3xl transition-all px-6 py-3"
                   :class="item.isActive
                     ? 'bg-smart-teal text-white font-normal'
-                    : 'text-white font-normal hover:bg-smart-white hover:text-smart-navy'"
+                    : 'text-white font-normal hover:bg-white hover:text-smart-navy'"
                 >
                   {{ item.title }}
                 </a>
@@ -100,6 +117,21 @@
                 >
                   {{ item.title }}
                 </span>
+                <!-- Mobile children -->
+                <ul v-if="item.children && item.children.length > 0" class="mt-2 space-y-2">
+                  <li v-for="child in item.children" :key="child.title">
+                    <a
+                      :href="child.url"
+                      @click="handleNavClick"
+                      class="inline-block text-lg md:text-xl transition-all px-6 py-1.5"
+                      :class="child.isActive
+                        ? 'text-smart-teal font-normal'
+                        : 'text-white/80 font-light hover:text-white'"
+                    >
+                      {{ child.title }}
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </nav>
@@ -128,6 +160,7 @@ export default {
       activeSectionId: null,
       isScrolling: false,
       scrollTimeout: null,
+      desktopNavTargetExists: false,
     };
   },
   computed: {},
@@ -331,6 +364,9 @@ export default {
     console.log('[Navigation] Component mounted successfully');
     console.log('[Navigation] Menu button element:', this.$el.querySelector('button'));
 
+    // Check if the desktop nav teleport target exists in the DOM
+    this.desktopNavTargetExists = !!document.getElementById('desktop-nav-target');
+
     // Handle scroll events to toggle navigation style
     this.handleScroll = () => {
       this.isScrolled = window.scrollY > 100; // Show compact nav after 100px scroll
@@ -341,8 +377,7 @@ export default {
     // Handle window resize - close menu when switching to desktop
     this.handleResize = () => {
       const isDesktop = window.innerWidth >= 1280; // xl breakpoint
-      if (isDesktop && this.isMenuOpen && !this.isScrolled) {
-        // Close menu when switching to desktop breakpoint where horizontal nav is visible
+      if (isDesktop && this.isMenuOpen) {
         this.closeMenu();
       }
     };
