@@ -7,19 +7,14 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
     linkedinUrl = ${q(site).property('linkedinUrl')}
 
     renderer = afx`
-        <footer class="smart-footer bg-smart-navy relative text-white overflow-hidden mt-16">
+        <footer class="smart-footer bg-[#084996] relative text-white overflow-hidden">
           <div class="px-4 relative 2xl:max-w-[80%] 2xl:mx-auto">
-               <img
-                            src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Footer_Grafik.svg')}
-                            alt=""
-                            class="h-auto bottom-0 top-0 h-[100%] absolute"
-                        />
 
-              <div class="mx-auto  px-4 py-12 md:py-16 relative">
+              <div class="mx-auto  px-4 py-6 md:py-8 relative">
                 <div class="grid md:grid-cols-3 gap-8 items-center">
                     <div class="flex justify-center md:justify-start">
                                      <img
-                            src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_Footer.svg')}
+                            src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_neg.svg')}
                             alt="Osteopathie in Balance"
                             class="h-auto h-[150px] my-2 md:h-[175px] md:my-4 lg:h-[200px] lg:my-8 xl:h-[225px] xl:my-12"
                         />
@@ -52,13 +47,15 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
             </div>
 
             <!-- Bottom Bar -->
-            <div class="bg-smart-teal py-4">
+            <div class="bg-[#084996] py-4">
                 <div class="2xl:max-w-[80%] 2xl:mx-auto mx-auto px-4">
                     <div class="flex flex-col sm:flex-row justify-end items-center gap-4 text-xl">
                         <div class="flex gap-4">
                             <a href="/impressum" class="hover:text-smart-teal-light transition-colors">Impressum</a>
                             <span>|</span>
                             <a href="/datenschutz" class="hover:text-smart-teal-light transition-colors">Datenschutz</a>
+                            <span>|</span>
+                            <a href="/agb" class="hover:text-smart-teal-light transition-colors">AGB</a>
                         </div>
                     </div>
                 </div>

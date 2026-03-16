@@ -12,16 +12,6 @@
           label: 'Einstellungen'
           position: 10
   properties:
-    darkBackground:
-      type: boolean
-      defaultValue: false
-      ui:
-        label: 'Dunkler Hintergrund'
-        reloadIfChanged: true
-        inspector:
-          group: 'settings'
-          position: 5
-          editor: 'Neos.Neos/Inspector/Editors/BooleanEditor'
     recipientEmail:
       type: string
       defaultValue: 'info@osteopathie-in-balance.de'

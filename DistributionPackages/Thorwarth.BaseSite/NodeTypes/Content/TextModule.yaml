@@ -15,15 +15,6 @@
           label: 'Layout'
           position: 20
   properties:
-    darkBackground:
-      type: boolean
-      defaultValue: false
-      ui:
-        label: 'Dunkler Hintergrund'
-        reloadIfChanged: true
-        inspector:
-          group: 'layout'
-          editor: 'Neos.Neos/Inspector/Editors/BooleanEditor'
     columnLayout:
       type: string
       defaultValue: 'single'

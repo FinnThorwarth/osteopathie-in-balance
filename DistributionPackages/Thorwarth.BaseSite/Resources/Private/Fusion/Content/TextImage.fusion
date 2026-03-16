@@ -24,16 +24,14 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
 
     imageUri = Neos.Neos:ImageUri {
         asset = ${q(node).property('image')}
-        width = 800
-        height = 600
+        maximumWidth = 800
         allowCropping = true
         allowUpScaling = false
     }
 
     imageBleedUri = Neos.Neos:ImageUri {
         asset = ${q(node).property('image')}
-        width = 1600
-        height = 1200
+        maximumWidth = 1600
         allowCropping = true
         allowUpScaling = false
     }
@@ -92,7 +90,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
             <div @if={props.showDecorativeCircles && !props.imageBleedEdge} class="deco-circle deco-circle--teal deco-circle--lg -top-24 -right-24"></div>
             <div @if={props.showDecorativeCircles && !props.imageBleedEdge} class="deco-circle deco-circle--navy deco-circle--md -bottom-16 -left-16"></div>
 
-            <div @if={!props.imageBleedEdge} class="py-8 md:py-16 lg:py-32">
+            <div @if={!props.imageBleedEdge} class="py-8 md:py-16 lg:py-24">
                 <div class="container mx-auto px-4">
                     <div class={'grid gap-8 items-start ' + layoutClasses[props.columnLayout]}>
                         <div @if={!props.isTextFirst} class={'w-full ' + (imageColSpan[props.columnLayout] || '')}>

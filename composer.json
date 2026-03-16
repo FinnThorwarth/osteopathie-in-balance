@@ -32,7 +32,8 @@
         "neos/symfonymailer": "^1.0",
         "sitegeist/chantalle": "^2.0",
         "osteopathieinbalance/site": "dev-main",
-        "symfony/microsoft-graph-mailer": "^7.4"
+        "symfony/microsoft-graph-mailer": "^7.4",
+        "flowpack/neos-matomo": "^4.0"
     },
     "require-dev": {
         "neos/buildessentials": "~9.1.0",

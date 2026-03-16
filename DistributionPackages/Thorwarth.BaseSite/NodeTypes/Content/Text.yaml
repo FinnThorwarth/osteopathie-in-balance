@@ -22,16 +22,6 @@
         inspector:
           group: 'options'
           position: 5
-    darkBackground:
-      type: boolean
-      defaultValue: false
-      ui:
-        label: 'Dunkler Hintergrund'
-        reloadIfChanged: true
-        inspector:
-          group: 'options'
-          position: 6
-          editor: 'Neos.Neos/Inspector/Editors/BooleanEditor'
     backgroundColor:
       type: string
       defaultValue: ''

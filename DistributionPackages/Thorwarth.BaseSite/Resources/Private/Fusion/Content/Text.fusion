@@ -52,7 +52,7 @@ prototype(Thorwarth.BaseSite:Content.Text) < prototype(Neos.Neos:ContentComponen
     }
 
     renderer = afx`
-        <section id={props.anchorId} class={'content-text py-8 md:py-16 lg:py-32 ' + (props.darkBackground ? 'text-image--dark' : (props.backgroundColor ? bgClasses[props.backgroundColor] : ''))}>
+        <section id={props.anchorId} class={'content-text py-8 md:py-16 lg:py-24 ' + (props.darkBackground ? 'text-image--dark' : (props.backgroundColor ? bgClasses[props.backgroundColor] : ''))}>
             <div class="container mx-auto px-4">
                 <div class={alignmentClasses[props.textAlignment]}>
                     <Neos.Fusion:Tag tagName={props.headingLevel} @if={props.heading} attributes.class="mb-2 text-3xl md:text-6xl font-bold leading-tight">{props.heading}</Neos.Fusion:Tag>

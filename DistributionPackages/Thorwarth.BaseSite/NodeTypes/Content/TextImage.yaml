@@ -31,9 +31,6 @@
             crop:
               aspectRatio:
                 allowCustom: true
-                locked:
-                  width: 16
-                  height: 9
     alternativeText:
       type: string
       ui:
@@ -88,16 +85,6 @@
                 label: 'Text/Bild (66/33)'
               'text-image-33-66':
                 label: 'Text/Bild (33/66)'
-    darkBackground:
-      type: boolean
-      defaultValue: false
-      ui:
-        label: 'Dunkler Hintergrund'
-        reloadIfChanged: true
-        inspector:
-          group: 'options'
-          position: 3
-          editor: 'Neos.Neos/Inspector/Editors/BooleanEditor'
     backgroundColor:
       type: string
       defaultValue: ''

@@ -13,16 +13,6 @@
           label: 'Optionen'
           position: 10
   properties:
-    darkBackground:
-      type: boolean
-      defaultValue: false
-      ui:
-        label: 'Dunkler Hintergrund'
-        reloadIfChanged: true
-        inspector:
-          group: 'options'
-          position: 10
-          editor: 'Neos.Neos/Inspector/Editors/BooleanEditor'
     backgroundColor:
       type: string
       defaultValue: ''

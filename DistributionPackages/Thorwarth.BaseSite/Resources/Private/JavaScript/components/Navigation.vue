@@ -1,7 +1,7 @@
 <template>
   <div class="navigation-wrapper font-expanded h-full">
-    <!-- Desktop Navigation teleported to hero section -->
-    <Teleport to="#desktop-nav-target" v-if="desktopNavTargetExists">
+    <!-- Desktop Navigation teleported to hero section (when NOT scrolled) -->
+    <Teleport to="#desktop-nav-target" v-if="desktopNavTargetExists && !isScrolled">
       <nav class="flex justify-center text-smart-navy">
         <ul class="flex items-center flex-wrap justify-center">
           <li
@@ -50,6 +50,56 @@
       </nav>
     </Teleport>
 
+    <!-- Scrolled compact navigation teleported to fixed bar (when scrolled) -->
+    <Teleport to="#scrolled-nav-target" v-if="scrolledNavTargetExists && isScrolled">
+      <nav class="flex justify-center text-smart-navy pb-1">
+        <ul class="flex items-center flex-wrap justify-center">
+          <li
+            v-for="item in menuItems"
+            :key="'scrolled-' + item.title"
+            class="relative group"
+          >
+            <a
+              v-if="item.url && item.url !== '#'"
+              :href="item.url"
+              @click="handleNavClick"
+              class="flex items-center px-3 py-1 text-sm font-light transition-colors"
+              :class="item.isActive || item.hasActiveChild
+                ? 'text-smart-teal'
+                : 'hover:text-smart-teal'"
+            >
+              {{ item.title }}
+            </a>
+            <span
+              v-else
+              class="flex items-center px-3 py-1 text-sm font-light"
+              :class="item.isActive || item.hasActiveChild ? 'text-smart-teal' : ''"
+            >
+              {{ item.title }}
+            </span>
+            <!-- Hover Dropdown for children -->
+            <div
+              v-if="item.children && item.children.length > 0"
+              class="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+            >
+              <div class="bg-white rounded-lg shadow-lg py-2 min-w-[220px]">
+                <a
+                  v-for="child in item.children"
+                  :key="child.title"
+                  :href="child.url"
+                  @click="handleNavClick"
+                  class="block px-5 py-2 text-sm text-smart-text hover:bg-smart-teal/10 hover:text-smart-teal transition-colors"
+                  :class="child.isActive ? 'text-smart-teal font-medium' : ''"
+                >
+                  {{ child.title }}
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </Teleport>
+
     <!-- Compact Navigation Button (only visible on mobile/tablet, hidden on desktop) -->
     <div
       class="z-50 transition-transform duration-300 flex h-full xl:hidden"
@@ -77,11 +127,11 @@
       ></div>
 
       <!-- Slide-in Menu Panel from right -->
-      <div class="absolute right-0 top-0 bottom-0 w-full max-w-md xl:max-w-xl bg-smart-navy shadow-2xl overflow-y-auto">
+      <div class="absolute right-0 top-0 bottom-0 w-full max-w-md xl:max-w-xl bg-white shadow-2xl overflow-y-auto">
         <!-- Close Button -->
         <button
           @click="closeMenu"
-          class="absolute top-0 right-0 p-4 text-white"
+          class="absolute top-0 right-0 p-4 text-smart-navy"
           aria-label="Menü schließen"
         >
           <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -104,7 +154,7 @@
                   class="inline-block text-2xl md:text-3xl transition-all px-6 py-3"
                   :class="item.isActive
                     ? 'bg-smart-teal text-white font-normal'
-                    : 'text-white font-normal hover:bg-white hover:text-smart-navy'"
+                    : 'text-smart-navy font-normal hover:bg-smart-teal hover:text-white'"
                 >
                   {{ item.title }}
                 </a>
@@ -113,7 +163,7 @@
                   class="inline-block text-2xl md:text-3xl px-6 py-3"
                   :class="item.isActive
                     ? 'bg-smart-teal text-white font-normal'
-                    : 'text-white font-normal'"
+                    : 'text-smart-navy font-normal'"
                 >
                   {{ item.title }}
                 </span>
@@ -126,7 +176,7 @@
                       class="inline-block text-lg md:text-xl transition-all px-6 py-1.5"
                       :class="child.isActive
                         ? 'text-smart-teal font-normal'
-                        : 'text-white/80 font-light hover:text-white'"
+                        : 'text-smart-navy/70 font-light hover:text-smart-navy'"
                     >
                       {{ child.title }}
                     </a>
@@ -157,10 +207,12 @@ export default {
       menuItems: [],
       isOnepager: false,
       observer: null,
+      headerObserver: null,
       activeSectionId: null,
       isScrolling: false,
       scrollTimeout: null,
       desktopNavTargetExists: false,
+      scrolledNavTargetExists: false,
     };
   },
   computed: {},
@@ -364,15 +416,24 @@ export default {
     console.log('[Navigation] Component mounted successfully');
     console.log('[Navigation] Menu button element:', this.$el.querySelector('button'));
 
-    // Check if the desktop nav teleport target exists in the DOM
+    // Check if teleport targets exist in the DOM
     this.desktopNavTargetExists = !!document.getElementById('desktop-nav-target');
+    this.scrolledNavTargetExists = !!document.getElementById('scrolled-nav-target');
 
-    // Handle scroll events to toggle navigation style
-    this.handleScroll = () => {
-      this.isScrolled = window.scrollY > 100; // Show compact nav after 100px scroll
-    };
-
-    window.addEventListener('scroll', this.handleScroll);
+    // Use MutationObserver to watch for header-scrolled class changes
+    // This syncs perfectly with the CSS transitions
+    const siteHeader = document.getElementById('site-header');
+    if (siteHeader) {
+      this.isScrolled = siteHeader.classList.contains('header-scrolled');
+      this.headerObserver = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+            this.isScrolled = siteHeader.classList.contains('header-scrolled');
+          }
+        }
+      });
+      this.headerObserver.observe(siteHeader, { attributes: true, attributeFilter: ['class'] });
+    }
 
     // Handle window resize - close menu when switching to desktop
     this.handleResize = () => {
@@ -399,9 +460,9 @@ export default {
   },
   beforeUnmount() {
     document.body.style.overflow = "";
-    // Remove scroll listener
-    if (this.handleScroll) {
-      window.removeEventListener('scroll', this.handleScroll);
+    // Disconnect header MutationObserver
+    if (this.headerObserver) {
+      this.headerObserver.disconnect();
     }
     // Remove resize listener
     if (this.handleResize) {

@@ -44,13 +44,3 @@
                 label: '3 Spalten'
               4:
                 label: '4 Spalten'
-    darkBackground:
-      type: boolean
-      defaultValue: false
-      ui:
-        label: 'Dunkler Hintergrund'
-        reloadIfChanged: true
-        inspector:
-          group: 'options'
-          position: 20
-          editor: 'Neos.Neos/Inspector/Editors/BooleanEditor'

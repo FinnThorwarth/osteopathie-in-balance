@@ -12,19 +12,28 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
 
     renderer = afx`
         <header id="site-header" class="">
-            <div class="fixed top-0 left-0 right-0 w-full bg-smart-warm-bg z-50 shadow-sm">
-                <div class="flex items-center justify-between px-2 md:px-4">
-                    <div id="navigation-vue" data-navigation={props.navigationData || '{"menuItems":[],"currentNodeIdentifier":"debug-no-context"}'}></div>
-                    <a href="/" class="nav-logo-wrap absolute left-1/2 -translate-x-1/2 flex items-center" aria-label="Osteopathie in Balance – Startseite">
+            <div class="fixed-header-bar fixed top-0 left-0 right-0 w-full z-50">
+                <div class="grid grid-cols-[auto_1fr_auto] items-center px-2 md:px-4">
+                    <a href="/" class="nav-logo-wrap flex items-center py-1" aria-label="Osteopathie in Balance – Startseite">
                         <img
                             src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo.svg')}
                             alt="Osteopathie in Balance"
-                            class="h-9 w-auto"
+                            class="h-9 xl:h-24 w-auto"
                         />
                     </a>
+                    <div id="scrolled-nav-target" class="scrolled-nav-wrap hidden xl:block"></div>
+                    <div class="flex items-center gap-2 justify-self-end">
+                        <a
+                            href="#jetzt-buchen"
+                            class="nav-cta-wrap hidden md:inline-flex border-2 border-smart-navy text-smart-navy rounded-full px-6 py-2 text-base font-semibold hover:bg-smart-teal hover:text-white hover:border-smart-teal transition-colors shrink-0 whitespace-nowrap"
+                        >
+                            Jetzt buchen
+                        </a>
+                        <div id="navigation-vue" data-navigation={props.navigationData || '{"menuItems":[],"currentNodeIdentifier":"debug-no-context"}'}></div>
+                    </div>
                 </div>
             </div>
-            <div id="hero-section" class="bg-smart-warm-bg">
+            <div id="hero-section" class="bg-smart-warm-bg py-8">
               <div class="container mx-auto px-4">
                 <div class="flex items-center justify-center gap-8 md:gap-12">
                     <a href="/" class="block">
