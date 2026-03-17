@@ -1,0 +1,14 @@
+{
+    "identifier": "b48b3f11-cfa9-40bc-9e5c-ed4628a9ee11",
+    "type": "IMAGE",
+    "title": "",
+    "copyrightNotice": "",
+    "caption": "",
+    "assetSourceIdentifier": "neos",
+    "resource": {
+        "filename": "Website.png",
+        "collectionName": "persistent",
+        "mediaType": "image\/png",
+        "sha1": "2016fd591e994e942d137416f7bc1bde060165ec"
+    }
+}
