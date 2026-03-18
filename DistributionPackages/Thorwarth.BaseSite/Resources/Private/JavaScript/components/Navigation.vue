@@ -10,7 +10,7 @@
             class="relative group"
           >
             <a
-              v-if="item.url && item.url !== '#'"
+              v-if="item.url && item.url !== '#' && !(item.children && item.children.length > 0)"
               :href="item.url"
               @click="handleNavClick"
               class="flex items-center px-5 py-2 text-xl font-light transition-colors"
@@ -22,8 +22,8 @@
             </a>
             <span
               v-else
-              class="flex items-center px-5 py-2 text-xl font-light"
-              :class="item.isActive || item.hasActiveChild ? 'text-smart-teal' : ''"
+              class="flex items-center px-5 py-2 text-xl font-light cursor-pointer"
+              :class="item.isActive || item.hasActiveChild ? 'text-smart-teal' : 'hover:text-smart-teal'"
             >
               {{ item.title }}
             </span>
@@ -69,7 +69,7 @@
             class="relative group"
           >
             <a
-              v-if="item.url && item.url !== '#'"
+              v-if="item.url && item.url !== '#' && !(item.children && item.children.length > 0)"
               :href="item.url"
               @click="handleNavClick"
               class="flex items-center px-3 py-1 text-sm font-light transition-colors"
@@ -81,8 +81,8 @@
             </a>
             <span
               v-else
-              class="flex items-center px-3 py-1 text-sm font-light"
-              :class="item.isActive || item.hasActiveChild ? 'text-smart-teal' : ''"
+              class="flex items-center px-3 py-1 text-sm font-light cursor-pointer"
+              :class="item.isActive || item.hasActiveChild ? 'text-smart-teal' : 'hover:text-smart-teal'"
             >
               {{ item.title }}
             </span>
@@ -157,7 +157,7 @@
                 :key="item.title"
               >
                 <a
-                  v-if="item.url && item.url !== '#'"
+                  v-if="item.url && item.url !== '#' && !(item.children && item.children.length > 0)"
                   :href="item.url"
                   @click="handleNavClick"
                   class="inline-block text-2xl md:text-3xl transition-all px-4 py-1.5 rounded-lg"
@@ -168,6 +168,24 @@
                   {{ item.title }}
                 </a>
                 <span
+                  v-else-if="item.children && item.children.length > 0"
+                  @click="toggleMobileSubmenu(item.title)"
+                  class="inline-flex items-center gap-2 text-2xl md:text-3xl px-4 py-1.5 rounded-lg cursor-pointer select-none transition-all"
+                  :class="item.isActive || item.hasActiveChild
+                    ? 'bg-smart-teal text-white font-normal'
+                    : 'text-smart-navy font-normal hover:bg-smart-teal hover:text-white'"
+                >
+                  {{ item.title }}
+                  <svg
+                    class="w-5 h-5 transition-transform duration-200"
+                    :class="openMobileSubmenus[item.title] ? 'rotate-180' : ''"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <span
                   v-else
                   class="inline-block text-2xl md:text-3xl px-4 py-1.5 rounded-lg"
                   :class="item.isActive
@@ -177,7 +195,7 @@
                   {{ item.title }}
                 </span>
                 <!-- Mobile children -->
-                <ul v-if="item.children && item.children.length > 0" class="mt-2 space-y-2">
+                <ul v-show="openMobileSubmenus[item.title]" v-if="item.children && item.children.length > 0" class="mt-2 space-y-2">
                   <li v-for="child in item.children" :key="child.title">
                     <a
                       :href="child.url"
@@ -222,6 +240,7 @@ export default {
       scrollTimeout: null,
       desktopNavTargetExists: false,
       scrolledNavTargetExists: false,
+      openMobileSubmenus: {},
     };
   },
   computed: {},
@@ -304,6 +323,12 @@ export default {
           });
         }
       });
+    },
+    toggleMobileSubmenu(title) {
+      this.openMobileSubmenus = {
+        ...this.openMobileSubmenus,
+        [title]: !this.openMobileSubmenus[title],
+      };
     },
     toggleMenu() {
       console.log('[Navigation] toggleMenu called, current state:', this.isMenuOpen);
