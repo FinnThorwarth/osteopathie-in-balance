@@ -144,6 +144,15 @@ body {
   transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 
+/* Let clicks pass through transparent header to hero content below */
+#site-header:not(.header-scrolled) .fixed-header-bar {
+  pointer-events: none;
+}
+
+#site-header:not(.header-scrolled) #navigation-vue {
+  pointer-events: auto;
+}
+
 #site-header.header-scrolled .fixed-header-bar {
   background-color: theme('colors.smart-warm-bg');
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);

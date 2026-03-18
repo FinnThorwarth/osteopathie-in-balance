@@ -25,7 +25,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
                     <div class="flex items-center gap-2 justify-self-end">
                         <a
                             href="#jetzt-buchen"
-                            class="nav-cta-wrap hidden md:inline-flex border-2 border-smart-navy text-smart-navy rounded-full px-6 py-2 text-base font-semibold hover:bg-smart-teal hover:text-white hover:border-smart-teal transition-colors shrink-0 whitespace-nowrap"
+                            class="nav-cta-wrap hidden md:inline-flex border-2 border-smart-teal text-smart-teal rounded-full px-6 py-2 text-base font-semibold hover:bg-smart-navy hover:text-white hover:border-smart-navy transition-colors shrink-0 whitespace-nowrap"
                         >
                             Jetzt buchen
                         </a>
@@ -45,7 +45,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
                     </a>
                     <a
                         href="#jetzt-buchen"
-                        class="hidden md:inline-flex border-2 border-smart-navy text-smart-navy rounded-full px-6 lg:px-8 py-2 lg:py-3 text-base lg:text-xl font-semibold hover:bg-smart-teal hover:text-white hover:border-smart-teal transition-colors shrink-0 whitespace-nowrap"
+                        class="hidden md:inline-flex border-2 border-smart-teal text-smart-teal rounded-full px-6 lg:px-8 py-2 lg:py-3 text-base lg:text-xl font-semibold hover:bg-smart-navy hover:text-white hover:border-smart-navy transition-colors shrink-0 whitespace-nowrap"
                     >
                         Jetzt buchen
                     </a>

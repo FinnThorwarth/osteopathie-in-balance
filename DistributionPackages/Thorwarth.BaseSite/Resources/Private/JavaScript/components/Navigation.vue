@@ -151,7 +151,7 @@
                   v-if="item.url && item.url !== '#'"
                   :href="item.url"
                   @click="handleNavClick"
-                  class="inline-block text-2xl md:text-3xl transition-all px-6 py-3"
+                  class="inline-block text-2xl md:text-3xl transition-all px-4 py-1.5 rounded-lg"
                   :class="item.isActive
                     ? 'bg-smart-teal text-white font-normal'
                     : 'text-smart-navy font-normal hover:bg-smart-teal hover:text-white'"
@@ -160,7 +160,7 @@
                 </a>
                 <span
                   v-else
-                  class="inline-block text-2xl md:text-3xl px-6 py-3"
+                  class="inline-block text-2xl md:text-3xl px-4 py-1.5 rounded-lg"
                   :class="item.isActive
                     ? 'bg-smart-teal text-white font-normal'
                     : 'text-smart-navy font-normal'"
