@@ -26,6 +26,34 @@
           position: 10
           editorOptions:
             accept: 'image/*'
+    backgroundColor:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Hintergrundfarbe'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 5
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              '':
+                label: 'Kein Hintergrund'
+              'cream':
+                label: 'Creme / Warm'
+              'teal-light':
+                label: 'Helles Teal'
+              'gray':
+                label: 'Grau'
+              'blue-light':
+                label: 'Hellblau'
+              'beige':
+                label: 'Beige / Warm'
+              'rose-light':
+                label: 'Rosé / Zart'
+              'peach':
+                label: 'Pfirsich / Hell'
     columns:
       type: integer
       defaultValue: 4

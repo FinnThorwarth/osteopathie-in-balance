@@ -149,6 +149,19 @@ body {
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 }
 
+/* Unscrolled: push hamburger down to align with hero content on mobile */
+#site-header:not(.header-scrolled) .fixed-header-bar > div {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  transition: padding 0.4s ease;
+}
+
+#site-header.header-scrolled .fixed-header-bar > div {
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: padding 0.4s ease;
+}
+
 /* Nav-Logo Scroll Animation */
 .nav-logo-wrap {
   opacity: 0;
@@ -203,7 +216,6 @@ main {
   a {
     font-family: 'Poppins', system-ui, sans-serif;
     font-weight: 500;
-    font-size: 1.25rem;
     font-style: normal;
     color: #084996;
     text-decoration: none;
@@ -217,7 +229,12 @@ main {
 @layer base {
   body {
     font-family: 'Poppins', system-ui, sans-serif;
-    font-size: 1.25rem; /* 20px */
+    font-size: 1rem; /* 16px mobile */
+  }
+  @media (min-width: 768px) {
+    body {
+      font-size: 1.25rem; /* 20px tablet+ */
+    }
   }
 }
 
@@ -271,11 +288,11 @@ main {
   }
 
   .smart-h2 {
-    @apply font-headline text-2xl md:text-3xl lg:text-[2rem] font-bold text-smart-navy leading-tight;
+    @apply font-headline text-3xl lg:text-[2rem] font-bold text-smart-navy leading-tight;
   }
 
   .smart-h3 {
-    @apply font-headline text-xl md:text-2xl lg:text-[1.5rem] font-semibold text-smart-navy leading-tight;
+    @apply font-headline text-2xl font-semibold text-smart-navy leading-tight;
   }
 
   /* Accent styling for em/italic in headlines */
@@ -433,12 +450,12 @@ main {
 
     h2 {
       font-family: 'Cormorant Garamond', serif !important;
-      @apply text-2xl md:text-3xl lg:text-[3rem] font-light mb-2 text-smart-teal;
+      @apply text-3xl md:text-4xl lg:text-[3rem] font-light mb-2 text-smart-teal;
     }
 
     h3 {
       font-family: 'Cormorant Garamond', serif !important;
-      @apply text-xl md:text-2xl font-normal mb-4 text-smart-navy;
+      @apply text-2xl md:text-[1.75rem] font-normal mb-4 text-smart-navy;
     }
 
     h4 {
@@ -494,7 +511,6 @@ main {
     a {
       font-family: 'Poppins', system-ui, sans-serif !important;
       font-weight: 500 !important;
-      font-size: 1.25rem !important;
       font-style: normal !important;
       color: #084996 !important;
       text-decoration: none !important;

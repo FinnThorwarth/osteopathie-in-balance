@@ -35,7 +35,7 @@
           # "Thorwarth.BaseSite:Content.Button": true
           # "Thorwarth.BaseSite:Content.ContactForm": true
           # Cards
-          "Thorwarth.BaseSite:Content.CardSection": true
+          # "Thorwarth.BaseSite:Content.CardSection": true
           # Navigation
           # "Thorwarth.BaseSite:Content.ChildPageList": true
 

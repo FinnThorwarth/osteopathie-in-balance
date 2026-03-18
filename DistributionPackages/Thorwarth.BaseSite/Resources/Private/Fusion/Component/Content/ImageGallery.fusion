@@ -1,6 +1,7 @@
 prototype(Thorwarth.BaseSite:Content.ImageGallery) < prototype(Neos.Neos:ContentComponent) {
     images = ${q(node).property('images')}
     columns = ${q(node).property('columns') || 4}
+    backgroundColor = ${q(node).property('backgroundColor')}
     darkBackground = ${q(node).property('darkBackground')}
     anchorId = ${q(node).property('anchorId')}
 
@@ -13,12 +14,21 @@ prototype(Thorwarth.BaseSite:Content.ImageGallery) < prototype(Neos.Neos:Content
             3 = 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
             4 = 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'
         }
+        bgClasses = Neos.Fusion:DataStructure {
+            cream = 'bg-smart-cream'
+            teal-light = 'bg-smart-teal-light'
+            gray = 'bg-smart-gray'
+            blue-light = 'bg-smart-blue-light'
+            beige = 'bg-smart-beige'
+            rose-light = 'bg-smart-rose-light'
+            peach = 'bg-smart-peach'
+        }
     }
 
     renderer = afx`
         <section
             id={props.anchorId}
-            class={'image-gallery py-8 md:py-16 ' + (props.darkBackground ? 'text-image--dark' : '')}
+            class={'image-gallery py-8 md:py-16 ' + (props.darkBackground ? 'text-image--dark' : (props.backgroundColor ? bgClasses[props.backgroundColor] : ''))}
             data-gallery-lightbox={props.galleryId}
         >
             <div @if={props.images && Array.length(props.images) > 0} class={'container mx-auto px-4 grid gap-1 ' + columnClasses[props.columns]}>

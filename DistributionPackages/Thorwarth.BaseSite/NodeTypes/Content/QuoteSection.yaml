@@ -52,7 +52,7 @@
           position: 10
     quoteColor:
       type: string
-      defaultValue: 'rose'
+      defaultValue: 'gray'
       ui:
         label: 'Anführungszeichen-Farbe'
         reloadIfChanged: true
@@ -62,9 +62,17 @@
           editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
           editorOptions:
             values:
-              'rose':
-                label: 'Rosa'
-              'olive':
-                label: 'Olive'
-              'green':
-                label: 'Dunkelgrün'
+              'cream':
+                label: 'Creme / Warm'
+              'teal-light':
+                label: 'Helles Teal'
+              'gray':
+                label: 'Grau'
+              'blue-light':
+                label: 'Hellblau'
+              'beige':
+                label: 'Beige / Warm'
+              'rose-light':
+                label: 'Rosé / Zart'
+              'peach':
+                label: 'Pfirsich / Hell'

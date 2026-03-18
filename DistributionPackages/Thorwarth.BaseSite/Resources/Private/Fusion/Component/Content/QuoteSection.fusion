@@ -6,19 +6,27 @@ prototype(Thorwarth.BaseSite:Content.QuoteSection) < prototype(Neos.Neos:Content
         property = 'author'
     }
     showDividers = ${q(node).property('showDividers')}
-    quoteColor = ${q(node).property('quoteColor') || 'rose'}
+    quoteColor = ${q(node).property('quoteColor') || 'gray'}
     anchorId = ${q(node).property('anchorId')}
 
     @context {
         quoteColorClasses = Neos.Fusion:DataStructure {
-            rose = 'text-smart-gray'
-            olive = 'text-smart-teal'
-            green = 'text-smart-navy'
+            cream = 'text-smart-cream'
+            teal-light = 'text-smart-teal-light'
+            gray = 'text-smart-gray'
+            blue-light = 'text-smart-blue-light'
+            beige = 'text-smart-beige'
+            rose-light = 'text-smart-rose-light'
+            peach = 'text-smart-peach'
         }
         dividerColorClasses = Neos.Fusion:DataStructure {
-            rose = 'bg-smart-gray'
-            olive = 'bg-smart-teal'
-            green = 'bg-smart-navy'
+            cream = 'bg-smart-cream'
+            teal-light = 'bg-smart-teal-light'
+            gray = 'bg-smart-gray'
+            blue-light = 'bg-smart-blue-light'
+            beige = 'bg-smart-beige'
+            rose-light = 'bg-smart-rose-light'
+            peach = 'bg-smart-peach'
         }
     }
 
