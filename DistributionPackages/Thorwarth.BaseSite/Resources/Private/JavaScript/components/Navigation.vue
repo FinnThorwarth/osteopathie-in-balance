@@ -46,6 +46,15 @@
               </div>
             </div>
           </li>
+          <li>
+            <a
+              href="#jetzt-buchen"
+              @click="handleNavClick"
+              class="inline-flex items-center ml-4 border-2 border-smart-teal text-smart-teal rounded-full px-6 py-2 text-lg font-semibold hover:bg-smart-navy hover:text-white hover:border-smart-navy transition-colors shrink-0 whitespace-nowrap"
+            >
+              Jetzt buchen
+            </a>
+          </li>
         </ul>
       </nav>
     </Teleport>

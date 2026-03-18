@@ -35,19 +35,13 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
             </div>
             <div id="hero-section" class="bg-smart-warm-bg py-8">
               <div class="container mx-auto px-4">
-                <div class="flex items-center md:justify-center gap-8 md:gap-12">
+                <div class="flex items-center justify-center">
                     <a href="/" class="block">
                         <img
                             src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo.svg')}
                             alt="Osteopathie in Balance – für Kinder und Familien"
                             class="h-auto w-[220px] md:w-[380px] lg:w-[500px] xl:w-[700px]"
                         />
-                    </a>
-                    <a
-                        href="#jetzt-buchen"
-                        class="hidden md:inline-flex border-2 border-smart-teal text-smart-teal rounded-full px-6 lg:px-8 py-2 lg:py-3 text-base lg:text-xl font-semibold hover:bg-smart-navy hover:text-white hover:border-smart-navy transition-colors shrink-0 whitespace-nowrap"
-                    >
-                        Jetzt buchen
                     </a>
                 </div>
                 <div id="desktop-nav-target" class="hidden xl:block mt-8"></div>
