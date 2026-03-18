@@ -57,7 +57,6 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
             h3 = 'h4'
             h4 = 'h5'
         }
-        mdKey = ${props.hasTabletOverride ? props.tabletKey : props.columnLayout}
         mdLayoutClasses = Neos.Fusion:DataStructure {
             image-text-50-50 = 'md:grid-cols-2'
             image-text-33-66 = 'md:grid-cols-3'
@@ -170,17 +169,17 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                 <div class="container mx-auto px-4">
                     <Neos.Fusion:Tag @if={props.heading} tagName={props.headingSize}>{props.heading}</Neos.Fusion:Tag>
                     <Neos.Fusion:Tag @if={props.subheading} tagName={subheadingSize[props.headingSize]}>{props.subheading}</Neos.Fusion:Tag>
-                    <div class={'grid gap-8 items-start ' + (mdLayoutClasses[mdKey] || '') + (props.hasTabletOverride ? (' ' + (lgLayoutClasses[props.columnLayout] || '')) : '')}>
-                        <div @if={!props.isTextFirst} class={'w-full ' + (mdImageColSpan[mdKey] || '') + (props.hasTabletOverride ? (' ' + (lgImageColSpan[props.columnLayout] || '')) : '')}>
+                    <div class={'grid gap-8 items-start ' + (mdLayoutClasses[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || '') + (props.hasTabletOverride ? (' ' + (lgLayoutClasses[props.columnLayout] || '')) : '')}>
+                        <div @if={!props.isTextFirst} class={'w-full ' + (mdImageColSpan[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || '') + (props.hasTabletOverride ? (' ' + (lgImageColSpan[props.columnLayout] || '')) : '')}>
                             <img @if={props.image}
                                  src={props.imageUri}
                                  alt={props.alternativeText}
                                  class={'w-full h-auto ' + (props.circularImage ? 'rounded-full aspect-square object-cover' : 'rounded-sm')} />
                         </div>
-                        <div class={'max-w-none ' + (mdTextColSpan[mdKey] || '') + (props.hasTabletOverride ? (' ' + (lgTextColSpan[props.columnLayout] || '')) : '')}>
+                        <div class={'max-w-none ' + (mdTextColSpan[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || '') + (props.hasTabletOverride ? (' ' + (lgTextColSpan[props.columnLayout] || '')) : '')}>
                             <div @if={props.text}>{props.text}</div>
                         </div>
-                        <div @if={props.isTextFirst} class={'w-full ' + (mdImageColSpan[mdKey] || '') + (props.hasTabletOverride ? (' ' + (lgImageColSpan[props.columnLayout] || '')) : '')}>
+                        <div @if={props.isTextFirst} class={'w-full ' + (mdImageColSpan[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || '') + (props.hasTabletOverride ? (' ' + (lgImageColSpan[props.columnLayout] || '')) : '')}>
                             <img @if={props.image}
                                  src={props.imageUri}
                                  alt={props.alternativeText}
@@ -198,12 +197,12 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                 <div class="container mx-auto px-4">
                     <Neos.Fusion:Tag @if={props.heading} tagName={props.headingSize} attributes.class="pt-16">{props.heading}</Neos.Fusion:Tag>
                     <Neos.Fusion:Tag @if={props.subheading} tagName={subheadingSize[props.headingSize]}>{props.subheading}</Neos.Fusion:Tag>
-                    <div class={'grid gap-0 ' + (mdLayoutClasses[mdKey] || '') + (props.hasTabletOverride ? (' ' + (lgLayoutClasses[props.columnLayout] || '')) : '')}>
-                        <div @if={!props.isTextFirst} class={(mdImageColSpan[mdKey] || '') + (props.hasTabletOverride ? (' ' + (lgImageColSpan[props.columnLayout] || '')) : '') || 'col-span-1'}></div>
-                        <div class={(mdTextColSpan[mdKey] || '') + (props.hasTabletOverride ? (' ' + (lgTextColSpan[props.columnLayout] || '')) : '')}>
+                    <div class={'grid gap-0 ' + (mdLayoutClasses[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || '') + (props.hasTabletOverride ? (' ' + (lgLayoutClasses[props.columnLayout] || '')) : '')}>
+                        <div @if={!props.isTextFirst} class={(mdImageColSpan[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || '') + (props.hasTabletOverride ? (' ' + (lgImageColSpan[props.columnLayout] || '')) : '') || 'col-span-1'}></div>
+                        <div class={(mdTextColSpan[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || '') + (props.hasTabletOverride ? (' ' + (lgTextColSpan[props.columnLayout] || '')) : '')}>
                             <div @if={props.text}>{props.text}</div>
                         </div>
-                        <div @if={props.isTextFirst} class={(mdImageColSpan[mdKey] || '') + (props.hasTabletOverride ? (' ' + (lgImageColSpan[props.columnLayout] || '')) : '') || 'col-span-1'}></div>
+                        <div @if={props.isTextFirst} class={(mdImageColSpan[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || '') + (props.hasTabletOverride ? (' ' + (lgImageColSpan[props.columnLayout] || '')) : '') || 'col-span-1'}></div>
                     </div>
                 </div>
                 <img @if={props.image && props.isTextFirst}
@@ -212,14 +211,14 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                      class="md:hidden w-full h-auto" />
             </div>
             <div @if={props.imageBleedEdge && !props.isTextFirst}
-                 class={'hidden md:block absolute top-0 bottom-16 md:bottom-20 lg:bottom-24 left-0 ' + (props.hasTabletOverride ? ((mdImageBleedWidth[mdKey] || 'md:w-1/2') + ' ' + (lgImageBleedWidth[props.columnLayout] || 'lg:w-1/2')) : (imageBleedWidth[mdKey] || 'w-1/2'))}>
+                 class={'hidden md:block absolute top-0 bottom-16 md:bottom-20 lg:bottom-24 left-0 ' + (props.hasTabletOverride ? ((mdImageBleedWidth[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || 'md:w-1/2') + ' ' + (lgImageBleedWidth[props.columnLayout] || 'lg:w-1/2')) : (imageBleedWidth[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || 'w-1/2'))}>
                 <img @if={props.image}
                      src={props.imageBleedUri}
                      alt={props.alternativeText}
                      class="w-full h-full object-cover object-center" />
             </div>
             <div @if={props.imageBleedEdge && props.isTextFirst}
-                 class={'hidden md:block absolute top-0 bottom-16 md:bottom-20 lg:bottom-24 right-0 ' + (props.hasTabletOverride ? ((mdImageBleedWidth[mdKey] || 'md:w-1/2') + ' ' + (lgImageBleedWidth[props.columnLayout] || 'lg:w-1/2')) : (imageBleedWidth[mdKey] || 'w-1/2'))}>
+                 class={'hidden md:block absolute top-0 bottom-16 md:bottom-20 lg:bottom-24 right-0 ' + (props.hasTabletOverride ? ((mdImageBleedWidth[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || 'md:w-1/2') + ' ' + (lgImageBleedWidth[props.columnLayout] || 'lg:w-1/2')) : (imageBleedWidth[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || 'w-1/2'))}>
                 <img @if={props.image}
                      src={props.imageBleedUri}
                      alt={props.alternativeText}
