@@ -13,7 +13,7 @@
               v-if="item.url && item.url !== '#'"
               :href="item.url"
               @click="handleNavClick"
-              class="flex items-center px-5 py-2 text-lg font-light transition-colors"
+              class="flex items-center px-5 py-2 text-xl font-light transition-colors"
               :class="item.isActive || item.hasActiveChild
                 ? 'text-smart-teal'
                 : 'hover:text-smart-teal'"
@@ -22,7 +22,7 @@
             </a>
             <span
               v-else
-              class="flex items-center px-5 py-2 text-lg font-light"
+              class="flex items-center px-5 py-2 text-xl font-light"
               :class="item.isActive || item.hasActiveChild ? 'text-smart-teal' : ''"
             >
               {{ item.title }}
@@ -38,7 +38,7 @@
                   :key="child.title"
                   :href="child.url"
                   @click="handleNavClick"
-                  class="block px-5 py-2 text-base text-smart-text hover:bg-smart-teal/10 hover:text-smart-teal transition-colors"
+                  class="block px-5 py-2 text-lg text-smart-text hover:bg-smart-teal/10 hover:text-smart-teal transition-colors"
                   :class="child.isActive ? 'text-smart-teal font-medium' : ''"
                 >
                   {{ child.title }}
@@ -50,7 +50,7 @@
             <a
               href="#jetzt-buchen"
               @click="handleNavClick"
-              class="inline-flex items-center ml-4 border-2 border-smart-teal text-smart-teal rounded-full px-6 py-2 text-lg font-semibold hover:bg-smart-navy hover:text-white hover:border-smart-navy transition-colors shrink-0 whitespace-nowrap"
+              class="inline-flex items-center ml-4 border-2 border-smart-teal text-smart-teal rounded-full px-6 py-2 text-xl font-semibold hover:bg-smart-navy hover:text-white hover:border-smart-navy transition-colors shrink-0 whitespace-nowrap"
             >
               Jetzt buchen
             </a>

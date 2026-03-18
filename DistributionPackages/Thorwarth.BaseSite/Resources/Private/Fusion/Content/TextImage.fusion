@@ -92,6 +92,8 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
 
             <div @if={!props.imageBleedEdge} class="py-8 md:py-16 lg:py-24">
                 <div class="container mx-auto px-4">
+                    <Neos.Fusion:Tag @if={props.heading} tagName={props.headingSize}>{props.heading}</Neos.Fusion:Tag>
+                    <Neos.Fusion:Tag @if={props.subheading} tagName={subheadingSize[props.headingSize]}>{props.subheading}</Neos.Fusion:Tag>
                     <div class={'grid gap-8 items-start ' + layoutClasses[props.columnLayout]}>
                         <div @if={!props.isTextFirst} class={'w-full ' + (imageColSpan[props.columnLayout] || '')}>
                             <img @if={props.image}
@@ -100,8 +102,6 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                                  class={'w-full h-auto ' + (props.circularImage ? 'rounded-full aspect-square object-cover' : 'rounded-sm')} />
                         </div>
                         <div class={'max-w-none ' + (textColSpan[props.columnLayout] || '')}>
-                            <Neos.Fusion:Tag @if={props.heading} tagName={props.headingSize}>{props.heading}</Neos.Fusion:Tag>
-                            <Neos.Fusion:Tag @if={props.subheading} tagName={subheadingSize[props.headingSize]}>{props.subheading}</Neos.Fusion:Tag>
                             <div @if={props.text}>{props.text}</div>
                         </div>
                         <div @if={props.isTextFirst} class={'w-full ' + (imageColSpan[props.columnLayout] || '')}>
@@ -120,11 +120,11 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                      alt={props.alternativeText}
                      class="md:hidden w-full h-auto" />
                 <div class="container mx-auto px-4">
+                    <Neos.Fusion:Tag @if={props.heading} tagName={props.headingSize} attributes.class="pt-16">{props.heading}</Neos.Fusion:Tag>
+                    <Neos.Fusion:Tag @if={props.subheading} tagName={subheadingSize[props.headingSize]}>{props.subheading}</Neos.Fusion:Tag>
                     <div class={'grid gap-0 ' + layoutClasses[props.columnLayout]}>
                         <div @if={!props.isTextFirst} class={imageColSpan[props.columnLayout] || 'col-span-1'}></div>
-                        <div class={'pt-16 ' + (textColSpan[props.columnLayout] || '')}>
-                            <Neos.Fusion:Tag @if={props.heading} tagName={props.headingSize}>{props.heading}</Neos.Fusion:Tag>
-                            <Neos.Fusion:Tag @if={props.subheading} tagName={subheadingSize[props.headingSize]}>{props.subheading}</Neos.Fusion:Tag>
+                        <div class={textColSpan[props.columnLayout] || ''}>
                             <div @if={props.text}>{props.text}</div>
                         </div>
                         <div @if={props.isTextFirst} class={imageColSpan[props.columnLayout] || 'col-span-1'}></div>

@@ -85,6 +85,38 @@
                 label: 'Text/Bild (66/33)'
               'text-image-33-66':
                 label: 'Text/Bild (33/66)'
+              'image-text-75-25':
+                label: 'Bild/Text (75/25)'
+              'image-text-25-75':
+                label: 'Bild/Text (25/75)'
+              'text-image-75-25':
+                label: 'Text/Bild (75/25)'
+              'text-image-25-75':
+                label: 'Text/Bild (25/75)'
+    tabletColumnRatio:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Tablet Spaltenaufteilung'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 11
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              '':
+                label: 'Wie Desktop'
+              '50-50':
+                label: '50/50'
+              '33-66':
+                label: '33/66'
+              '66-33':
+                label: '66/33'
+              '75-25':
+                label: '75/25'
+              '25-75':
+                label: '25/75'
     backgroundColor:
       type: string
       defaultValue: ''

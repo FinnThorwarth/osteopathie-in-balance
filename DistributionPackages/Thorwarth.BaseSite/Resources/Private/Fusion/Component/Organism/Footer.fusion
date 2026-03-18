@@ -10,9 +10,9 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
         <footer class="smart-footer bg-[#084996] relative text-white overflow-hidden">
           <div class="px-4 relative 2xl:max-w-[80%] 2xl:mx-auto">
 
-              <div class="mx-auto  px-4 py-6 md:py-8 relative">
-                <div class="grid md:grid-cols-3 gap-8 items-center">
-                    <div class="flex justify-center md:justify-start">
+              <div class="mx-auto px-4 relative">
+                <div class="grid md:grid-cols-12 gap-8 items-center">
+                    <div class="flex justify-center md:justify-start md:col-span-5">
                                      <img
                             src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_neg.svg')}
                             alt="Osteopathie in Balance"
@@ -21,7 +21,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
                     </div>
 
                     <!-- VOD Logo -->
-                    <div class="flex justify-center">
+                    <div class="flex justify-center md:col-span-3">
                         <div class="bg-white rounded-xl p-4 inline-block">
                             <img
                                 src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/VOD_Logo.png')}
@@ -32,7 +32,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
                     </div>
 
                     <!-- Social Media Icons -->
-                    <div class="flex justify-center md:justify-end gap-4 mt-8 md:mt-0">
+                    <div class="flex justify-center md:justify-end gap-4 mt-8 md:mt-0 md:col-span-4">
                         <a @if={props.instagramUrl} href={props.instagramUrl} target="_blank" rel="noopener noreferrer" class="hover:text-smart-teal-light transition-colors" aria-label="Instagram">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 md:w-12 md:h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
