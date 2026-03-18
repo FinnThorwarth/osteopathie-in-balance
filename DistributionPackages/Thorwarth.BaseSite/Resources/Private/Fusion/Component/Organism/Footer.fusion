@@ -16,7 +16,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
                                      <img
                             src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_neg.svg')}
                             alt="Osteopathie in Balance"
-                            class="h-auto h-[150px] my-2 md:h-[175px] lg:h-[200px] xl:h-[225px]"
+                            class="h-auto h-[150px] my-2 md:h-[175px] lg:h-[200px] xl:h-[225px] 2xl:mt-2"
                         />
                     </div>
 
@@ -53,7 +53,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
             </div>
 
             <!-- Bottom Bar -->
-            <div class="bg-[#084996] py-4">
+            <div class="bg-[#084996] pb-4">
                 <div class="2xl:max-w-[80%] 2xl:mx-auto mx-auto px-4">
                     <div class="flex flex-col sm:flex-row justify-end items-center gap-4 text-xl">
                         <div class="flex gap-4">
