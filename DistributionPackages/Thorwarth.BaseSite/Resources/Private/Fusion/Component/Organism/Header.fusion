@@ -35,7 +35,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
             </div>
             <div id="hero-section" class="bg-smart-warm-bg py-8">
               <div class="container mx-auto px-4">
-                <div class="flex items-center justify-center gap-8 md:gap-12">
+                <div class="flex items-center md:justify-center gap-8 md:gap-12">
                     <a href="/" class="block">
                         <img
                             src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo.svg')}
