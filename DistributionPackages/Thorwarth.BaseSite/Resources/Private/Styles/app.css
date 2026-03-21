@@ -828,9 +828,14 @@ section i {
   overflow: hidden;
 }
 
-/* Quellen (Sources) – smaller body text */
+/* Quellen (Sources) – smaller body text (80% of default) */
 .content-sources {
-  font-size: 80%;
+  font-size: 0.8rem; /* 80% of 16px mobile = 12.8px */
+}
+@media (min-width: 768px) {
+  .content-sources {
+    font-size: 1rem; /* 80% of 20px tablet+ = 16px */
+  }
 }
 
 /* TextImage Dark Background Mode */
