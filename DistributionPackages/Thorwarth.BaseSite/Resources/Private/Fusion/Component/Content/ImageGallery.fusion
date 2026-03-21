@@ -89,6 +89,7 @@ prototype(Thorwarth.BaseSite:Content.ImageGallery.Item) < prototype(Neos.Fusion:
                 class="glightbox block w-full h-full cursor-pointer"
                 data-gallery={props.galleryId}
                 data-title={props.asset.title}
+                data-description={props.asset.copyrightNotice}
             >
                 <img
                     src={props.thumbnailUri}
@@ -97,6 +98,7 @@ prototype(Thorwarth.BaseSite:Content.ImageGallery.Item) < prototype(Neos.Fusion:
                     loading="lazy"
                 />
             </a>
+            <small @if={props.asset.copyrightNotice} class="absolute bottom-0 right-0 text-xs text-white/80 bg-black/40 px-2 py-0.5">{props.asset.copyrightNotice}</small>
         </div>
     `
 }

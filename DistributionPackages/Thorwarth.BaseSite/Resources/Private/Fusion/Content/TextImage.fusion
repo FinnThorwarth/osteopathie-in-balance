@@ -175,6 +175,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                                  src={props.imageUri}
                                  alt={props.alternativeText}
                                  class={'w-full h-auto ' + (props.circularImage ? 'rounded-full aspect-square object-cover' : 'rounded-lg')} />
+                            <small @if={props.image && props.image.copyrightNotice} class="text-xs text-gray-500 mt-1 block">{props.image.copyrightNotice}</small>
                         </div>
                         <div class={'max-w-none ' + (mdTextColSpan[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || '') + (props.hasTabletOverride ? (' ' + (lgTextColSpan[props.columnLayout] || '')) : '')}>
                             <div @if={props.text}>{props.text}</div>
@@ -184,6 +185,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                                  src={props.imageUri}
                                  alt={props.alternativeText}
                                  class={'w-full h-auto ' + (props.circularImage ? 'rounded-full aspect-square object-cover' : 'rounded-lg')} />
+                            <small @if={props.image && props.image.copyrightNotice} class="text-xs text-gray-500 mt-1 block">{props.image.copyrightNotice}</small>
                         </div>
                     </div>
                 </div>
@@ -194,6 +196,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                      src={props.imageUri}
                      alt={props.alternativeText}
                      class="md:hidden w-full h-auto" />
+                <small @if={props.image && !props.isTextFirst && props.image.copyrightNotice} class="md:hidden text-xs text-gray-500 mt-1 block px-4">{props.image.copyrightNotice}</small>
                 <div class="container mx-auto px-4">
                     <Neos.Fusion:Tag @if={props.heading} tagName={props.headingSize} attributes.class="pt-16">{props.heading}</Neos.Fusion:Tag>
                     <Neos.Fusion:Tag @if={props.subheading} tagName={subheadingSize[props.headingSize]}>{props.subheading}</Neos.Fusion:Tag>
@@ -209,6 +212,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                      src={props.imageUri}
                      alt={props.alternativeText}
                      class="md:hidden w-full h-auto" />
+                <small @if={props.image && props.isTextFirst && props.image.copyrightNotice} class="md:hidden text-xs text-gray-500 mt-1 block px-4">{props.image.copyrightNotice}</small>
             </div>
             <div @if={props.imageBleedEdge && !props.isTextFirst}
                  class={'hidden md:block absolute top-0 bottom-16 md:bottom-20 lg:bottom-24 left-0 ' + (props.hasTabletOverride ? ((mdImageBleedWidth[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || 'md:w-1/2') + ' ' + (lgImageBleedWidth[props.columnLayout] || 'lg:w-1/2')) : (imageBleedWidth[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || 'w-1/2'))}>
@@ -216,6 +220,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                      src={props.imageBleedUri}
                      alt={props.alternativeText}
                      class="w-full h-full object-cover object-center" />
+                <small @if={props.image && props.image.copyrightNotice} class="absolute bottom-0 right-0 text-xs text-white/80 bg-black/40 px-2 py-0.5">{props.image.copyrightNotice}</small>
             </div>
             <div @if={props.imageBleedEdge && props.isTextFirst}
                  class={'hidden md:block absolute top-0 bottom-16 md:bottom-20 lg:bottom-24 right-0 ' + (props.hasTabletOverride ? ((mdImageBleedWidth[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || 'md:w-1/2') + ' ' + (lgImageBleedWidth[props.columnLayout] || 'lg:w-1/2')) : (imageBleedWidth[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || 'w-1/2'))}>
@@ -223,6 +228,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                      src={props.imageBleedUri}
                      alt={props.alternativeText}
                      class="w-full h-full object-cover object-center" />
+                <small @if={props.image && props.image.copyrightNotice} class="absolute bottom-0 left-0 text-xs text-white/80 bg-black/40 px-2 py-0.5">{props.image.copyrightNotice}</small>
             </div>
 
         </section>

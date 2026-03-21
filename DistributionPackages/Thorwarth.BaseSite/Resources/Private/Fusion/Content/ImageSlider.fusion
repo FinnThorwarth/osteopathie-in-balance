@@ -96,6 +96,7 @@ prototype(Thorwarth.BaseSite:Content.ImageSlider.SliderItem) < prototype(Neos.Fu
                     class="absolute inset-0 w-full h-full object-cover"
                     loading="lazy"
                 />
+                <small @if={currentAsset.copyrightNotice} class="absolute bottom-0 right-0 text-xs text-white/80 bg-black/40 px-2 py-0.5">{currentAsset.copyrightNotice}</small>
             </div>
         </div>
     `

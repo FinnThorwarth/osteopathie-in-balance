@@ -21,6 +21,7 @@ prototype(Thorwarth.BaseSite:Component.Content.FullWidthImage) < prototype(Neos.
                     <span class="text-gray-500">Bild auswählen</span>
                 </div>
             </div>
+            <small @if={props.image && props.image.copyrightNotice} class="text-xs text-gray-500 mt-1 block">{props.image.copyrightNotice}</small>
         </div>
     `
 }
