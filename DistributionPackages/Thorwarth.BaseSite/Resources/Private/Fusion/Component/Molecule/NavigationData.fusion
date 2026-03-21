@@ -101,5 +101,7 @@ prototype(Thorwarth.BaseSite:Component.Molecule.NavigationData) < prototype(Neos
         }
     }
 
+    bookingUrl = ${q(site).property('bookingUrl')}
+
     @process.toJson = ${Json.stringify(value)}
 }

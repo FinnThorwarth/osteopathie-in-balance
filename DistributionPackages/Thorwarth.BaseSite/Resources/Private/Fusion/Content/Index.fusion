@@ -2,6 +2,7 @@
 # This file includes all content component fusion files
 
 include: Text.fusion
+include: Sources.fusion
 include: TextImage.fusion
 include: Accordion.fusion
 include: FAQ.fusion

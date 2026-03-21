@@ -1,0 +1,7 @@
+'Thorwarth.BaseSite:Content.Sources':
+  superTypes:
+    'Thorwarth.BaseSite:Content.Text': true
+  ui:
+    label: 'Quellen'
+    icon: 'icon-book'
+    position: 15

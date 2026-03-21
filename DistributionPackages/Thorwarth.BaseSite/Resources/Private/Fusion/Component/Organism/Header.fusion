@@ -9,6 +9,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
     }
 
     navigationData = Thorwarth.BaseSite:Component.Molecule.NavigationData
+    bookingUrl = ${q(site).property('bookingUrl')}
 
     renderer = afx`
         <header id="site-header" class="">
@@ -24,7 +25,10 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
                     <div id="scrolled-nav-target" class="scrolled-nav-wrap hidden xl:block"></div>
                     <div class="flex items-center gap-2 justify-self-end">
                         <a
-                            href="#jetzt-buchen"
+                            @if.hasBookingUrl={props.bookingUrl}
+                            href={props.bookingUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             class="nav-cta-wrap hidden md:inline-flex border-2 border-smart-teal text-smart-teal rounded-full px-6 py-2 text-base font-semibold hover:bg-smart-navy hover:text-white hover:border-smart-navy transition-colors shrink-0 whitespace-nowrap"
                         >
                             Jetzt buchen

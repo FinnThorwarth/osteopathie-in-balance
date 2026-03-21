@@ -46,10 +46,11 @@
               </div>
             </div>
           </li>
-          <li>
+          <li v-if="bookingUrl">
             <a
-              href="#jetzt-buchen"
-              @click="handleNavClick"
+              :href="bookingUrl"
+              target="_blank"
+              rel="noopener noreferrer"
               class="inline-flex items-center ml-4 border-2 border-smart-teal text-smart-teal rounded-full px-6 py-2 text-2xl font-semibold hover:bg-smart-navy hover:text-white hover:border-smart-navy transition-colors shrink-0 whitespace-nowrap"
             >
               Jetzt buchen
@@ -232,6 +233,7 @@ export default {
       isMenuOpen: false,
       isScrolled: false,
       menuItems: [],
+      bookingUrl: null,
       isOnepager: false,
       observer: null,
       headerObserver: null,
@@ -258,6 +260,9 @@ export default {
           path: items.currentNodePath,
           name: items.currentNodeName,
         });
+
+        // Read booking URL from navigation data
+        this.bookingUrl = items.bookingUrl || null;
 
         // Check if this is an onepager site - use siteIsOnepager from Fusion
         // Only enable onepager behavior when on the homepage

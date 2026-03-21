@@ -41,6 +41,13 @@
         inspector:
           group: 'contact'
           position: 40
+    bookingUrl:
+      type: string
+      ui:
+        label: 'Buchungs-URL (Jetzt buchen Button)'
+        inspector:
+          group: 'contact'
+          position: 50
   # Keine Unterseiten erlaubt - alles ist auf einer Seite
   constraints:
     nodeTypes:

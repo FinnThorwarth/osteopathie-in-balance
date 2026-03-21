@@ -19,6 +19,7 @@
           # "Thorwarth.BaseSite:Content.DownloadSection": true
           # Text & Headlines
           "Thorwarth.BaseSite:Content.Text": true
+          "Thorwarth.BaseSite:Content.Quellen": true
           # "Thorwarth.BaseSite:Content.Headline": true
           "Thorwarth.BaseSite:Content.Header": true
           # "Thorwarth.BaseSite:Content.SectionHeader": true

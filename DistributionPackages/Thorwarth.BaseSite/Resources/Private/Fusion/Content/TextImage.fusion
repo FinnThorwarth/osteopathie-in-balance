@@ -174,7 +174,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                             <img @if={props.image}
                                  src={props.imageUri}
                                  alt={props.alternativeText}
-                                 class={'w-full h-auto ' + (props.circularImage ? 'rounded-full aspect-square object-cover' : 'rounded-sm')} />
+                                 class={'w-full h-auto ' + (props.circularImage ? 'rounded-full aspect-square object-cover' : 'rounded-lg')} />
                         </div>
                         <div class={'max-w-none ' + (mdTextColSpan[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || '') + (props.hasTabletOverride ? (' ' + (lgTextColSpan[props.columnLayout] || '')) : '')}>
                             <div @if={props.text}>{props.text}</div>
