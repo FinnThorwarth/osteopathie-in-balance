@@ -4,9 +4,9 @@
     'Thorwarth.BaseSite:Document.AbstractPage': true
   ui:
     icon: globe
-    label: 'Onepager Startseite'
+    label: 'Startseite'
     help:
-      message: 'Eine Onepager-Seite, bei der die Navigation zu Abschnitten auf der gleichen Seite scrollt.'
+      message: ''
     inspector:
       groups:
         contact:
@@ -27,6 +27,13 @@
         inspector:
           group: 'contact'
           position: 40
+    bookingUrl:
+      type: string
+      ui:
+        label: 'Buchungs-URL (Jetzt buchen Button)'
+        inspector:
+          group: 'contact'
+          position: 50
   # Erlaubte Unterseiten der Homepage
   constraints:
     nodeTypes:
