@@ -23,6 +23,7 @@ prototype(Thorwarth.BaseSite:Component.Template.Default) < prototype(Neos.Fusion
         </main>
 
         <Thorwarth.BaseSite:Component.Organism.Footer />
+        <Thorwarth.BaseSite:Component.Organism.DoctolibWidget />
       </div>
     </div>
     <div @if={renderingMode.isEdit}>
@@ -34,6 +35,7 @@ prototype(Thorwarth.BaseSite:Component.Template.Default) < prototype(Neos.Fusion
         </main>
 
         <Thorwarth.BaseSite:Component.Organism.Footer />
+        <Thorwarth.BaseSite:Component.Organism.DoctolibWidget />
       </div>
     </div>
   `

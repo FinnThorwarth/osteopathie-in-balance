@@ -212,6 +212,16 @@
                 </ul>
               </li>
             </ul>
+            <a
+              v-if="bookingUrl"
+              :href="bookingUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              @click="handleNavClick"
+              class="inline-flex items-center mt-8 border-2 border-smart-teal text-smart-teal rounded-full px-6 py-2 text-2xl md:text-3xl font-semibold hover:bg-smart-navy hover:text-white hover:border-smart-navy transition-colors"
+            >
+              Jetzt buchen
+            </a>
           </nav>
         </div>
       </div>
