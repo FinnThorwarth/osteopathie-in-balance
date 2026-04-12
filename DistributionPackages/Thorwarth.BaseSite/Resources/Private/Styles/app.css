@@ -435,14 +435,12 @@ main {
     /* Bold */
     strong,
     b {
-      font-family: "Inter";
       @apply font-bold !important;
     }
 
     /* Italic */
     em,
     i {
-      font-family: "Inter";
       @apply italic !important;
     }
 
@@ -604,18 +602,17 @@ main {
   margin-bottom: 0.25rem !important;
 }
 
-/* Ensure strong elements use correct font - target all contexts */
+/* Ensure strong elements use correct weight - target all contexts */
 .font-light-body strong,
 .rich-text-content strong,
 .neos-inline-editable strong,
 .prose strong,
 section strong {
-  font-family: "Inter" !important;
   font-weight: 700 !important;
   color: var(--smart-navy) !important;
 }
 
-/* Ensure em/italic elements use correct font */
+/* Ensure em/italic elements use correct style */
 .font-light-body em,
 .font-light-body i,
 .rich-text-content em,
@@ -626,7 +623,6 @@ section strong {
 .prose i,
 section em,
 section i {
-  font-family: "Inter" !important;
   font-style: italic !important;
 }
 
