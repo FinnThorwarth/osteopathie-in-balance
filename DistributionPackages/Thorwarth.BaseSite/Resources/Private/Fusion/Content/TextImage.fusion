@@ -9,6 +9,8 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
     backgroundColor = ${q(node).property('backgroundColor')}
     circularImage = ${q(node).property('circularImage')}
     showDecorativeCircles = ${q(node).property('showDecorativeCircles')}
+    noPaddingTop = ${q(node).property('noPaddingTop')}
+    noPaddingBottom = ${q(node).property('noPaddingBottom')}
     tabletColumnRatio = ${q(node).property('tabletColumnRatio')}
     hasTabletOverride = ${q(node).property('tabletColumnRatio') ? true : false}
     tabletKey = ${q(node).property('tabletColumnRatio') ? ((String.startsWith(q(node).property('columnLayout') || '', 'text-image') ? 'text-image' : 'image-text') + '-' + q(node).property('tabletColumnRatio')) : ''}
@@ -165,7 +167,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
             <div @if={props.showDecorativeCircles && !props.imageBleedEdge} class="deco-circle deco-circle--teal deco-circle--lg -top-24 -right-24"></div>
             <div @if={props.showDecorativeCircles && !props.imageBleedEdge} class="deco-circle deco-circle--navy deco-circle--md -bottom-16 -left-16"></div>
 
-            <div @if={!props.imageBleedEdge} class="py-8 md:py-16 lg:py-24">
+            <div @if={!props.imageBleedEdge} class={(props.noPaddingTop ? '' : 'pt-8 md:pt-16 lg:pt-24 ') + (props.noPaddingBottom ? '' : 'pb-8 md:pb-16 lg:pb-24')}>
                 <div class="container mx-auto px-4">
                     <Neos.Fusion:Tag @if={props.heading} tagName={props.headingSize}>{props.heading}</Neos.Fusion:Tag>
                     <Neos.Fusion:Tag @if={props.subheading} tagName={subheadingSize[props.headingSize]}>{props.subheading}</Neos.Fusion:Tag>
@@ -191,7 +193,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                 </div>
             </div>
 
-            <div @if={props.imageBleedEdge} class="pb-16 md:pb-20 lg:pb-24">
+            <div @if={props.imageBleedEdge} class={(props.noPaddingTop ? '' : 'pt-8 md:pt-16 lg:pt-24 ') + (props.noPaddingBottom ? '' : 'pb-16 md:pb-20 lg:pb-24')}>
                 <img @if={props.image && !props.isTextFirst}
                      src={props.imageUri}
                      alt={props.alternativeText}
@@ -215,7 +217,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                 <small @if={props.image && props.isTextFirst && props.image.copyrightNotice} class="md:hidden text-xs text-gray-500 mt-1 block px-4">{props.image.copyrightNotice}</small>
             </div>
             <div @if={props.imageBleedEdge && !props.isTextFirst}
-                 class={'hidden md:block absolute top-0 bottom-16 md:bottom-20 lg:bottom-24 left-0 ' + (props.hasTabletOverride ? ((mdImageBleedWidth[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || 'md:w-1/2') + ' ' + (lgImageBleedWidth[props.columnLayout] || 'lg:w-1/2')) : (imageBleedWidth[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || 'w-1/2'))}>
+                 class={'hidden md:block absolute top-0 ' + (props.noPaddingBottom ? 'bottom-0' : 'bottom-16 md:bottom-20 lg:bottom-24') + ' left-0 ' + (props.hasTabletOverride ? ((mdImageBleedWidth[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || 'md:w-1/2') + ' ' + (lgImageBleedWidth[props.columnLayout] || 'lg:w-1/2')) : (imageBleedWidth[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || 'w-1/2'))}>
                 <img @if={props.image}
                      src={props.imageBleedUri}
                      alt={props.alternativeText}
@@ -223,7 +225,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                 <small @if={props.image && props.image.copyrightNotice} class="absolute bottom-0 right-0 text-xs text-white/80 bg-black/40 px-2 py-0.5">{props.image.copyrightNotice}</small>
             </div>
             <div @if={props.imageBleedEdge && props.isTextFirst}
-                 class={'hidden md:block absolute top-0 bottom-16 md:bottom-20 lg:bottom-24 right-0 ' + (props.hasTabletOverride ? ((mdImageBleedWidth[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || 'md:w-1/2') + ' ' + (lgImageBleedWidth[props.columnLayout] || 'lg:w-1/2')) : (imageBleedWidth[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || 'w-1/2'))}>
+                 class={'hidden md:block absolute top-0 ' + (props.noPaddingBottom ? 'bottom-0' : 'bottom-16 md:bottom-20 lg:bottom-24') + ' right-0 ' + (props.hasTabletOverride ? ((mdImageBleedWidth[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || 'md:w-1/2') + ' ' + (lgImageBleedWidth[props.columnLayout] || 'lg:w-1/2')) : (imageBleedWidth[props.hasTabletOverride ? props.tabletKey : props.columnLayout] || 'w-1/2'))}>
                 <img @if={props.image}
                      src={props.imageBleedUri}
                      alt={props.alternativeText}

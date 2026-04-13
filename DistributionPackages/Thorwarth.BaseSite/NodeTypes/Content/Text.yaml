@@ -13,6 +13,24 @@
           label: 'Optionen'
           position: 10
   properties:
+    noPaddingTop:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Kein Abstand oben'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 1
+    noPaddingBottom:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Kein Abstand unten'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 2
     isMainHeading:
       type: boolean
       defaultValue: false

@@ -117,6 +117,24 @@
                 label: '75/25'
               '25-75':
                 label: '25/75'
+    noPaddingTop:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Kein Abstand oben'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 1
+    noPaddingBottom:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Kein Abstand unten'
+        reloadIfChanged: true
+        inspector:
+          group: 'options'
+          position: 2
     backgroundColor:
       type: string
       defaultValue: ''

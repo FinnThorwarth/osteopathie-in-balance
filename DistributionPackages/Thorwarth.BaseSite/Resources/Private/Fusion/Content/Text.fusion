@@ -2,6 +2,8 @@ prototype(Thorwarth.BaseSite:Content.Text) < prototype(Neos.Neos:ContentComponen
     columnLayout = ${q(node).property('columnLayout')}
     textAlignment = ${q(node).property('textAlignment') || 'left'}
     backgroundColor = ${q(node).property('backgroundColor')}
+    noPaddingTop = ${q(node).property('noPaddingTop')}
+    noPaddingBottom = ${q(node).property('noPaddingBottom')}
     darkBackground = ${q(node).property('darkBackground')}
     isBackend = ${renderingMode.isEdit}
     anchorId = ${q(node).property('anchorId')}
@@ -52,7 +54,7 @@ prototype(Thorwarth.BaseSite:Content.Text) < prototype(Neos.Neos:ContentComponen
     }
 
     renderer = afx`
-        <section id={props.anchorId} class={'content-text py-8 md:py-16 lg:py-24 ' + (props.darkBackground ? 'text-image--dark' : (props.backgroundColor ? bgClasses[props.backgroundColor] : ''))}>
+        <section id={props.anchorId} class={'content-text ' + (props.noPaddingTop ? '' : 'pt-8 md:pt-16 lg:pt-24 ') + (props.noPaddingBottom ? '' : 'pb-8 md:pb-16 lg:pb-24 ') + (props.darkBackground ? 'text-image--dark' : (props.backgroundColor ? bgClasses[props.backgroundColor] : ''))}>
             <div class="container mx-auto px-4">
                 <div @if={props.isBackend || q(node).property('heading') || q(node).property('subheading')} class={alignmentClasses[props.textAlignment]}>
                     <Neos.Fusion:Tag tagName={props.headingLevel} @if={props.isBackend || q(node).property('heading')} attributes.class="mb-2 text-3xl md:text-6xl font-bold leading-tight">{props.heading}</Neos.Fusion:Tag>
