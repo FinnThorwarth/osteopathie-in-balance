@@ -462,7 +462,7 @@ main {
 
     h3 {
       font-family: 'Cormorant Garamond', serif !important;
-      @apply text-2xl md:text-[1.75rem] font-normal mb-4 text-smart-navy;
+      @apply text-2xl font-normal mb-4 text-smart-navy;
     }
 
     h4 {
@@ -624,6 +624,12 @@ section strong {
 section em,
 section i {
   font-style: italic !important;
+}
+
+/* h3 styling for TextModule (font-light-body wrapper, no content-text class) */
+.font-light-body h3 {
+  font-family: 'Cormorant Garamond', serif !important;
+  @apply text-2xl font-normal mb-4 text-smart-navy;
 }
 
 /* Neos Backend Inline Editing Fixes */

@@ -7,7 +7,7 @@ prototype(Thorwarth.BaseSite:Content.ContactPerson) < prototype(Neos.Neos:Conten
     imageTitle = ${q(node).property('imageTitle')}
 
     renderer = afx`
-        <div class="contact-person flex flex-col sm:flex-row items-center gap-8 py-12 px-4 max-w-4xl mx-auto">
+        <div class="contact-person flex flex-col sm:flex-row items-center gap-8 py-8 px-4 max-w-4xl mx-auto">
             <div class="relative overflow-hidden flex-shrink-0 rounded-full w-52 h-52">
                 <Thorwarth.BaseSite:TeamMemberImage
                     @if.hasImage={props.image}

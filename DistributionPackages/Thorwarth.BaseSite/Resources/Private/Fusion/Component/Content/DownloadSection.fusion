@@ -3,7 +3,7 @@ prototype(Thorwarth.BaseSite:Content.DownloadSection) < prototype(Neos.Neos:Cont
     anchorId = ${q(node).property('anchorId')}
 
     renderer = afx`
-        <section id={props.anchorId} class="download-section py-12">
+        <section id={props.anchorId} class="download-section py-8">
             <div class="container mx-auto px-4">
                 <Neos.Neos:ContentCollection nodePath="." @context.node={node}>
                     <div class="space-y-6">

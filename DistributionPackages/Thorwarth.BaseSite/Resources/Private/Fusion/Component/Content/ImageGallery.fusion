@@ -28,7 +28,7 @@ prototype(Thorwarth.BaseSite:Content.ImageGallery) < prototype(Neos.Neos:Content
     renderer = afx`
         <section
             id={props.anchorId}
-            class={'image-gallery py-8 md:py-16 ' + (props.darkBackground ? 'text-image--dark' : (props.backgroundColor ? bgClasses[props.backgroundColor] : ''))}
+            class={'image-gallery py-8 ' + (props.darkBackground ? 'text-image--dark' : (props.backgroundColor ? bgClasses[props.backgroundColor] : ''))}
             data-gallery-lightbox={props.galleryId}
         >
             <div @if={props.images && Array.length(props.images) > 0} class={'container mx-auto px-4 grid gap-1 ' + columnClasses[props.columns]}>

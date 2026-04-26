@@ -29,7 +29,7 @@ prototype(Thorwarth.BaseSite:Content.ProcessSection) < prototype(Neos.Neos:Conte
     renderer = afx`
         <section
             id={props.anchorId}
-            class={'content-text py-8 md:py-16 lg:py-32 ' + (props.backgroundColor ? bgClasses[props.backgroundColor] : '')}
+            class={'content-text py-8 ' + (props.backgroundColor ? bgClasses[props.backgroundColor] : '')}
         >
             <div class="container mx-auto px-4">
                 <div class="mb-10">

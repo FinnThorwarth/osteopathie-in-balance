@@ -167,7 +167,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
             <div @if={props.showDecorativeCircles && !props.imageBleedEdge} class="deco-circle deco-circle--teal deco-circle--lg -top-24 -right-24"></div>
             <div @if={props.showDecorativeCircles && !props.imageBleedEdge} class="deco-circle deco-circle--navy deco-circle--md -bottom-16 -left-16"></div>
 
-            <div @if={!props.imageBleedEdge} class={(props.noPaddingTop ? '' : 'pt-8 md:pt-16 lg:pt-24 ') + (props.noPaddingBottom ? '' : 'pb-8 md:pb-16 lg:pb-24')}>
+            <div @if={!props.imageBleedEdge} class={(props.noPaddingTop ? '' : 'pt-8 ') + (props.noPaddingBottom ? '' : 'pb-8')}>
                 <div class="container mx-auto px-4">
                     <Neos.Fusion:Tag @if={props.heading} tagName={props.headingSize}>{props.heading}</Neos.Fusion:Tag>
                     <Neos.Fusion:Tag @if={props.subheading} tagName={subheadingSize[props.headingSize]}>{props.subheading}</Neos.Fusion:Tag>
@@ -193,7 +193,7 @@ prototype(Thorwarth.BaseSite:Content.TextImage) < prototype(Neos.Neos:ContentCom
                 </div>
             </div>
 
-            <div @if={props.imageBleedEdge} class={(props.noPaddingTop ? '' : 'pt-8 md:pt-16 lg:pt-24 ') + (props.noPaddingBottom ? '' : 'pb-16 md:pb-20 lg:pb-24')}>
+            <div @if={props.imageBleedEdge} class={(props.noPaddingTop ? '' : 'pt-8 ') + (props.noPaddingBottom ? '' : 'pb-8')}>
                 <img @if={props.image && !props.isTextFirst}
                      src={props.imageUri}
                      alt={props.alternativeText}

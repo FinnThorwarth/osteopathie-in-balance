@@ -18,7 +18,7 @@ prototype(Thorwarth.BaseSite:Content.TextModule) < prototype(Neos.Neos:ContentCo
     anchorId = ${q(node).property('anchorId')}
 
     renderer = afx`
-        <section id={props.anchorId} class={'py-4 lg:py-8' + (props.darkBackground ? ' text-image--dark' : '')}>
+        <section id={props.anchorId} class={'py-8' + (props.darkBackground ? ' text-image--dark' : '')}>
                 <div @if={props.columnLayout == 'single'} class="max-w-none font-light-body">
                     {props.leftColumnContent}
                 </div>

@@ -11,7 +11,7 @@ prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentC
     
     renderer = Neos.Fusion:Join {
         outer.@position = 'start'
-        outer = ${q(node).property('darkBackground') ? '<section class="content-contact-form py-8 md:py-16 lg:py-32 text-image--dark"><div class="container mx-auto px-4">' : '<section class="content-contact-form py-8 md:py-16 lg:py-32"><div class="container mx-auto px-4">'}
+        outer = ${q(node).property('darkBackground') ? '<section class="content-contact-form py-8 text-image--dark"><div class="container mx-auto px-4">' : '<section class="content-contact-form py-8"><div class="container mx-auto px-4">'}
 
         form = Neos.Fusion.Form:Runtime.RuntimeForm {
         namespace = 'contact'

@@ -33,7 +33,7 @@ prototype(Thorwarth.BaseSite:Content.QuoteSection) < prototype(Neos.Neos:Content
     renderer = afx`
         <section
             id={props.anchorId}
-            class="quote-section py-12 md:py-16 bg-white"
+            class="quote-section py-8 bg-white"
         >
             <div class="container mx-auto px-4 max-w-[1064px]">
                 <div class="flex items-center justify-center gap-4 mb-8">
