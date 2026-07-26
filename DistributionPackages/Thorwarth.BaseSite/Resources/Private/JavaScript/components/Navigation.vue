@@ -33,16 +33,46 @@
               class="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
             >
               <div class="bg-white rounded-lg shadow-lg py-2 min-w-[220px]">
-                <a
+                <div
                   v-for="child in item.children"
                   :key="child.title"
-                  :href="child.url"
-                  @click="handleNavClick"
-                  class="block px-5 py-2 text-xl text-smart-text hover:bg-smart-teal/10 hover:text-smart-teal transition-colors"
-                  :class="child.isActive ? 'text-smart-teal font-medium' : ''"
+                  class="relative group/sub"
                 >
-                  {{ child.title }}
-                </a>
+                  <a
+                    :href="child.url"
+                    @click="handleNavClick"
+                    class="flex items-center justify-between gap-2 px-5 py-2 text-xl text-smart-text hover:bg-smart-teal/10 hover:text-smart-teal transition-colors"
+                    :class="child.isActive || child.hasActiveChild ? 'text-smart-teal font-medium' : ''"
+                  >
+                    {{ child.title }}
+                    <svg
+                      v-if="child.children && child.children.length > 0"
+                      class="w-4 h-4 shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path fill-rule="evenodd" d="M7.21 5.23a.75.75 0 011.06-.02l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08L11.168 10 7.19 6.29a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                  <!-- Flyout for grandchildren (3rd level) -->
+                  <div
+                    v-if="child.children && child.children.length > 0"
+                    class="absolute left-full top-0 pl-2 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 z-50"
+                  >
+                    <div class="bg-white rounded-lg shadow-lg py-2 min-w-[220px]">
+                      <a
+                        v-for="subChild in child.children"
+                        :key="subChild.title"
+                        :href="subChild.url"
+                        @click="handleNavClick"
+                        class="block px-5 py-2 text-xl text-smart-text hover:bg-smart-teal/10 hover:text-smart-teal transition-colors"
+                        :class="subChild.isActive ? 'text-smart-teal font-medium' : ''"
+                      >
+                        {{ subChild.title }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </li>
@@ -93,16 +123,46 @@
               class="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
             >
               <div class="bg-white rounded-lg shadow-lg py-2 min-w-[220px]">
-                <a
+                <div
                   v-for="child in item.children"
                   :key="child.title"
-                  :href="child.url"
-                  @click="handleNavClick"
-                  class="block px-5 py-2 text-base text-smart-text hover:bg-smart-teal/10 hover:text-smart-teal transition-colors"
-                  :class="child.isActive ? 'text-smart-teal font-medium' : ''"
+                  class="relative group/sub"
                 >
-                  {{ child.title }}
-                </a>
+                  <a
+                    :href="child.url"
+                    @click="handleNavClick"
+                    class="flex items-center justify-between gap-2 px-5 py-2 text-base text-smart-text hover:bg-smart-teal/10 hover:text-smart-teal transition-colors"
+                    :class="child.isActive || child.hasActiveChild ? 'text-smart-teal font-medium' : ''"
+                  >
+                    {{ child.title }}
+                    <svg
+                      v-if="child.children && child.children.length > 0"
+                      class="w-4 h-4 shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path fill-rule="evenodd" d="M7.21 5.23a.75.75 0 011.06-.02l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 11-1.04-1.08L11.168 10 7.19 6.29a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                  <!-- Flyout for grandchildren (3rd level) -->
+                  <div
+                    v-if="child.children && child.children.length > 0"
+                    class="absolute left-full top-0 pl-2 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 z-50"
+                  >
+                    <div class="bg-white rounded-lg shadow-lg py-2 min-w-[220px]">
+                      <a
+                        v-for="subChild in child.children"
+                        :key="subChild.title"
+                        :href="subChild.url"
+                        @click="handleNavClick"
+                        class="block px-5 py-2 text-base text-smart-text hover:bg-smart-teal/10 hover:text-smart-teal transition-colors"
+                        :class="subChild.isActive ? 'text-smart-teal font-medium' : ''"
+                      >
+                        {{ subChild.title }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </li>
@@ -208,6 +268,41 @@
                     >
                       {{ child.title }}
                     </a>
+                    <button
+                      v-if="child.children && child.children.length > 0"
+                      @click="toggleMobileSubmenu(item.title + '/' + child.title)"
+                      class="inline-flex items-center align-middle p-1 text-smart-navy/70 hover:text-smart-navy"
+                      :aria-expanded="!!openMobileSubmenus[item.title + '/' + child.title]"
+                      aria-label="Untermenü öffnen/schließen"
+                    >
+                      <svg
+                        class="w-4 h-4 transition-transform duration-200"
+                        :class="openMobileSubmenus[item.title + '/' + child.title] ? 'rotate-180' : ''"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                    <!-- Mobile grandchildren (3rd level) -->
+                    <ul
+                      v-if="child.children && child.children.length > 0"
+                      v-show="openMobileSubmenus[item.title + '/' + child.title]"
+                      class="mt-1 space-y-1"
+                    >
+                      <li v-for="subChild in child.children" :key="subChild.title">
+                        <a
+                          :href="subChild.url"
+                          @click="handleNavClick"
+                          class="inline-block text-base md:text-lg transition-all px-8 py-1"
+                          :class="subChild.isActive
+                            ? 'text-smart-teal font-normal'
+                            : 'text-smart-navy/60 font-light hover:text-smart-navy'"
+                        >
+                          {{ subChild.title }}
+                        </a>
+                      </li>
+                    </ul>
                   </li>
                 </ul>
               </li>
