@@ -3,8 +3,9 @@ prototype(Thorwarth.BaseSite:Component.Organism.DoctolibWidget) < prototype(Neos
         <nav class="doctolib-widget" id="doctolib-nav" aria-label="Doctolib Schnellzugriff">
             <a href="#maincontent" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Zum Hauptinhalt springen</a>
             <img src="https://www.doctolib.de/external_button/doctolib-white-transparent.png" alt="Doctolib Logo" />
-            <a href="https://www.doctolib.de/osteopath/graefelfing/anna-liesa-rixgens?utm_campaign=website-button&utm_source=online-booking&utm_medium=referral" target="_blank" rel="noopener noreferrer" aria-label="Termin Online über Doctolib buchen">Termin</a>
-            <a href="https://www.doctolib.de/osteopath/graefelfing/anna-liesa-rixgens/patient-request?utm_campaign=website-button&utm_source=patient-messaging&utm_medium=referral" target="_blank" rel="noopener noreferrer" aria-label="Nachricht an Praxis über Doctolib senden">Nachricht</a>
+            <a href="https://www.doctolib.de/einzelpraxis/graefelfing/ostheopathie-in-balance?pid=practice-771417&utm_campaign=website-button&utm_source=online-booking&utm_medium=referral" target="_blank" rel="noopener noreferrer" aria-label="Termin Online über Doctolib buchen">Termin Gräfelfing</a>
+            <a href="https://www.doctolib.de/einzelpraxis/graefelfing/ostheopathie-in-balance?pid=practice-771539&utm_campaign=website-button&utm_source=online-booking&utm_medium=referral" target="_blank" rel="noopener noreferrer" aria-label="Termin Online über Doctolib buchen">Termin Nymphenburg</a>
+            <a href="https://www.doctolib.de/einzelpraxis/graefelfing/ostheopathie-in-balance?utm_campaign=website-button&utm_source=patient-messaging&utm_medium=referral" target="_blank" rel="noopener noreferrer" aria-label="Nachricht an Praxis über Doctolib senden">Nachricht</a>
         </nav>
     `
 }

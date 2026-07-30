@@ -847,8 +847,8 @@ section i {
   right: 0;
   display: block;
   text-align: center;
-  background: #084996 !important;
-  color: #084996 !important;
+  background: #00264c !important;
+  color: #00264c !important;
   text-decoration: none !important;
   font-size: 16px !important;
   font-weight: 700;
@@ -864,7 +864,7 @@ section i {
 
 .doctolib-widget a {
   display: block;
-  color: #084996;
+  color: #00264c;
   text-decoration: none;
   padding: 6px;
   margin-top: 5px;
