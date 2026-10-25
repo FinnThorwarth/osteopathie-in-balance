@@ -36,9 +36,9 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
                         <img
                             src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/kinder_siegel.svg')}
                             alt="Kinderosteopathie Siegel"
-                            width="102"
-                            height="102"
-                            class="w-[102px] h-[102px]"
+                            width="120"
+                            height="120"
+                            class="w-[120px] h-[120px]"
                         />
                     </div>
 
