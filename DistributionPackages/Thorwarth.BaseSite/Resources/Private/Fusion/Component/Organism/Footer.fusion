@@ -11,8 +11,8 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
           <div class="px-4 relative 2xl:max-w-[80%] 2xl:mx-auto">
 
               <div class="mx-auto px-4 relative">
-                <div class="grid md:grid-cols-12 gap-8 items-center">
-                    <div class="flex justify-center md:justify-start md:col-span-5">
+                <div class="grid md:grid-cols-12 gap-8 items-center md:pb-8">
+                    <div class="flex justify-center md:justify-start md:col-span-4 lg:col-span-5">
                                      <img
                             src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_neg.svg')}
                             alt="Osteopathie in Balance"
@@ -32,15 +32,19 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
                     </div>
 
                     <!-- Kinder-Siegel -->
-                    <div class="flex flex-col items-center gap-2 md:col-span-2">
-                        <img
-                            src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/kinder_siegel.svg')}
-                            alt="Kinderosteopathie Siegel"
-                            width="120"
-                            height="120"
-                            class="w-[120px] h-[120px]"
-                        />
-                        <p class="text-sm text-center">Kindersiegel durch Anna-Liesa Rixgens</p>
+                    <div class="flex justify-center md:col-span-3 lg:col-span-2">
+                        <div class="relative flex flex-col items-center">
+                            <img
+                                src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/kinder_siegel.svg')}
+                                alt="Kinderosteopathie Siegel"
+                                width="120"
+                                height="120"
+                                class="w-[100px] h-[100px] lg:w-[120px] lg:h-[120px]"
+                            />
+                            <p class="mt-2 text-xs lg:text-sm leading-snug text-center md:absolute md:top-full md:w-max">
+                                <span class="whitespace-nowrap md:block">Kindersiegel durch</span> <span class="whitespace-nowrap md:block">Anna-Liesa Rixgens</span>
+                            </p>
+                        </div>
                     </div>
 
                     <!-- Social Media Icons -->
