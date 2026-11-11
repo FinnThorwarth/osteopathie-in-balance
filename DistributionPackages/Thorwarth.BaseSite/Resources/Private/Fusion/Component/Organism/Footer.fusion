@@ -11,28 +11,28 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
           <div class="px-4 relative 2xl:max-w-[80%] 2xl:mx-auto">
 
               <div class="mx-auto px-4 relative">
-                <div class="grid md:grid-cols-12 gap-8 items-center md:pb-8">
-                    <div class="flex justify-center md:justify-start md:col-span-4 lg:col-span-5">
-                                     <img
+                <div class="grid gap-8 items-center md:flex md:justify-between md:pb-14">
+                    <div class="flex justify-center md:justify-start md:flex-initial md:min-w-0 md:basis-[32%] lg:basis-[400px] xl:basis-[460px]">
+                        <img
                             src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_neg.svg')}
                             alt="Osteopathie in Balance"
-                            class="w-full h-auto max-w-[300px] md:max-w-none lg:max-w-[400px] xl:max-w-[460px] my-8 md:my-10"
+                            class="w-full h-auto max-w-[300px] md:max-w-none my-8 md:my-10"
                         />
                     </div>
 
                     <!-- VOD Logo -->
-                    <div class="flex justify-center md:col-span-3">
+                    <div class="flex justify-center md:flex-initial md:min-w-0">
                         <div class="bg-white rounded-xl p-4 inline-block">
                             <img
                                 src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/VOD_Logo.png')}
                                 alt="Verband der Osteopathen Deutschland e.V."
-                                class="max-h-[100px] w-auto"
+                                class="max-h-[100px] md:max-h-[56px] lg:max-h-[70px] w-auto max-w-full"
                             />
                         </div>
                     </div>
 
                     <!-- Kinder-Siegel -->
-                    <div class="flex justify-center md:col-span-3 lg:col-span-2">
+                    <div class="flex justify-center md:shrink-0">
                         <div class="relative flex flex-col items-center">
                             <img
                                 src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/kinder_siegel.svg')}
@@ -48,7 +48,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
                     </div>
 
                     <!-- Social Media Icons -->
-                    <div class="flex justify-center md:justify-end gap-4 mt-8 md:mt-0 md:col-span-2">
+                    <div class="flex justify-center md:justify-end gap-4 mt-8 md:mt-0 md:shrink-0">
                         <a @if={props.instagramUrl} href={props.instagramUrl} target="_blank" rel="noopener noreferrer" class="hover:text-smart-teal-light transition-colors" aria-label="Instagram">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 md:w-12 md:h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
