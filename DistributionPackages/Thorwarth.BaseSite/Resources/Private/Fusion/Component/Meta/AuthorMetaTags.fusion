@@ -8,17 +8,37 @@ prototype(Thorwarth.BaseSite:Component.Meta.AuthorMetaTags) < prototype(Neos.Fus
     # Get page information
     title = ${q(documentNode).property('titleOverride') || q(documentNode).property('title')}
     excerpt = ${q(documentNode).property('excerpt')}
-    image = ${q(documentNode).property('image')}
-    imageUrl = ${this.image ? Neos.Neos.ConvertUris.convertImageUri(this.image) : null}
+    description = ${q(documentNode).property('metaDescription') || this.excerpt}
+    image = ${q(documentNode).property('previewImage') || q(documentNode).property('image')}
+    imageUrl = Neos.Neos:ImageUri {
+        asset = ${q(documentNode).property('previewImage') || q(documentNode).property('image')}
+        maximumWidth = 1200
+        allowUpScaling = false
+        absolute = true
+        @if.hasImage = ${q(documentNode).property('previewImage') || q(documentNode).property('image') ? true : false}
+    }
+    pageUrl = Neos.Neos:NodeUri {
+        node = ${documentNode}
+        absolute = true
+    }
+    # Verweis auf das LocalBusiness-Objekt (Component/Meta/StructuredData.fusion)
+    organizationId = Neos.Neos:NodeUri {
+        node = ${site}
+        absolute = true
+        @process.suffix = ${value + '#organization'}
+    }
     
     # Publication dates (if available)
     publicationDate = ${q(documentNode).property('publicationDate')}
-    publicationDateFormatted = ${this.publicationDate ? Date.format(this.publicationDate, 'Y-m-d\\TH:i:sP') : Date.format(Date.now(), 'Y-m-d\\TH:i:sP')}
-    modificationDate = ${q(documentNode).property('_lastModificationDateTime')}
+    # Ohne Veröffentlichungsdatum: Anlagedatum der Seite (nicht "jetzt" – das änderte sich bei jedem Rendern)
+    publicationDateFormatted = ${Date.format(this.publicationDate || documentNode.timestamps.originalCreated || documentNode.timestamps.created, 'Y-m-d\\TH:i:sP')}
+    modificationDate = ${documentNode.timestamps.originalLastModified || documentNode.timestamps.lastModified}
     modificationDateFormatted = ${this.modificationDate ? Date.format(this.modificationDate, 'Y-m-d\\TH:i:sP') : this.publicationDateFormatted}
 
     # Check if this is a journal/article page
     isArticle = ${q(documentNode).is('[instanceof Thorwarth.BaseSite:Document.JournalPage]')}
+
+    currentLanguage = ${Neos.Dimension.currentValue(documentNode, 'language').value || 'de'}
 
     renderer = afx`
         <Neos.Fusion:Fragment>
@@ -27,55 +47,50 @@ prototype(Thorwarth.BaseSite:Component.Meta.AuthorMetaTags) < prototype(Neos.Fus
                     "@context": "https://schema.org",
                     "@type": "Article",
                     "headline": props.title,
-                    "description": props.excerpt,
-                    "author": props.hasAuthor ? {
+                    "description": props.description,
+                    "inLanguage": props.currentLanguage,
+                    "author": props.hasAuthor ? Array.filter({
                         "@type": "Person",
-                        "name": props.authorName
-                    } : {
-                        "@type": "Organization",
-                        "name": "Osteopathie in Balance"
+                        "name": props.authorName,
+                        "url": props.authorUrl
+                    }) : {
+                        "@id": props.organizationId
                     },
                     "datePublished": props.publicationDateFormatted,
                     "dateModified": props.modificationDateFormatted,
                     "publisher": {
-                        "@type": "Organization",
-                        "name": "Osteopathie in Balance",
-                        "logo": {
-                            "@type": "ImageObject",
-                            "url": StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/logo.svg')
-                        }
+                        "@id": props.organizationId
                     },
                     "image": props.imageUrl ? props.imageUrl : null,
                     "mainEntityOfPage": {
                         "@type": "WebPage",
-                        "@id": request.httpRequest.uri
+                        "@id": props.pageUrl
                     }
-                })}
+                }, ['JSON_UNESCAPED_UNICODE', 'JSON_UNESCAPED_SLASHES', 'JSON_HEX_TAG'])}
             </script>
 
             <script type="application/ld+json" @if={!props.isArticle && props.hasAuthor}>
                 {Json.stringify({
                     "@context": "https://schema.org",
                     "@type": "WebPage",
+                    "@id": props.pageUrl,
+                    "url": props.pageUrl,
                     "name": props.title,
-                    "description": props.excerpt,
-                    "author": {
+                    "description": props.description,
+                    "inLanguage": props.currentLanguage,
+                    "dateModified": props.modificationDateFormatted,
+                    "author": Array.filter({
                         "@type": "Person",
-                        "name": props.authorName
-                    },
+                        "name": props.authorName,
+                        "url": props.authorUrl
+                    }),
                     "publisher": {
-                        "@type": "Organization",
-                        "name": "Osteopathie in Balance"
+                        "@id": props.organizationId
                     },
                     "image": props.imageUrl ? props.imageUrl : null
-                })}
+                }, ['JSON_UNESCAPED_UNICODE', 'JSON_UNESCAPED_SLASHES', 'JSON_HEX_TAG'])}
             </script>
 
-            <meta property="og:type" content={props.isArticle ? "article" : "website"} />
-            <meta property="og:title" content={props.title} />
-            <meta property="og:description" content={props.excerpt} @if={props.excerpt} />
-            <meta property="og:image" content={props.imageUrl} @if={props.imageUrl} />
-            
             <meta property="article:published_time" content={Date.format(props.publicationDate, 'Y-m-d\\TH:i:sP')} @if={props.isArticle && props.publicationDate} />
             <meta property="article:author" content={props.authorName} @if={props.isArticle && props.authorName} />
             

@@ -1,4 +1,10 @@
 Neos:
+  Flow:
+    mvc:
+      routes:
+        # Routen dieses Pakets (Such-API, llms.txt, <Seite>.md, /.well-known/ard.json) vor den Neos-Frontend-Routen
+        'Thorwarth.BaseSite':
+          position: 'before Neos.Neos'
   Neos:
     nodeTypes:
       groups:
@@ -61,6 +67,7 @@ Neos:
   Fusion:
     defaultContext:
       Caspary.Image: 'Thorwarth\BaseSite\Eel\Helper\ImageHelper'
+      Thorwarth.Asset: 'Thorwarth\BaseSite\Eel\Helper\AssetHelper'
 
 Thorwarth:
   BaseSite:

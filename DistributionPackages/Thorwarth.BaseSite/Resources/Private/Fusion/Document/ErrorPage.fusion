@@ -76,7 +76,7 @@ prototype(Thorwarth.BaseSite:Document.ErrorPage) < prototype(Thorwarth.BaseSite:
                     </a>
                     <a href="/leistungen" class="block p-4 border border-gray-200 rounded-lg hover:border-smart-teal hover:shadow-md transition-all">
                       <h3 class="font-semibold  mb-2">Leistungen</h3>
-                      <p class="text-gray-600 text-sm">Unsere Bestattungsleistungen</p>
+                      <p class="text-gray-600 text-sm">Osteopathische Behandlungsschwerpunkte</p>
                     </a>
                     <a href="/kontakt" class="block p-4 border border-gray-200 rounded-lg hover:border-smart-teal hover:shadow-md transition-all">
                       <h3 class="font-semibold  mb-2">Kontakt</h3>

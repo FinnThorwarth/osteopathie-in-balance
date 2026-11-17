@@ -1,0 +1,79 @@
+Neos:
+  Flow:
+    http:
+      middlewares:
+        # MCP-Endpoint (Streamable HTTP). Läuft vor dem Routing, damit kein Node-Routing/Policy greift.
+        'neosMcpEndpoint':
+          position: 'before routing'
+          middleware: 'Thorwarth\NeosMcp\Http\McpEndpointMiddleware'
+    log:
+      psr3:
+        'Neos\Flow\Log\PsrLoggerFactory':
+          # Audit-Log aller MCP-Aufrufe: Data/Logs/NeosMcp.log
+          neosMcpLogger:
+            default:
+              class: Neos\Flow\Log\Backend\FileBackend
+              options:
+                logFileURL: '%FLOW_PATH_DATA%Logs/NeosMcp.log'
+                createParentDirectories: true
+                severityThreshold: '%LOG_INFO%'
+                maximumLogFileSize: 10485760
+                logFilesToKeep: 3
+                logMessageOrigin: false
+
+Thorwarth:
+  NeosMcp:
+    # Pfad des MCP-Endpoints (nur POST; GET/DELETE antworten mit 405)
+    endpointPath: '/api/mcp'
+
+    auth:
+      # Zugriffstoken (Bearer). Liste oder Map "label: token" (Label erscheint im Log).
+      # Mindestens 20 Zeichen, erzeugen mit: ./flow mcp:token
+      # Auf dem Live-Server NICHT hier, sondern in Configuration/Production/Settings.NeosMcp.yaml
+      # eintragen (steht in .gitignore). Solange kein Token konfiguriert ist, antwortet der Endpoint mit 503.
+      tokens: []
+      # Ersatz-Header, falls der Hoster den "Authorization"-Header verschluckt
+      fallbackHeader: 'X-Neos-Mcp-Token'
+
+    # Erlaubte "Origin"-Header (nur relevant für Browser-Clients). Requests mit anderem Origin werden
+    # abgelehnt (Schutz vor DNS-Rebinding). CLI-Clients wie Claude Code senden keinen Origin.
+    allowedOrigins: []
+
+    # Content Repository und Standard-Dimension (Osteopathie in Balance: Inhalte nur in Deutsch;
+    # die Dimension "en" existiert technisch mit Fallback auf "de")
+    contentRepository: 'default'
+    dimensionSpacePoint:
+      language: 'de'
+    # Dimension, die über das Tool-Argument "language" gewählt wird (leer = keine Sprachauswahl)
+    languageDimension: 'language'
+    # Site-Node-Name, falls mehrere Sites existieren (leer = erste Site)
+    siteNodeName: ''
+
+    workspace:
+      # Arbeits-Workspace für alle Schreibzugriffe; wird bei Bedarf als "Shared Workspace" auf Basis
+      # von "live" angelegt und ist für Redakteure im Neos-Backend sichtbar.
+      name: 'mcp'
+      title: 'KI-Änderungen (MCP)'
+      description: 'Änderungen über den MCP-Server (z. B. Claude Code). Vor dem Veröffentlichen prüfen.'
+      # Darf per "workspace: live" direkt in den Live-Workspace geschrieben werden (ohne publish)?
+      allowLiveWrites: false
+
+    # Hinweise für das KI-Modell; werden bei "initialize" als "instructions" ausgeliefert
+    instructions: |
+      Du arbeitest über MCP mit dem Content Repository dieser Neos-9-Website.
+      - Schreibzugriffe landen im Workspace "mcp" und sind NICHT sofort live. Mit "workspace_status" prüfen,
+        mit "publish" veröffentlichen (optional nur ein Dokument per documentId), mit "discard" verwerfen.
+      - Empfohlener Ablauf: neos_info -> get_page_tree -> get_node (Seite inkl. Inhalt) -> get_node_type
+        (erlaubte Properties und Kindtypen) -> set_properties / create_node / move_node / remove_node ->
+        workspace_status -> publish.
+      - Inhalte einer Seite liegen in der Collection "main". create_node mit der Seiten-ID als parentId legt
+        Content-Elemente automatisch dort an (oder "collection" explizit angeben).
+      - Rich-Text-Properties enthalten HTML; nur einfache Tags verwenden (<p>, <strong>, <em>, <ul>, <li>,
+        <a>, <br>).
+      - Neue Dokumente brauchen "title"; "uriPathSegment" wird daraus erzeugt, falls nicht angegeben.
+      - Bilder werden per Asset-ID gesetzt (siehe list_assets). IDs von Nodes stammen immer aus vorherigen
+        Antworten; nie erraten.
+      - Die Website ist von Osteopathie in Balance (Anna-Liesa Rixgens, Osteopathin und Heilpraktikerin, München).
+        Alle Inhalte auf Deutsch, Leser*innen werden gesiezt, Ich-Perspektive der Behandlerin.
+      - Heilmittelwerbegesetz beachten: keine Heilversprechen ("heilt", "beseitigt", "garantiert"), keine
+        Testimonials, Osteopathie immer als Ergänzung zur ärztlichen Versorgung darstellen.

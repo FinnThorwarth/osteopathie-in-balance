@@ -17,7 +17,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
                 <div class="grid grid-cols-[auto_1fr_auto] items-center px-2 md:px-4">
                     <a href="/" class="nav-logo-wrap flex items-center py-3" aria-label="Osteopathie in Balance – Startseite">
                         <img
-                            src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo.svg')}
+                            src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo.svg') + '?v=' + Thorwarth.Asset.version('Thorwarth.BaseSite', 'Public/Images/Logo.svg')}
                             alt="Osteopathie in Balance"
                             class="h-8 xl:h-20 w-auto"
                         />
@@ -42,7 +42,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Header) < prototype(Neos.Fusion:
                 <div class="flex items-center xl:justify-center">
                     <a href="/" class="block">
                         <img
-                            src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo.svg')}
+                            src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo.svg') + '?v=' + Thorwarth.Asset.version('Thorwarth.BaseSite', 'Public/Images/Logo.svg')}
                             alt="Osteopathie in Balance – für Kinder und Familien"
                             class="h-auto w-[220px] md:w-[380px] lg:w-[500px] xl:w-[700px]"
                         />

@@ -19,6 +19,9 @@ prototype(Thorwarth.BaseSite:Document.AbstractPage) < prototype(Neos.Neos:Page) 
 
     authorMetaTags = Thorwarth.BaseSite:Component.Meta.AuthorMetaTags
 
+    # Markdown-Alternative, ARD-Manifest, WebMCP-Konfiguration (Component/Meta/StructuredData.fusion)
+    geoTags = Thorwarth.BaseSite:Component.Head.GeoTags
+
      titleTag = Neos.Fusion:Tag {
             tagName = 'title'
             content = Neos.Fusion:Case {

@@ -1,0 +1,180 @@
+##
+# Dynamisches llms.txt (https://llmstxt.org) – wird für GET /llms.txt auf der Site-Root
+# ausgeliefert (Route "llms.txt" in Configuration/Routes.yaml, Format "txt.llms").
+#
+# Aufbau:
+#   # <Titel>
+#   > <Beschreibung der Site>
+#   - Anbieter / Adresse / Kontakt / Bürozeiten (Startseite bzw. Thorwarth.BaseSite.branding)
+#   Hinweis auf die Markdown-Fassung jeder Seite (<URL>.md, siehe Markdown/Markdown.fusion)
+#   ## Seiten            – Startseite + alle Hauptseiten (verlinkt auf die Markdown-Fassung)
+#   ## <Hauptseite>      – je Hauptseite mit Unterseiten eine eigene Sektion (z. B. "Leistungen")
+#   ## Optional          – Seiten, die in der Navigation versteckt sind (Impressum, Datenschutz)
+#
+# Das Dokument wird gecacht und bei Änderungen an der Site oder einer Unterseite invalidiert.
+##
+
+# Sammelt den Dokumentbaum (siehe Thorwarth\BaseSite\Fusion\LlmsTxtDocumentsImplementation)
+prototype(Thorwarth.BaseSite:LlmsTxt.Documents) {
+    @class = 'Thorwarth\\BaseSite\\Fusion\\LlmsTxtDocumentsImplementation'
+    startingPoint = ${site}
+    excludedNodeTypes = ${Configuration.setting('Thorwarth.BaseSite.llmsTxt.excludedNodeTypes')}
+    descriptionProperties = ${Configuration.setting('Thorwarth.BaseSite.llmsTxt.descriptionProperties')}
+    descriptionMaxLength = ${Configuration.setting('Thorwarth.BaseSite.llmsTxt.descriptionMaxLength')}
+}
+
+# Eine Zeile "- [Titel](absolute URL der Markdown-Fassung): Beschreibung"
+prototype(Thorwarth.BaseSite:LlmsTxt.Link) < prototype(Neos.Fusion:Component) {
+    item = null
+
+    renderer = Neos.Fusion:Value {
+        @context.uri = Neos.Neos:NodeUri {
+            node = ${props.item.node}
+            absolute = true
+            # Markdown-Fassung der Seite (Route "Markdown page"); die HTML-Seite ist dort verlinkt
+            format = 'md'
+        }
+        value = ${'- [' + props.item.title + '](' + uri + ')' + (props.item.description ? ': ' + props.item.description : '')}
+    }
+}
+
+prototype(Thorwarth.BaseSite:LlmsTxt.LinkList) < prototype(Neos.Fusion:Loop) {
+    items = ${[]}
+    itemRenderer = Thorwarth.BaseSite:LlmsTxt.Link {
+        item = ${item}
+    }
+    @glue = ${String.chr(10)}
+}
+
+# "## Überschrift" + Leerzeile + Linkliste
+prototype(Thorwarth.BaseSite:LlmsTxt.Section) < prototype(Neos.Fusion:Component) {
+    heading = ''
+    items = ${[]}
+
+    renderer = Neos.Fusion:Join {
+        @glue = ${String.chr(10) + String.chr(10)}
+        heading = ${'## ' + props.heading}
+        links = Thorwarth.BaseSite:LlmsTxt.LinkList {
+            items = ${props.items}
+        }
+    }
+}
+
+prototype(Thorwarth.BaseSite:LlmsTxt) < prototype(Neos.Fusion:Component) {
+    @context.llmsTxtSettings = ${Configuration.setting('Thorwarth.BaseSite.llmsTxt')}
+
+    documents = Thorwarth.BaseSite:LlmsTxt.Documents
+
+    title = ${llmsTxtSettings.title || Configuration.setting('Thorwarth.BaseSite.branding.siteName')}
+    knowsAbout = ${Configuration.setting('Thorwarth.BaseSite.seo.knowsAbout') || []}
+
+    # Kurzprofil des Anbieters (keine Überschriften – laut Spezifikation nur Fließtext/Listen vor der ersten Sektion)
+    details = Neos.Fusion:Loop {
+        items = Thorwarth.BaseSite:Geo.CompanyDetails
+        itemKey = 'label'
+        itemRenderer = ${'- ' + label + ': ' + item}
+        @glue = ${String.chr(10)}
+    }
+
+    siteLink = Neos.Fusion:Value {
+        @context.uri = Neos.Neos:NodeUri {
+            node = ${site}
+            absolute = true
+            # Markdown-Fassung der Startseite: /index.md (Route "Markdown page (site root)")
+            format = 'md'
+        }
+        value = ${'- [' + (llmsTxtSettings.homepageLabel || 'Startseite') + '](' + uri + ')'}
+    }
+
+    # Hinweis auf die beiden Fassungen jeder Seite
+    formatNote = Neos.Fusion:Value {
+        @context.htmlUri = Neos.Neos:NodeUri {
+            node = ${site}
+            absolute = true
+            format = 'html'
+        }
+        value = ${'Alle verlinkten Seiten liegen als Markdown vor (Seiten-URL plus „.md“, Startseite: ' + String.trim(htmlUri, '/') + '/index.md); ohne die Endung wird die HTML-Fassung ausgeliefert. Jede Markdown-Seite nennt am Ende ihre HTML-Adresse.'}
+    }
+
+    renderer = Neos.Fusion:Http.Message {
+        httpResponseHead.headers.Content-Type = 'text/plain; charset=utf-8'
+        httpResponseHead.headers.X-Robots-Tag = 'noindex'
+
+        body = Neos.Fusion:Join {
+            @glue = ${String.chr(10) + String.chr(10)}
+            @process.trailingNewline = ${value + String.chr(10)}
+
+            # Beschreibung: SEO-Beschreibung der Startseite -> erster Inhaltstext der Startseite -> Fallback aus den Settings
+            @context.siteDescription = ${q(site).property('metaDescription') || props.documents.site.description || llmsTxtSettings.description}
+
+            title = ${'# ' + props.title}
+
+            description = ${'> ' + siteDescription}
+            description.@if.has = ${siteDescription ? true : false}
+
+            details = ${props.details}
+            details.@if.has = ${props.details ? true : false}
+
+            services = ${'Schwerpunkte: ' + Array.join(props.knowsAbout, ', ') + '.'}
+            services.@if.has = ${Array.length(props.knowsAbout) > 0}
+
+            # Fachlicher Hinweis (Thorwarth.BaseSite.llmsTxt.notice), z. B. zum Heilmittelwerbegesetz
+            notice = ${llmsTxtSettings.notice}
+            notice.@if.has = ${llmsTxtSettings.notice ? true : false}
+
+            formatNote = ${props.formatNote}
+
+            # Startseite + alle indexierbaren Hauptseiten (ohne die versteckten "Optional"-Seiten)
+            pages = Neos.Fusion:Join {
+                @glue = ${String.chr(10)}
+                heading = ${'## ' + (llmsTxtSettings.pagesHeading || 'Seiten') + String.chr(10)}
+                site = ${props.siteLink}
+                entries = Thorwarth.BaseSite:LlmsTxt.LinkList {
+                    items = ${Array.filter(props.documents.entries, entry => entry.indexable && !entry.optional)}
+                }
+            }
+
+            # Je Hauptseite mit Unterseiten eine eigene Sektion
+            sections = Neos.Fusion:Loop {
+                items = ${Array.filter(props.documents.entries, entry => !entry.optional && Array.length(entry.descendants) > 0)}
+                itemName = 'entry'
+                itemRenderer = Thorwarth.BaseSite:LlmsTxt.Section {
+                    heading = ${entry.sectionHeading}
+                    items = ${entry.descendants}
+                }
+                @glue = ${String.chr(10) + String.chr(10)}
+                @if.has = ${Array.length(this.items) > 0}
+            }
+
+            # In der Navigation versteckte Hauptseiten (Impressum, Datenschutz, …) inkl. Unterseiten
+            optional = Thorwarth.BaseSite:LlmsTxt.Section {
+                heading = 'Optional'
+                items = Neos.Fusion:Reduce {
+                    # Arrow-Functions brauchen einen echten Boolean-Ausdruck – ein reiner Objektpfad (entry => entry.optional) ist in Eel immer truthy
+                    items = ${Array.filter(props.documents.entries, entry => entry.optional == true)}
+                    itemName = 'entry'
+                    initialValue = ${[]}
+                    itemReducer = ${Array.concat(carry, entry.indexable ? [entry] : [], entry.descendants)}
+                }
+                @if.has = ${Array.length(this.items) > 0}
+            }
+        }
+    }
+
+    @cache {
+        mode = 'cached'
+        entryIdentifier {
+            site = ${Neos.Caching.entryIdentifierForNode(site)}
+            host = ${request.httpRequest.uri.host}
+        }
+        entryTags {
+            1 = ${Neos.Caching.nodeTag(site)}
+            2 = ${Neos.Caching.descendantOfTag(site)}
+        }
+    }
+}
+
+root.llmsTxt {
+    condition = ${request.format == 'txt.llms'}
+    renderer = Thorwarth.BaseSite:LlmsTxt
+}

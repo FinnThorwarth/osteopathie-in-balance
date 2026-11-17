@@ -1,0 +1,214 @@
+##
+# SEO/GEO im <head>: strukturierte Daten (schema.org), Open Graph und Hinweise für KI-Agenten.
+#
+# Neos.Seo liefert bereits BreadcrumbList, WebSite, Title/Description, Canonical, hreflang und Open Graph.
+# Hier wird ergänzt bzw. korrigiert:
+# - MedicalBusiness (Untertyp von LocalBusiness) mit Adresse, Telefon, Schwerpunkten (auf jeder Seite, gleiche @id)
+# - WebSite: Name der Marke statt Seitentitel der Startseite, Suchaktion (Sitelinks-Suchfeld), Publisher
+# - Open Graph: og:site_name = Marke, og:locale im Format de_DE, Fallback-Bilder (Titelbild der Seite,
+#   Vorschaubild von Journal-Beiträgen, Standardbild aus den Settings)
+# - Markdown-Alternative der Seite und ARD-Manifest als <link>
+##
+
+prototype(Thorwarth.BaseSite:StructuredData.LocalBusiness) < prototype(Neos.Fusion:Component) {
+    company = Thorwarth.BaseSite:Geo.Company
+    seo = ${Configuration.setting('Thorwarth.BaseSite.seo')}
+    description = ${q(site).property('metaDescription') || Configuration.setting('Thorwarth.BaseSite.llmsTxt.description')}
+    imageUri = Neos.Neos:ImageUri {
+        asset = ${q(site).property('openGraphImage') || q(site).property('image')}
+        maximumWidth = 1200
+        allowUpScaling = false
+        @if.hasImage = ${q(site).property('openGraphImage') || q(site).property('image') ? true : false}
+    }
+
+    @private.organizationId = ${props.company.homepageUri + '#organization'}
+    @private.data = Neos.Fusion:DataStructure {
+        '@context' = 'https://schema.org'
+        '@type' = 'MedicalBusiness'
+        '@id' = ${private.organizationId}
+        name = ${props.company.name}
+        legalName = ${props.company.legalName}
+        legalName.@if.set = ${props.company.legalName ? true : false}
+        description = ${props.description}
+        description.@if.set = ${props.description ? true : false}
+        url = ${props.company.homepageUri}
+        telephone = ${props.company.phone}
+        telephone.@if.set = ${props.company.phone ? true : false}
+        email = ${props.company.email}
+        email.@if.set = ${props.company.email ? true : false}
+        logo = ${props.company.logoUri}
+        logo.@if.set = ${props.company.logoUri ? true : false}
+        image = ${props.imageUri || props.company.logoUri}
+        image.@if.set = ${props.imageUri || props.company.logoUri ? true : false}
+        priceRange = ${props.company.priceRange}
+        priceRange.@if.set = ${props.company.priceRange ? true : false}
+        foundingDate = ${props.company.foundingDate}
+        foundingDate.@if.set = ${props.company.foundingDate ? true : false}
+        founder = Neos.Fusion:DataStructure {
+            '@type' = 'Person'
+            name = ${props.company.founder}
+            @if.set = ${props.company.founder ? true : false}
+        }
+        address = Neos.Fusion:DataStructure {
+            '@type' = 'PostalAddress'
+            streetAddress = ${props.company.streetAddress}
+            postalCode = ${props.company.postalCode}
+            addressLocality = ${props.company.city}
+            addressRegion = ${props.company.region}
+            addressCountry = ${props.company.country}
+        }
+        geo = Neos.Fusion:DataStructure {
+            '@type' = 'GeoCoordinates'
+            latitude = ${props.company.latitude}
+            longitude = ${props.company.longitude}
+            @if.set = ${props.company.latitude && props.company.longitude ? true : false}
+        }
+        hasMap = ${props.company.mapUrl}
+        hasMap.@if.set = ${props.company.mapUrl ? true : false}
+        areaServed = ${Array.map(props.company.areaServed, place => {'@type': 'City', 'name': place})}
+        areaServed.@if.set = ${Array.length(props.company.areaServed) > 0}
+        knowsAbout = ${props.seo.knowsAbout}
+        knowsAbout.@if.set = ${Array.length(props.seo.knowsAbout || []) > 0}
+        openingHoursSpecification = ${Array.values(Array.map(props.seo.openingHours || {}, hours => {'@type': 'OpeningHoursSpecification', 'dayOfWeek': hours.dayOfWeek, 'opens': hours.opens, 'closes': hours.closes}))}
+        openingHoursSpecification.@if.set = ${Array.length(props.seo.openingHours || {}) > 0}
+        contactPoint = Neos.Fusion:DataStructure {
+            '@type' = 'ContactPoint'
+            contactType = 'Terminvereinbarung'
+            telephone = ${props.company.phone}
+            email = ${props.company.email}
+            availableLanguage = ${['de']}
+            url = ${props.company.bookingUrl}
+            url.@if.set = ${props.company.bookingUrl ? true : false}
+            @if.set = ${props.company.phone ? true : false}
+        }
+        sameAs = ${props.company.sameAs}
+        sameAs.@if.set = ${Array.length(props.company.sameAs) > 0}
+    }
+
+    renderer = afx`
+        <script type="application/ld+json">{Json.stringify(private.data, ['JSON_UNESCAPED_UNICODE', 'JSON_UNESCAPED_SLASHES', 'JSON_HEX_TAG'])}</script>
+    `
+}
+
+prototype(Neos.Seo:StructuredData.Container) {
+    localBusiness = Thorwarth.BaseSite:StructuredData.LocalBusiness
+}
+
+# WebSite: Markenname, Sprache und Publisher
+prototype(Neos.Seo:StructuredData.Website) {
+    # Neos.Seo 4.1: "documentNode == site" vergleicht Objektinstanzen und ist in Neos 9 nie wahr
+    @if.onHomepage = ${documentNode.aggregateId.value == site.aggregateId.value}
+    name = ${Configuration.setting('Thorwarth.BaseSite.branding.siteName')}
+    inLanguage = ${Neos.Dimension.currentValue(documentNode, 'language').value || 'de'}
+    publisher = Neos.Fusion:DataStructure {
+        '@id' = Neos.Neos:NodeUri {
+            node = ${site}
+            absolute = true
+            @process.suffix = ${value + '#organization'}
+        }
+    }
+    # Keine Suchaktion: die Suche (/api/search) liefert ohne Flowpack.SimpleSearch keine Treffer
+    potentialAction >
+}
+
+prototype(Neos.Seo:OpenGraphMetaTags) {
+    siteName = ${Configuration.setting('Thorwarth.BaseSite.branding.siteName')}
+    # og:locale erwartet "de_DE" statt "de"
+    locale = ${Neos.Dimension.currentValue(documentNode, 'language').value == 'en' ? 'en_US' : 'de_DE'}
+    description = ${q(node).property('openGraphDescription') || q(node).property('metaDescription') || q(node).property('excerpt')}
+    type = ${q(node).property('openGraphType') || (q(node).is('[instanceof Thorwarth.BaseSite:Document.JournalPage]') ? 'article' : 'website')}
+    image {
+        pageImage {
+            @position = 'after default'
+            condition = ${Type.instance(q(node).property('image'), 'Neos\Media\Domain\Model\ImageInterface')}
+            renderer = ${q(node).property('image')}
+        }
+        previewImage {
+            @position = 'after pageImage'
+            condition = ${Type.instance(q(node).property('previewImage'), 'Neos\Media\Domain\Model\ImageInterface')}
+            renderer = ${q(node).property('previewImage')}
+        }
+        siteImage {
+            @position = 'after previewImage'
+            condition = ${Type.instance(q(site).property('openGraphImage') || q(site).property('image'), 'Neos\Media\Domain\Model\ImageInterface')}
+            renderer = ${q(site).property('openGraphImage') || q(site).property('image')}
+        }
+    }
+    imageAltText = ${this.image.caption || this.image.title || q(node).property('alternativeText') || this.image.label}
+}
+
+# Zusätzliche Head-Tags für Suchmaschinen und KI-Agenten
+prototype(Thorwarth.BaseSite:Component.Head.GeoTags) < prototype(Neos.Fusion:Component) {
+    markdownUri = Neos.Neos:NodeUri {
+        node = ${documentNode}
+        absolute = true
+        format = 'md'
+    }
+    originTrialToken = ${Configuration.setting('Thorwarth.BaseSite.agentic.webmcpOriginTrialToken')}
+    noindex = ${q(documentNode).property('metaRobotsNoindex') ? true : false}
+    company = Thorwarth.BaseSite:Geo.Company
+
+    # Konfiguration für die WebMCP-Tools (JavaScript/webmcp.js) als JSON-Datenblock – im <head>,
+    # weil #app als Vue-Template kompiliert wird und dort keine <script>-Tags stehen dürfen
+    @private.siteConfig = ${{
+        'siteName': props.company.name,
+        'company': Array.filter({
+            'name': props.company.legalName || props.company.name,
+            'address': props.company.address,
+            'phone': props.company.phone,
+            'phoneDisplay': props.company.phoneDisplay,
+            'email': props.company.email,
+            'officeHours': props.company.officeHours,
+            'bookingUrl': props.company.bookingUrl,
+            'mapUrl': props.company.mapUrl
+        })
+    }}
+
+    renderer = afx`
+        <meta name="twitter:card" content="summary_large_image" />
+        <link @if={!props.noindex} rel="alternate" type="text/markdown" href={props.markdownUri} title="Markdown-Fassung dieser Seite" />
+        <link rel="ard" href="/.well-known/ard.json" />
+        <meta @if={props.originTrialToken} http-equiv="origin-trial" content={props.originTrialToken} />
+        <script type="application/json" id="site-config">{Json.stringify(private.siteConfig, ['JSON_UNESCAPED_UNICODE', 'JSON_UNESCAPED_SLASHES', 'JSON_HEX_TAG'])}</script>
+    `
+    @if.notInBackend = ${!renderingMode.isEdit}
+}
+
+# robots.txt (Neos.Seo): alle Crawler inkl. KI-Crawler ausdrücklich zulassen, Hinweis auf llms.txt.
+# Sitemap-Links nur für Sprachen, in denen die Startseite existiert – ohne Übersetzung wäre der Node null
+# und Neos.Seo würfe eine Exception (z. B. solange "en" nicht übersetzt ist). @private lässt sich nur in
+# einer Root-Prototyp-Deklaration überschreiben, daher ein eigener Prototyp als Renderer von root.robotsTxt.
+prototype(Thorwarth.BaseSite:RobotsTxt) < prototype(Neos.Seo:RobotsTxt) {
+    data {
+        allowAll = 'Allow: /'
+        allowAll.@position = 'after disallowNeos'
+        llmsTxt = '# KI-Agenten: Überblick über alle Seiten unter /llms.txt, jede Seite als Markdown unter <Seiten-URL>.md'
+        llmsTxt.@position = 'end'
+    }
+
+    @private.sitemaps = Neos.Fusion:Loop {
+        @if.shouldRender = ${props.renderXMLSitemapLinks}
+        items = ${props.languageDimension && Neos.Dimension.currentValue(site, props.languageDimension) != null ? Neos.Dimension.allDimensionValues(site, props.languageDimension) : [null]}
+        itemName = 'dimensionValue'
+        itemRenderer = Neos.Neos:NodeUri {
+            @context.sitemapSite = ${dimensionValue ? Neos.Dimension.findVariantInDimension(site, props.languageDimension, dimensionValue) : site}
+            absolute = true
+            format = 'xml.sitemap'
+            node = ${sitemapSite}
+            @process.prefix = ${'Sitemap: ' + value + props.linebreak}
+            @if.variantExists = ${sitemapSite != null}
+            @if.isIncluded = ${!dimensionValue || !props.dimensionsPresets || Array.indexOf(props.dimensionsPresets, dimensionValue.value) != -1}
+            @if.notExcluded = ${!dimensionValue || !props.excludedDimensionPresets || Array.indexOf(props.excludedDimensionPresets, dimensionValue.value) == -1}
+        }
+        @process.prefix = ${props.linebreak + value}
+    }
+}
+
+root.robotsTxt.renderer = Thorwarth.BaseSite:RobotsTxt
+
+# Meta-Description: ohne gepflegte SEO-Beschreibung den Auszug (Journal-Beiträge) verwenden
+prototype(Neos.Seo:MetaDescriptionTag) {
+    @context.descriptionText = ${q(node).property('metaDescription') || q(node).property('excerpt')}
+    attributes.content = ${String.trim(String.stripTags(descriptionText))}
+    @if.isNotBlank = ${!String.isBlank(descriptionText)}
+}

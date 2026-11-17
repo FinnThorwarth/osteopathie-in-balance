@@ -1,0 +1,114 @@
+##
+# Markdown-Renderer je Dokumenttyp ("<NodeType>.Markdown"), siehe Markdown.fusion.
+# Dokumenttypen ohne eigenen Renderer (Page, Homepage, ErrorPage, …) nutzen Thorwarth.BaseSite:Markdown.Document.
+#
+# Hinweis: @private ist nur in Root-Prototypen erlaubt, daher sind Blöcke mit abgeleiteten Werten
+# eigene Prototypen (z. B. Document.JournalPage.Markdown.Meta) statt anonymer Komponenten.
+##
+
+##
+# Journal-Beitrag: Metadaten (Datum, Autor, Kategorien) und Vorschaubild vor dem Inhalt, Autorenprofil danach
+##
+prototype(Thorwarth.BaseSite:Document.JournalPage.Markdown) < prototype(Thorwarth.BaseSite:Markdown.Document) {
+    # Ohne SEO-Beschreibung: Kurzbeschreibung des Beitrags
+    description = ${Markdown.escape(q(documentNode).property('metaDescription') || q(documentNode).property('excerpt'))}
+    before = Thorwarth.BaseSite:Document.JournalPage.Markdown.Meta
+
+    after = Thorwarth.BaseSite:Markdown.AuthorProfile {
+        authorNode = ${q(documentNode).property('showAuthorCard') ? q(documentNode).property('author') : null}
+        heading = 'Zur Person'
+    }
+}
+
+prototype(Thorwarth.BaseSite:Document.JournalPage.Markdown.Meta) < prototype(Neos.Fusion:Component) {
+    publicationDate = ${q(documentNode).property('publicationDate')}
+    authorName = ${q(documentNode).property('authorName') || (q(documentNode).property('author') ? q(q(documentNode).property('author')).property('fullName') : '')}
+    categories = ${q(documentNode).property('categories')}
+    previewImage = Thorwarth.BaseSite:Markdown.Image {
+        image = ${q(documentNode).property('previewImage')}
+        alternativeText = ${q(documentNode).property('title')}
+    }
+
+    @private.meta = ${Array.join(Array.filter([
+        props.publicationDate ? 'Veröffentlicht am ' + Date.format(props.publicationDate, 'd.m.Y') : '',
+        props.authorName ? 'Autor: ' + Markdown.escape(props.authorName) : '',
+        props.categories ? 'Kategorien: ' + Markdown.escape(props.categories) : ''
+    ]), ' · ')}
+
+    renderer = ${Markdown.join([
+        private.meta ? '*' + private.meta + '*' : '',
+        props.previewImage
+    ])}
+}
+
+##
+# Journal-Übersicht: Seiteninhalt, danach die Liste der Beiträge
+##
+prototype(Thorwarth.BaseSite:Document.JournalOverviewPage.Markdown) < prototype(Thorwarth.BaseSite:Markdown.Document) {
+    after = Neos.Fusion:Component {
+        heading = ${Markdown.inline(q(documentNode).property('journalHeading')) || 'Beiträge'}
+        list = Thorwarth.BaseSite:Markdown.DocumentList {
+            items = ${q(documentNode).children('[instanceof Thorwarth.BaseSite:Document.JournalPage]').get()}
+        }
+
+        renderer = ${props.list ? Markdown.join([Markdown.heading(2, props.heading), props.list]) : ''}
+    }
+}
+
+##
+# Autorenseite: Profil, danach die Beiträge der Person
+##
+prototype(Thorwarth.BaseSite:Document.Author.Markdown) < prototype(Thorwarth.BaseSite:Markdown.Document) {
+    title = ${Markdown.escape(q(documentNode).property('fullName') || q(documentNode).property('title'))}
+
+    before = Thorwarth.BaseSite:Markdown.AuthorProfile {
+        authorNode = ${documentNode}
+        showName = false
+    }
+
+    after = Neos.Fusion:Component {
+        fullName = ${Markdown.escape(q(documentNode).property('fullName') || q(documentNode).property('title'))}
+        list = Thorwarth.BaseSite:Markdown.DocumentList {
+            items = ${q(site).find('[instanceof Thorwarth.BaseSite:Document.JournalPage][author = "' + documentNode.aggregateId.value + '"]').sort('publicationDate', 'DESC').get()}
+        }
+
+        renderer = ${props.list ? Markdown.join([Markdown.heading(2, 'Beiträge von ' + props.fullName), props.list]) : ''}
+    }
+}
+
+##
+# Autoren-Übersicht: Liste der Autorenseiten
+##
+prototype(Thorwarth.BaseSite:Document.AuthorsContainer.Markdown) < prototype(Thorwarth.BaseSite:Markdown.Document) {
+    after = Neos.Fusion:Loop {
+        items = ${q(documentNode).children('[instanceof Thorwarth.BaseSite:Document.Author]').get()}
+        itemName = 'authorNode'
+        itemRenderer = Neos.Fusion:Value {
+            @context.authorUri = Thorwarth.BaseSite:Markdown.NodeUri {
+                node = ${authorNode}
+            }
+            value = ${'- ' + Markdown.link(Markdown.escape(q(authorNode).property('fullName') || q(authorNode).property('title')), authorUri) + (q(authorNode).property('jobTitle') ? ': ' + Markdown.escape(q(authorNode).property('jobTitle')) : '')}
+        }
+        @glue = ${String.chr(10)}
+    }
+}
+
+##
+# Suchseite: Hinweis auf die HTML-Suche und die Such-API
+##
+prototype(Thorwarth.BaseSite:Document.SearchPage.Markdown) < prototype(Thorwarth.BaseSite:Markdown.Document) {
+    after = Neos.Fusion:Component {
+        siteUri = Neos.Neos:NodeUri {
+            node = ${site}
+            absolute = true
+            format = 'html'
+        }
+        htmlUri = Neos.Neos:NodeUri {
+            node = ${documentNode}
+            absolute = true
+            format = 'html'
+        }
+
+        renderer = ${'Die Suche steht in der HTML-Fassung dieser Seite zur Verfügung (' + props.htmlUri + '?q=SUCHBEGRIFF); für Programme als JSON: ' + String.trim(props.siteUri, '/') + '/api/search?q=SUCHBEGRIFF'}
+    }
+}

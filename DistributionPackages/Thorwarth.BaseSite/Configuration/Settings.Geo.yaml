@@ -1,0 +1,195 @@
+# SEO / GEO (Generative Engine Optimization) für Osteopathie in Balance
+#
+# - Strukturierte Daten (schema.org/LocalBusiness), Open Graph:     Fusion/Component/Meta/StructuredData.fusion
+# - llms.txt unter /llms.txt (https://llmstxt.org):                   Fusion/LlmsTxt/LlmsTxt.fusion
+# - Markdown-Fassung jeder Seite (<Seiten-URL>.md, /index.md):        Fusion/Markdown/*.fusion
+# - ARD-Manifest unter /.well-known/ard.json:                         Fusion/Ard/ArdManifest.fusion
+# - Serverseitiges Matomo-Tracking für Crawler/KI-Agenten:            Classes/Service/AgentTrackingService.php
+#
+# Kontaktdaten und Öffnungszeiten kommen in erster Linie aus den Eigenschaften der Startseite
+# (Inspector "Kontaktdaten" / "Öffnungszeiten", Mixin.SiteSettings). Die Werte unten sind Fallbacks
+# bzw. Angaben, die es im Backend nicht gibt (Firmierung, Geokoordinaten, Öffnungszeiten maschinenlesbar).
+Neos:
+  Flow:
+    http:
+      middlewares:
+        # Matomo-Hits für Abrufe ohne Browser (llms.txt, Markdown-Seiten, ARD-Manifest, sitemap.xml, Such-API);
+        # läuft nach der Site-Erkennung von Neos (detectSite). Konfiguration: Thorwarth.BaseSite.agentTracking (unten)
+        'agentTracking':
+          position: 'after detectSite'
+          middleware: 'Thorwarth\BaseSite\Http\Middleware\AgentTrackingMiddleware'
+        # llms.txt, .md, robots.txt, sitemap.xml und ARD-Manifest auch bei "Accept: text/markdown" o. Ä.
+        # ausliefern statt mit 406 abzubrechen (der Neos-NodeController verhandelt nur text/html)
+        'machineReadableAccept':
+          position: 'before routing'
+          middleware: 'Thorwarth\BaseSite\Http\Middleware\MachineReadableAcceptMiddleware'
+  Fusion:
+    defaultContext:
+      # HTML -> Markdown für die .md-Fassung der Seiten (Resources/Private/Fusion/Markdown)
+      Markdown: 'Thorwarth\BaseSite\Eel\Helper\MarkdownHelper'
+
+Thorwarth:
+  BaseSite:
+    branding:
+      siteName: 'Osteopathie in Balance'
+      titleSuffix: ' | Osteopathie in Balance'
+      logo: 'Public/Images/Logo.svg'
+      company:
+        legalName: 'Osteopathie in Balance – Anna-Liesa Rixgens'
+        # Fallbacks, falls an der Startseite nichts gepflegt ist (Adresse laut Impressum)
+        streetAddress: 'Fürstenrieder Straße 4a'
+        postalCode: '80687'
+        city: 'München'
+        region: 'Bayern'
+        country: 'DE'
+        phone: '+4915155784073'
+        phoneDisplay: '+49 151 55784073'
+        email: 'info@osteopathie-in-balance.de'
+        # Freitext für llms.txt/Markdown; leer = nicht ausgeben
+        officeHours: 'Termine nach Vereinbarung, Online-Buchung über Doctolib'
+        emergencyHours: ''
+        # Einzugsgebiet für schema.org/areaServed
+        areaServed:
+          - 'München'
+          - 'Laim'
+          - 'Gräfelfing'
+        # Geokoordinaten (Dezimalgrad) des Standorts; leer = nicht ausgeben.
+        # TODO: aus dem Google-Unternehmensprofil übernehmen.
+        geo:
+          latitude: ''
+          longitude: ''
+        # Link auf den Google-Maps-Eintrag (schema.org/hasMap); leer = nicht ausgeben
+        mapUrl: ''
+        # Weitere Profile für schema.org/sameAs (Instagram der Startseite wird zusätzlich übernommen)
+        sameAs:
+          - 'https://www.doctolib.de/einzelpraxis/graefelfing/ostheopathie-in-balance'
+        priceRange: ''
+        foundingDate: ''
+        founder: 'Anna-Liesa Rixgens'
+    seo:
+      # Keine festen Öffnungszeiten – Termine nach Vereinbarung. Leer = keine OpeningHoursSpecification.
+      openingHours: {}
+      emergencyHours: {}
+      # Schwerpunkte für schema.org/knowsAbout und die Beschreibung in llms.txt
+      knowsAbout:
+        - 'Osteopathie'
+        - 'Kinderosteopathie'
+        - 'Osteopathie für Säuglinge'
+        - 'Osteopathie bei Kinderwunsch'
+        - 'Osteopathie in der Schwangerschaft'
+        - 'Osteopathie im Wochenbett'
+        - 'Osteopathie in der Stillzeit'
+        - 'Osteopathie in den Wechseljahren'
+        - 'Craniosacrale Osteopathie'
+        - 'CMD und Kieferbeschwerden'
+        - 'Kopfschmerzen und Migräne'
+        - 'Rücken-, Schulter- und Nackenschmerzen'
+        - 'Sportosteopathie'
+        - 'Postoperative Osteopathie'
+      # Fallback-Bild für og:image (Seiten ohne eigenes Titel- oder Open-Graph-Bild); leer = keins
+      defaultShareImage: ''
+
+    # Dynamisches llms.txt unter /llms.txt (https://llmstxt.org), siehe Fusion/LlmsTxt/LlmsTxt.fusion
+    llmsTxt:
+      # Überschrift (H1); leer = branding.siteName
+      title: 'Osteopathie in Balance – Osteopathie für Frauen, Babys, Kinder und Familien in München'
+      # Fallback-Beschreibung, falls die Startseite weder SEO-Beschreibung noch Einstiegstext hat
+      description: 'Osteopathische Praxis von Anna-Liesa Rixgens (Osteopathin, Heilpraktikerin) in München: achtsame Begleitung bei Kinderwunsch, in Schwangerschaft und Wochenbett, für Säuglinge, Kinder und Jugendliche sowie für Erwachsene – ergänzend zur ärztlichen Versorgung.'
+      # Hinweis unter der Beschreibung (Klartext); leer = keiner
+      notice: 'Hinweis: Osteopathie versteht sich in dieser Praxis als ergänzende Begleitung und ersetzt keine ärztliche Diagnose oder Behandlung. Die Inhalte der Website enthalten keine Heilversprechen.'
+      homepageLabel: 'Startseite'
+      pagesHeading: 'Seiten'
+      # Maximale Länge automatisch erzeugter Beschreibungen (aus Seiteninhalten)
+      descriptionMaxLength: 200
+      # Properties von Inhaltselementen, aus denen – in dieser Reihenfolge – eine Beschreibung
+      # abgeleitet wird, wenn die Seite keine SEO-Beschreibung (metaDescription) hat
+      descriptionProperties:
+        - 'leftColumnText'
+        - 'leftColumnContent'
+        - 'leftContent'
+        - 'text1'
+        - 'text'
+        - 'content'
+        - 'introText'
+        - 'subtitle'
+      # Dokument-Typen (inkl. Untertypen), die samt Unterseiten nicht aufgeführt werden
+      excludedNodeTypes:
+        - 'Neos.Neos:Shortcut'
+        - 'Thorwarth.BaseSite:Document.ErrorPage'
+        - 'Thorwarth.BaseSite:Document.SearchPage'
+        - 'Thorwarth.BaseSite:Document.AuthorsContainer'
+
+    # Agentic Browsing: WebMCP (navigator.modelContext, Chrome) – siehe Resources/Private/JavaScript/webmcp.js
+    agentic:
+      # Origin-Trial-Token für WebMCP (Chrome), pro Origin beantragen: https://developer.chrome.com/origintrials/
+      # Ohne Token bleibt navigator.modelContext in Chrome deaktiviert; die Tool-Registrierung ist dann wirkungslos, aber harmlos.
+      # TODO: Token für https://www.osteopathie-in-balance.de beantragen und hier eintragen.
+      webmcpOriginTrialToken: ''
+
+    # Serverseitiges Matomo-Tracking für Abrufe ohne Browser (Crawler, KI-Agenten): llms.txt, Markdown-Seiten,
+    # ARD-Manifest, sitemap.xml, robots.txt, Such-API. Diese Antworten enthalten kein JavaScript, das
+    # Matomo-Snippet greift dort nicht. Die Hits gehen über die Matomo-Tracking-API an Host/idSite aus
+    # Flowpack.Neos.Matomo – erst nachdem die Antwort gesendet wurde (Service/AgentTrackingService,
+    # Http/Middleware/AgentTrackingMiddleware, Package.php; Middleware registriert in Configuration/Settings.yaml).
+    # Im Matomo-Report "Verhalten → Seitentitel" erscheinen die Hits als "<titlePrefix> / <Ressource> / <Agent>".
+    agentTracking:
+      enabled: true
+      # Matomo-idSite für diese Hits. Leer = idSite aus Flowpack.Neos.Matomo (die Crawler-Hits landen dann
+      # in der Besucherstatistik). Empfehlung: in Matomo eine eigene Site "Crawler & KI-Agenten" anlegen.
+      idSite: ''
+      # token_auth eines Matomo-Nutzers mit Schreibrecht – nur nötig, damit Matomo die IP des Agenten
+      # übernimmt (Parameter cip). Sensibel → auf dem Live-Server in einer nicht eingecheckten Datei setzen.
+      tokenAuth: ''
+      titlePrefix: 'KI-Agenten'
+      # Optional: ID einer Custom Dimension (Geltungsbereich "Aktion") für den Agentennamen; 0 = aus
+      agentDimensionId: 0
+      connectTimeoutMs: 1000
+      timeoutMs: 2000
+      # Ressourcen: Bezeichnung im Report → Regex auf den Pfad (ohne führenden Schrägstrich, ohne Query-String)
+      resources:
+        'llms.txt': '^(en/)?llms\.txt$'
+        'Markdown-Seiten': '\.md$'
+        'ARD-Manifest': '^\.well-known/(ard|ai-catalog)\.json$'
+        'sitemap.xml': '^(en/)?sitemap\.xml$'
+        'robots.txt': '^robots\.txt$'
+        'Such-API': '^api/search$'
+      # Agent aus dem User-Agent: Teilstring (Groß-/Kleinschreibung egal) → Name im Report; Reihenfolge = Priorität
+      agents:
+        'OAI-SearchBot': 'OpenAI OAI-SearchBot'
+        'ChatGPT-User': 'OpenAI ChatGPT-User'
+        'GPTBot': 'OpenAI GPTBot'
+        'Claude-SearchBot': 'Anthropic Claude-SearchBot'
+        'Claude-User': 'Anthropic Claude-User'
+        'ClaudeBot': 'Anthropic ClaudeBot'
+        'anthropic-ai': 'Anthropic'
+        'Perplexity-User': 'Perplexity-User'
+        'PerplexityBot': 'PerplexityBot'
+        'Google-CloudVertexBot': 'Google Vertex AI'
+        'GoogleOther': 'Google GoogleOther'
+        'Googlebot': 'Googlebot'
+        'bingbot': 'Bingbot'
+        'Applebot-Extended': 'Applebot-Extended'
+        'Applebot': 'Applebot'
+        'meta-externalagent': 'Meta AI'
+        'facebookexternalhit': 'Facebook'
+        'Amazonbot': 'Amazonbot'
+        'Bytespider': 'ByteDance Bytespider'
+        'CCBot': 'Common Crawl CCBot'
+        'DuckAssistBot': 'DuckDuckGo DuckAssistBot'
+        'DuckDuckBot': 'DuckDuckBot'
+        'YouBot': 'You.com YouBot'
+        'cohere-ai': 'Cohere'
+        'MistralAI-User': 'Mistral'
+        'Diffbot': 'Diffbot'
+        'PetalBot': 'Huawei PetalBot'
+        'AI2Bot': 'Ai2 (Allen Institute)'
+        'python-requests': 'HTTP-Client: python-requests'
+        'Python-urllib': 'HTTP-Client: Python-urllib'
+        'aiohttp': 'HTTP-Client: aiohttp'
+        'Go-http-client': 'HTTP-Client: Go'
+        'node-fetch': 'HTTP-Client: node-fetch'
+        'undici': 'HTTP-Client: undici'
+        'axios': 'HTTP-Client: axios'
+        'okhttp': 'HTTP-Client: okhttp'
+        'curl': 'HTTP-Client: curl'
+        'Wget': 'HTTP-Client: wget'

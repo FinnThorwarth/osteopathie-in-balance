@@ -1,0 +1,125 @@
+# Agentic Resource Discovery (ARD) – Manifest unter /.well-known/ard.json
+# (zusätzlich unter dem Legacy-Pfad /.well-known/ai-catalog.json).
+#
+# Beschreibt die maschinenlesbaren Einstiegspunkte der Site für KI-Agenten:
+# llms.txt, die Markdown-Fassung der Seiten, die Sitemap und die Startseite.
+# Die URLs werden aus der aufgerufenen Domain gebildet. Routen: Configuration/Routes.yaml.
+prototype(Thorwarth.BaseSite:ArdManifest) < prototype(Neos.Fusion:Component) {
+    @context.llmsTxtSettings = ${Configuration.setting('Thorwarth.BaseSite.llmsTxt')}
+
+    siteUri = Neos.Neos:NodeUri {
+        node = ${site}
+        absolute = true
+        format = 'html'
+    }
+    # Publisher-Segment des URN (urn:air:<publisher>:…) = Host der aufgerufenen Domain
+    publisher = ${request.httpRequest.uri.host}
+    company = Thorwarth.BaseSite:Geo.Company
+    siteName = ${Configuration.setting('Thorwarth.BaseSite.branding.siteName')}
+    description = ${q(site).property('metaDescription') || llmsTxtSettings.description || ''}
+
+    # In Neos.Fusion:Component können Props nicht auf andere Props zugreifen; unter @private schon.
+    @private.baseUri = ${String.trim(props.siteUri, '/')}
+
+    @private.entries = Neos.Fusion:DataStructure {
+        llmsTxt = Neos.Fusion:DataStructure {
+            identifier = ${'urn:air:' + props.publisher + ':site:llms-txt'}
+            displayName = ${props.siteName + ' – llms.txt'}
+            type = 'text/markdown'
+            url = ${private.baseUri + '/llms.txt'}
+            description = ${'Kompakter Überblick über ' + props.siteName + ' für KI-Agenten: Praxis, Adresse, Telefon, Online-Terminbuchung, Schwerpunkte und alle Seiten mit Kurzbeschreibung (llms.txt-Standard). Die Links führen zur Markdown-Fassung der Seiten.'}
+            representativeQueries = ${[
+                'Welche Osteopathin in München behandelt Babys und Kinder?',
+                'Osteopathie in der Schwangerschaft in München',
+                'Wie buche ich einen Termin bei Osteopathie in Balance?',
+                'Wobei begleitet Osteopathie in Balance Frauen, Säuglinge, Kinder und Erwachsene?'
+            ]}
+            tags = ${['llms.txt', 'overview', 'kontakt', 'osteopathie', 'kinderosteopathie', 'muenchen']}
+            capabilities = ${['SiteOverview', 'ContactInformation']}
+        }
+
+        markdownPages = Neos.Fusion:DataStructure {
+            identifier = ${'urn:air:' + props.publisher + ':site:markdown-pages'}
+            displayName = ${props.siteName + ' – Seiten als Markdown'}
+            type = 'text/markdown'
+            url = ${private.baseUri + '/index.md'}
+            description = 'Jede Seite der Website als Markdown ohne Navigation und Layout: an die Seiten-URL „.md“ anhängen (Startseite: /index.md). Enthält Texte zu den Behandlungsschwerpunkten (Frauen, Säuglinge, Kinder & Jugendliche, Erwachsene), zum Ablauf der Behandlung, zu Preisen, zur Praxis und Kontaktangaben; am Ende jeder Seite steht die HTML-Adresse.'
+            representativeQueries = ${[
+                'Lies die Seite zur Osteopathie für Säuglinge als Markdown',
+                'Was kostet eine osteopathische Behandlung bei Osteopathie in Balance?',
+                'Wie läuft die erste Behandlung ab?',
+                'Fasse die Inhalte der Startseite zusammen'
+            ]}
+            tags = ${['markdown', 'seiten', 'llms.txt']}
+            capabilities = ${['PageContent']}
+            metadata = Neos.Fusion:DataStructure {
+                urlTemplate = ${private.baseUri + '/{pfad}.md'}
+                homepageUrl = ${private.baseUri + '/index.md'}
+            }
+        }
+
+        # Such-API und Suchseite sind bewusst nicht aufgeführt: /api/search benötigt Flowpack.SimpleSearch,
+        # das in diesem Projekt nicht installiert ist (liefert derzeit keine Treffer).
+
+        sitemap = Neos.Fusion:DataStructure {
+            identifier = ${'urn:air:' + props.publisher + ':site:sitemap'}
+            displayName = 'XML-Sitemap'
+            type = 'application/xml'
+            url = ${private.baseUri + '/sitemap.xml'}
+            description = 'Vollständige Liste aller indexierbaren Seiten der Website.'
+            tags = ${['sitemap', 'seiten']}
+            capabilities = ${['SiteMap']}
+        }
+
+        homepage = Neos.Fusion:DataStructure {
+            identifier = ${'urn:air:' + props.publisher + ':site:homepage'}
+            displayName = ${props.siteName + ' – Startseite'}
+            type = 'text/html'
+            url = ${private.baseUri + '/'}
+            description = ${props.description}
+            representativeQueries = ${[
+                'Osteopathie München',
+                'Kinderosteopathie München',
+                'Osteopathie für Babys, Kinder und Familien in München'
+            ]}
+            tags = ${['startseite', 'osteopathie', 'kinderosteopathie', 'muenchen']}
+            capabilities = ${['Homepage']}
+            metadata = Neos.Fusion:DataStructure {
+                telephone = ${props.company.phone}
+                email = ${props.company.email}
+                address = ${props.company.address}
+                bookingUrl = ${props.company.bookingUrl}
+                bookingUrl.@if.set = ${props.company.bookingUrl ? true : false}
+            }
+        }
+    }
+
+    @private.manifest = Neos.Fusion:DataStructure {
+        specVersion = '1.0'
+        entries = ${Array.values(private.entries)}
+    }
+
+    renderer = Neos.Fusion:Http.Message {
+        httpResponseHead.headers.Content-Type = 'application/json; charset=utf-8'
+        httpResponseHead.headers.Cache-Control = 'public, max-age=3600'
+        body = ${Json.stringify(private.manifest, ['JSON_PRETTY_PRINT', 'JSON_UNESCAPED_UNICODE', 'JSON_UNESCAPED_SLASHES'])}
+    }
+
+    @cache {
+        mode = 'cached'
+        entryIdentifier {
+            site = ${Neos.Caching.entryIdentifierForNode(site)}
+            format = ${request.format}
+            host = ${request.httpRequest.uri.host}
+        }
+        entryTags {
+            1 = ${Neos.Caching.nodeTag(site)}
+            2 = ${Neos.Caching.descendantOfTag(site)}
+        }
+    }
+}
+
+root.ardManifest {
+    condition = ${request.format == 'json.ard' || request.format == 'json.aicatalog'}
+    renderer = Thorwarth.BaseSite:ArdManifest
+}

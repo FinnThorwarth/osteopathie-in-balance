@@ -14,7 +14,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
                 <div class="grid gap-8 items-center md:flex md:justify-between md:pb-14">
                     <div class="flex justify-center md:justify-start md:flex-initial md:min-w-0 md:basis-[32%] lg:basis-[400px] xl:basis-[460px]">
                         <img
-                            src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_neg.svg')}
+                            src={StaticResource.uri('Thorwarth.BaseSite', 'Public/Images/Logo_neg.svg') + '?v=' + Thorwarth.Asset.version('Thorwarth.BaseSite', 'Public/Images/Logo_neg.svg')}
                             alt="Osteopathie in Balance"
                             class="w-full h-auto max-w-[300px] md:max-w-none my-8 md:my-10"
                         />

@@ -1,0 +1,57 @@
+##
+# Firmendaten für strukturierte Daten (schema.org), llms.txt, Markdown-Fassung, ARD-Manifest und WebMCP.
+# Gepflegte Werte der Startseite (Inspector "Kontaktdaten": footerEmail, sitePhone, instagramUrl, linkedinUrl, bookingUrl)
+# haben Vorrang vor Thorwarth.BaseSite.branding (Settings.Geo.yaml).
+##
+prototype(Thorwarth.BaseSite:Geo.Company) < prototype(Neos.Fusion:DataStructure) {
+    @context.branding = ${Configuration.setting('Thorwarth.BaseSite.branding')}
+
+    name = ${branding.siteName}
+    legalName = ${branding.company.legalName}
+    streetAddress = ${q(site).property('streetAddress') || branding.company.streetAddress}
+    postalCode = ${q(site).property('postalCode') || branding.company.postalCode}
+    city = ${q(site).property('city') || branding.company.city}
+    region = ${branding.company.region}
+    country = ${branding.company.country}
+    address = ${Array.join(Array.filter([this.streetAddress, String.trim((this.postalCode || '') + ' ' + (this.city || ''))]), ', ')}
+    phoneDisplay = ${q(site).property('sitePhone') || branding.company.phoneDisplay}
+    # Telefonnummer im internationalen Format (tel:-Links, schema.org): "0151 557 84073" -> "+4915155784073"
+    phone = ${String.pregReplace(String.pregReplace(this.phoneDisplay || '', '/[^0-9+]/', ''), '/^0(?=[1-9])/', '+49')}
+    email = ${q(site).property('footerEmail') || branding.company.email}
+    officeHours = ${branding.company.officeHours}
+    emergencyHours = ${branding.company.emergencyHours}
+    # Online-Terminbuchung (Doctolib), Button "Jetzt buchen" im Header
+    bookingUrl = ${q(site).property('bookingUrl')}
+    areaServed = ${branding.company.areaServed || []}
+    sameAs = ${Array.unique(Array.filter(Array.concat(branding.company.sameAs || [], [q(site).property('instagramUrl'), q(site).property('linkedinUrl')])))}
+    mapUrl = ${branding.company.mapUrl}
+    latitude = ${branding.company.geo.latitude}
+    longitude = ${branding.company.geo.longitude}
+    priceRange = ${branding.company.priceRange}
+    foundingDate = ${branding.company.foundingDate}
+    founder = ${branding.company.founder}
+    logoUri = Neos.Fusion:ResourceUri {
+        path = ${'resource://Thorwarth.BaseSite/' + branding.logo}
+        absolute = true
+        @if.hasLogo = ${branding.logo ? true : false}
+    }
+    homepageUri = Neos.Neos:NodeUri {
+        node = ${site}
+        absolute = true
+        format = 'html'
+    }
+}
+
+# Kurzprofil als Liste "Bezeichnung: Wert" (llms.txt, Markdown-Fußzeile)
+prototype(Thorwarth.BaseSite:Geo.CompanyDetails) < prototype(Neos.Fusion:Component) {
+    company = Thorwarth.BaseSite:Geo.Company
+
+    renderer = ${Array.filter({
+        'Praxis': props.company.legalName || props.company.name,
+        'Adresse': props.company.address,
+        'Telefon': props.company.phoneDisplay,
+        'E-Mail': props.company.email,
+        'Termine': props.company.officeHours,
+        'Online-Terminbuchung': props.company.bookingUrl
+    })}
+}

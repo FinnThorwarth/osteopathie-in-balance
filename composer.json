@@ -33,7 +33,8 @@
         "sitegeist/chantalle": "^2.0",
         "osteopathieinbalance/site": "dev-main",
         "symfony/microsoft-graph-mailer": "^7.4",
-        "flowpack/neos-matomo": "^4.0"
+        "flowpack/neos-matomo": "^4.0",
+        "thorwarth/neos-mcp": "@dev"
     },
     "require-dev": {
         "neos/buildessentials": "~9.1.0",

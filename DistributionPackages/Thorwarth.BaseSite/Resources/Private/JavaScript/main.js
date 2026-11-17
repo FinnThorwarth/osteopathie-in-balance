@@ -13,6 +13,15 @@ import ImageSlider from './components/ImageSlider.vue'
 import Search from './components/Search.vue'
 import TeamCarousel from './components/TeamCarousel.vue'
 
+// Conversion-Tracking (Telefon, E-Mail, Route, Doctolib) und WebMCP-Tools für KI-Agenten im Browser
+import { initClickTracking } from './tracking.js'
+import { registerWebMcpTools } from './webmcp.js'
+
+initClickTracking()
+if (navigator.modelContext || document.modelContext) {
+	registerWebMcpTools()
+}
+
 // Function to mount Vue components
 function mountVueComponents() {
 	// Check if we're in Neos backend

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da473c982b7e56bec7aed591de764b7c",
+    "content-hash": "ce12ef2a4f3d16a3da0a6d73e6ca40f2",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -9994,6 +9994,37 @@
             }
         },
         {
+            "name": "thorwarth/neos-mcp",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./DistributionPackages/Thorwarth.NeosMcp",
+                "reference": "6f00220bc779188b6ac34d3850fd3fe16a1decf9"
+            },
+            "require": {
+                "neos/neos": "^9.0",
+                "php": ">=8.2"
+            },
+            "type": "neos-package",
+            "extra": {
+                "neos": {
+                    "package-key": "Thorwarth.NeosMcp"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Thorwarth\\NeosMcp\\": "Classes/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "MCP-Server (Model Context Protocol) für Neos CMS 9: lesender und schreibender Zugriff auf das Content Repository per Streamable HTTP oder stdio",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
             "name": "typo3fluid/fluid",
             "version": "2.15.0",
             "source": {
@@ -12395,11 +12426,12 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "osteopathieinbalance/site": 20
+        "osteopathieinbalance/site": 20,
+        "thorwarth/neos-mcp": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }

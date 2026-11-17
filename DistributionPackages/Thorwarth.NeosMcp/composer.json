@@ -1,0 +1,21 @@
+{
+    "name": "thorwarth/neos-mcp",
+    "description": "MCP-Server (Model Context Protocol) für Neos CMS 9: lesender und schreibender Zugriff auf das Content Repository per Streamable HTTP oder stdio",
+    "type": "neos-package",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.2",
+        "neos/neos": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Thorwarth\\NeosMcp\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Thorwarth.NeosMcp"
+        }
+    },
+    "minimum-stability": "dev"
+}

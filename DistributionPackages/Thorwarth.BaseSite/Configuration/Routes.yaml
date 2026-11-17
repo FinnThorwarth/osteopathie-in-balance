@@ -7,3 +7,108 @@
     '@action': 'search'
     '@format': 'json'
   httpMethods: ['GET']
+
+# Dynamisches llms.txt auf der Site-Root (analog zu robots.txt aus Neos.Seo).
+# Gerendert über Fusion "root.llmsTxt" (Resources/Private/Fusion/LlmsTxt/LlmsTxt.fusion).
+-
+  name: 'llms.txt'
+  uriPattern: '{node}llms.txt'
+  defaults:
+    '@package': 'Neos.Neos'
+    '@controller': 'Frontend\Node'
+    '@action': 'show'
+    '@format': 'txt.llms'
+  routeParts:
+    'node':
+      handler: 'Neos\Neos\FrontendRouting\FrontendNodeRoutePartHandlerInterface'
+      options:
+        uriPathSuffix: ''
+        onlyMatchSiteNodes: true
+  httpMethods: ['GET']
+
+# Markdown-Fassung jeder Seite (https://llmstxt.org): <Seiten-URL>.md, Startseite /index.md
+# (zusätzlich /index.html.md). Gerendert über Fusion "root.markdown"
+# (Resources/Private/Fusion/Markdown/Markdown.fusion). Die Startseiten-Routen stehen vor der
+# allgemeinen Route, damit Neos.Neos:NodeUri für die Site-Root "/index.md" erzeugt.
+-
+  name: 'Markdown page (site root)'
+  uriPattern: '{node}index.md'
+  defaults:
+    '@package': 'Neos.Neos'
+    '@controller': 'Frontend\Node'
+    '@action': 'show'
+    '@format': 'md'
+  routeParts:
+    'node':
+      handler: 'Neos\Neos\FrontendRouting\FrontendNodeRoutePartHandlerInterface'
+      options:
+        uriPathSuffix: ''
+        onlyMatchSiteNodes: true
+  httpMethods: ['GET']
+
+-
+  name: 'Markdown page (site root, index.html.md alias)'
+  uriPattern: '{node}index.html.md'
+  defaults:
+    '@package': 'Neos.Neos'
+    '@controller': 'Frontend\Node'
+    '@action': 'show'
+    '@format': 'md'
+  routeParts:
+    'node':
+      handler: 'Neos\Neos\FrontendRouting\FrontendNodeRoutePartHandlerInterface'
+      options:
+        uriPathSuffix: ''
+        onlyMatchSiteNodes: true
+  httpMethods: ['GET']
+
+-
+  name: 'Markdown page'
+  uriPattern: '{node}.md'
+  defaults:
+    '@package': 'Neos.Neos'
+    '@controller': 'Frontend\Node'
+    '@action': 'show'
+    '@format': 'md'
+  routeParts:
+    'node':
+      handler: 'Neos\Neos\FrontendRouting\FrontendNodeRoutePartHandlerInterface'
+      options:
+        uriPathSuffix: ''
+  httpMethods: ['GET']
+
+# Agentic Resource Discovery (ARD): Manifest unter /.well-known/ard.json und – für ältere
+# Agenten – unter /.well-known/ai-catalog.json. Beide werden über Fusion "root.ardManifest"
+# gerendert (Resources/Private/Fusion/Ard/ArdManifest.fusion). Die .htaccess reicht
+# /.well-known/ nur noch für tatsächlich vorhandene Dateien statisch durch.
+-
+  name: 'ARD manifest'
+  uriPattern: '{node}.well-known/ard.json'
+  defaults:
+    '@package': 'Neos.Neos'
+    '@controller': 'Frontend\Node'
+    '@action': 'show'
+    '@format': 'json.ard'
+  routeParts:
+    'node':
+      handler: 'Neos\Neos\FrontendRouting\FrontendNodeRoutePartHandlerInterface'
+      options:
+        uriPathSuffix: ''
+        onlyMatchSiteNodes: true
+  httpMethods: ['GET']
+
+-
+  name: 'ARD manifest (legacy ai-catalog path)'
+  uriPattern: '{node}.well-known/ai-catalog.json'
+  defaults:
+    '@package': 'Neos.Neos'
+    '@controller': 'Frontend\Node'
+    '@action': 'show'
+    '@format': 'json.aicatalog'
+  routeParts:
+    'node':
+      handler: 'Neos\Neos\FrontendRouting\FrontendNodeRoutePartHandlerInterface'
+      options:
+        uriPathSuffix: ''
+        onlyMatchSiteNodes: true
+  httpMethods: ['GET']

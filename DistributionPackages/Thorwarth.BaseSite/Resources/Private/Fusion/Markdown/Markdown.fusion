@@ -1,0 +1,298 @@
+##
+# Markdown-Fassung jeder Seite (https://llmstxt.org): GET <Seiten-URL>.md, Startseite /index.md
+# (zusätzlich /index.html.md). Routen "Markdown page …" in Configuration/Routes.yaml, Format "md".
+#
+# Aufbau (Thorwarth.BaseSite:Markdown.Document):
+#   # <Seitentitel>
+#   > <SEO-Beschreibung>
+#   <Blöcke des Dokumenttyps ("before"), Inhalte der Collection "main", weitere Blöcke ("after")>
+#   ---
+#   <Anbieter, Kontakt, Link auf die HTML-Fassung und auf llms.txt>
+#
+# Renderer je Dokumenttyp: Prototyp "<NodeType>.Markdown" (Documents.fusion), sonst
+# Thorwarth.BaseSite:Markdown.Document. Inhaltselemente: Prototyp "<NodeType>.Markdown" je
+# Inhaltstyp (Content.fusion), sonst Thorwarth.BaseSite:Markdown.Content.Fallback. Rich-Text (HTML)
+# wird über den Eel-Helper "Markdown" (Classes/Eel/Helper/MarkdownHelper.php) umgewandelt; dessen
+# Bausteine (heading, link, list, table, …) erwarten fertiges Inline-Markdown, Texte aus Properties
+# also vorher mit Markdown.inline() (HTML erlaubt) oder Markdown.escape() (Klartext) aufbereiten.
+#
+# Links auf andere Seiten der Website zeigen auf deren Markdown-Fassung – generierte Listen über
+# Thorwarth.BaseSite:Markdown.NodeUri, Links aus Rich-Text und Link-Properties (node://…) über
+# Neos.Neos:ConvertUris, das die URL im Format des Requests ("md") erzeugt. Externe Links, asset://-Links
+# und Hinweise auf Formulare/HTML-Funktionen bleiben HTML-Adressen. Die HTML-Seite bleibt die kanonische
+# URL (Link-Header rel="canonical").
+##
+
+root.markdown {
+    condition = ${request.format == 'md'}
+    renderer = Thorwarth.BaseSite:Markdown.Response
+}
+
+# Der äußere root-Cache (Neos.Neos/RootCase.fusion) unterscheidet Einträge nur nach Node; damit die
+# Markdown- und die HTML-Fassung einer Seite getrennte Einträge bekommen, ist das Format Teil des Identifiers.
+root {
+    @cache {
+        entryIdentifier {
+            format = ${request.format}
+        }
+    }
+}
+
+prototype(Thorwarth.BaseSite:Markdown.Response) < prototype(Neos.Fusion:Component) {
+    htmlUri = Neos.Neos:NodeUri {
+        node = ${documentNode}
+        absolute = true
+        format = 'html'
+    }
+
+    renderer = Neos.Fusion:Http.Message {
+        httpResponseHead.headers.Content-Type = 'text/markdown; charset=utf-8'
+        # Für Suchmaschinen bleibt die HTML-Seite die kanonische Adresse (kein Duplicate Content)
+        httpResponseHead.headers.Link = ${'<' + props.htmlUri + '>; rel="canonical"'}
+        body = Thorwarth.BaseSite:Markdown.Page
+        body.@process.trailingNewline = ${value + String.chr(10)}
+    }
+
+    @cache {
+        mode = 'cached'
+        entryIdentifier {
+            node = ${Neos.Caching.entryIdentifierForNode(documentNode)}
+            format = ${request.format}
+            host = ${request.httpRequest.uri.host}
+        }
+        entryTags {
+            1 = ${Neos.Caching.nodeTag(documentNode)}
+            2 = ${Neos.Caching.descendantOfTag(documentNode)}
+            # Listen anderer Dokumente (Unterseiten, Beiträge, Autoren): bei jeder Dokumentänderung neu rendern
+            3 = ${Neos.Caching.nodeTypeTag('Neos.Neos:Document', documentNode)}
+        }
+    }
+}
+
+# Wählt den Renderer des Dokumenttyps ("<NodeType>.Markdown"), sonst den generischen
+prototype(Thorwarth.BaseSite:Markdown.Page) < prototype(Neos.Fusion:Case) {
+    documentType {
+        condition = Neos.Fusion:CanRender {
+            type = ${documentNode.nodeTypeName.value + '.Markdown'}
+        }
+        type = ${documentNode.nodeTypeName.value + '.Markdown'}
+    }
+    default {
+        @position = 'end'
+        condition = true
+        renderer = Thorwarth.BaseSite:Markdown.Document
+    }
+}
+
+##
+# Generisches Dokument. Dokumenttypen überschreiben einzelne Props (title, description, before, content, after).
+##
+prototype(Thorwarth.BaseSite:Markdown.Document) < prototype(Neos.Fusion:Component) {
+    # Überschrift: SEO-Titel, sonst Seitentitel
+    title = ${Markdown.inline(q(documentNode).property('titleOverride') || q(documentNode).property('title'))}
+    # SEO-Beschreibung (Klartext) als Zitat unter der Überschrift
+    description = ${Markdown.escape(q(documentNode).property('metaDescription'))}
+    # Blöcke vor und nach dem Seiteninhalt (je Dokumenttyp, z. B. Artikel-Metadaten)
+    before = ''
+    after = ''
+    # Inhalte der Collection "main"; Dokumenttypen ohne "main" liefern hier einen leeren String
+    content = Thorwarth.BaseSite:Markdown.ContentCollection {
+        nodePath = 'main'
+    }
+    footer = Thorwarth.BaseSite:Markdown.Footer
+
+    renderer = ${Markdown.join([
+        Markdown.heading(1, props.title),
+        Markdown.quote(props.description),
+        props.before,
+        props.content,
+        props.after,
+        props.footer
+    ])}
+}
+
+# Fußzeile: Anbieter und Kontakt (Startseite bzw. Thorwarth.BaseSite.branding), HTML-Fassung, Hinweis auf .md-Adressen und llms.txt
+prototype(Thorwarth.BaseSite:Markdown.Footer) < prototype(Neos.Fusion:Component) {
+    htmlUri = Neos.Neos:NodeUri {
+        node = ${documentNode}
+        absolute = true
+        format = 'html'
+    }
+    siteUri = Neos.Neos:NodeUri {
+        node = ${site}
+        absolute = true
+        format = 'html'
+    }
+    details = Thorwarth.BaseSite:Geo.CompanyDetails
+
+    @private.baseUri = ${String.trim(props.siteUri, '/')}
+
+    renderer = ${Markdown.join([
+        '---',
+        Markdown.definitionList(Array.map(props.details, value => Markdown.escape(value))),
+        Markdown.list([
+            'HTML-Fassung dieser Seite: ' + props.htmlUri,
+            'Alle Seiten dieser Website gibt es als Markdown: an die Seiten-URL „.md“ anhängen (Startseite: ' + private.baseUri + '/index.md). Übersicht aller Seiten: ' + private.baseUri + '/llms.txt'
+        ])
+    ])}
+}
+
+##
+# Inhaltselemente einer Collection als Markdown-Blöcke. nodePath: Name der Collection
+# ('main', 'cards', …) oder '.' für die Kindelemente des aktuellen Nodes.
+##
+prototype(Thorwarth.BaseSite:Markdown.ContentCollection) < prototype(Neos.Fusion:Loop) {
+    nodePath = 'main'
+    @context.collectionNode = ${this.nodePath == '.' ? node : q(node).children(this.nodePath).get(0)}
+    items = ${collectionNode ? q(collectionNode).children().get() : []}
+    itemName = 'node'
+    itemRenderer = Thorwarth.BaseSite:Markdown.ContentCase
+    @glue = ${String.chr(10) + String.chr(10)}
+    @process.normalize = ${Markdown.normalize(value)}
+}
+
+# Wählt den Renderer des Inhaltstyps ("<NodeType>.Markdown"), sonst den generischen Fallback
+prototype(Thorwarth.BaseSite:Markdown.ContentCase) < prototype(Neos.Fusion:Case) {
+    nodeType {
+        condition = Neos.Fusion:CanRender {
+            type = ${node.nodeTypeName.value + '.Markdown'}
+        }
+        type = ${node.nodeTypeName.value + '.Markdown'}
+    }
+    fallback {
+        @position = 'end'
+        condition = true
+        renderer = Thorwarth.BaseSite:Markdown.Content.Fallback
+    }
+}
+
+# Unbekannter Inhaltstyp: Überschrift, Untertitel und Text aus den üblichen Property-Namen
+prototype(Thorwarth.BaseSite:Markdown.Content.Fallback) < prototype(Neos.Fusion:Component) {
+    heading = ${Markdown.inline(q(node).property('title') || q(node).property('heading') || q(node).property('headline') || q(node).property('sectionTitle'))}
+    subtitle = ${Markdown.inline(q(node).property('subtitle'))}
+    text = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('text') || q(node).property('bodyText') || q(node).property('content') || q(node).property('description')}
+    }
+
+    renderer = ${Markdown.join([
+        Markdown.heading(2, props.heading),
+        props.subtitle ? '*' + props.subtitle + '*' : '',
+        props.text
+    ])}
+}
+
+##
+# Bausteine
+##
+
+# Rich-Text-Property (HTML aus dem CKEditor) -> Markdown-Blöcke; node://- und asset://-Links werden absolut aufgelöst
+prototype(Thorwarth.BaseSite:Markdown.RichText) < prototype(Neos.Fusion:Value) {
+    value = ''
+    # Kleinste Überschriftenebene für Überschriften im Rich-Text (die Seite selbst hat "#")
+    minHeadingLevel = 2
+    @if.hasValue = ${this.value ? true : false}
+    @process.convertUris = Neos.Neos:ConvertUris {
+        absolute = true
+        forceConversion = true
+    }
+    @process.markdown = ${Markdown.fromHtml(value, this.minHeadingLevel)}
+    @process.markdown.@position = 'after convertUris'
+}
+
+# Wie RichText, aber einzeilig (Überschriften, Labels mit Inline-Markup)
+prototype(Thorwarth.BaseSite:Markdown.InlineText) < prototype(Thorwarth.BaseSite:Markdown.RichText) {
+    @process.markdown = ${Markdown.inline(value)}
+}
+
+# Link-Property (node://…, asset://… oder externe URL) -> absolute URL
+prototype(Thorwarth.BaseSite:Markdown.LinkUri) < prototype(Neos.Neos:ConvertUris) {
+    value = ''
+    absolute = true
+    forceConversion = true
+    @if.hasValue = ${this.value ? true : false}
+}
+
+# Absolute URL der Markdown-Fassung eines Dokuments
+prototype(Thorwarth.BaseSite:Markdown.NodeUri) < prototype(Neos.Neos:NodeUri) {
+    absolute = true
+    format = 'md'
+}
+
+# Bild als "![Alt-Text](URL)"; die URL zeigt auf ein Thumbnail mit höchstens maximumWidth Pixeln Kantenlänge
+prototype(Thorwarth.BaseSite:Markdown.Image) < prototype(Neos.Fusion:Component) {
+    image = null
+    alternativeText = ''
+    title = ''
+    maximumWidth = 1200
+
+    @private.uri = Neos.Neos:ImageUri {
+        asset = ${props.image}
+        maximumWidth = ${props.maximumWidth}
+        maximumHeight = ${props.maximumWidth}
+        allowUpScaling = false
+        @if.hasImage = ${props.image ? true : false}
+    }
+
+    # Alt-Text: gepflegter Text, sonst Bildtitel; ein bloßer Dateiname wird ohne Endung und Trennzeichen übernommen
+    @private.altSource = ${props.alternativeText || props.title || props.image.title || props.image.label || ''}
+    @private.altText = ${String.pregMatch(private.altSource, '/\\.(jpe?g|png|gif|webp|svg|avif)$/i')
+        ? String.trim(String.pregReplace(String.pregReplace(private.altSource, '/\\.(jpe?g|png|gif|webp|svg|avif)$/i', ''), '/[-_]+/', ' '))
+        : private.altSource}
+
+    renderer = ${props.image ? Markdown.image(Markdown.text(private.altText || 'Bild'), private.uri, Markdown.text(props.title)) : ''}
+}
+
+# Liste von Dokumenten: "- [Titel](URL.md) (Datum): Auszug"
+prototype(Thorwarth.BaseSite:Markdown.DocumentList) < prototype(Neos.Fusion:Loop) {
+    items = ${[]}
+    itemName = 'listNode'
+    itemRenderer = Neos.Fusion:Value {
+        @context.listUri = Thorwarth.BaseSite:Markdown.NodeUri {
+            node = ${listNode}
+        }
+        @context.listTitle = ${Markdown.inline(q(listNode).property('title'))}
+        @context.listDate = ${q(listNode).property('publicationDate') ? Date.format(q(listNode).property('publicationDate'), 'd.m.Y') : ''}
+        @context.listText = ${Markdown.inline(q(listNode).property('excerpt') || q(listNode).property('subtitle') || q(listNode).property('metaDescription'))}
+        value = ${'- ' + Markdown.link(listTitle, listUri) + (listDate ? ' (' + listDate + ')' : '') + (listText ? ': ' + listText : '')}
+    }
+    @glue = ${String.chr(10)}
+}
+
+# Autorenprofil (Dokumenttyp Document.Author): Name, Position, Kurzbiografie, Kontakt, Profile
+prototype(Thorwarth.BaseSite:Markdown.AuthorProfile) < prototype(Neos.Fusion:Component) {
+    authorNode = null
+    # Überschrift über dem Profil (leer = keine); showName: Name als Zwischenüberschrift ausgeben
+    heading = ''
+    showName = true
+    @context.author = ${this.authorNode}
+    @if.hasAuthor = ${this.authorNode ? true : false}
+
+    fullName = ${Markdown.escape(q(author).property('fullName') || q(author).property('title'))}
+    jobTitle = ${Markdown.escape(q(author).property('jobTitle'))}
+    pronouns = ${Markdown.escape(q(author).property('pronouns'))}
+    bio = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(author).property('bio')}
+    }
+    image = Thorwarth.BaseSite:Markdown.Image {
+        image = ${q(author).property('profileImage')}
+        alternativeText = ${q(author).property('fullName')}
+        maximumWidth = 600
+    }
+    contact = ${Markdown.definitionList({
+        'E-Mail': Markdown.escape(q(author).property('email')),
+        'Telefon': Markdown.escape(q(author).property('phone')),
+        'LinkedIn': q(author).property('linkedin'),
+        'Twitter/X': q(author).property('twitter'),
+        'Facebook': q(author).property('facebook')
+    })}
+
+    renderer = ${Markdown.join([
+        Markdown.heading(2, props.heading),
+        props.showName ? Markdown.heading(props.heading ? 3 : 2, props.fullName) : '',
+        props.image,
+        props.jobTitle,
+        props.pronouns ? 'Pronomen: ' + props.pronouns : '',
+        props.bio,
+        props.contact
+    ])}
+}

@@ -1,0 +1,399 @@
+##
+# Markdown-Renderer je Inhaltstyp ("<NodeType>.Markdown"), siehe Markdown.fusion.
+# Jeder Renderer liefert Markdown-Blöcke (durch Leerzeilen getrennt) oder einen leeren String.
+# Inhaltstypen ohne eigenen Renderer nutzen Thorwarth.BaseSite:Markdown.Content.Fallback.
+#
+# Überschriften: Abschnittstitel der Elemente sind "##", Unterpunkte (FAQ-Fragen, Teammitglieder, …) "###".
+##
+
+prototype(Thorwarth.BaseSite:Content.Text.Markdown) < prototype(Neos.Fusion:Component) {
+    columnLayout = ${q(node).property('columnLayout') || ''}
+    heading = ${Markdown.inline(q(node).property('heading'))}
+    subheading = ${Markdown.inline(q(node).property('subheading'))}
+    # Einleitung über den Spalten (nur im zwei- und dreispaltigen Layout sichtbar)
+    textIntro = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('textIntro')}
+        @if.multiColumn = ${q(node).property('columnLayout') == 'two-columns' || q(node).property('columnLayout') == 'three-columns'}
+    }
+    text1 = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('text1')}
+    }
+    text2 = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('text2')}
+    }
+    text3 = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('text3')}
+    }
+
+    renderer = ${Markdown.join([
+        Markdown.heading(2, props.heading),
+        props.subheading ? '*' + props.subheading + '*' : '',
+        props.textIntro,
+        props.text1,
+        props.columnLayout == 'two-columns' || props.columnLayout == 'three-columns' ? props.text2 : '',
+        props.columnLayout == 'three-columns' ? props.text3 : ''
+    ])}
+}
+
+# Quellenangaben erben Aufbau und Properties von Content.Text
+prototype(Thorwarth.BaseSite:Content.Sources.Markdown) < prototype(Thorwarth.BaseSite:Content.Text.Markdown)
+
+prototype(Thorwarth.BaseSite:Content.TextImage.Markdown) < prototype(Neos.Fusion:Component) {
+    image = Thorwarth.BaseSite:Markdown.Image {
+        image = ${q(node).property('image')}
+        alternativeText = ${q(node).property('alternativeText') || q(node).property('imageAlt')}
+        title = ${q(node).property('imageTitle')}
+    }
+    heading = ${Markdown.inline(q(node).property('heading'))}
+    subheading = ${Markdown.inline(q(node).property('subheading'))}
+    text = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('text')}
+    }
+    textFirst = ${String.startsWith(q(node).property('columnLayout') || '', 'text-image')}
+
+    renderer = ${Markdown.join(props.textFirst
+        ? [Markdown.heading(2, props.heading), props.subheading ? '*' + props.subheading + '*' : '', props.text, props.image]
+        : [props.image, Markdown.heading(2, props.heading), props.subheading ? '*' + props.subheading + '*' : '', props.text]
+    )}
+}
+
+prototype(Thorwarth.BaseSite:Content.TextModule.Markdown) < prototype(Neos.Fusion:Component) {
+    columnLayout = ${q(node).property('columnLayout') || 'single'}
+    leftColumnContent = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('leftColumnContent')}
+    }
+    rightColumnContent = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('rightColumnContent')}
+    }
+
+    renderer = ${Markdown.join([
+        props.leftColumnContent,
+        props.columnLayout == 'double' ? props.rightColumnContent : ''
+    ])}
+}
+
+prototype(Thorwarth.BaseSite:Content.TwoColumnSection.Markdown) < prototype(Neos.Fusion:Component) {
+    headline = ${Markdown.inline(q(node).property('headline'))}
+    columnLayout = ${q(node).property('columnLayout') || 'two-columns'}
+    leftContent = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('leftContent')}
+    }
+    rightContent = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('rightContent')}
+    }
+
+    renderer = ${Markdown.join([
+        Markdown.heading(2, props.headline),
+        props.leftContent,
+        props.columnLayout == 'two-columns' ? props.rightContent : ''
+    ])}
+}
+
+prototype(Thorwarth.BaseSite:Content.Headline.Markdown) < prototype(Neos.Fusion:Component) {
+    title = ${Markdown.inline(q(node).property('title'))}
+    headingSize = ${q(node).property('headingSize') || 'h2'}
+    levels = Neos.Fusion:DataStructure {
+        h1 = 2
+        h2 = 2
+        h3 = 3
+        h4 = 4
+        h5 = 5
+        h6 = 6
+    }
+
+    renderer = ${Markdown.heading(props.levels[props.headingSize] || 2, props.title)}
+}
+
+prototype(Thorwarth.BaseSite:Content.SectionHeader.Markdown) < prototype(Neos.Fusion:Component) {
+    sectionTitle = ${Markdown.inline(q(node).property('sectionTitle'))}
+    subtitle = ${Markdown.inline(q(node).property('subtitle'))}
+
+    renderer = ${Markdown.join([
+        Markdown.heading(2, props.sectionTitle),
+        props.subtitle ? '*' + props.subtitle + '*' : ''
+    ])}
+}
+
+prototype(Thorwarth.BaseSite:Content.IntroSection.Markdown) < prototype(Neos.Fusion:Component) {
+    # Wie in der HTML-Fassung: der tethered SectionHeader wird nur ohne eigenen Titel ausgegeben
+    @context.headerNode = ${String.isBlank(q(node).property('sectionTitle')) ? q(node).children('header').get(0) : null}
+
+    sectionTitle = ${Markdown.inline(q(node).property('sectionTitle'))}
+    subtitle = ${Markdown.inline(q(node).property('subtitle'))}
+    header = Thorwarth.BaseSite:Markdown.ContentCase {
+        @context.node = ${headerNode}
+        @if.hasHeader = ${headerNode ? true : false}
+    }
+    image = Thorwarth.BaseSite:Markdown.Image {
+        image = ${q(node).property('image')}
+        alternativeText = ${q(node).property('alternativeText')}
+    }
+    leftColumnText = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('leftColumnText')}
+    }
+    # Die rechte Spalte gibt es nur im zweispaltigen Layout ohne Bild
+    rightColumnText = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('rightColumnText')}
+        @if.twoColumns = ${(q(node).property('columnMode') || 'two-columns') == 'two-columns' && !q(node).property('image')}
+    }
+
+    renderer = ${Markdown.join([
+        Markdown.heading(2, props.sectionTitle),
+        props.subtitle ? '*' + props.subtitle + '*' : '',
+        props.header,
+        props.image,
+        props.leftColumnText,
+        props.rightColumnText
+    ])}
+}
+
+prototype(Thorwarth.BaseSite:Content.FullWidthImage.Markdown) < prototype(Thorwarth.BaseSite:Markdown.Image) {
+    image = ${q(node).property('image')}
+    alternativeText = ${q(node).property('alternativeText')}
+    title = ${q(node).property('title')}
+}
+
+prototype(Thorwarth.BaseSite:Content.Image.Hero.Markdown) < prototype(Thorwarth.BaseSite:Markdown.Image) {
+    image = ${q(node).property('image')}
+    alternativeText = ${q(node).property('alternativeText')}
+}
+
+prototype(Thorwarth.BaseSite:Content.ImageSlider.Markdown) < prototype(Neos.Fusion:Component) {
+    heading = ${Markdown.inline(q(node).property('heading'))}
+    images = Neos.Fusion:Loop {
+        items = ${Type.isArray(q(node).property('images')) ? q(node).property('images') : (q(node).property('images') ? [q(node).property('images')] : [])}
+        itemName = 'asset'
+        itemRenderer = Thorwarth.BaseSite:Markdown.Image {
+            image = ${asset}
+            alternativeText = ${asset.title || asset.label}
+            maximumWidth = 800
+        }
+        @glue = ${String.chr(10)}
+    }
+
+    renderer = ${Markdown.join([
+        Markdown.heading(2, props.heading),
+        props.images
+    ])}
+}
+
+prototype(Thorwarth.BaseSite:Content.Accordion.Markdown) < prototype(Neos.Fusion:Component) {
+    heading = ${Markdown.inline(q(node).property('heading'))}
+    items = Thorwarth.BaseSite:Markdown.ContentCollection {
+        nodePath = '.'
+    }
+
+    renderer = ${Markdown.join([
+        Markdown.heading(2, props.heading),
+        props.items
+    ])}
+}
+
+prototype(Thorwarth.BaseSite:Content.Accordion.Item.Markdown) < prototype(Neos.Fusion:Component) {
+    title = ${Markdown.inline(q(node).property('title'))}
+    content = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('content')}
+        minHeadingLevel = 4
+    }
+
+    renderer = ${Markdown.join([
+        Markdown.heading(3, props.title),
+        props.content
+    ])}
+}
+
+prototype(Thorwarth.BaseSite:Content.Button.Markdown) < prototype(Neos.Fusion:Component) {
+    label = ${Markdown.inline(q(node).property('label'))}
+    linkUri = Thorwarth.BaseSite:Markdown.LinkUri {
+        value = ${q(node).property('link')}
+    }
+
+    renderer = ${props.linkUri ? Markdown.link(props.label, props.linkUri) : props.label}
+}
+
+prototype(Thorwarth.BaseSite:Content.ChildPageList.Markdown) < prototype(Thorwarth.BaseSite:Markdown.DocumentList) {
+    items = ${q(documentNode).children('[instanceof Neos.Neos:Document][_hidden != true][hiddenInMenu != true]').get()}
+}
+
+# Das Formular gibt es nur in der HTML-Fassung; stattdessen die Kontaktwege (Startseite bzw. Thorwarth.BaseSite.branding)
+prototype(Thorwarth.BaseSite:Content.ContactForm.Markdown) < prototype(Neos.Fusion:Component) {
+    htmlUri = Neos.Neos:NodeUri {
+        node = ${documentNode}
+        absolute = true
+        format = 'html'
+    }
+    company = Thorwarth.BaseSite:Geo.Company
+
+    renderer = ${Markdown.join([
+        Markdown.heading(2, 'Kontakt'),
+        'Das Kontaktformular steht in der HTML-Fassung dieser Seite zur Verfügung: ' + props.htmlUri,
+        Markdown.definitionList({
+            'Telefon': Markdown.escape(props.company.phoneDisplay),
+            'E-Mail': Markdown.escape(props.company.email),
+            'Adresse': Markdown.escape(props.company.address)
+        })
+    ])}
+}
+
+prototype(Thorwarth.BaseSite:Content.DownloadSection.Markdown) < prototype(Thorwarth.BaseSite:Markdown.ContentCollection) {
+    nodePath = '.'
+    @glue = ${String.chr(10)}
+}
+
+prototype(Thorwarth.BaseSite:Content.DownloadItem.Markdown) < prototype(Neos.Fusion:Component) {
+    title = ${Markdown.inline(q(node).property('title'))}
+    file = ${q(node).property('file')}
+    fileUri = Neos.Fusion:ResourceUri {
+        resource = ${q(node).property('file').resource}
+        @if.hasFile = ${q(node).property('file') ? true : false}
+    }
+    fileInfo = ${q(node).property('file') ? Array.join(Array.filter([
+        String.toUpperCase(String.substr(q(node).property('file').resource.filename, String.lastIndexOf(q(node).property('file').resource.filename, '.') + 1)),
+        Markdown.fileSize(q(node).property('file').resource.fileSize)
+    ]), ', ') : ''}
+
+    renderer = ${props.fileUri ? '- ' + Markdown.link(props.title || Markdown.escape(props.file.resource.filename), props.fileUri) + (props.fileInfo ? ' (' + props.fileInfo + ')' : '') : ''}
+}
+
+prototype(Thorwarth.BaseSite:Content.TeamSection.Markdown) < prototype(Thorwarth.BaseSite:Markdown.ContentCollection) {
+    nodePath = ${q(node).children('members').count() > 0 ? 'members' : '.'}
+}
+
+prototype(Thorwarth.BaseSite:Content.TeamMember.Markdown) < prototype(Neos.Fusion:Component) {
+    name = ${Markdown.inline(q(node).property('name'))}
+    position = ${Markdown.inline(q(node).property('position'))}
+    detailText = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('text')}
+        minHeadingLevel = 4
+    }
+    image = Thorwarth.BaseSite:Markdown.Image {
+        image = ${q(node).property('image')}
+        alternativeText = ${q(node).property('imageAlt') || q(node).property('name')}
+        title = ${q(node).property('imageTitle')}
+        maximumWidth = 600
+    }
+
+    renderer = ${Markdown.join([
+        Markdown.heading(3, props.name),
+        props.image,
+        props.position,
+        props.detailText
+    ])}
+}
+
+prototype(Thorwarth.BaseSite:Content.MobileMenu.Markdown) < prototype(Neos.Fusion:Value) {
+    value = ''
+}
+
+prototype(Thorwarth.BaseSite:Content.FAQ.Markdown) < prototype(Neos.Fusion:Component) {
+    heading = ${Markdown.inline(q(node).property('heading'))}
+    items = Thorwarth.BaseSite:Markdown.ContentCollection {
+        nodePath = '.'
+    }
+
+    renderer = ${Markdown.join([
+        Markdown.heading(2, props.heading),
+        props.items
+    ])}
+}
+
+prototype(Thorwarth.BaseSite:Content.FAQ.Item.Markdown) < prototype(Neos.Fusion:Component) {
+    question = Thorwarth.BaseSite:Markdown.InlineText {
+        value = ${q(node).property('question')}
+    }
+    answer = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('answer')}
+        minHeadingLevel = 4
+    }
+
+    renderer = ${Markdown.join([
+        Markdown.heading(3, props.question),
+        props.answer
+    ])}
+}
+
+prototype(Thorwarth.BaseSite:Content.CardSection.Markdown) < prototype(Neos.Fusion:Component) {
+    heading = ${Markdown.inline(q(node).property('heading'))}
+    subheading = ${Markdown.inline(q(node).property('subheading'))}
+    introText = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('introText')}
+    }
+    cards = Neos.Fusion:Loop {
+        items = ${[1, 2, 3]}
+        itemName = 'index'
+        itemRenderer = Neos.Fusion:Component {
+            image = Thorwarth.BaseSite:Markdown.Image {
+                image = ${q(node).property('image' + index)}
+                maximumWidth = 800
+            }
+            text = Thorwarth.BaseSite:Markdown.RichText {
+                value = ${q(node).property('text' + index)}
+                minHeadingLevel = 3
+            }
+            renderer = ${Markdown.join([props.image, props.text])}
+        }
+        @glue = ${String.chr(10) + String.chr(10)}
+    }
+
+    renderer = ${Markdown.join([
+        Markdown.heading(2, props.heading),
+        props.subheading ? '*' + props.subheading + '*' : '',
+        props.introText,
+        props.cards
+    ])}
+}
+
+prototype(Thorwarth.BaseSite:Content.ProcessSection.Markdown) < prototype(Neos.Fusion:Component) {
+    heading = ${Markdown.inline(q(node).property('heading'))}
+    subheading = ${Markdown.inline(q(node).property('subheading'))}
+    # Bezeichnungen sind redaktionell pflegbar, daher per Array.set statt Objekt-Literal
+    badges = ${Markdown.definitionList(Array.filter(Array.set(Array.set({},
+        Markdown.escape(q(node).property('badge1Label') || 'Ersttermin'), Markdown.inline(q(node).property('badge1Text'))),
+        Markdown.escape(q(node).property('badge2Label') || 'Folgetermin'), Markdown.inline(q(node).property('badge2Text')))))}
+
+    renderer = ${Markdown.join([
+        Markdown.heading(2, props.heading),
+        props.subheading ? '*' + props.subheading + '*' : '',
+        props.badges
+    ])}
+}
+
+prototype(Thorwarth.BaseSite:Content.QuoteSection.Markdown) < prototype(Neos.Fusion:Component) {
+    quoteText = ${Markdown.inline(q(node).property('quoteText'))}
+    author = ${Markdown.inline(q(node).property('author'))}
+
+    renderer = ${props.quoteText ? Markdown.quote(props.quoteText + (props.author ? ' – ' + props.author : '')) : ''}
+}
+
+prototype(Thorwarth.BaseSite:Content.ContactPerson.Markdown) < prototype(Neos.Fusion:Component) {
+    label = ${Markdown.inline(q(node).property('label'))}
+    name = ${Markdown.inline(q(node).property('name'))}
+    text = Thorwarth.BaseSite:Markdown.RichText {
+        value = ${q(node).property('text')}
+        minHeadingLevel = 4
+    }
+    image = Thorwarth.BaseSite:Markdown.Image {
+        image = ${q(node).property('image')}
+        alternativeText = ${q(node).property('imageAlt') || q(node).property('name')}
+        title = ${q(node).property('imageTitle')}
+        maximumWidth = 600
+    }
+
+    renderer = ${Markdown.join([
+        Markdown.heading(2, props.label),
+        Markdown.heading(3, props.name),
+        props.image,
+        props.text
+    ])}
+}
+
+prototype(Thorwarth.BaseSite:Content.ImageGallery.Markdown) < prototype(Neos.Fusion:Loop) {
+    items = ${Type.isArray(q(node).property('images')) ? q(node).property('images') : []}
+    itemName = 'asset'
+    itemRenderer = Thorwarth.BaseSite:Markdown.Image {
+        image = ${asset}
+        alternativeText = ${asset.title || asset.label}
+        maximumWidth = 800
+    }
+    @glue = ${String.chr(10)}
+}
