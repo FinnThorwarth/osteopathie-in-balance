@@ -36,24 +36,74 @@ Thorwarth:
       logo: 'Public/Images/Logo.svg'
       company:
         legalName: 'Osteopathie in Balance – Anna-Liesa Rixgens'
-        # Fallbacks, falls an der Startseite nichts gepflegt ist (Adresse laut Impressum)
-        streetAddress: 'Fürstenrieder Straße 4a'
-        postalCode: '80687'
-        city: 'München'
+        # Anschrift der Praxis laut Impressum (= Hauptstandort Gräfelfing); Fallback, falls an der Startseite
+        # nichts gepflegt ist. Alle Behandlungsorte stehen unter "locations".
+        streetAddress: 'Bahnhofstraße 108'
+        postalCode: '82166'
+        city: 'Gräfelfing'
         region: 'Bayern'
         country: 'DE'
         phone: '+4915155784073'
         phoneDisplay: '+49 151 55784073'
         email: 'mail@osteopathie-in-balance.com'
         # Freitext für llms.txt/Markdown; leer = nicht ausgeben
-        officeHours: 'Termine nach Vereinbarung, Online-Buchung über Doctolib'
+        officeHours: 'Termine nach Vereinbarung an mehreren Standorten, Online-Buchung über Doctolib'
         emergencyHours: ''
         # Einzugsgebiet für schema.org/areaServed
         areaServed:
           - 'München'
-          - 'Laim'
           - 'Gräfelfing'
-        # Geokoordinaten (Dezimalgrad) des Standorts; leer = nicht ausgeben.
+          - 'Nymphenburg'
+        # Standorte (schema.org/department, llms.txt, Markdown-Fußzeile, ARD-Manifest, WebMCP).
+        # Reihenfolge = Ausgabereihenfolge; ein neuer Standort ist ein weiterer Eintrag (danach Deploy + Cache leeren).
+        # Muss zur Seite "Standorte & Öffnungszeiten" passen (locationsPage = deren Node-ID).
+        # openingHours: dayOfWeek als schema.org-Wochentage (Monday … Sunday), Zeiten HH:MM.
+        # geo/mapUrl: TODO aus dem Google-Unternehmensprofil übernehmen; leer = nicht ausgeben.
+        locationsPage: '9b069e70-e35e-486e-a71e-92553850f204'
+        locations:
+          graefelfing:
+            id: 'graefelfing'
+            name: 'Praxis Gräfelfing'
+            description: 'Praxis Osteopathie in Balance – für Kinder und Familien. 1. OG, barrierefreier Zugang mit Fahrstuhl, gebührenpflichtige Parkplätze.'
+            streetAddress: 'Bahnhofstraße 108'
+            postalCode: '82166'
+            city: 'Gräfelfing'
+            region: 'Bayern'
+            country: 'DE'
+            openingHoursText: 'Mo und Di 10–19 Uhr, Mi 15–19 Uhr, Do 10–18 Uhr'
+            openingHours:
+              - dayOfWeek: ['Monday', 'Tuesday']
+                opens: '10:00'
+                closes: '19:00'
+              - dayOfWeek: ['Wednesday']
+                opens: '15:00'
+                closes: '19:00'
+              - dayOfWeek: ['Thursday']
+                opens: '10:00'
+                closes: '18:00'
+            geo:
+              latitude: ''
+              longitude: ''
+            mapUrl: ''
+          nymphenburg:
+            id: 'nymphenburg'
+            name: 'Praxis Nymphenburg'
+            description: 'In der Praxis am Schloss – Gabi Prediger & Kollegen. 1. OG, kostenfreie Parkplätze am Schloss und am Kanal, Tram- und Bushaltestelle Schloss Nymphenburg.'
+            streetAddress: 'Notburgastraße 2'
+            postalCode: '80639'
+            city: 'München'
+            region: 'Bayern'
+            country: 'DE'
+            openingHoursText: 'Fr 9–18 Uhr'
+            openingHours:
+              - dayOfWeek: ['Friday']
+                opens: '09:00'
+                closes: '18:00'
+            geo:
+              latitude: ''
+              longitude: ''
+            mapUrl: ''
+        # Geokoordinaten (Dezimalgrad) des Hauptstandorts; leer = nicht ausgeben.
         # TODO: aus dem Google-Unternehmensprofil übernehmen.
         geo:
           latitude: ''

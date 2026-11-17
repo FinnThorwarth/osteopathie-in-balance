@@ -78,7 +78,7 @@ export function buildTools(config = siteConfig()) {
 		},
 		{
 			name: 'get_contact_details',
-			description: 'Liefert Praxis, Adresse, Telefon, E-Mail und den Link zur Online-Terminbuchung (Doctolib).',
+			description: 'Liefert Praxis, Standorte mit Öffnungszeiten, Telefon, E-Mail und den Link zur Online-Terminbuchung (Doctolib).',
 			inputSchema: { type: 'object', properties: {} },
 			annotations: { readOnlyHint: true },
 			async execute() {

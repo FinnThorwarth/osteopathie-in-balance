@@ -230,7 +230,7 @@ prototype(Thorwarth.BaseSite:Content.ContactForm.Markdown) < prototype(Neos.Fusi
         Markdown.definitionList({
             'Telefon': Markdown.escape(props.company.phoneDisplay),
             'E-Mail': Markdown.escape(props.company.email),
-            'Adresse': Markdown.escape(props.company.address)
+            'Standorte': Markdown.escape(Array.join(props.company.locationLines, '; ') || props.company.address)
         })
     ])}
 }

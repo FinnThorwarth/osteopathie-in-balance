@@ -88,6 +88,8 @@ prototype(Thorwarth.BaseSite:ArdManifest) < prototype(Neos.Fusion:Component) {
                 telephone = ${props.company.phone}
                 email = ${props.company.email}
                 address = ${props.company.address}
+                locations = ${props.company.locationLines}
+                locationsUrl = ${props.company.locationsPageUri}
                 bookingUrl = ${props.company.bookingUrl}
                 bookingUrl.@if.set = ${props.company.bookingUrl ? true : false}
             }

@@ -3,7 +3,8 @@
 #
 # Neos.Seo liefert bereits BreadcrumbList, WebSite, Title/Description, Canonical, hreflang und Open Graph.
 # Hier wird ergänzt bzw. korrigiert:
-# - MedicalBusiness (Untertyp von LocalBusiness) mit Adresse, Telefon, Schwerpunkten (auf jeder Seite, gleiche @id)
+# - MedicalBusiness (Untertyp von LocalBusiness) mit Adresse, Telefon, Schwerpunkten (auf jeder Seite, gleiche @id),
+#   je Standort ein MedicalBusiness unter "department" mit Adresse und Öffnungszeiten (Settings.Geo.yaml: locations)
 # - WebSite: Name der Marke statt Seitentitel der Startseite, Suchaktion (Sitelinks-Suchfeld), Publisher
 # - Open Graph: og:site_name = Marke, og:locale im Format de_DE, Fallback-Bilder (Titelbild der Seite,
 #   Vorschaubild von Journal-Beiträgen, Standardbild aus den Settings)
@@ -83,6 +84,29 @@ prototype(Thorwarth.BaseSite:StructuredData.LocalBusiness) < prototype(Neos.Fusi
         }
         sameAs = ${props.company.sameAs}
         sameAs.@if.set = ${Array.length(props.company.sameAs) > 0}
+        # Behandlungsorte als eigene MedicalBusiness-Einträge (Adresse, Öffnungszeiten), verknüpft mit der Praxis
+        department = ${Array.values(Array.map(props.company.locations, loc => Array.filter({
+            '@type': 'MedicalBusiness',
+            '@id': props.company.homepageUri + '#standort-' + loc.id,
+            'name': props.company.name + ' – ' + loc.name,
+            'description': loc.description,
+            'url': props.company.locationsPageUri,
+            'telephone': props.company.phone,
+            'email': props.company.email,
+            'address': {
+                '@type': 'PostalAddress',
+                'streetAddress': loc.streetAddress,
+                'postalCode': loc.postalCode,
+                'addressLocality': loc.city,
+                'addressRegion': loc.region,
+                'addressCountry': loc.country
+            },
+            'geo': loc.geo.latitude && loc.geo.longitude ? {'@type': 'GeoCoordinates', 'latitude': loc.geo.latitude, 'longitude': loc.geo.longitude} : null,
+            'hasMap': loc.mapUrl,
+            'openingHoursSpecification': Array.map(loc.openingHours || [], hours => {'@type': 'OpeningHoursSpecification', 'dayOfWeek': hours.dayOfWeek, 'opens': hours.opens, 'closes': hours.closes}),
+            'parentOrganization': {'@id': private.organizationId}
+        })))}
+        department.@if.set = ${Array.length(props.company.locations) > 0}
     }
 
     renderer = afx`
@@ -155,6 +179,8 @@ prototype(Thorwarth.BaseSite:Component.Head.GeoTags) < prototype(Neos.Fusion:Com
         'company': Array.filter({
             'name': props.company.legalName || props.company.name,
             'address': props.company.address,
+            'locations': props.company.locationLines,
+            'locationsUrl': props.company.locationsPageUri,
             'phone': props.company.phone,
             'phoneDisplay': props.company.phoneDisplay,
             'email': props.company.email,

@@ -30,6 +30,16 @@ prototype(Thorwarth.BaseSite:Geo.Company) < prototype(Neos.Fusion:DataStructure)
     priceRange = ${branding.company.priceRange}
     foundingDate = ${branding.company.foundingDate}
     founder = ${branding.company.founder}
+    # Standorte aus Settings.Geo.yaml (branding.company.locations), als Liste in Ausgabereihenfolge
+    locations = ${Array.values(branding.company.locations || {})}
+    # Je Standort eine Zeile "Praxis Gräfelfing: Bahnhofstraße 108, 82166 Gräfelfing (Mo und Di 10–19 Uhr, …)"
+    locationLines = ${Array.values(Array.map(this.locations, loc => loc.name + ': ' + loc.streetAddress + ', ' + loc.postalCode + ' ' + loc.city + (loc.openingHoursText ? ' (' + loc.openingHoursText + ')' : '')))}
+    locationsPageUri = Neos.Neos:NodeUri {
+        node = ${q(site).find('#' + branding.company.locationsPage).get(0)}
+        absolute = true
+        format = 'html'
+        @if.configured = ${branding.company.locationsPage ? true : false}
+    }
     logoUri = Neos.Fusion:ResourceUri {
         path = ${'resource://Thorwarth.BaseSite/' + branding.logo}
         absolute = true
@@ -48,7 +58,8 @@ prototype(Thorwarth.BaseSite:Geo.CompanyDetails) < prototype(Neos.Fusion:Compone
 
     renderer = ${Array.filter({
         'Praxis': props.company.legalName || props.company.name,
-        'Adresse': props.company.address,
+        'Standorte': Array.join(props.company.locationLines, '; ') || props.company.address,
+        'Standorte & Öffnungszeiten': props.company.locationsPageUri,
         'Telefon': props.company.phoneDisplay,
         'E-Mail': props.company.email,
         'Termine': props.company.officeHours,
