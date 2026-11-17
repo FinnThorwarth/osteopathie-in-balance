@@ -59,11 +59,11 @@ Thorwarth:
 
 ## 5. Prüfen
 ```bash
-curl -sI https://www.osteopathie-in-balance.de/llms.txt              # 200, text/plain
-curl -sI https://www.osteopathie-in-balance.de/index.md              # 200, text/markdown
-curl -s  https://www.osteopathie-in-balance.de/.well-known/ard.json  # JSON-Manifest
-curl -s  https://www.osteopathie-in-balance.de/robots.txt            # enthält Hinweis auf llms.txt
-curl -s -X POST https://www.osteopathie-in-balance.de/api/mcp \
+curl -sI https://www.osteopathie-in-balance.com/llms.txt              # 200, text/plain
+curl -sI https://www.osteopathie-in-balance.com/index.md              # 200, text/markdown
+curl -s  https://www.osteopathie-in-balance.com/.well-known/ard.json  # JSON-Manifest
+curl -s  https://www.osteopathie-in-balance.com/robots.txt            # enthält Hinweis auf llms.txt
+curl -s -X POST https://www.osteopathie-in-balance.com/api/mcp \
   -H "Authorization: Bearer <TOKEN>" -H "Content-Type: application/json" \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'               # 401 = Token falsch, 503 = kein Token
 ```
@@ -72,7 +72,7 @@ Im Seitenquelltext: `<img src=".../Logo.svg?v=…">`, `<link rel="alternate" typ
 
 ## 6. Claude Code anbinden
 ```bash
-claude mcp add --transport http --scope user osteopathie-live https://www.osteopathie-in-balance.de/api/mcp \
+claude mcp add --transport http --scope user osteopathie-live https://www.osteopathie-in-balance.com/api/mcp \
   --header "Authorization: Bearer <TOKEN>"
 ```
 

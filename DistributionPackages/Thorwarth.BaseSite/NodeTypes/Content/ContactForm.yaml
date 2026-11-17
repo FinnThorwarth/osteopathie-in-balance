@@ -14,7 +14,7 @@
   properties:
     recipientEmail:
       type: string
-      defaultValue: 'info@osteopathie-in-balance.de'
+      defaultValue: 'mail@osteopathie-in-balance.com'
       ui:
         label: 'Empfänger E-Mail'
         reloadIfChanged: false

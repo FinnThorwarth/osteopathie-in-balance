@@ -2,7 +2,7 @@ prototype(Thorwarth.BaseSite:Component.Organism.Footer) < prototype(Neos.Fusion:
     site = ${site}
 
     # Properties from site settings
-    email = ${q(site).property('footerEmail') || 'info@osteopathie-in-balance.de'}
+    email = ${q(site).property('footerEmail') || 'mail@osteopathie-in-balance.com'}
     instagramUrl = ${q(site).property('instagramUrl')}
     linkedinUrl = ${q(site).property('linkedinUrl')}
 

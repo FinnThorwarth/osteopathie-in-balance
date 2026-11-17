@@ -72,5 +72,5 @@ Neos:
 Thorwarth:
   BaseSite:
     mail:
-      senderAddress: 'info@osteopathie-in-balance.de'
+      senderAddress: 'mail@osteopathie-in-balance.com'
       senderName: 'Osteopathie in Balance'

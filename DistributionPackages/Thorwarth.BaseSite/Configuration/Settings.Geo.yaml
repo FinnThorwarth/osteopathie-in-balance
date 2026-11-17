@@ -44,7 +44,7 @@ Thorwarth:
         country: 'DE'
         phone: '+4915155784073'
         phoneDisplay: '+49 151 55784073'
-        email: 'info@osteopathie-in-balance.de'
+        email: 'mail@osteopathie-in-balance.com'
         # Freitext für llms.txt/Markdown; leer = nicht ausgeben
         officeHours: 'Termine nach Vereinbarung, Online-Buchung über Doctolib'
         emergencyHours: ''
@@ -123,7 +123,7 @@ Thorwarth:
     agentic:
       # Origin-Trial-Token für WebMCP (Chrome), pro Origin beantragen: https://developer.chrome.com/origintrials/
       # Ohne Token bleibt navigator.modelContext in Chrome deaktiviert; die Tool-Registrierung ist dann wirkungslos, aber harmlos.
-      # TODO: Token für https://www.osteopathie-in-balance.de beantragen und hier eintragen.
+      # TODO: Token für https://www.osteopathie-in-balance.com beantragen und hier eintragen.
       webmcpOriginTrialToken: ''
 
     # Serverseitiges Matomo-Tracking für Abrufe ohne Browser (Crawler, KI-Agenten): llms.txt, Markdown-Seiten,

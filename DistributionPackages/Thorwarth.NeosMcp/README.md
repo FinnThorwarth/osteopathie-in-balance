@@ -56,7 +56,7 @@ Konfiguration: `dimensionSpacePoint` (Standard-Dimension) und `languageDimension
    ```
 4. Prüfen (401 = Endpoint aktiv, Token falsch/fehlt; 503 = kein Token konfiguriert):
    ```bash
-   curl -s -X POST https://www.osteopathie-in-balance.de/api/mcp \
+   curl -s -X POST https://www.osteopathie-in-balance.com/api/mcp \
      -H "Authorization: Bearer <TOKEN>" -H "Content-Type: application/json" \
      -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
    ```
@@ -70,7 +70,7 @@ alternativ im Header `X-Neos-Mcp-Token` gesendet werden (`auth.fallbackHeader`).
 Live-Server benutzerweit registrieren (Token wird in `~/.claude.json` gespeichert, nicht im Repo):
 
 ```bash
-claude mcp add --transport http --scope user osteopathie-live https://www.osteopathie-in-balance.de/api/mcp \
+claude mcp add --transport http --scope user osteopathie-live https://www.osteopathie-in-balance.com/api/mcp \
   --header "Authorization: Bearer <TOKEN>"
 ```
 

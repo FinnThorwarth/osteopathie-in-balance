@@ -56,9 +56,9 @@ prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentC
             email {
                 type = 'Neos.Fusion.Form.Runtime:Email'
                 options {
-                    senderAddress = 'noreply@osteopathie-in-balance.de'
+                    senderAddress = 'noreply@osteopathie-in-balance.com'
                     senderName = 'Kontaktformular'
-                    recipientAddress = 'info@osteopathie-in-balance.de'
+                    recipientAddress = 'mail@osteopathie-in-balance.com'
                     recipientName = 'Osteopathie in Balance'
                     subject = 'Neue Kontaktanfrage'
                     text = ${'Name: ' + data.name + String.chr(10) + 'Telefon: ' + (data.telefon || 'Nicht angegeben') + String.chr(10) + 'E-Mail: ' + data.email + String.chr(10) + String.chr(10) + 'Nachricht:' + String.chr(10) + data.nachricht}

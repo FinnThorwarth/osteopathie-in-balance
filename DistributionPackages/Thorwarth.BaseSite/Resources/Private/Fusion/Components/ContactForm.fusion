@@ -32,7 +32,7 @@ prototype(Thorwarth.BaseSite:Component.ContactForm) < prototype(Neos.Fusion:Comp
                 options {
                     senderAddress = ${data.email}
                     senderName = ${data.name}
-                    recipientAddress = 'info@osteopathie-in-balance.de'
+                    recipientAddress = 'mail@osteopathie-in-balance.com'
                     recipientName = 'Osteopathie in Balance'
                     subject = ${'Neue Kontaktanfrage von ' + data.name}
                     text = Neos.Fusion:Join {

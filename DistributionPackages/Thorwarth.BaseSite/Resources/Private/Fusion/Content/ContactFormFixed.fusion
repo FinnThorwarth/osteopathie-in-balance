@@ -1,7 +1,7 @@
 prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentComponent) {
     # Get properties from node or use defaults
     @context {
-        recipientEmailAddress = ${q(node).property('recipientEmail') || 'info@osteopathie-in-balance.de'}
+        recipientEmailAddress = ${q(node).property('recipientEmail') || 'mail@osteopathie-in-balance.com'}
         successMessageText = ${q(node).property('successMessage') || 'Vielen Dank für Ihre Nachricht. Wir werden uns schnellstmöglich bei Ihnen melden.'}
     }
 
@@ -63,7 +63,7 @@ prototype(Thorwarth.BaseSite:Content.ContactForm) < prototype(Neos.Neos:ContentC
             email {
                 type = 'Neos.Fusion.Form.Runtime:Email'
                 options {
-                    senderAddress = ${data.email || 'noreply@osteopathie-in-balance.de'}
+                    senderAddress = ${data.email || 'noreply@osteopathie-in-balance.com'}
                     senderName = ${data.name || 'Website Kontaktformular'}
                     recipientAddress = ${recipientEmailAddress}
                     recipientName = 'Osteopathie in Balance'
